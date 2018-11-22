@@ -1,6 +1,7 @@
 // components/xx_cover_news/xx_cover_news.js
 var GP
 var i = 0
+var roll_z = 0
 Component({
     /**
      * 组件的属性列表
@@ -39,6 +40,10 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        main(){
+
+        },
+        render(){},
 
         //初始化
         onInit() {
@@ -54,6 +59,21 @@ Component({
                 }
             })
 
+            wx.onAccelerometerChange(function (res) {
+                // console.log(res.x, res.y, res.z)
+                // console.log(res.y)
+                // console.log(res.z)
+                var z = res.z
+                // if (z >= 0)
+                //     roll_z = parseInt(50 + z * 50)
+                // else
+                if (z > 1) z = 1
+                if ( z < -1 ) z = -1
+                roll_z = parseInt(350 + z * 300)
+                // console.log(roll_z)
+            })
+
+
             //测试
             // GP.updateTarget(50)
             // GP.mathMarkDistance()
@@ -61,7 +81,7 @@ Component({
 
         getLocation(){
             wx.getLocation({
-                type: 'wgs84',
+                type: 'gcj02',
                 success(res) {
                     const latitude = res.latitude
                     const longitude = res.longitude
@@ -75,9 +95,12 @@ Component({
         },
 
         //计算目标点的距离，弧度
-        mathMarkDistance(latitude, longitude){
-            var mark_la = 39.928712
-            var mark_lo = 116.393345
+        mathMarkDistance(latitude, longitude) {
+            // var mark_la = 39.928712
+            // var mark_lo = 116.393345
+            var mark_la = 22.8454590810
+            var mark_lo = 108.3109956980
+            
             // var latitude = 22.8477
             // var longitude = 108.306385
 
@@ -106,8 +129,8 @@ Component({
             var La3 = La1 - La2;
             var Lb3 = lo1 * Math.PI / 180.0 - lo2 * Math.PI / 180.0;
             var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
-            s = s * 6378.137;//地球半径
-            s = Math.round(s * 10000) / 10000;
+            s = s * 6378137;//地球半径
+            s = Math.round(s * 10000) / 10000 ;
             // console.log("计算结果", s)
             return s
         },
@@ -127,41 +150,45 @@ Component({
             if (valueAngle > halfAngle && valueAngle < 120) {
                 var nodeList = GP.data.nodeList
                 nodeList[0].x = 0
-                GP.setData({
-                    nodeList: nodeList
-                })
+                // GP.setData({
+                //     nodeList: nodeList
+                // })
             }
             else if (valueAngle < -halfAngle && valueAngle > -100) {
                 var nodeList = GP.data.nodeList
                 nodeList[0].x = 750 - 56
-                GP.setData({
-                    nodeList: nodeList
-                })
+                // GP.setData({
+                //     nodeList: nodeList
+                // })
             }
             else if ( valueAngle >= 0 && valueAngle <= halfAngle  ){
                 var nodeList = GP.data.nodeList
                 nodeList[0].x = (halfAngle - valueAngle)* stepPixle - 25
 
-                GP.setData({
-                    nodeList: nodeList
-                })
+                // GP.setData({
+                //     nodeList: nodeList
+                // })
             }
             else if (valueAngle >  -halfAngle && valueAngle < 0) {
                 var nodeList = GP.data.nodeList
                 nodeList[0].x = (-valueAngle + halfAngle) * stepPixle - 25
 
-                GP.setData({
-                    nodeList: nodeList
-                })
+                // GP.setData({
+                //     nodeList: nodeList
+                // })
             }
             else{
                 var nodeList = GP.data.nodeList
                 nodeList[0].x = 1000
 
-                GP.setData({
-                    nodeList: nodeList
-                })
+                // GP.setData({
+                //     nodeList: nodeList
+                // })
             }
+            nodeList[0].y = roll_z 
+            GP.setData({
+                nodeList: nodeList
+            })
         },
 
         // 改变
