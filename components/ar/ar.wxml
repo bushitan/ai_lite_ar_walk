@@ -12,6 +12,11 @@
             <cover-view>    
                 <cover-view class='title'>{{item.name}}</cover-view>
                 <cover-view  class='title'>{{item.distance}}米</cover-view>
+                <cover-view  
+                    class='title' 
+                    bindtap='clickInfo'
+                    data-mark_id="{{item.id}}"
+                >详情</cover-view>
             </cover-view>
         </cover-view>
     </block>
