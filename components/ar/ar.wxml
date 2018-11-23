@@ -24,4 +24,10 @@
     <cover-view class='nav'>
          <cover-image class='nav_icon' src='{{navIcon}}'></cover-image>
     </cover-view>
+
+    <cover-view class='menu'>      
+        <cover-image class='menu_bg' src='../../images/menu_bg.png'></cover-image>  
+        <cover-view class='node click'> <cover-view >景点</cover-view></cover-view>
+        <cover-view class='node'><cover-view >厕所</cover-view></cover-view>
+    </cover-view>
 </camera>
