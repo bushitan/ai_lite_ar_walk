@@ -1,0 +1,22 @@
+
+
+<camera device-position="back" flash="off" binderror="error" class="bg">
+    <block wx:for="{{markList}}" wx:key="index">
+        <cover-view 
+            class='mark {{item.id == clickMarkID ? "select":""}}' 
+            style='top:{{item.y}}rpx;left:{{item.x}}rpx'
+            catchtap='clickMark'
+            data-mark_id="{{item.id}}"
+        >
+            <cover-image class='icon' src='../../images/menu_address.png'></cover-image>
+            <cover-view>    
+                <cover-view class='title'>{{item.name}}</cover-view>
+                <cover-view  class='title'>{{item.distance}}米</cover-view>
+            </cover-view>
+        </cover-view>
+    </block>
+
+    <cover-view class='nav'>
+         <cover-image class='nav_icon' src='{{navIcon}}'></cover-image>
+    </cover-view>
+</camera>

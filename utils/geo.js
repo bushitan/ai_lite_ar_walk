@@ -2,6 +2,8 @@
 const COMPASS_RANGE = 3 //罗盘方向误差范围，3°
 const DIRECTION_LEFT = "left" //左方向
 const DIRECTION_RIGHT = "right" //右方向 
+const DIRECTION_FRONT = "front" //正前方
+const DIRECTION_BACK = "back" //后方 
 
 module.exports = {
     distance:distance,
@@ -10,6 +12,8 @@ module.exports = {
     compassRangeAdjust: compassRangeAdjust,
     DIRECTION_LEFT: DIRECTION_LEFT,
     DIRECTION_RIGHT: DIRECTION_RIGHT,
+    DIRECTION_FRONT: DIRECTION_FRONT,
+    DIRECTION_BACK: DIRECTION_BACK,
 }
 
 
