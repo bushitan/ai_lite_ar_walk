@@ -22,12 +22,42 @@
     </block>
 
     <cover-view class='nav'>
-         <cover-image class='nav_icon' src='{{navIcon}}'></cover-image>
+        <cover-image class='nav_icon' src='{{navIcon}}'></cover-image>
     </cover-view>
 
+    <cover-view class='direction'>      
+        <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
+         <cover-view class='direction_center'>
+            <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
+         </cover-view>
+         <cover-view>{{directionName}}</cover-view>
+        <!-- <cover-view class='direction_center'>
+            <cover-view class='direction_icon'></cover-view>
+        </cover-view> 
+        <cover-view class='direction_center'>
+        <cover-view class='direction_des'>{{directionName}}</cover-view>
+        </cover-view> -->
+    </cover-view>
+
+    
     <cover-view class='menu'>      
-        <cover-image class='menu_bg' src='../../images/menu_bg.png'></cover-image>  
-        <cover-view class='node click'> <cover-view >景点</cover-view></cover-view>
-        <cover-view class='node'><cover-view >厕所</cover-view></cover-view>
+        <!-- <cover-image class='menu_bg' src='../../images/menu_bg.png'></cover-image>   -->
+        <block  wx:if="{{isPack == false}}" >
+            <cover-image class='menu_unpack' src='../../images/btn_unpack.png' catchtap="menuChange"></cover-image>  
+        </block>
+        <block  wx:else >
+            <cover-image class='menu_unpack' src='../../images/btn_pack.png' catchtap="menuChange"></cover-image>  
+            <block wx:for="{{menuList}}">
+                <cover-view 
+                    class='node {{ clickMenuID == item.id? "click":""}}' 
+                    catchtap="menuClick"
+                    data-menu_id="{{item.id}}"
+                > 
+                    <cover-view >{{item.name}}</cover-view>
+                </cover-view>
+            </block>
+            <!-- <cover-view class='node click'> <cover-view >景点</cover-view></cover-view>
+            <cover-view class='node'><cover-view >厕所</cover-view></cover-view> -->
+        </block>
     </cover-view>
 </camera>

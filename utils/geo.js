@@ -10,6 +10,7 @@ module.exports = {
     compassDirectionAngle: compassDirectionAngle,
     compassBetweenAngle:compassBetweenAngle,
     compassRangeAdjust: compassRangeAdjust,
+    compassToDirectionName: compassToDirectionName,
     DIRECTION_LEFT: DIRECTION_LEFT,
     DIRECTION_RIGHT: DIRECTION_RIGHT,
     DIRECTION_FRONT: DIRECTION_FRONT,
@@ -131,4 +132,19 @@ function compassTurnAdjust(phone_compass, z_acc ) {
             return phone_compass + 180
     }
        
+}
+
+
+/**
+ * @method 罗盘数值转换为方向
+ * @for geo
+ * @param
+ *      {number} value   手机罗盘度数
+ * @return
+ *      {string} direction_name 方向名称
+ */
+function compassToDirectionName(value){
+    var _index = parseInt(value / 22.5)
+    var _list = ["北", "东北", "东北", "东", "东", "东南", "东南", "南", "南", "西南", "西南", "西", "西", "西北", "西北", "北"]
+    return _list[_index]
 }

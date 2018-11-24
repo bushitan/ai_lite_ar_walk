@@ -24,6 +24,8 @@ Component({
      * 组件的初始数据
      */
     data: {
+
+        directionName:"东",
         //标记
         clickMarkID:2 ,//点击mark的id
 
@@ -33,6 +35,15 @@ Component({
         navDistance:50 , //与下一导航点的距离
         isNav:false,//是否在导航
         navList:[],//导航点数组
+
+        //菜单
+        isPack:!false,
+        clickMenuID:0,
+        menuList: [
+            { name: "全部", id: 0 },
+            { name: "景点", id: 1 },
+            { name: "厕所", id: 2 },
+        ],
     },
     ready() {
         GP = this
@@ -72,10 +83,14 @@ Component({
          * @method 渲染标记列表
          * @for 标记
          * @param
-         *      {number} direction 手机方向
+         *      {number} value 手机方向数值
          */
-        render(direction){
+        render(value){
+            var _direction_name = GEO.compassToDirectionName(value)
 
+            GP.setData({
+                directionName: _direction_name
+            })
         },
 
         /**
@@ -142,6 +157,26 @@ Component({
             if (direction == GEO.DIRECTION_BACK) _icon_name = "nav_back"
             GP.setData({
                 navIcon: "../../images/" + _icon_name +".png", 
+            })
+        },
+
+
+        /*************菜单***************/
+        /**
+         * @method 菜单显示/隐藏切换
+         * @for 菜单
+         */
+        menuChange(){
+            
+            GP.setData({ isPack: !this.data.isPack})
+        },
+        /**
+         * @method 菜单选择
+         * @for 菜单
+         */
+        menuClick(e){
+            GP.setData({
+                clickMenuID: e.currentTarget.dataset.menu_id
             })
         },
 

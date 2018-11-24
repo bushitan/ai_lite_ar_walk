@@ -46,7 +46,9 @@
     position: absolute;
     left: 0px;
     bottom: 0px;
+    height: 52px;
     display: flex;
+    align-items: center;
     /* background: linear-gradient(to top, rgba(0, 0, 0, 0.6)  0%, rgba(255, 255, 255, 0) 100%); */
     /* background: url(../../images/menu_bg.png); */
     width: 100%;
@@ -71,4 +73,36 @@
 .menu .click{
     border:2px solid #ffc834 ;
     color: #ffc834 ;
+}
+.menu .menu_unpack{
+    width: 32px;
+    height: 32px;
+}
+
+/* 方向 */
+.direction{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    padding:5px 0 10px ;
+    color: #fff;
+    font-size: 9pt;
+    text-align: center;
+}
+.direction .direction_center{
+    display: flex;
+    justify-content: center;
+
+}
+.direction .direction_bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.direction .direction_arrow{
+    width:14px;
+    height: 14px;
 }
