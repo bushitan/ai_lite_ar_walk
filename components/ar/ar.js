@@ -6,7 +6,7 @@ var i = 0 //定时器，调用getLocation函数
 var BASE_Y = 400
 // var OFFSET_Y = 0  //水平面偏移量
 var ACC_Z = 0 //三轴陀螺仪Z轴数值
-var SELF_COMPASS_VALUE = 0
+var SELF_COMPASS_VALUE = 60
 var SELF_LAT = 24.48513  //自身维度
 var SELF_LON = 108.63656 //自身经度
 Component({
@@ -20,12 +20,12 @@ Component({
             type: Array,
             value: [
                 { 
-                  id:1, x: 10, y: 50, name: "景山公园", distance: 500,
-                  latitude: 22.8654590810, longitude: 108.3309956980, compass_value: 0
+                id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+                latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
                 },
                 { 
-                  id: 2, x: 500, y: 300, name: "友爱电影厂", distance: 26, 
-                  latitude: 22.8454590810, longitude: 108.3109956980, compass_value:0
+                  id: 2, x: 500, y: 300, name: "馨梦园", distance: 26, 
+                  latitude: 24.4965605364, longitude: 108.6394751072, compass_value:0
                 },
             ],
         },
