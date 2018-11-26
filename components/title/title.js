@@ -141,7 +141,7 @@ Component({
         updateTarget(direction) {
             var myCompass = parseInt(direction)
             var nodeCompass = GP.data.markCompass //目标点固定
-            var baseAngle = 60
+          var baseAngle = compassBetweenAngle
             var halfAngle = baseAngle / 2
             var stepPixle = 750 / baseAngle
 

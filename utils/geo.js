@@ -7,18 +7,18 @@ const DIRECTION_BACK = "back" //后方
 
 module.exports = {
     distance:distance,
+    markValueToScreenXY: markValueToScreenXY,
     compassDirectionAngle: compassDirectionAngle,
     compassBetweenAngle:compassBetweenAngle,
+    compassTurnAdjust: compassTurnAdjust,
     compassRangeAdjust: compassRangeAdjust,
     compassToDirectionName: compassToDirectionName,
+    horizontalAdjust: horizontalAdjust,
     DIRECTION_LEFT: DIRECTION_LEFT,
     DIRECTION_RIGHT: DIRECTION_RIGHT,
     DIRECTION_FRONT: DIRECTION_FRONT,
     DIRECTION_BACK: DIRECTION_BACK,
 }
-
-
-
 
 /**
  * @method 两点间距离
@@ -58,11 +58,45 @@ function distance(lat_a, lng_a, lat_b, lng_b) {
  *      {number} angle 方向角
  */
 function compassDirectionAngle(lat_a, lng_a, lat_b, lng_b) {
-    var _d = distance(lat_a, lng_a, lat_b, lng_b)
-    var _x = distance(lat_a, lng_a, lat_a, lng_b)
-    var angle = 180 * Math.asin(duan / distance) / Math.PI
+    var _distance = distance(lat_a, lng_a, lat_b, lng_b)
+    var _duan = distance(lat_a, lng_a, lat_a, lng_b)
+    var angle = 180 * Math.asin(_duan / _distance) / Math.PI
     //TODO 四个象限
     return angle
+}
+
+
+/**
+ * @method 手机与mark的方向转屏幕坐标
+ * @for geo
+ * @param
+ *      {number} phone_value   手机本身的罗盘度数
+ *      {number} mark_value   手机与目标的罗盘度数
+ * @return
+ *      {number} x y坐标
+ *      {number} y x坐标
+ */
+function markValueToScreenXY(phone_value, mark_value){
+  var _x 
+  var baseAngle = 60
+  var screenWidth = 750 
+  var halfWidth = screenWidth / 2
+  var baseStep = halfWidth / baseAngle 
+  // var halfAngle = baseAngle / 2
+  // var stepPixle = 750 / baseAngle
+
+  var obj = compassBetweenAngle(phone_value, mark_value)
+  var _value = obj.value
+  if (_value > baseAngle)
+    _x = 1000
+  else{
+    if (obj.direction == DIRECTION_LEFT){
+      _x = halfWidth - baseStep * _value
+    }else{
+      _x = halfWidth + baseStep * _value
+    }
+  }
+  return _x
 }
 
 /**
@@ -118,12 +152,12 @@ function compassRangeAdjust(new_value, old_value){
  * @for geo
  * @param
  *      {number} phone_compass   手机罗盘度数
- *      {number} z_acc Z轴重力参数
+ *      {number} acc_z Z轴重力参数
  * @return
  *      {number} value 校正手机罗盘度数
  */
-function compassTurnAdjust(phone_compass, z_acc ) {
-    if (z_acc <= 0 )
+function compassTurnAdjust(phone_compass, acc_z ) {
+    if (acc_z <= 0 )
         return phone_compass
     else{
         if (phone_compass >= 180 )
@@ -147,4 +181,22 @@ function compassToDirectionName(value){
     var _index = parseInt(value / 22.5)
     var _list = ["北", "东北", "东北", "东", "东", "东南", "东南", "南", "南", "西南", "西南", "西", "西", "西北", "西北", "北"]
     return _list[_index]
+}
+
+
+/**
+ * @method 水平距离校正
+ * @for geo
+ * @param
+ *      {number} base 基础水平线
+ *      {number} acc_z Z轴重力参数
+ *      {number} distance 手机与mark的距离
+ * @return
+ *      {string} offset_y Y轴偏移距离
+ */
+function horizontalAdjust(base, acc_z, distance){
+  var distance_y = 0
+  if (distance < 500)
+    distance_y = -100
+  return base + parseInt(350 + acc_z * 300) + distance_y 
 }

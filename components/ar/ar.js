@@ -3,17 +3,30 @@ var GEO = require("../../utils/geo.js")
 
 var GP
 var i = 0 //定时器，调用getLocation函数
-var offset_line = 0  //水平面偏移量
+var BASE_Y = 400
+// var OFFSET_Y = 0  //水平面偏移量
+var ACC_Z = 0 //三轴陀螺仪Z轴数值
+var SELF_COMPASS_VALUE = 0
+var SELF_LAT = 24.48513  //自身维度
+var SELF_LON = 108.63656 //自身经度
 Component({
     /**
      * 组件的属性列表
+     *  var mark_la = 22.8454590810
+            var mark_lo = 108.3109956980
      */
     properties: {      
         markList: {
             type: Array,
             value: [
-                { id:1, x: 10, y: 50, name: "景山公园", distance: 500,info:"/pages/logs/logs" },
-                { id:2, x: 500, y: 300, name: "友爱电影厂", distance: 26, },
+                { 
+                  id:1, x: 10, y: 50, name: "景山公园", distance: 500,
+                  latitude: 22.8654590810, longitude: 108.3309956980, compass_value: 0
+                },
+                { 
+                  id: 2, x: 500, y: 300, name: "友爱电影厂", distance: 26, 
+                  latitude: 22.8454590810, longitude: 108.3109956980, compass_value:0
+                },
             ],
         },
             
@@ -60,6 +73,8 @@ Component({
          */
         onInit(){
             GP.getLocation() //一开始就更新一次位置
+            GP.render(60)
+
             //开启罗盘
             wx.onCompassChange(function (res) {
                 var abs = parseInt(res.direction / 4) * 4
@@ -74,10 +89,10 @@ Component({
                 var z = res.z
                 if (z > 1) z = 1
                 if (z < -1) z = -1
-                offset_line = parseInt(350 + z * 300)
+                ACC_Z = z
+                // OFFSET_Y = parseInt(350 + z * 300)
             })
-
-        },
+        },      
         /*************标记***************/
         /**
          * @method 渲染标记列表
@@ -86,11 +101,49 @@ Component({
          *      {number} value 手机方向数值
          */
         render(value){
-            var _direction_name = GEO.compassToDirectionName(value)
+          value = GEO.compassTurnAdjust(value, ACC_Z) //罗盘方向倒置校正           
+          value = GEO.compassRangeAdjust(value, SELF_COMPASS_VALUE) //罗盘度抖动校正
+          SELF_COMPASS_VALUE = value
+          var _direction_name = GEO.compassToDirectionName(value) //罗盘度数转方向名称
+          var _mark_list = GP.getMarkList(value)//获取新的目标数组
+
+
 
             GP.setData({
-                directionName: _direction_name
+                directionName: _direction_name,
+                markList: _mark_list,
             })
+        },
+
+    //               { id: 2, x: 500, y: 300, name: "友爱电影厂", distance: 26, 
+  //   latitude: 22.8454590810, longitude: 108.3109956980,compass_value
+  // },
+        /*************标记***************/
+        /**
+         * @method 获取渲染的mark数组
+         * @for 标记
+         * @param
+         *      {object} value 手机的方向数值
+         */
+        getMarkList(value){
+          var _list = GP.data.markList
+          for (var i = 0; i < _list.length; i++) {
+            var _m = _list[i]
+            //手机与mark的距离
+            var _distance = GEO.distance(SELF_LAT, SELF_LON, _m.latitude, _m.longitude) 
+            _list[i].distance = _distance
+            //水平校正
+            _list[i].y = GEO.horizontalAdjust(BASE_Y, ACC_Z, _distance)
+            //手机与mark的方向
+            var _angle_value = GEO.compassDirectionAngle(SELF_LAT, SELF_LON,_m.latitude,_m.longitude)
+            //方向抖动校正
+            _angle_value = GEO.compassRangeAdjust(_angle_value, _list[i].compass_value)
+            _list[i].compass_value = _angle_value
+            //mark在屏幕上的位置
+            _list[i].x = GEO.markValueToScreenXY(value,_angle_value)
+
+          }
+          return _list
         },
 
         /**
@@ -106,6 +159,9 @@ Component({
                     const speed = res.speed
                     const accuracy = res.accuracy
                     console.log(latitude, longitude)
+                    
+                    SELF_LAT = latitude//自身维度
+                    SELF_LON = longitude//自身经度
                     //TODO 测算与所有目标点的距离、方向角
                 }
             })
