@@ -3,4 +3,4 @@
 <!-- <title></title> -->
 
 
-<ar></ar>
+<ar markList="{{markList}}"></ar>

@@ -13,6 +13,10 @@
     align-items: center;
     border-radius: 5px;
     font-size: 9pt;
+
+    transition: all 0.5s;
+    top: 0;
+    left: 100rpx;
 }
 
 .icon{

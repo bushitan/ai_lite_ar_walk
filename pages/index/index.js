@@ -8,7 +8,14 @@ Page({
         motto: 'Hello World',
         userInfo: {},
         hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+        markList:[
+        {
+            id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+            latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
+        },]
+
     },
     //事件处理函数
     bindViewTap: function() {

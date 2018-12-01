@@ -1,5 +1,5 @@
 
-const COMPASS_RANGE = 3 //罗盘方向误差范围，3°
+const COMPASS_RANGE = 2 //罗盘方向误差范围，3°
 const DIRECTION_LEFT = "left" //左方向
 const DIRECTION_RIGHT = "right" //右方向 
 const DIRECTION_FRONT = "front" //正前方
@@ -62,7 +62,7 @@ function compassDirectionAngle(lat_a, lng_a, lat_b, lng_b) {
     var _duan = distance(lat_a, lng_a, lat_a, lng_b)
     var angle = 180 * Math.asin(_duan / _distance) / Math.PI
     //TODO 四个象限
-    return angle
+    return parseInt(angle)
 }
 
 
@@ -77,23 +77,28 @@ function compassDirectionAngle(lat_a, lng_a, lat_b, lng_b) {
  *      {number} y x坐标
  */
 function markValueToScreenXY(phone_value, mark_value){
-  var _x 
-  var baseAngle = 60
-  var screenWidth = 750 
-  var halfWidth = screenWidth / 2
-  var baseStep = halfWidth / baseAngle 
+    var _x 
+    var baseAngle = 60
+    var screenWidth = 750 
+    var halfWidth = screenWidth / 2
+    // var baseStep = halfWidth / baseAngle
+    var baseStep = parseInt(screenWidth / baseAngle)
+
+
   // var halfAngle = baseAngle / 2
   // var stepPixle = 750 / baseAngle
 
   var obj = compassBetweenAngle(phone_value, mark_value)
+    console.log(phone_value, mark_value,obj.value)
   var _value = obj.value
   if (_value > baseAngle)
     _x = 1000
   else{
     if (obj.direction == DIRECTION_LEFT){
-      _x = halfWidth - baseStep * _value
+        
+        _x = halfWidth - baseStep * parseInt(_value) 
     }else{
-      _x = halfWidth + baseStep * _value
+        _x = halfWidth + baseStep * parseInt(_value) 
     }
   }
   return _x
@@ -141,6 +146,7 @@ function compassBetweenAngle(phone_value, mark_value) {
  *      {number} value 校正后的度数
  */
 function compassRangeAdjust(new_value, old_value){
+    // return new_value
     if (Math.abs(new_value - old_value) > COMPASS_RANGE)
         return new_value
     else
@@ -195,6 +201,8 @@ function compassToDirectionName(value){
  *      {string} offset_y Y轴偏移距离
  */
 function horizontalAdjust(base, acc_z, distance){
+    return 500
+
   var distance_y = 0
   if (distance < 500)
     distance_y = -100

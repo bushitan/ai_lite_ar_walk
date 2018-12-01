@@ -19,14 +19,14 @@ Component({
         markList: {
             type: Array,
             value: [
-                { 
-                id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
-                latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
-                },
-                { 
-                  id: 2, x: 500, y: 300, name: "馨梦园", distance: 26, 
-                  latitude: 24.4965605364, longitude: 108.6394751072, compass_value:0
-                },
+                // { 
+                // id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+                // latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
+                // },
+                // { 
+                //   id: 2, x: 500, y: 300, name: "馨梦园", distance: 26, 
+                //   latitude: 24.4965605364, longitude: 108.6394751072, compass_value:0
+                // },
             ],
         },
             
@@ -61,6 +61,13 @@ Component({
     ready() {
         GP = this
         this.onInit()
+        // GP.setData({
+        //     markList:[
+        //     {
+        //         id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+        //         latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
+        //         },]
+        // })
     },       
 
     /**
@@ -78,7 +85,8 @@ Component({
             //开启罗盘
             wx.onCompassChange(function (res) {
                 var abs = parseInt(res.direction / 4) * 4
-                GP.render(res.direction)
+                var value = parseInt(res.direction)
+                GP.render(value)
                 i++
                 if (i % 70 == 0) {
                     GP.getLocation()
@@ -100,19 +108,20 @@ Component({
          * @param
          *      {number} value 手机方向数值
          */
-        render(value){
-          value = GEO.compassTurnAdjust(value, ACC_Z) //罗盘方向倒置校正           
-          value = GEO.compassRangeAdjust(value, SELF_COMPASS_VALUE) //罗盘度抖动校正
-          SELF_COMPASS_VALUE = value
-          var _direction_name = GEO.compassToDirectionName(value) //罗盘度数转方向名称
-          var _mark_list = GP.getMarkList(value)//获取新的目标数组
+        render(value) {
+            // console.log(value)
+            value = GEO.compassTurnAdjust(value, ACC_Z) //罗盘方向倒置校正           
+            value = GEO.compassRangeAdjust(value, SELF_COMPASS_VALUE) //罗盘度抖动校正
+            SELF_COMPASS_VALUE = value
+            var _direction_name = GEO.compassToDirectionName(value) //罗盘度数转方向名称
+            var _mark_list = GP.getMarkList(value)//获取新的目标数组
 
 
 
-            GP.setData({
-                directionName: _direction_name,
-                markList: _mark_list,
-            })
+                GP.setData({
+                    directionName: _direction_name,
+                    markList: _mark_list,
+                })
         },
 
     //               { id: 2, x: 500, y: 300, name: "友爱电影厂", distance: 26, 
@@ -139,8 +148,9 @@ Component({
             //方向抖动校正
             _angle_value = GEO.compassRangeAdjust(_angle_value, _list[i].compass_value)
             _list[i].compass_value = _angle_value
-            //mark在屏幕上的位置
-            _list[i].x = GEO.markValueToScreenXY(value,_angle_value)
+              //mark在屏幕上的位置
+            //   _list[i].x = GEO.markValueToScreenXY(value, _angle_value)
+              _list[i].x = GEO.markValueToScreenXY(value, _angle_value)
 
           }
           return _list
