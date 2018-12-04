@@ -1,4 +1,13 @@
 
+<!-- 
+<view class="div1"  animation="{{animation}}">
+  <view class="div2">           
+    <block wx:for="{{navIconList}}">
+        <view class='div_icon' style='top:{{item.y }}rpx;left:{{item.x  }}rpx'></view>
+    </block>
+  </view>
+</view> -->
+ 
 
 <camera device-position="back" flash="off" binderror="error" class="bg">
     <block wx:for="{{markList}}" wx:key="index">
@@ -21,23 +30,48 @@
         </cover-view>
     </block>
 
-    <cover-view class='nav'>
-        <cover-image class='nav_icon' src='{{navIcon}}'></cover-image>
+
+    <!-- <cover-view class="div1">
+        <cover-view class="div2">           
+            <block wx:for="{{navIconList}}">
+                <cover-view class='div_icon' style='top:{{item.y + 100}}rpx;left:{{item.x  }}rpx'></cover-view>
+            </block>
+        </cover-view>
+    </cover-view> -->
+
+    <!-- 导航箭头 -->
+    
+    <cover-view class='nav_box' animation="{{animation}}" >
+        <cover-view class='nav'>
+            <block wx:for="{{navIconList}}">
+                <!-- <cover-image 
+                    class='nav_icon' 
+                    src='{{navIcon}}'                
+                    style='top:{{item.y +800 }}rpx;left:{{item.x  + 325}}rpx'
+                ></cover-image> -->
+                <cover-view
+                    class='nav_icon__view' 
+                    src='{{navIcon}}'                
+                    style='top:{{item.y + 700}}rpx;left:{{item.x  + 325}}rpx;width:{{item.width}}px;height:{{item.height}}px'
+                ></cover-view>
+
+            </block>
+            <!-- <cover-image class='nav_icon' src='{{navIcon}}'></cover-image> -->
+        </cover-view>
     </cover-view>
 
-    <cover-view class='direction'>      
+    <!-- 顶部方向 -->
+    <!-- <cover-view class='direction'>      
         <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
          <cover-view class='direction_center'>
             <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
          </cover-view>
          <cover-view>{{directionName}}</cover-view>
-        <!-- <cover-view class='direction_center'>
-            <cover-view class='direction_icon'></cover-view>
-        </cover-view> 
-        <cover-view class='direction_center'>
-        <cover-view class='direction_des'>{{directionName}}</cover-view>
-        </cover-view> -->
-    </cover-view>
+    </cover-view> -->
+
+
+
+
 
     
     <cover-view class='menu'>      

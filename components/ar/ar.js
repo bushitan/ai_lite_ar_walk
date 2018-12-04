@@ -44,10 +44,24 @@ Component({
 
         //导航
         navDirection: "", // 方向 参照：GEO.DIRECTION_LEFT 
-        navIcon:"../../images/nav_front.png", //导航图标 
         navDistance:50 , //与下一导航点的距离
         isNav:false,//是否在导航
-        navList:[],//导航点数组
+        navList: [],//导航点数组
+        navIcon: "../../images/nav_front_1.png", //导航图标 
+        navIconList: [
+            { x: -5, y: 0, width: 120, height: 10 },
+            { x: 15, y: -20, width: 90, height: 8 },
+            { x: 28, y: -35, width: 75, height: 6 },
+            { x: 47, y: -50, width: 55, height: 5 },            
+            // { x: 10, y: -200, },
+            // { x: 10, y: -300,  },
+            // { x: 10, y: -400,  },
+            // { x: 10, y: -500, },
+            // { x: 10, y: -600, },
+            // { x: 10, y: -700 },
+            // { x: 10, y: -800 },
+            // { x: 10, y: -900 },
+        ],
 
         //菜单
         isPack:!false,
@@ -61,6 +75,7 @@ Component({
     ready() {
         GP = this
         this.onInit()
+        this.animate()
         // GP.setData({
         //     markList:[
         //     {
@@ -70,10 +85,37 @@ Component({
         // })
     },       
 
+
     /**
      * 组件的方法列表
      */
     methods: {
+
+
+        animate(){
+            var a = wx.createAnimation({
+                duration: 200,
+                timingFunction: "ease",
+                delay: 1000,
+                transformOrigin: 'center',
+                success: function (res) {
+                    console.log(res)
+                },
+            },GP)
+
+            // a.skew(0,20).step()
+            // a.translate3d(10,10,50).step()
+            // a.matrix3d(0.969661, 0, 0, 0, 0, 0.019468, 0, 0, 0, 0, 0.845261, 0, 0, 0, 0, 1).step()
+            // a.matrix3dmatrix3d(0.709664, 0, 0, 0, 0, 0.709439, 0, 0, 0, 0, 0.727305, 0, 0, 0, 0, 1).step()
+            a.rotateX(45).step()
+            
+            GP.setData({
+                animation: a.export()
+            })
+        },
+
+
+
         
         /**
          * @method 初始化
