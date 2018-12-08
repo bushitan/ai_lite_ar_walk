@@ -41,22 +41,69 @@
 
     <!-- 导航箭头 -->
     
-    <cover-view class='nav_box' animation="{{animation}}" >
+    <cover-view class='nav_box'  >
         <cover-view class='nav'>
-            <block wx:for="{{navIconList}}">
+            <block wx:for="{{imageList}}">
                 <!-- <cover-image 
                     class='nav_icon' 
                     src='{{navIcon}}'                
-                    style='top:{{item.y +800 }}rpx;left:{{item.x  + 325}}rpx'
+                    style='top:{{item.y +800 }}rpx;left:{{item.x  + 325}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
                 ></cover-image> -->
+                 <!-- width: {{item.w}}px; height: {{item.h}}px; -->
                 <cover-view
-                    class='nav_icon__view' 
+                    class='nav_icon__cyc' 
                     src='{{navIcon}}'                
-                    style='top:{{item.y + 700}}rpx;left:{{item.x  + 325}}rpx;width:{{item.width}}px;height:{{item.height}}px'
+                    style='top:{{item.y + 900}}rpx;left:{{item.x  + 325}}rpx;width:{{item.w}}rpx;height:{{item.h}}rpx'
                 ></cover-view>
+
+               
 
             </block>
             <!-- <cover-image class='nav_icon' src='{{navIcon}}'></cover-image> -->
+
+            <block wx:for="{{perOrgList}}" wx:index="index">
+             <!-- 投影变换 -->
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p1.y + 700}}rpx;left:{{item.p1.x  + 325}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p2.y + 700}}rpx;left:{{item.p2.x  + 325}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p3.y + 700}}rpx;left:{{item.p3.x  + 325}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p4.y + 700}}rpx;left:{{item.p4.x  + 325}}rpx;'
+                ></cover-view>
+            </block>
+
+            <block wx:for="{{perTransList}}" wx:index="index">
+             <!-- 投影变换 -->
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p1.y + 700}}rpx;left:{{item.p1.x  + 500}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p2.y + 700}}rpx;left:{{item.p2.x  + 500}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p3.y + 700}}rpx;left:{{item.p3.x  + 500}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p4.y + 700}}rpx;left:{{item.p4.x  + 500}}rpx;'
+                ></cover-view>
+            </block>
+
+
+
+
         </cover-view>
     </cover-view>
 

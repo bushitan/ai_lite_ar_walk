@@ -1,5 +1,7 @@
 // components/xx_cover_news/xx_cover_news.js
-var GEO = require("../../utils/geo.js") 
+var GEO = require("../../utils/geo.js")
+var NAV = require("../../utils/nav.js") 
+// var numbers = require('../../utils/numbers');
 
 var GP
 var i = 0 //定时器，调用getLocation函数
@@ -31,6 +33,7 @@ Component({
         },
             
         
+        
     },
 
     /**
@@ -46,8 +49,10 @@ Component({
         navDirection: "", // 方向 参照：GEO.DIRECTION_LEFT 
         navDistance:50 , //与下一导航点的距离
         isNav:false,//是否在导航
-        navList: [],//导航点数组
-        navIcon: "../../images/nav_front_1.png", //导航图标 
+        navList: [
+
+        ],//导航点数组
+        navIcon: "../../images/nav_react.png", //导航图标 
         navIconList: [
             { x: -5, y: 0, width: 120, height: 10 },
             { x: 15, y: -20, width: 90, height: 8 },
@@ -75,7 +80,8 @@ Component({
     ready() {
         GP = this
         this.onInit()
-        this.animate()
+        // this.onNav()
+        // this.animate()
         // GP.setData({
         //     markList:[
         //     {
@@ -90,29 +96,46 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        onNav(value){
+            // var navIconList = NAV.GetCurrentNavIconist()
+            // console.log(navIconList)
+            // GP.setData({
+            //     navIconList: navIconList
+            // })
 
 
-        animate(){
-            var a = wx.createAnimation({
-                duration: 200,
-                timingFunction: "ease",
-                delay: 1000,
-                transformOrigin: 'center',
-                success: function (res) {
-                    console.log(res)
-                },
-            },GP)
-
-            // a.skew(0,20).step()
-            // a.translate3d(10,10,50).step()
-            // a.matrix3d(0.969661, 0, 0, 0, 0, 0.019468, 0, 0, 0, 0, 0.845261, 0, 0, 0, 0, 1).step()
-            // a.matrix3dmatrix3d(0.709664, 0, 0, 0, 0, 0.709439, 0, 0, 0, 0, 0.727305, 0, 0, 0, 0, 1).step()
-            a.rotateX(45).step()
-            
+            // 投影变换
+            // var per_org_list = NAV.GetPerspectiveOrgList()
+            // var per_trans_list = NAV.GetPerspectiveTransList()
+            var image_list = NAV.GetPerspectiveTransImageList(value)
             GP.setData({
-                animation: a.export()
+                // perOrgList: per_org_list,
+                // perTransList: per_trans_list,
+                imageList: image_list,
             })
         },
+
+        // animate(){
+        //     var a = wx.createAnimation({
+        //         duration: 200,
+        //         timingFunction: "ease",
+        //         delay: 1000,
+        //         transformOrigin: 'center',
+        //         success: function (res) {
+        //             console.log(res)
+        //         },
+        //     },GP)
+
+        //     // a.skew(0,20).step()
+        //     // a.translate3d(10,10,50).step()
+        //     // a.matrix3d(0.969661, 0, 0, 0, 0, 0.019468, 0, 0, 0, 0, 0.845261, 0, 0, 0, 0, 1).step()
+        //     // a.matrix3dmatrix3d(0.709664, 0, 0, 0, 0, 0.709439, 0, 0, 0, 0, 0.727305, 0, 0, 0, 0, 1).step()
+        //     a.rotateX(45).step()
+            
+        //     GP.setData({
+        //         animation: a.export()
+        //     })
+        // },
 
 
 
@@ -140,6 +163,7 @@ Component({
                 if (z > 1) z = 1
                 if (z < -1) z = -1
                 ACC_Z = z
+                GP.onNav(ACC_Z)
                 // OFFSET_Y = parseInt(350 + z * 300)
             })
         },      
@@ -159,11 +183,10 @@ Component({
             var _mark_list = GP.getMarkList(value)//获取新的目标数组
 
 
-
-                GP.setData({
-                    directionName: _direction_name,
-                    markList: _mark_list,
-                })
+            GP.setData({
+                directionName: _direction_name,
+                markList: _mark_list,
+            })
         },
 
     //               { id: 2, x: 500, y: 300, name: "友爱电影厂", distance: 26, 

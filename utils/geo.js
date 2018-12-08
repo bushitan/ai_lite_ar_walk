@@ -89,7 +89,7 @@ function markValueToScreenXY(phone_value, mark_value){
   // var stepPixle = 750 / baseAngle
 
   var obj = compassBetweenAngle(phone_value, mark_value)
-    console.log(phone_value, mark_value,obj.value)
+    // console.log(phone_value, mark_value,obj.value)
   var _value = obj.value
   if (_value > baseAngle)
     _x = 1000
