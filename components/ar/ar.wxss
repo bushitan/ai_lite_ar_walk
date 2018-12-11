@@ -92,8 +92,8 @@ width: 100%; */
     /* display: flex;
     justify-content: center; */
 
-    /* transform: rotateY(40deg) rotateX(40deg); */
-    /* -webkit-transform: rotateX(40deg);  */
+    /* transform: rotateY(20deg) rotateX(20deg); */
+   /* transform: rotateZ(80deg);  */
 }
 .nav_icon{
     position: absolute;

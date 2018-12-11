@@ -42,6 +42,7 @@ for (var i = 0 ;i<20;i++){
     })
 }
 var compassValue = 0
+var accValue = 0
 
 var CENTER = {x:200,y:325}
 
@@ -165,7 +166,7 @@ function GetPerspectiveTransImageList(value) {
         //     p3: { x: PerspectiveTrans(RULE_BASE_LIST[i].p3.x), y: PerspectiveTrans(RULE_BASE_LIST[i].p3.y) },
         //     p4: { x: PerspectiveTrans(RULE_BASE_LIST[i].p4.x), y: PerspectiveTrans(RULE_BASE_LIST[i].p4.y) },
         // }        
-        compassValue = value
+        accValue = value
         var obj = {
             p1: {
                 x: PerspectiveTrans(RULE_BASE_LIST[i].p1.x, RULE_BASE_LIST[i].p1.y)['x'],
@@ -213,13 +214,22 @@ function PoinToImage(obj){
 
 }
 
+function SetCompassAngle(angle_value){
+    compassValue = angle_value
+}
+
 function PerspectiveTrans(x,y,m){
     var m =
         [
-            [1, 0 , 0],
-            [0, 1, -0.01 * Math.abs(compassValue)],
+            [Math.cos(compassValue * Math.PI / 180), Math.sin(compassValue * Math.PI / 180), 0],
+            [-Math.sin(compassValue * Math.PI / 180), Math.cos(compassValue * Math.PI / 180), -0.01 * Math.abs(accValue)],
             [0, 0, 1],
         ]
+        // [
+        // [1, -Math.cos(compassValue * Math.PI / 180), 0],
+        // [Math.cos(compassValue * Math.PI / 180), 1, -0.01 * Math.abs(accValue)],
+        // [0, 0, 1],
+        // ]
 
         // [
         // [Math.cos(60 * Math.PI / 180), Math.sin(60 * Math.PI / 180), 0],
@@ -246,4 +256,5 @@ module.exports = {
     GetPerspectiveOrgList: GetPerspectiveOrgList,
     GetPerspectiveTransList: GetPerspectiveTransList,
     GetPerspectiveTransImageList: GetPerspectiveTransImageList,
+    SetCompassAngle: SetCompassAngle,
 }

@@ -157,6 +157,8 @@ Component({
                     GP.getLocation()
                 }
             })
+
+            // GP.onNav(0.01)
             //开启三周陀螺仪，计算水平面参数
             wx.onAccelerometerChange(function (res) {
                 var z = res.z
@@ -182,7 +184,7 @@ Component({
             var _direction_name = GEO.compassToDirectionName(value) //罗盘度数转方向名称
             var _mark_list = GP.getMarkList(value)//获取新的目标数组
 
-
+            NAV.SetCompassAngle(value)
             GP.setData({
                 directionName: _direction_name,
                 markList: _mark_list,
