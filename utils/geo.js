@@ -44,6 +44,7 @@ function distance(lat_a, lng_a, lat_b, lng_b) {
     s = Math.round(s * 10000) / 10000; 
     return s;
 }
+
 /**
  * @method 两点所连直线的罗盘方向角
  * @for geo
@@ -171,7 +172,6 @@ function compassTurnAdjust(phone_compass, acc_z ) {
         else 
             return phone_compass + 180
     }
-       
 }
 
 

@@ -40,8 +40,8 @@
     </cover-view> -->
 
     <!-- 导航箭头 -->
-    
-    <cover-view class='nav_box'  >
+     <!-- hidden='{{!navIsOpen}}' -->
+    <cover-view class='nav_box' >
         <cover-view class='nav'>
             <block wx:for="{{imageList}}">
                 <!-- <cover-image 
@@ -51,10 +51,10 @@
                 ></cover-image> -->
                  <!-- width: {{item.w}}px; height: {{item.h}}px; -->
                 <cover-view
-                    class='nav_icon__cyc' 
+                    class='nav_icon__cyc {{ compassStep == index? "nav_icon__light":""}}' 
                     src='{{navIcon}}'                
                     style='top:{{item.y + 900}}rpx;left:{{item.x  + 325}}rpx;width:{{item.w}}rpx;height:{{item.h}}rpx'
-                ></cover-view>
+                >前</cover-view>
 
                
 
@@ -119,7 +119,7 @@
 
 
 
-
+    <cover-view style='position:absolute;bottom:80px' catchtap='navOpen' data-target_id='1'>导航 </cover-view>
     
     <cover-view class='menu'>      
         <!-- <cover-image class='menu_bg' src='../../images/menu_bg.png'></cover-image>   -->
@@ -130,15 +130,13 @@
             <cover-image class='menu_unpack' src='../../images/btn_pack.png' catchtap="menuChange"></cover-image>  
             <block wx:for="{{menuList}}">
                 <cover-view 
-                    class='node {{ clickMenuID == item.id? "click":""}}' 
+                    class='node {{ clickMenuID == item.id? "click":""}} ' 
                     catchtap="menuClick"
                     data-menu_id="{{item.id}}"
                 > 
                     <cover-view >{{item.name}}</cover-view>
                 </cover-view>
             </block>
-            <!-- <cover-view class='node click'> <cover-view >景点</cover-view></cover-view>
-            <cover-view class='node'><cover-view >厕所</cover-view></cover-view> -->
         </block>
     </cover-view>
 </camera>

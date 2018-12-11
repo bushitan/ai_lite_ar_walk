@@ -11,6 +11,53 @@ var ACC_Z = 0 //三轴陀螺仪Z轴数值
 var SELF_COMPASS_VALUE = 60
 var SELF_LAT = 24.48513  //自身维度
 var SELF_LON = 108.63656 //自身经度
+
+var compassStep = 0
+
+var tempImageList = []
+var navInfo = {} // 路线信息
+var navPolyLine = [] //路线坐标点串
+var navIndex = 0 //当前b步数
+var navStepList = [] //路线步骤
+//设置导航路线
+SetNavInit()
+function SetNavInit() {
+    navInfo = {                                         //路线方案，目前只提供一种
+        "mode": "WALKING",                               //出行方式
+        "distance": 38385,                               //方案总距离（单位：米）
+        "duration": 581,                                 //方案估算时间（含路况，单位：分钟）
+        "direction": "东",                               //方案整体方向
+    }
+    navPolyLine = [39.915219, 116.403857, 0, 12, 40, 1180, 40, 1520, 0, 80]
+    for (var i = 2; i < navPolyLine.length; i++) {
+        navPolyLine[i] = navPolyLine[i - 2] + navPolyLine[i] / 1000000
+    }
+    navStepList = [
+        {                                           //第一阶段路线,起始位置，该阶段路线描述
+            "instruction": "从起点朝东,沿东华门大街步行239米,直行进入东安门大街",
+            "polyline_idx": [navPolyLine[0], navPolyLine[9]],                   //路线在【路线坐标点串】数组中的下标0-9
+            "road_name": "东华门大街",               //道路名称(非必有)
+            "dir_desc": "东",                        //路线方向
+            "distance": 239,                         //路线距离（单位：米）
+            "act_desc": "直行"                       //路线末尾动作（非必有）
+        },
+        {                                           //最终阶段路线
+            "instruction": "步行255米,到达终点",
+            "polyline_idx": [1556, 1567],
+            "road_name": "",
+            "dir_desc": "东",
+            "distance": 255,
+            "act_desc": ""
+        }
+    ]
+}
+
+
+
+
+
+
+
 Component({
     /**
      * 组件的属性列表
@@ -67,6 +114,9 @@ Component({
             // { x: 10, y: -800 },
             // { x: 10, y: -900 },
         ],
+        navIsOpen : !false,
+
+
 
         //菜单
         isPack:!false,
@@ -107,37 +157,14 @@ Component({
             // 投影变换
             // var per_org_list = NAV.GetPerspectiveOrgList()
             // var per_trans_list = NAV.GetPerspectiveTransList()
-            var image_list = NAV.GetPerspectiveTransImageList(value)
-            GP.setData({
-                // perOrgList: per_org_list,
-                // perTransList: per_trans_list,
-                imageList: image_list,
-            })
+
+
+            // var image_list = NAV.GetPerspectiveTransImageList(value)
+            // GP.setData({
+            //     imageList: image_list,
+            // })
+            tempImageList = NAV.GetPerspectiveTransImageList(value)
         },
-
-        // animate(){
-        //     var a = wx.createAnimation({
-        //         duration: 200,
-        //         timingFunction: "ease",
-        //         delay: 1000,
-        //         transformOrigin: 'center',
-        //         success: function (res) {
-        //             console.log(res)
-        //         },
-        //     },GP)
-
-        //     // a.skew(0,20).step()
-        //     // a.translate3d(10,10,50).step()
-        //     // a.matrix3d(0.969661, 0, 0, 0, 0, 0.019468, 0, 0, 0, 0, 0.845261, 0, 0, 0, 0, 1).step()
-        //     // a.matrix3dmatrix3d(0.709664, 0, 0, 0, 0, 0.709439, 0, 0, 0, 0, 0.727305, 0, 0, 0, 0, 1).step()
-        //     a.rotateX(45).step()
-            
-        //     GP.setData({
-        //         animation: a.export()
-        //     })
-        // },
-
-
 
         
         /**
@@ -146,6 +173,7 @@ Component({
         onInit(){
             GP.getLocation() //一开始就更新一次位置
             GP.render(60)
+            GP.navOpen()
 
             //开启罗盘
             wx.onCompassChange(function (res) {
@@ -158,14 +186,22 @@ Component({
                 }
             })
 
-            // GP.onNav(0.01)
-            //开启三周陀螺仪，计算水平面参数
+            // var accLock = 2
+            // // GP.onNav(0.01)
+            // //开启三轴陀螺仪，计算水平面参数
+            // // wx.startAccelerometer({
+            // //     interval: 'ui', //ui  normal
+            // // })
             wx.onAccelerometerChange(function (res) {
                 var z = res.z
                 if (z > 1) z = 1
                 if (z < -1) z = -1
                 ACC_Z = z
-                GP.onNav(ACC_Z)
+
+                // accLock++ 
+                // if (accLock % 3  == 0) {
+                    GP.onNav(ACC_Z)
+                // }
                 // OFFSET_Y = parseInt(350 + z * 300)
             })
         },      
@@ -184,11 +220,21 @@ Component({
             var _direction_name = GEO.compassToDirectionName(value) //罗盘度数转方向名称
             var _mark_list = GP.getMarkList(value)//获取新的目标数组
 
-            NAV.SetCompassAngle(value)
+            GP.updateNav(value)
+
+            compassStep++ 
             GP.setData({
                 directionName: _direction_name,
                 markList: _mark_list,
+                imageList:tempImageList,
+                compassStep: compassStep % 3,
             })
+        },
+
+        updateNav(value){
+            var _nav_value = GEO.compassDirectionAngle(SELF_LAT, SELF_LON, GP.data.nextLatitude, GP.data.nextLongitude)
+            var _v = GEO.compassBetweenAngle(value, _nav_value).value
+            NAV.SetCompassAngle(_v)
         },
 
     //               { id: 2, x: 500, y: 300, name: "友爱电影厂", distance: 26, 
@@ -293,6 +339,39 @@ Component({
             })
         },
 
+       /**
+         * @method 打开导航
+         * @for 导航
+         */
+        navOpen (e){
+            // var target_id = e.currentTarget.dataset.target_id
+            // TODO 
+            // 1 查询目标id的经纬度
+            // 2 向腾讯地图请求数据
+            // 3 打开导航开关
+            var nextStep = navStepList[navIndex]
+            var nextLatitude = nextStep.polyline_idx[0]
+            var nextLongitude = nextStep.polyline_idx[1]   
+            GP.setData({
+                nextLatitude: nextLatitude,
+                nextLongitude: nextLongitude,
+            })        
+            //手机与mark的方向
+            // var _angle_value = GEO.compassDirectionAngle(SELF_LAT, SELF_LON, nextLatitude, nextLongitude)
+
+
+            // "instruction": "从起点朝东,沿东华门大街步行239米,直行进入东安门大街",
+                // "polyline_idx": [navPolyLine[0], navPolyLine[9]],                   //路线在【路线坐标点串】数组中的下标0-9
+                //     "road_name": "东华门大街",               //道路名称(非必有)
+                //         "dir_desc": "东",                        //路线方向
+                //             "distance": 239,                         //路线距离（单位：米）
+                //                 "act_desc": "直行"                       //路线末尾动作（非必有）
+            GP.setData({
+                navIsOpen: !GP.data.navIsOpen
+            })
+
+        },
+
 
         /*************菜单***************/
         /**
@@ -301,7 +380,7 @@ Component({
          */
         menuChange(){
             
-            GP.setData({ isPack: !this.data.isPack})
+            // GP.setData({ isPack: !this.data.isPack})
         },
         /**
          * @method 菜单选择

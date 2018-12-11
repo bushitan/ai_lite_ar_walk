@@ -109,6 +109,11 @@ width: 100%; */
     z-index: 999;
     border-radius: 50%;
 }
+.nav_icon__light{
+    background-color: blue !important;
+}
+
+
 .nav_icon__view{
     position: absolute;
     width: 5px;

@@ -1,50 +1,32 @@
 
 var roll_angle = 30
-var RULE_BASE_LIST = [
-    // {
-    //     p1: { x: -25, y: -50 }, p2: { x: 25, y: -50 }, p3: { x: -25, y: 0 }, p4: { x: 25, y: 0 },
-    // },
-    // {
-    //     p1: { x: -25, y: -150 }, p2: { x: 25, y: -150 }, p3: { x: -25, y: -100 }, p4: { x: 25, y: -100 },
-    // },
-    // {
-    //     p1: { x: -50, y: -10 }, p2: { x: 50, y: -10 }, p3: { x: -50, y: 0 }, p4: { x: 50, y: 0 },
-    // },
-    // {
-    //     p1: { x: -50, y: -25 }, p2: { x: 50, y: -25 }, p3: { x: -50, y: -15 }, p4: { x: 50, y: -15 },
-    // },
-    // {
-    //     p1: { x: -50, y: -40 }, p2: { x: 50, y: -40 }, p3: { x: -50, y: -30 }, p4: { x: 50, y: -30 },
-    // },
-    // {
-    //     p1: { x: -50, y: -55 }, p2: { x: 50, y: -55 }, p3: { x: -50, y: -45 }, p4: { x: 50, y: -45 },
-    // },
-    // {
-    //     p1: { x: -50, y: -70 }, p2: { x: 50, y: -70 }, p3: { x: -50, y: -60 }, p4: { x: 50, y: -60 },
-    // },
-    // {
-    //     p1: { x: -50, y: -85 }, p2: { x: 50, y: -85 }, p3: { x: -50, y: -75 }, p4: { x: 50, y: -75 },
-    // },
-    // {
-    //     p1: { x: -50, y: -100 }, p2: { x: 50, y: -100 }, p3: { x: -50, y: -90 }, p4: { x: 50, y: -90 },
-    // },
-]
-for (var i = 0 ;i<20;i++){
-    var _w = 50
-    var _h = 50
-    var _space = 10
-    var _y_top = _h * (i + 1) + _space * i
-    var _y_bottom = _h * i+ _space * i 
-    
+var RULE_BASE_LIST = []
+InitBaseLine() //初始化基础线条
+function InitBaseLine(){
+    for (var i = 0; i < 3; i++) {
+        var _w = 50
+        var _h = 50
+        var _space = 10
+        var _y_top = _h * (i + 1) + _space * i
+        var _y_bottom = _h * i + _space * i
 
-    RULE_BASE_LIST.push({
-        p1: { x: -_w / 2, y: -_y_top }, p2: { x: _w / 2, y: -_y_top }, p3: { x: -_w / 2, y: -_y_bottom }, p4: { x: _w / 2, y: -_y_bottom },
-    })
-}
+
+        RULE_BASE_LIST.push({
+            p1: { x: -_w / 2, y: -_y_top }, p2: { x: _w / 2, y: -_y_top }, p3: { x: -_w / 2, y: -_y_bottom }, p4: { x: _w / 2, y: -_y_bottom },
+        })
+    }
+} 
+
 var compassValue = 0
 var accValue = 0
-
 var CENTER = {x:200,y:325}
+
+
+
+
+
+
+
 
 function AccelerometerToRollAngle(acc_value){
     return roll_angle
@@ -219,10 +201,15 @@ function SetCompassAngle(angle_value){
 }
 
 function PerspectiveTrans(x,y,m){
+    console.log(-0.01 * Math.abs(accValue))
+    var th = -0.01 * Math.abs(accValue)
+    if (th < -0.004 )
+        th = -0.004
+    th = 0 - (0.004 + th)
     var m =
         [
             [Math.cos(compassValue * Math.PI / 180), Math.sin(compassValue * Math.PI / 180), 0],
-            [-Math.sin(compassValue * Math.PI / 180), Math.cos(compassValue * Math.PI / 180), -0.01 * Math.abs(accValue)],
+            [-Math.sin(compassValue * Math.PI / 180), Math.cos(compassValue * Math.PI / 180), th],
             [0, 0, 1],
         ]
         // [
@@ -257,4 +244,5 @@ module.exports = {
     GetPerspectiveTransList: GetPerspectiveTransList,
     GetPerspectiveTransImageList: GetPerspectiveTransImageList,
     SetCompassAngle: SetCompassAngle,
+    // SetCompassAngle: SetCompassAngle,
 }
