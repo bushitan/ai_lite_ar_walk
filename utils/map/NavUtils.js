@@ -49,5 +49,62 @@ function create(request ) {
     }
 }
 module.exports = {
-    create: create
+    create: create,
+    setMode: setMode,
+    setPath:setPath,
+    getInfo: getInfo,
+    getImageList: getImageList,
+
+    MODE_NORMAL: "normal",
+    MODE_3D: "3D",
 }
+
+
+var currentPath = {}
+/**
+ * @method 设置导航路径
+ * @param
+ *      {object} baiduObject 腾讯的返回对象
+ */
+function setPath(txObject) {
+    currentPath = txObject
+}
+
+/**
+ * @method 设置导航模式
+ * @param
+ *      {string} mode 模式 | "11"普通导航 | "12" 百度样式导航
+ */
+function setMode(mode) {
+    currentPath = txObject
+}
+
+/**
+ * @method 获取本次导航的信息
+ * @param
+ *      {object} value 手机的方向数值
+ */
+function getInfo() {
+    //TODO 判断导航的开关
+
+    //反馈信息
+
+    return ""
+}
+
+
+/**
+ * @method 获取渲染的mark数组
+ * @param
+ *      {number} compass_direction 手机的方向数值
+ *      {number} acc_z z轴重力加速度
+ *      {location} self_location 我的当前坐标
+ */
+function getImageList(compass_direction, acc_z, self_location) {
+    //TODO 判断导航的开关
+
+    //根据方向、三轴陀螺仪渲染列表
+
+    return ""
+}
+

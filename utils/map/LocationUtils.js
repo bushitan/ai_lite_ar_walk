@@ -3,6 +3,7 @@ var Location = require("Location.js")
 module.exports = {
     distance: distance,
     angleDirection: angleDirection,
+    getCurrentLocation: getCurrentLocation,
     // angleDirection: angleDirection,
     // angleBetweenLine: angleBetweenLine,
 }
@@ -57,4 +58,42 @@ function angleDirection(locationA, locationB) {
     return parseInt(angle)
 }
 
+
+/**
+ * @method 两点所连直线的罗盘方向角
+ * @for geo
+ * @calls
+ *      distance 两点间距离
+ * @param
+ *      {location} A 点，
+ *      {location} B 点，
+ */
+
+var step = 0
+function getCurrentLocation(GlobalValue) {
+    step++
+    if (step % GlobalValue.selfUpdateFre == 0) {
+        console.log(step)
+        wx.getLocation({
+            type: 'gcj02',
+            success(res) {
+
+                GlobalValue.selfLocation = Location.create(res.latitude, res.longitude)
+
+                // GlobalValue.selfLatitude = res.latitude
+                // GlobalValue.selfLongitude = res.longitude
+                GlobalValue.selfAccuray = res.accuracy
+                const latitude = res.latitude
+                const longitude = res.longitude
+                const speed = res.speed
+                const accuracy = res.accuracy
+                console.log(latitude, longitude, res.accuracy)
+
+                // SELF_LAT = latitude//自身维度
+                // SELF_LON = longitude//自身经度
+                //TODO 测算与所有目标点的距离、方向角
+            }
+        })
+    }
+}
 

@@ -8,7 +8,7 @@ const DIRECTION_FRONT = "front" //正前方
 const DIRECTION_BACK = "back" //后方 
 module.exports = {
     // distance: distance,
-    // angleDirection: angleDirection,
+    filterDirection: filterDirection,
     includedAngle: includedAngle,
     checkReverse: checkReverse,
     getName: getName,
@@ -17,6 +17,21 @@ module.exports = {
     DIRECTION_FRONT: DIRECTION_FRONT,
     DIRECTION_BACK: DIRECTION_BACK,
 }
+
+/**
+ * @method 过滤罗盘值
+ * @for CompassUtils
+ * @param
+ *      {number} direction 手机本身的罗盘度数
+ * @return
+ *      {number} direction 过滤后的罗盘度数
+ */
+// function angleBetweenLine(phone_value, mark_value) {
+function filterDirection(direction) {
+    var abs = parseInt(direction / 4) * 4
+    return parseInt(direction)
+}
+
 
 
 /**
