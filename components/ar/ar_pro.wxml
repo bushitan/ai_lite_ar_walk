@@ -1,0 +1,145 @@
+
+<!-- 
+<view class="div1"  animation="{{animation}}">
+  <view class="div2">           
+    <block wx:for="{{navIconList}}">
+        <view class='div_icon' style='top:{{item.y }}rpx;left:{{item.x  }}rpx'></view>
+    </block>
+  </view>
+</view> -->
+ 
+
+<camera device-position="back" flash="off"  class="bg">
+    <block wx:for="{{markList}}" wx:key="index">
+        <cover-view 
+            class='mark {{item.id == clickMarkID ? "select":""}}' 
+            style='top:{{item.y}}rpx;left:{{item.x}}rpx'
+            
+            data-mark_id="{{item.id}}"
+        >
+            <cover-image 
+                class='icon' 
+                catchtap='clickMark'
+                src='../../images/menu_address.png' >
+            </cover-image>
+            <cover-view>    
+                <cover-view class='title'>{{item.name}}</cover-view>
+                <cover-view  class='title'>{{item.distance}}米</cover-view>
+                <cover-view  
+                    class='title' 
+                    data-mark_id="{{item.id}}"
+                >详情</cover-view>
+            </cover-view>
+        </cover-view>
+    </block>
+
+
+    <!-- <cover-view class="div1">
+        <cover-view class="div2">           
+            <block wx:for="{{navIconList}}">
+                <cover-view class='div_icon' style='top:{{item.y + 100}}rpx;left:{{item.x  }}rpx'></cover-view>
+            </block>
+        </cover-view>
+    </cover-view> -->
+
+    <!-- 导航箭头 -->
+     <!-- hidden='{{!navIsOpen}}' -->
+    <cover-view class='nav_box' >
+        <cover-view class='nav'>
+            <block wx:for="{{imageList}}">
+                <!-- <cover-image 
+                    class='nav_icon' 
+                    src='{{navIcon}}'                
+                    style='top:{{item.y +800 }}rpx;left:{{item.x  + 325}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
+                ></cover-image> -->
+                 <!-- width: {{item.w}}px; height: {{item.h}}px; -->
+                <cover-view
+                    class='nav_icon__cyc {{ compassStep == index? "nav_icon__light":""}}' 
+                    src='{{navIcon}}'                
+                    style='top:{{item.y + 900}}rpx;left:{{item.x  + 325}}rpx;width:{{item.w}}rpx;height:{{item.h}}rpx'
+                >前</cover-view>
+
+               
+
+            </block>
+            <!-- <cover-image class='nav_icon' src='{{navIcon}}'></cover-image> -->
+
+            <block wx:for="{{perOrgList}}" wx:index="index">
+             <!-- 投影变换 -->
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p1.y + 700}}rpx;left:{{item.p1.x  + 325}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p2.y + 700}}rpx;left:{{item.p2.x  + 325}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p3.y + 700}}rpx;left:{{item.p3.x  + 325}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p4.y + 700}}rpx;left:{{item.p4.x  + 325}}rpx;'
+                ></cover-view>
+            </block>
+
+            <block wx:for="{{perTransList}}" wx:index="index">
+             <!-- 投影变换 -->
+                <cover-view
+                    class='nav_icon__view  m{{index}}'              
+                    style='top:{{item.p1.y + 700}}rpx;left:{{item.p1.x  + 500}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p2.y + 700}}rpx;left:{{item.p2.x  + 500}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p3.y + 700}}rpx;left:{{item.p3.x  + 500}}rpx;'
+                ></cover-view>
+                <cover-view
+                    class='nav_icon__view m{{index}}'              
+                    style='top:{{item.p4.y + 700}}rpx;left:{{item.p4.x  + 500}}rpx;'
+                ></cover-view>
+            </block>
+
+
+
+
+        </cover-view>
+    </cover-view>
+
+    <!-- 顶部方向 -->
+    <cover-view class='direction'>      
+        <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
+         <cover-view class='direction_center'>
+            <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
+         </cover-view>
+         <cover-view>{{directionName}}</cover-view>
+    </cover-view>
+
+
+
+
+    <cover-view style='position:absolute;bottom:80px' catchtap='clickMark' data-target_id='1'>导航 </cover-view>
+    
+    <cover-view class='menu'>      
+        <cover-image class='menu_bg' src='../../images/menu_bg.png'></cover-image>  
+        <block  wx:if="{{isPack == false}}" >
+            <cover-image class='menu_unpack' src='../../images/btn_unpack.png' catchtap="menuChange"></cover-image>  
+        </block>
+        <block  wx:else >
+            <cover-image class='menu_unpack' src='../../images/btn_pack.png' catchtap="menuChange"></cover-image>  
+            <block wx:for="{{menuList}}">
+                <cover-view 
+                    class='node {{ clickMenuID == item.id? "click":""}} ' 
+                    catchtap="menuClick"
+                    data-menu_id="{{item.id}}"
+                > 
+                    <cover-view >{{item.name}}</cover-view>
+                </cover-view>
+            </block>
+        </block>
+    </cover-view>
+</camera>

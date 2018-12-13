@@ -14,7 +14,7 @@ module.exports = {
 
 /**
  * @method 获取渲染的mark数组
- * @for 标记
+ * @for MarkUtils
  * @param
  *      {object} value 手机的方向数值
  */

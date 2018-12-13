@@ -13,8 +13,8 @@ module.exports = {
 
 
 /**
- * @method 获取渲染的mark数组
- * @for 标记
+ * @method 获取渲染的菜单
+ * @for MenuUtils
  * @param
  *      {object} value 手机的方向数值
  */

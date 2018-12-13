@@ -1,26 +1,11 @@
-// components/xx_cover_news/xx_cover_news.js
+
 var ARUtils = require("../../utils/map/ARUtils.js")
-var AccelerometerUtils = require("../../utils/map/AccelerometerUtils.js")
-var CompassUtils = require("../../utils/map/CompassUtils.js")
-// var numbers = require('../../utils/numbers');
+var Location = require("../../utils/map/Location.js")
 var GP
-var GlobalValue = {
-    accelerometerZ: 0 ,//三轴陀螺仪Z轴数值
-    compassDirection:260,
-    selfLocation: { latitue: 22.8445090000, longitude: 108.3101860000},  //我的坐标
-    selfAccuray:0,   //GPS精度
-    selfUpdateFre:70, //获取GPS坐标频率(按罗盘转动次数)
-} 
-
-
-
-
 
 Component({
     /**
      * 组件的属性列表
-     *  var mark_la = 22.8454590810
-            var mark_lo = 108.3109956980
      */
     properties: {
         markList: {
@@ -32,7 +17,17 @@ Component({
             type: String,
             value: "normal",  
         },
-
+        power: { 
+            type: String, 
+            value: 'normal', 
+            observer(newVal, oldVal) {
+                var frameFre = 70
+                if (newVal == "low") frameFre = 140
+                if (newVal == "normal") frameFre = 70
+                if (newVal == "high") frameFre = 30
+                GP.setData({ GPSFrameFre: frameFre})
+            }
+        }
 
     },
 
@@ -40,8 +35,20 @@ Component({
      * 组件的初始数据
      */
     data: {
+        //基础数据
+        GPSFrameFre: 70, //获取GPS坐标频率(按罗盘转动次数)
+        GPSAccuray: 30, //GPS的精度
+        GPSSpeed:5,//移动速度
+        GPSLocation: { latitue: 22.8445090000, longitude: 108.3101860000},
 
+
+
+        //罗盘
         directionName: "东",
+
+        //导航
+        navDirection:0,
+
         //标记
         clickMarkID: 2,//点击mark的id
         //菜单
@@ -67,22 +74,50 @@ Component({
         * @method 初始化
         */
         onInit() {
-
-            ARUtils.render(GP, GlobalValue)
+            var _step = 0
+            var _acc_z = 0
+            ARUtils.render(GP, 1, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
-                GlobalValue.compassDirection = CompassUtils.filterDirection(res.direction)
-                ARUtils.render(GP, GlobalValue)
-                // console.log(GlobalValue)
+                _step++
+                if (_step % GP.data.GPSFrameFre == 0) {
+                    GP.getCurrentLocation()
+                }
+                var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z)
+                console.log(_direction)
+                ARUtils.render(GP, _direction, _acc_z)
             })
             //开启三轴陀螺仪
             wx.onAccelerometerChange(function (res) {
-                GlobalValue.accelerometerZ = AccelerometerUtils.filterValueZ(res.z)
+                _acc_z = ARUtils.filterAccelerometerZ(res.z)
             })
         },
-        clickMark(){
+
+        /**
+         * @method 点击导航图标
+         * @for ar
+         * @param
+         *      {object} e 事件对象
+         */
+        clickMark(e){
             ARUtils.queryNavByBaidu("lalalal")
         },
 
+        /**
+         * @method 过去当前经纬度
+         * @for ar
+         */
+        getCurrentLocation() {
+            wx.getLocation({
+                type: 'gcj02',
+                success(res) {
+                    GP.setData({
+                        GPSLocation: Location.create(res.latitude, res.longitude),
+                        GPSAccuracy: res.accuracy,
+                        GPSSpeed: res.speed,
+                    })
+                }
+            })
+        },
     }
 })

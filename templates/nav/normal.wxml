@@ -1,0 +1,25 @@
+
+<!-- const DIRECTION_LEFT = 11 //左方向
+const DIRECTION_RIGHT = 12 //右方向 
+const DIRECTION_FRONT = 13 //正前方
+const DIRECTION_BACK = 14 //后方  -->
+<template name="nav_normal" >
+    <view class='nav_normal'>
+        <image class='icon_arrow' 
+            src='../../images/nav_left.png' 
+            wx:if="{{navDirection==11}}">
+        </image>
+        <image class='icon_arrow' 
+            src='../../images/nav_right.png' 
+            wx:if="{{navDirection==12}}">
+        </image>
+        <image class='icon_arrow' 
+            src='../../images/nav_front_1.png' 
+            wx:if="{{navDirection==13}}">
+        </image>
+        <image class='icon_arrow' 
+            src='../../images/nav_back.png' 
+            wx:if="{{navDirection==14}}">
+        </image>
+    </view>
+</template>

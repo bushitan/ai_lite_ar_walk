@@ -1,0 +1,14 @@
+
+
+.nav_normal{
+    position: absolute;
+    bottom:20vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_normal .icon_arrow{
+    width: 70px;
+    height: 70px;
+}

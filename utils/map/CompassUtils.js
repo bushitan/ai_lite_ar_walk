@@ -1,21 +1,19 @@
 var Line = require("Line.js")
-var Angle = require("Angle.js")
 
 const COMPASS_RANGE = 2 //罗盘方向误差范围，3°
-const DIRECTION_LEFT = "left" //左方向
-const DIRECTION_RIGHT = "right" //右方向 
-const DIRECTION_FRONT = "front" //正前方
-const DIRECTION_BACK = "back" //后方 
+// const DIRECTION_LEFT = "left" //左方向
+// const DIRECTION_RIGHT = "right" //右方向 
+// const DIRECTION_FRONT = "front" //正前方
+// const DIRECTION_BACK = "back" //后方 
 module.exports = {
     // distance: distance,
     filterDirection: filterDirection,
-    includedAngle: includedAngle,
     checkReverse: checkReverse,
     getName: getName,
-    DIRECTION_LEFT: DIRECTION_LEFT,
-    DIRECTION_RIGHT: DIRECTION_RIGHT,
-    DIRECTION_FRONT: DIRECTION_FRONT,
-    DIRECTION_BACK: DIRECTION_BACK,
+    // DIRECTION_LEFT: DIRECTION_LEFT,
+    // DIRECTION_RIGHT: DIRECTION_RIGHT,
+    // DIRECTION_FRONT: DIRECTION_FRONT,
+    // DIRECTION_BACK: DIRECTION_BACK,
 }
 
 /**
@@ -29,47 +27,8 @@ module.exports = {
 // function angleBetweenLine(phone_value, mark_value) {
 function filterDirection(direction) {
     var abs = parseInt(direction / 4) * 4
-    return parseInt(direction)
+    return parseInt(abs)
 }
-
-
-
-/**
- * @method 两个方向的夹角值
- * @for CompassUtils
- * @param
- *      {number} phone_value   手机本身的罗盘度数
- *      {number} mark_value   手机与目标的罗盘度数
- * @return
- *      {number} value 夹角度数
- *      {string} direction 目标在手机的左or右
- */
-// function angleBetweenLine(phone_value, mark_value) {
-function includedAngle(lineA, lineB) {
-    var A = lineA
-    var B = lineB
-    var value, side
-    if (A.direction > B.direction) { //手机 > 目标
-        if (A.direction - B.direction <= 180) {//手机 - 目标 <= 180
-            value = A.direction - B.direction
-            side = DIRECTION_LEFT
-        } else { //手机 - 目标 > 180
-            value = 359 - A.direction + B.direction
-            side = DIRECTION_RIGHT
-        }
-    }
-    else {//目标 > 手机
-        if (A.direction - B.direction <= 180) { // 目标 - 手机 <= 180
-            value = A.direction - B.direction
-            side = DIRECTION_RIGHT
-        } else {// 目标 - 手机 > 180
-            value = 359 - A.direction + B.direction
-            side = DIRECTION_LEFT
-        }
-    }
-    return Angle.create(value,side)
-}
-
 
 /**
  * @method 检测是否举得太高，罗盘方向倒置，手机抬过z轴的0度，掉头
@@ -80,17 +39,17 @@ function includedAngle(lineA, lineB) {
  * @return
  *      {number} value 校正手机罗盘度数
  */
-function checkReverse(line, acc_z) {
+function checkReverse(direction, acc_z) {
     if (acc_z <= 0)
-        return line
+        return parseInt(direction)
     else {
-        if (line.direction >= 180) {
-            line.direction = line.direction- 180
-            return line
+        if (direction >= 180) {
+            direction = direction- 180
+            return parseInt(direction)
         }
         else{
-            line.direction = line.direction + 180
-            return line
+            direction = direction + 180
+            return parseInt(direction)
         }
     }
 }
