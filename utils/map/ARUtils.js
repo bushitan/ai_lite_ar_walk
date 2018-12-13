@@ -31,7 +31,7 @@ function render(GP, direction_num,acc_z_num) {
 
     //渲染mark列表
     var _direction_name = CompassUtils.getName(_direction)
-    var _mark_list = MarkUtils.getList(_direction, _mark_list)
+    var _mark_list = MarkUtils.getList(_location,_direction, _mark_list)
     var _navInfo = NavUtils.getInfo()
     var _nav_direction = NavUtils.getDirection()
     var _navImageList = NavUtils.getImageList(_direction, _acc_z, _location)

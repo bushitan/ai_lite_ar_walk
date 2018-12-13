@@ -97,7 +97,11 @@ function getInfo() {
 
     //反馈信息
 
-    return ""
+    return {
+        name: "青秀山",
+        distance: "197",
+        rate:"50",
+    }
 }
 /**
  * @method 获取当前目标点方向

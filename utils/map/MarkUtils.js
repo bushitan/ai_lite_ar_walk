@@ -1,13 +1,13 @@
 
+var LocationUtils = require("LocationUtils.js")
 
-function create(request ) {
 
-    return {
-        info: request,
-    }
-}
+const DIRECTION_LEFT = "left" //左方向
+const DIRECTION_RIGHT = "right" //右方向 
+const DIRECTION_FRONT = "front" //正前方
+const DIRECTION_BACK = "back" //后方 
 module.exports = {
-    create: create,
+    // create: create,
     getList: getList,
 }
 
@@ -18,8 +18,19 @@ module.exports = {
  * @param
  *      {object} value 手机的方向数值
  */
-function getList(value, mark_list){
+function getList(self_location,compass_direction_num, mark_list){
+    var _location = self_location
+    var _direction = compass_direction_num
     var _list = mark_list
+    console.log(mark_list)
+    for (var i = 0; i < _list.length; i++) {
+        var _m = _list[i]
+        var _self_mark_distance = LocationUtils.getDistanceAB(_location, _m.location)
+        var _self_mark_compass_value = LocationUtils.getCompassDirectionAB(_location, _m.location)
+        var _x = locationToScreen(_direction, _self_mark_compass_value)
+        _list[i].x = _x
+        console.log(_x)
+    }
     // for (var i = 0; i < _list.length; i++) {
     //     var _m = _list[i]
     //     //手机与mark的距离
@@ -38,4 +49,66 @@ function getList(value, mark_list){
 
     // }
     return _list
+}
+
+
+function locationToScreen(phone_value, mark_value) {
+    var _x
+    var baseAngle = 60
+    var screenWidth = 750
+    var halfWidth = screenWidth / 2
+    // var baseStep = halfWidth / baseAngle
+    var baseStep = parseInt(screenWidth / baseAngle)
+
+
+    // var halfAngle = baseAngle / 2
+    // var stepPixle = 750 / baseAngle
+
+    var obj = compassBetweenAngle(phone_value, mark_value)
+    // console.log(phone_value, mark_value,obj.value)
+    var _value = obj.value
+    if (_value > baseAngle)
+        _x = 1000
+    else {
+        if (obj.direction == DIRECTION_LEFT) {
+
+            _x = halfWidth - baseStep * parseInt(_value)
+        } else {
+            _x = halfWidth + baseStep * parseInt(_value)
+        }
+    }
+    return _x
+}
+
+/**
+ * @method 两个方向的夹角值
+ * @for geo
+ * @param
+ *      {number} phone_value   手机本身的罗盘度数
+ *      {number} mark_value   手机与目标的罗盘度数
+ * @return
+ *      {number} value 夹角度数
+ *      {string} direction 目标在手机的左or右
+ */
+function compassBetweenAngle(phone_value, mark_value) {
+    var value, direction
+    if (phone_value > mark_value) { //手机 > 目标
+        if (phone_value - mark_value <= 180) {//手机 - 目标 <= 180
+            value = phone_value - mark_value
+            direction = DIRECTION_LEFT
+        } else { //手机 - 目标 > 180
+            value = 359 - phone_value + mark_value
+            direction = DIRECTION_RIGHT
+        }
+    }
+    else {//目标 > 手机
+        if (mark_value - phone_value <= 180) { // 目标 - 手机 <= 180
+            value = mark_value - phone_value
+            direction = DIRECTION_RIGHT
+        } else {// 目标 - 手机 > 180
+            value = 359 - mark_value + phone_value
+            direction = DIRECTION_LEFT
+        }
+    }
+    return { value: value, direction: direction }
 }

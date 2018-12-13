@@ -11,7 +11,20 @@ Component({
         markList: {
             type: Array,
             value: [
-            ],
+            ], 
+            observer(newVal, oldVal) {
+                // markList: [
+                //     {
+                //         id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+                //         latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
+                //     }
+                var _list = []
+                for (var i = 0; i < newVal.length;i++){
+                    newVal[i].location =  Location.create(newVal[i].latitude, newVal[i].longitude)
+                    _list.push(newVal[i])
+                }
+                return _list
+            }
         },
         mode: {
             type: String,
@@ -76,20 +89,20 @@ Component({
         onInit() {
             var _step = 0
             var _acc_z = 0
-            ARUtils.render(GP, 1, _acc_z)
+            ARUtils.render(GP, 50, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
+                //更新位置
                 _step++
                 if (_step % GP.data.GPSFrameFre == 0) {
                     GP.getCurrentLocation()
                 }
-                var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z)
-                console.log(_direction)
-                ARUtils.render(GP, _direction, _acc_z)
+                var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z) //校正方向
+                ARUtils.render(GP, _direction, _acc_z)//渲染
             })
             //开启三轴陀螺仪
             wx.onAccelerometerChange(function (res) {
-                _acc_z = ARUtils.filterAccelerometerZ(res.z)
+                _acc_z = ARUtils.filterAccelerometerZ(res.z) //重力加速度
             })
         },
 
