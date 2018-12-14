@@ -151,7 +151,7 @@ function GetPerspectiveTransImageList(value) {
         accValue = value
         var obj = {
             p1: {
-                x: PerspectiveTrans(RULE_BASE_LIST[i].p1.x, RULE_BASE_LIST[i].p1.y)['x'],
+                x: -(RULE_BASE_LIST[i].p1.x, RULE_BASE_LIST[i].p1.y)['x'],
                 y: PerspectiveTrans(RULE_BASE_LIST[i].p1.x, RULE_BASE_LIST[i].p1.y)['y']
             },
             p2: {

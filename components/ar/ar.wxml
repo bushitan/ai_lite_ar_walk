@@ -16,7 +16,7 @@
 
     
     <template is="nav_info" data="{{navInfo}}" />
-    <template is="nav_normal" data="{{navDirection,tempAccZ}}" />
+    <template is="nav_normal" data="{{imageList,navDirection,navIconHeight}}" />
 
 
     <block wx:for="{{markList}}" wx:key="index">

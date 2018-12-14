@@ -88,8 +88,8 @@ Component({
         */
         onInit() {
             var _step = 0
-            var _acc_z = 0
-            var tempAccZ = 0
+            var _acc_z = 0.45
+            // var tempAccZ = 0
             ARUtils.render(GP, 100, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
@@ -100,9 +100,9 @@ Component({
                 }
                 var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z) //校正方向
                 ARUtils.render(GP, _direction, _acc_z)//渲染
-                GP.setData({
-                    tempAccZ: tempAccZ
-                })
+                // GP.setData({
+                //     tempAccZ: tempAccZ
+                // })
                 
             })
             // wx.startAccelerometer({

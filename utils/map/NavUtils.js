@@ -38,8 +38,6 @@
 //         }
 //     ]
 // }
-
-
 const DIRECTION_LEFT = 11 //左方向
 const DIRECTION_RIGHT = 12 //右方向 
 const DIRECTION_FRONT = 13 //正前方
@@ -123,13 +121,13 @@ function getDirection() {
  *      {number} acc_z z轴重力加速度
  */
 function getIconHeight(acc_z) {
-    tempAccZ = (Math.abs(acc_z)) * 50
+    var tempAccZ = (Math.abs(acc_z)) * 50
     // tempAccZ = parseInt(tempAccZ / 5) * 5
     tempAccZ = tempAccZ + 20
     tempAccZ = parseInt(tempAccZ)
     if (tempAccZ > 70) 
         tempAccZ = 70
-    return 
+    return tempAccZ
 }
 
 
@@ -142,9 +140,26 @@ function getIconHeight(acc_z) {
  */
 function getImageList(compass_direction, acc_z, self_location) {
     //TODO 判断导航的开关
+    // return []
 
     //根据方向、三轴陀螺仪渲染列表
-
-    return ""
+    var _start_x = 250
+    var _start_y = 800
+    var _w = 50
+    var _h = (Math.abs(acc_z)) * 50 + 2
+    var _space = (Math.abs(acc_z)) * 25 + 5
+    var _length = 5
+    var _list = []
+    for (var i = 0; i< _length;i++){
+        var _dx = (_h + _space) / Math.tan(compass_direction * Math.PI / 180) 
+        var temp = {
+            x: _start_x + _dx * i,
+            y: _start_y - (_h * (i + 1) + _space * i) ,
+            w: _w,
+            h: _h,
+        }
+        _list.push(temp)
+    }
+    return _list
 }
 

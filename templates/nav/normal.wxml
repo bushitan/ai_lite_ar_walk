@@ -12,13 +12,40 @@ const DIRECTION_BACK = 14 //后方  -->
         }
         module.exports.getTop = getTop; 
     </wxs>
+    <cover-view class='nav_box' >
+        <cover-view class='nav'>
+            <block wx:for="{{imageList}}">
+                <cover-image 
+                    class='nav_icon' 
+                    src='../../images/nav_point.png'                
+                    style='top:{{item.y}}rpx;left:{{item.x}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
+                ></cover-image>
+            </block> 
+        </cover-view>
+    </cover-view>
+
     <cover-view class='nav_normal'>
         <!-- <cover-view class='nav_rel'> -->
             <cover-image class='icon_arrow' 
                 src='../../images/nav_icon_center.png' 
-                style='height:{{tempAccZ}}px;margin-top:{{m1.getTop(tempAccZ)}}px;'
+                style='height:{{navIconHeight}}px;margin-top:{{m1.getTop(navIconHeight)}}px;'
                 >
             </cover-image>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- </cover-view> -->
 
     
