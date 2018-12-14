@@ -1,4 +1,5 @@
 
+<import src="../../templates/nav/info.wxml" />
 <import src="../../templates/nav/normal.wxml" />
 
 
@@ -12,6 +13,10 @@
          </cover-view>
          <cover-view>{{directionName}}</cover-view>
     </cover-view>
+
+    
+    <template is="nav_info" data="{{navInfo}}" />
+    <template is="nav_normal" data="{{navDirection,tempAccZ}}" />
 
 
     <block wx:for="{{markList}}" wx:key="index">
@@ -36,7 +41,6 @@
         </cover-view>
     </block>
 
-    <template is="nav_normal" data="{{navDirection}}" />
     
     <!-- 底部菜单 -->
     <cover-view class='menu'>      
@@ -65,15 +69,15 @@
 
     <!-- 导航箭头 -->
      <!-- hidden='{{!navIsOpen}}' -->
-    <cover-view class='nav_box' >
+    <!-- <cover-view class='nav_box' >
         <cover-view class='nav'>
             <block wx:for="{{imageList}}">
-                <!-- <cover-image 
+                <cover-image 
                     class='nav_icon' 
                     src='{{navIcon}}'                
                     style='top:{{item.y +800 }}rpx;left:{{item.x  + 325}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
-                ></cover-image> -->
-                 <!-- width: {{item.w}}px; height: {{item.h}}px; -->
+                ></cover-image>
+                 width: {{item.w}}px; height: {{item.h}}px;
                 <cover-view
                     class='nav_icon__cyc {{ compassStep == index? "nav_icon__light":""}}' 
                     src='{{navIcon}}'                
@@ -83,4 +87,4 @@
             </block> 
 
         </cover-view>
-    </cover-view>
+    </cover-view> -->

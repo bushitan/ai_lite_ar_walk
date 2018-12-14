@@ -34,15 +34,19 @@ function render(GP, direction_num,acc_z_num) {
     var _mark_list = MarkUtils.getList(_location,_direction, _mark_list)
     var _navInfo = NavUtils.getInfo()
     var _nav_direction = NavUtils.getDirection()
+    var _nav_icon_height = NavUtils.getIconHeight(_acc_z)
     var _navImageList = NavUtils.getImageList(_direction, _acc_z, _location)
 
+  
     //渲染
     GP.setData({
         directionName: _direction_name, //方向名称
         markList: _mark_list, //标点位置
         navInfo: _navInfo, //导航的总体信息
         navDirection: _nav_direction,
+        navIconHeight: _nav_icon_height,
         imageList: _navImageList, //导航图标
+
         // // compassStep: compassStep % 3,
     })
 }

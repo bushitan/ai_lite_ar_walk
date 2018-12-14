@@ -1,25 +1,17 @@
 
-<!-- const DIRECTION_LEFT = 11 //左方向
-const DIRECTION_RIGHT = 12 //右方向 
-const DIRECTION_FRONT = 13 //正前方
-const DIRECTION_BACK = 14 //后方  -->
-<template name="nav_normal" >
-    <view class='nav_normal'>
-        <image class='icon_arrow' 
-            src='../../images/nav_left.png' 
-            wx:if="{{navDirection==11}}">
-        </image>
-        <image class='icon_arrow' 
-            src='../../images/nav_right.png' 
-            wx:if="{{navDirection==12}}">
-        </image>
-        <image class='icon_arrow' 
-            src='../../images/nav_front_1.png' 
-            wx:if="{{navDirection==13}}">
-        </image>
-        <image class='icon_arrow' 
-            src='../../images/nav_back.png' 
-            wx:if="{{navDirection==14}}">
-        </image>
-    </view>
+<template name="nav_info" >
+    <cover-view class='nav_info'>
+        <cover-image class='icon_nav' src='../../images/icon_nav.png'></cover-image>
+        <cover-view class='content'>
+            <cover-view class='title'>全程剩余：141米 1分钟</cover-view>
+            <cover-view class='des'>GPS信号弱，请步行到开阔地带</cover-view>
+        </cover-view>
+        <!-- {{navInfo.name}}
+        {{navInfo.distance}}
+        {{navInfo.rate}} -->
+
+                <!-- name: "青秀山",
+        distance: "197",
+        rate:"50", -->
+    </cover-view>
 </template>

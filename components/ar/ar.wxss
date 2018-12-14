@@ -1,3 +1,4 @@
+@import "../../templates/nav/info.wxss";
 @import "../../templates/nav/normal.wxss";
 
 .div1

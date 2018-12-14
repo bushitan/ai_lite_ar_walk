@@ -89,7 +89,8 @@ Component({
         onInit() {
             var _step = 0
             var _acc_z = 0
-            ARUtils.render(GP, 50, _acc_z)
+            var tempAccZ = 0
+            ARUtils.render(GP, 100, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
                 //更新位置
@@ -99,10 +100,22 @@ Component({
                 }
                 var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z) //校正方向
                 ARUtils.render(GP, _direction, _acc_z)//渲染
+                GP.setData({
+                    tempAccZ: tempAccZ
+                })
+                
             })
+            // wx.startAccelerometer({
+            //     interval: 'game'
+            // })
             //开启三轴陀螺仪
+            // GP.setData({
+            //     tempAccZ: 10
+            // })
             wx.onAccelerometerChange(function (res) {
+                // console.log(res.z)
                 _acc_z = ARUtils.filterAccelerometerZ(res.z) //重力加速度
+                
             })
         },
 
@@ -134,3 +147,4 @@ Component({
         },
     }
 })
+

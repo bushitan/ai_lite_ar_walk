@@ -22,14 +22,14 @@ function getList(self_location,compass_direction_num, mark_list){
     var _location = self_location
     var _direction = compass_direction_num
     var _list = mark_list
-    console.log(mark_list)
+    // console.log(mark_list)
     for (var i = 0; i < _list.length; i++) {
         var _m = _list[i]
         var _self_mark_distance = LocationUtils.getDistanceAB(_location, _m.location)
         var _self_mark_compass_value = LocationUtils.getCompassDirectionAB(_location, _m.location)
         var _x = locationToScreen(_direction, _self_mark_compass_value)
         _list[i].x = _x
-        console.log(_x)
+        // console.log(_x)
     }
     // for (var i = 0; i < _list.length; i++) {
     //     var _m = _list[i]

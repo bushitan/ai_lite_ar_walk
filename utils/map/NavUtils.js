@@ -59,6 +59,7 @@ module.exports = {
     setPath: setPath,
     getInfo: getInfo,
     getDirection: getDirection,
+    getIconHeight: getIconHeight,
     getImageList: getImageList,
 
     MODE_NORMAL: "normal",
@@ -114,6 +115,21 @@ function getDirection() {
     //反馈信息
 
     return DIRECTION_LEFT
+}
+
+/**
+ * @method 获取导航图标的高度
+ * @param
+ *      {number} acc_z z轴重力加速度
+ */
+function getIconHeight(acc_z) {
+    tempAccZ = (Math.abs(acc_z)) * 50
+    // tempAccZ = parseInt(tempAccZ / 5) * 5
+    tempAccZ = tempAccZ + 20
+    tempAccZ = parseInt(tempAccZ)
+    if (tempAccZ > 70) 
+        tempAccZ = 70
+    return 
 }
 
 
