@@ -15,9 +15,9 @@ module.exports = {
  * @return
  *      {number} s 两点距离
  */
-function getDistanceAB(locationA, locationB) {
-    var A = locationA
-    var B = locationB
+function getDistanceAB(location_a, location_b) {
+    var A = location_a
+    var B = location_b
     const EARTH_RADIUS = 6378137.0;
     var radLat1 = (A.latitue * Math.PI / 180.0);
     var radLat2 = (B.latitue * Math.PI / 180.0);
@@ -43,9 +43,9 @@ function getDistanceAB(locationA, locationB) {
  * @return
  *      {number} angle 方向角
  */
-function getCompassDirectionAB(locationA, locationB) {
-    var A = locationA
-    var B = locationB
+function getCompassDirectionAB(location_a, location_b) {
+    var A = location_a
+    var B = location_b
     var D = Location.create(A.latitue, B.longitude) //水平辅助点
     // D.longitude = locationB.longitude
     var _distance = getDistanceAB(A, B)
@@ -63,34 +63,59 @@ function getCompassDirectionAB(locationA, locationB) {
  * @method 两个方向的夹角值
  * @for CompassUtils
  * @param
- *      {number} phone_value   手机本身的罗盘度数
- *      {number} mark_value   手机与目标的罗盘度数
+ *      {number} dir_phone   手机本身的罗盘度数
+ *      {number} dir_nav   手机与目标的罗盘度数
  * @return
  *      {number} value 夹角度数
  *      {string} direction 目标在手机的左or右
  */
-// function angleBetweenLine(phone_value, mark_value) {
-function getAngleABLine(lineA, lineB) {
-    var A = lineA
-    var B = lineB
+function getAngleABLine(dir_phone, dir_nav) {
+    var dir_phone = dir_phone
+    var dir_nav = dir_nav
     var value, side
-    if (A.direction > B.direction) { //手机 > 目标
-        if (A.direction - B.direction <= 180) {//手机 - 目标 <= 180
-            value = A.direction - B.direction
-            side = DIRECTION_LEFT
+    if (dir_phone >= dir_nav) { //手机 > 目标
+        if (dir_phone - dir_nav <= 180) {//手机 - 目标 <= 180
+            value = dir_nav - dir_phone
         } else { //手机 - 目标 > 180
-            value = 359 - A.direction + B.direction
-            side = DIRECTION_RIGHT
+            value = 359 - dir_phone + dir_nav
         }
     }
     else {//目标 > 手机
-        if (A.direction - B.direction <= 180) { // 目标 - 手机 <= 180
-            value = A.direction - B.direction
-            side = DIRECTION_RIGHT
+        if (dir_nav - dir_phone <= 180) { // 目标 - 手机 <= 180
+            value = dir_nav - dir_phone
         } else {// 目标 - 手机 > 180
-            value = 359 - A.direction + B.direction
-            side = DIRECTION_LEFT
+            value = 0 - (359 - dir_nav + dir_phone)
         }
     }
-    return Angle.create(value, side)
+    return value
+    // return Angle.create(value, side)
 }
+
+
+
+
+
+// function getAngleABLine(lineA, lineB) {
+//     var A = lineA
+//     var B = lineB
+//     var value, side
+//     if (A.direction > B.direction) { //手机 > 目标
+//         if (A.direction - B.direction <= 180) {//手机 - 目标 <= 180
+//             value = A.direction - B.direction
+//             side = DIRECTION_LEFT
+//         } else { //手机 - 目标 > 180
+//             value = 359 - A.direction + B.direction
+//             side = DIRECTION_RIGHT
+//         }
+//     }
+//     else {//目标 > 手机
+//         if (A.direction - B.direction <= 180) { // 目标 - 手机 <= 180
+//             value = A.direction - B.direction
+//             side = DIRECTION_RIGHT
+//         } else {// 目标 - 手机 > 180
+//             value = 359 - A.direction + B.direction
+//             side = DIRECTION_LEFT
+//         }
+//     }
+//     return Angle.create(value, side)
+// }

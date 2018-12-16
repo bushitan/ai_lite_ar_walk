@@ -38,6 +38,9 @@
 //         }
 //     ]
 // }
+
+var LocationUtils = require("LocationUtils.js")
+
 const DIRECTION_LEFT = 11 //左方向
 const DIRECTION_RIGHT = 12 //右方向 
 const DIRECTION_FRONT = 13 //正前方
@@ -105,14 +108,12 @@ function getInfo() {
 /**
  * @method 获取当前目标点方向
  * @param
- *      {object} value 手机的方向数值
+ *      {string} direction 手机的方向数值
  */
-function getDirection() {
-    //TODO 判断导航的开关
-
-    //反馈信息
-
-    return DIRECTION_LEFT
+function getDirection(direction) {
+    var nextPointDirection = 40
+    var value = LocationUtils.getAngleABLine(direction, nextPointDirection)
+    return value
 }
 
 /**
@@ -134,24 +135,24 @@ function getIconHeight(acc_z) {
 /**
  * @method 获取渲染的mark数组
  * @param
- *      {number} compass_direction 手机的方向数值
+ *      {number} nav_direction 手机的方向数值
  *      {number} acc_z z轴重力加速度
- *      {location} self_location 我的当前坐标
  */
-function getImageList(compass_direction, acc_z, self_location) {
+function getImageList( nav_direction, acc_z) {
     //TODO 判断导航的开关
     // return []
-
+    var _nav_direction = nav_direction
     //根据方向、三轴陀螺仪渲染列表
-    var _start_x = 250
-    var _start_y = 800
+    var _start_x = 350 
+    var _start_y = 885
     var _w = 50
     var _h = (Math.abs(acc_z)) * 50 + 2
     var _space = (Math.abs(acc_z)) * 25 + 5
-    var _length = 5
+    var _length = 5    
     var _list = []
+    // if (compass_direction > 60) compass_direction= 60
     for (var i = 0; i< _length;i++){
-        var _dx = (_h + _space) / Math.tan(compass_direction * Math.PI / 180) 
+        var _dx = (_h + _space) / Math.tan(_nav_direction * Math.PI / 180) 
         var temp = {
             x: _start_x + _dx * i,
             y: _start_y - (_h * (i + 1) + _space * i) ,

@@ -29,6 +29,7 @@ function getList(self_location,compass_direction_num, mark_list){
         var _self_mark_compass_value = LocationUtils.getCompassDirectionAB(_location, _m.location)
         var _x = locationToScreen(_direction, _self_mark_compass_value)
         _list[i].x = _x
+        _list[i].y = 400
         // console.log(_x)
     }
     // for (var i = 0; i < _list.length; i++) {

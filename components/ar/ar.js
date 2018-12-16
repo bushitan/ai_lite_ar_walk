@@ -52,8 +52,7 @@ Component({
         GPSFrameFre: 70, //获取GPS坐标频率(按罗盘转动次数)
         GPSAccuray: 30, //GPS的精度
         GPSSpeed:5,//移动速度
-        GPSLocation: { latitue: 22.8445090000, longitude: 108.3101860000},
-
+        GPSLocation: { latitue: 23.1290800000, longitude: 113.2643600000},
 
 
         //罗盘
@@ -90,7 +89,7 @@ Component({
             var _step = 0
             var _acc_z = 0.45
             // var tempAccZ = 0
-            ARUtils.render(GP, 100, _acc_z)
+            ARUtils.render(GP, 50, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
                 //更新位置

@@ -26,11 +26,11 @@ const DIRECTION_BACK = 14 //后方  -->
 
     <cover-view class='nav_normal'>
         <!-- <cover-view class='nav_rel'> -->
-            <cover-image class='icon_arrow' 
-                src='../../images/nav_icon_center.png' 
-                style='height:{{navIconHeight}}px;margin-top:{{m1.getTop(navIconHeight)}}px;'
-                >
-            </cover-image>
+        <cover-image class='icon_arrow' 
+            src='../../images/nav_icon_center.png' 
+            style='height:{{navIconHeight}}px;margin-top:{{m1.getTop(navIconHeight)}}px;'
+            >
+        </cover-image>
 
         
 
