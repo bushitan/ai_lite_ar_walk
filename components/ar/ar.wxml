@@ -2,67 +2,14 @@
 <import src="../../templates/nav/info.wxml" />
 <import src="../../templates/nav/normal.wxml" />
 
-
+<view>
 <camera device-position="back" flash="off"  class="bg">
 
-    <!-- 顶部方向 -->
-    <cover-view class='direction'>      
-        <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
-         <cover-view class='direction_center'>
-            <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
-         </cover-view>
-         <cover-view>{{directionName}}</cover-view>
-    </cover-view>
-
-    
-    <template is="nav_info" data="{{navInfo}}" />
-    <template is="nav_normal" data="{{imageList,navDirection,navIconHeight}}" />
-
-
-    <block wx:for="{{markList}}" wx:key="index">
-        <cover-view 
-            class='mark {{item.id == clickMarkID ? "select":""}}' 
-            style='top:{{item.y}}rpx;left:{{item.x}}rpx'
-            data-mark_id="{{item.id}}"
-        >
-            <cover-image 
-                class='icon' 
-                catchtap='clickMark'
-                src='../../images/menu_address.png' >
-            </cover-image>
-            <cover-view>    
-                <cover-view class='title'>{{item.name}}</cover-view>
-                <cover-view  class='title'>{{item.distance}}米</cover-view>
-                <cover-view  
-                    class='title' 
-                    data-mark_id="{{item.id}}"
-                >详情</cover-view>
-            </cover-view>
-        </cover-view>
-    </block>
-
-    
-    <!-- 底部菜单 -->
-    <cover-view class='menu'>      
-        <cover-image class='menu_bg' src='../../images/menu_bg.png'></cover-image>  
-        <block  wx:if="{{isPack == false}}" >
-            <cover-image class='menu_unpack' src='../../images/btn_unpack.png' catchtap="menuChange"></cover-image>  
-        </block>
-        <block  wx:else >
-            <cover-image class='menu_unpack' src='../../images/btn_pack.png' catchtap="menuChange"></cover-image>  
-            <block wx:for="{{menuList}}">
-                <cover-view 
-                    class='node {{ clickMenuID == item.id? "click":""}} ' 
-                    catchtap="menuClick"
-                    data-menu_id="{{item.id}}"
-                > 
-                    <cover-view >{{item.name}}</cover-view>
-                </cover-view>
-            </block>
-        </block>
-    </cover-view>
 </camera>
 
+<canvas class='navCanvas'  canvas-id="navCanvas"></canvas>
+<map class='mapCanvas' ></map>
+</view>
 
     <!-- <cover-view style='position:absolute;bottom:80px' catchtap='clickMark' data-target_id='1'>导航 </cover-view> -->
 

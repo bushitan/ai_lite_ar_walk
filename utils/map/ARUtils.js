@@ -33,7 +33,7 @@ function render(GP, direction_num,acc_z_num) {
     var _direction_name = CompassUtils.getName(_direction)
     var _mark_list = MarkUtils.getList(_location,_direction, _mark_list)
     var _navInfo = NavUtils.getInfo()
-    var _nav_direction = NavUtils.getDirection(50)
+    var _nav_direction = NavUtils.getDirection(direction_num, _location)
     var _nav_icon_height = NavUtils.getIconHeight(_acc_z)
     var _navImageList = NavUtils.getImageList(_nav_direction, _acc_z, _location)
     // console.log(_navImageList)
