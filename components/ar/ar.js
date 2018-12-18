@@ -78,7 +78,6 @@ Component({
 
 
         const context = wx.createCanvasContext('navCanvas',this)
-
         context.setStrokeStyle('#00ff00')
         context.setLineWidth(5)
         context.rect(0, 0, 200, 200)
@@ -109,7 +108,7 @@ Component({
             var _step = 0
             var _acc_z = 0.45
             // var tempAccZ = 0
-            ARUtils.render(GP, 50, _acc_z)
+            ARUtils.render(GP, 280, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
                 //更新位置
@@ -136,7 +135,23 @@ Component({
                 _acc_z = ARUtils.filterAccelerometerZ(res.z) //重力加速度
                 
             })
+            GP.getQQMapInfo()
+
         },
+
+        /**
+         * @method 获取导航信息
+         * @for ar
+         * @param
+         *      {object} e 事件对象
+         */
+        getQQMapInfo(e) {
+
+          
+
+        },
+
+
 
         /**
          * @method 点击导航图标
@@ -144,8 +159,9 @@ Component({
          * @param
          *      {object} e 事件对象
          */
-        clickMark(e){
-            ARUtils.queryNavByBaidu("lalalal")
+        clickMark(e) {
+            ARUtils.queryMark("厕所", '22.8122400000,108.3995300000')
+            ARUtils.queryNav('22.8122400000,108.3995300000',"22.8194235482,108.3917355537")
         },
 
         /**

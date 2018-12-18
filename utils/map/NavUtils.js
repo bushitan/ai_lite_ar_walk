@@ -169,9 +169,11 @@ function baseDirMath(nav_direction, acc_z, side_x ,side_y){
     var _nav_direction = nav_direction
     var _angle = Math.abs(_nav_direction) * Math.PI / 180
     var _start_x = 350
-    var _start_y = 885
+    var _start_y = 785
     var _w = 50
-    var _h = (Math.abs(acc_z)) * _w + 2
+    var _h = (Math.abs(acc_z)) * _w + 14
+    if (_h > 50)
+        _h = 50
     var _space = (Math.abs(acc_z)) * _w / 2 + 5
     var BaseL = 50 + 30  // _h + _space
     var L = _space + _h

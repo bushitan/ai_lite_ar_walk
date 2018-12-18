@@ -2,7 +2,7 @@
 
 .nav_normal{
     position: absolute;
-    top:800rpx;
+    top:700rpx;
     width: 100%;
     display: flex;
     justify-content: center;

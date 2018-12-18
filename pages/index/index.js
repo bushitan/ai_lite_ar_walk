@@ -3,6 +3,10 @@
 const app = getApp()
 var GEO = require("../../utils/geo.js") 
 
+
+
+
+
 Page({
     data: {
         motto: 'Hello World',
@@ -10,11 +14,33 @@ Page({
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
-        markList:[
-        {
-            id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
-            latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
-        },]
+        markList: [
+            {
+                id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+                latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
+            },
+            {
+                id: 1, x: 10, y: 50, name: "广西民族影城", distance: 500,
+                latitude: 22.8122400000, longitude: 108.3995300000, compass_value: 0
+            },
+            {
+                id: 1, x: 10, y: 50, name: "邮政小区", distance: 500,
+                latitude: 22.8194235482, longitude: 108.3917355537, compass_value: 0
+            },
+            {
+                id: 1, x: 10, y: 50, name: "水电大厦", distance: 500,
+                latitude: 22.8134306166, longitude:  108.3889245987, compass_value: 0
+            },
+            {
+                id: 1, x: 10, y: 50, name: "泰迪咖啡(航洋店)", distance: 500,
+                latitude: 22.8147953668, longitude: 108.3848476410, compass_value: 0
+            },
+            {
+                id: 1, x: 10, y: 50, name: "桃源山庄", distance: 500,
+                latitude: 22.8099692323, longitude: 108.3908343315, compass_value: 0
+            },
+            
+        ]
 
     },
     //事件处理函数
