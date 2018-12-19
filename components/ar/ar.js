@@ -51,8 +51,8 @@ Component({
         //基础数据
         GPSFrameFre: 70, //获取GPS坐标频率(按罗盘转动次数)
         GPSAccuray: 30, //GPS的精度
-        GPSSpeed:5,//移动速度
-        GPSLocation: { latitue: 23.1290800000, longitude: 113.2643600000},
+        GPSSpeed: 5,//移动速度
+        GPSLocation: { latitue: 23.1290800000, longitude: 113.2643600000 },
 
 
         //罗盘

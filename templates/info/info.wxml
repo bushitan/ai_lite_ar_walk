@@ -1,0 +1,19 @@
+
+
+
+<template name="info" >
+    <cover-view class='info'>
+        <cover-view>
+            <cover-view class='info_title'>
+                <cover-view class='info_name'>坤丽便利店</cover-view>
+                <cover-view class='info_distance'>156.56m</cover-view>
+            </cover-view>
+            <cover-view class='info_summary'>北湖街道万秀村南巷200号</cover-view>
+            <cover-view class='info_des'>北湖街道万秀村南巷200号北湖街道万秀村南巷200号北湖街道万秀村南巷200号</cover-view>
+        </cover-view>
+        <cover-view class='info_btn'>
+            <cover-image class='' src='../../images/menu_laugth.png'></cover-image>
+            <cover-image class='' src='../../images/menu_address.png'></cover-image>
+        </cover-view>
+    </cover-view>
+</template>

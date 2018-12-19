@@ -20,3 +20,42 @@
     height: 23px;
 
 }
+
+.map_btn{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    right: 0;
+    font-size: 9pt;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    
+}
+.map_btn .map_icon{
+    width: 23px;
+    height: 23px;
+
+}
+
+
+
+.map_camera{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    /* background: linear-gradient(to top, rgba(0, 0, 0, 0.6)  0%, rgba(255, 255, 255, 0) 100%); */
+    /* background: url(../../images/menu_bg.png); */
+    width: 100%;
+    padding: 10px 15px;
+
+}
+.map_camera .map_camera_bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

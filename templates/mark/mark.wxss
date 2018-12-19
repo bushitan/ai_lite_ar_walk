@@ -1,0 +1,32 @@
+
+
+
+
+
+
+.mark{
+    position: absolute;
+    color: #ffffff;
+    background-color: rgba(29, 31, 41, 0.774);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 9pt;
+
+    transition: all 0.5s;
+    top: 0;
+    left: 100rpx;
+}
+
+.mark .icon{
+    width: 23px;
+    height: 23px;
+    margin-right:5px; 
+} 
+.mark .title{
+    line-height: 15px;
+}
+.mark  .select{
+    border:2px solid #ffc834 ;
+}

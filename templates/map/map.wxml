@@ -22,6 +22,15 @@
     >    
         <cover-image class='map_dialog' src='../../images/map_dialog.png'></cover-image> 
         
-        <cover-image class='map_switch' src='../../images/nav_map_switch.png'></cover-image> 
+        <!-- <cover-image class='map_switch' src='../../images/nav_map_switch.png'></cover-image>  -->
+        <cover-view class='map_btn'>
+            <cover-image class='map_icon' src='../../images/nav_map_switch.png'></cover-image>
+        </cover-view>
     </map>
+</template>
+
+<template name="map_camera">
+    <cover-view class='map_camera'>      
+        <cover-image class='map_camera_bg' src='../../images/menu_bg.png'></cover-image> 
+    </cover-view>
 </template>

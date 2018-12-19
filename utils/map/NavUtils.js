@@ -191,3 +191,6 @@ function baseDirMath(nav_direction, acc_z, side_x ,side_y){
     }
     return _list
 }
+
+
+//TODO 距离在30米以内的，永远显示在正前方
