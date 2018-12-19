@@ -1,5 +1,7 @@
 @import "../../templates/nav/info.wxss";
 @import "../../templates/nav/normal.wxss";
+@import "../../templates/menu/base.wxss";
+@import "../../templates/map/map.wxss";
 
 .div1
 {
@@ -207,33 +209,3 @@ width: 100%; */
 
 
 
-
-
-.navCanvas{
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    top: 0;
-    background-color: green
-}
-.map {
-    position: absolute;
-    width: 100vw;
-    height: 20vh;
-    bottom: 0;
-    /* left: 100px; */
-    /* background-color: green */
-
-}
-
-.map .map_dialog{
-    position: absolute;
-    width: 100%;
-    height:60px;
-}
-.map .map_show{
-    position: absolute;
-    right: 5px;
-    color: #fff;
-    font-size: 9pt;
-}

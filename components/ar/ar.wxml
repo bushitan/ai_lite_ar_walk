@@ -1,22 +1,15 @@
 
 <import src="../../templates/nav/info.wxml" />
 <import src="../../templates/nav/normal.wxml" />
+<import src="../../templates/menu/base.wxml" />
+<import src="../../templates/map/map.wxml" />
 
 <camera device-position="back" flash="off"  class="bg">
 
-    <!-- 顶部方向 -->
-    <cover-view class='direction'>      
-        <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
-         <cover-view class='direction_center'>
-            <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
-         </cover-view>
-         <cover-view>{{directionName}}</cover-view>
-    </cover-view>
 
-    
-    <template is="nav_info" data="{{navInfo}}" />
+    <!-- <template is="menu_base" data="{{directionName}}"  /> -->
+    <template is="nav_info" data="{{navInfo,directionName}}" />
     <template is="nav_normal" data="{{imageList,navDirection,navIconHeight}}" />
-
 
     <block wx:for="{{markList}}" wx:key="index">
         <cover-view 
@@ -61,27 +54,7 @@
     </cover-view>
 </camera>
 
-<map
-    id="map"
-    longitude="113.324520"
-    latitude="23.099994"
-    scale="14"
-    controls="{{controls}}"
-    bindcontroltap="controltap"
-    markers="{{markers}}"
-    bindmarkertap="markertap"
-    polyline="{{polyline}}"
-    bindregionchange="regionchange"
-    show-location
-    enable-scroll="true"
-    enable-overlooking="true"
-    show-compass="true"
-    enable-rotate="true"
-    class='map'
->    
-    <cover-image class='map_dialog' src='../../images/map_dialog.png'></cover-image> 
-    <cover-view class='map_show'>收起</cover-view> 
-</map>
+<template is="map" data="{{navInfo,directionName}}" />
     <!-- <cover-view style='position:absolute;bottom:80px' catchtap='clickMark' data-target_id='1'>导航 </cover-view> -->
 
 
@@ -106,3 +79,17 @@
 
         </cover-view>
     </cover-view> -->
+
+
+
+
+    <!-- 顶部方向 -->
+    <!-- <cover-view class='direction'>      
+        <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
+         <cover-view class='direction_center'>
+            <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
+         </cover-view>
+         <cover-view>{{directionName}}</cover-view>
+    </cover-view> -->
+
+    <!-- <template is="menu_base" data="{{directionName}}"  /> -->

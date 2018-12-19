@@ -1,17 +1,44 @@
+.nav_info{
+    
+    background-color:#fff;
+    color: #fff;
+    text-align: center;
+}
+.nav_info .nav_distance{
+    color: #ff9207;
+    font-size: 15pt;
+    font-weight: bolder;
+    
+}
+.nav_info .nav_instruction{
+    color: #ff9207;
+    font-size: 9pt;
+    padding: 6px 0;
+}
+.nav_info .nav_des{
+    color: #121212;
+    font-size: 9pt;
+    padding-bottom: 10px;
+}
+.nav_info .nav_cancle{
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    width: 23px;
+    height: 23px;
+}
 
 
+
+/* 
 .nav_info{
     position: absolute;
-    top:42px;
+    top:50px;
     width: 100%;
     display: flex;
-    padding: 0 20px;
     color: #fff;   
+    padding: 15px;
 }
-/* .nav_info .content{
-    position: relative;
-    height: 40px;
-} */
 .nav_info .icon_nav{
     width: 40px;
     height: 40px;
@@ -25,3 +52,40 @@
     font-size: 11pt;
 }
 
+.nav_info_cancle{
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+} */
+
+
+
+/* 方向 */
+.menu_direction{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    padding:5px 0 10px ;
+    color: #fff;
+    font-size: 9pt;
+    text-align: center;
+}
+.menu_direction .menu_direction_center{
+    display: flex;
+    justify-content: center;
+
+}
+.menu_direction .menu_direction_bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.menu_direction .menu_direction_arrow{
+    width:14px;
+    height: 14px;
+}

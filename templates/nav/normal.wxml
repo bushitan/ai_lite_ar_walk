@@ -12,7 +12,7 @@ const DIRECTION_BACK = 14 //后方  -->
         }
         module.exports.getTop = getTop; 
     </wxs>
-    <cover-view class='nav_box' >
+    <!-- <cover-view class='nav_box' > -->
         <cover-view class='nav'>
             <block wx:for="{{imageList}}">
                 <cover-image 
@@ -22,7 +22,7 @@ const DIRECTION_BACK = 14 //后方  -->
                 ></cover-image>
             </block> 
         </cover-view>
-    </cover-view>
+    <!-- </cover-view> -->
 
     <cover-view class='nav_normal'>
         <!-- <cover-view class='nav_rel'> -->

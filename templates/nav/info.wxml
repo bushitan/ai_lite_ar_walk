@@ -1,5 +1,44 @@
 
+
+
 <template name="nav_info" >
+    
+    <cover-view class='nav_info'>
+        <cover-view class='nav_distance'>320米</cover-view>
+        <cover-view class='nav_instruction'>从起点朝东,沿东华门大街步行239米,直行进入东安门大街</cover-view>
+        <cover-view class='nav_des'>GPS信号弱，请步行到开阔地带</cover-view>
+        
+        <cover-image class='nav_cancle' src='../../images/nav_cancle2.png'></cover-image>
+    </cover-view>
+
+
+    <!-- <cover-image class='nav_info_cancle' src='../../images/nav_cancle.png'></cover-image>
+    
+
+    <cover-view class='nav_info'>
+        <cover-image class='icon_nav' src='../../images/icon_nav.png'></cover-image>
+        <cover-view class='content'>
+            <cover-view class='title'>全程剩余：141米 1分钟</cover-view>
+            <cover-view class='des'>GPS信号弱，请步行到开阔地带</cover-view>
+        </cover-view>
+    </cover-view> -->
+</template>
+
+
+<template name="nav_info1" >
+
+    <cover-view class='menu_direction'>          
+        <cover-image class='menu_direction_bg' src='../../images/menu_bg_revese.png'></cover-image> 
+        <cover-view class='menu_direction_center'>
+            <cover-image src='../../images/arrow.png' class='menu_direction_arrow'></cover-image>
+        </cover-view>
+        <cover-view>{{directionName}}</cover-view>
+    </cover-view>
+
+
+    <cover-image class='nav_info_cancle' src='../../images/nav_cancle.png'></cover-image>
+    
+
     <cover-view class='nav_info'>
         <cover-image class='icon_nav' src='../../images/icon_nav.png'></cover-image>
         <cover-view class='content'>
