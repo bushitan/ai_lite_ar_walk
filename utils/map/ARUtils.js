@@ -86,11 +86,13 @@ function clickMarkInfoToNav(mark_id) {
         "22.8194235482,108.3917355537",
         callback
     )
-    function callback(e){
-        console.log(e)
+    function callback(routes){
+        // console.log(e)
+        NavUtils.start(routes)
         GP.setData({
             show: SwitchUtils.onNav()
         })
+        
     }
 }
 
@@ -163,10 +165,17 @@ function render( direction_num,acc_z_num) {
     //渲染mark列表
     var _direction_name = CompassUtils.getName(_direction)
     var _mark_list = MarkUtils.getList(_location,_direction, _mark_list)
-    var _navInfo = NavUtils.getInfo()
-    var _nav_direction = NavUtils.getDirection(direction_num, _location)
-    var _nav_icon_height = NavUtils.getIconHeight(_acc_z)
-    var _navImageList = NavUtils.getImageList(_nav_direction, _acc_z, _location)
+
+    var _navInfo = NavUtils.getInfo()//获取导航信息
+    var _nav_direction = NavUtils.isNextLocation(direction_num, _location)
+    var _nav_icon_height = NavUtils.getIconHeight(_acc_z)   //更新中央图标
+    var _navImageList = NavUtils.getImageList(_nav_direction, _acc_z, _location)//更新导航点
+
+
+    // var _navInfo = NavUtils.getInfo()//获取导航信息
+    // var _nav_direction = NavUtils.getDirection(direction_num, _location, Location.create(23.1292800000, 113.2653650000) ) //获取导航方向
+    // var _nav_icon_height = NavUtils.getIconHeight(_acc_z)   //更新中央图标
+    // var _navImageList = NavUtils.getImageList(_nav_direction, _acc_z, _location)//更新导航点
     // console.log(_navImageList)
   
     //渲染
