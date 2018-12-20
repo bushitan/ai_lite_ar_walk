@@ -58,13 +58,37 @@ Page({
         console.log(g )
  
     },
-    getUserInfo: function(e) {
-        console.log(e)
-        app.globalData.userInfo = e.detail.userInfo
-        this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-        })
-    },
+
+    /**
+    * @method 设置
+    * @for template/menu/base.wxml
+    * @param
+    *      {object} e 事件对象
+    */
+        clickOption(e) {
+            console.log(e,"Option")
+        },
+
+        /**
+        * @method 搜索
+        * @for template/menu/base.wxml
+        * @param
+        *      {object} e 事件对象
+        */
+        clickSearch(e) {
+            console.log(e, "clickSearch")
+        },
+        /**
+        * @method 更多信息
+        * @for template/map/map.wxml
+        * @param
+        *      {object} e 事件对象
+        */
+        clickMarkInfoToMore(e) {
+            console.log(e, "clickMarkInfoToMore")
+        },
+
+
+
     onShareAppMessage(){},
 })

@@ -3,4 +3,10 @@
 <!-- <title></title> -->
 
 
-<ar markList="{{markList}}"></ar>
+<ar 
+    markList="{{markList}}"
+    catch:clickOption="clickOption"
+    catch:clickSearch="clickSearch"
+    catch:clickMarkInfoToMore="clickMarkInfoToMore"
+>
+</ar>

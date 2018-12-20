@@ -6,11 +6,11 @@
         <cover-view 
             class='mark {{item.id == clickMarkID ? "select":""}}' 
             style='top:{{item.y}}rpx;left:{{item.x}}rpx'
+            catchtap='clickMark'
             data-mark_id="{{item.id}}"
         >
             <cover-image 
                 class='icon' 
-                catchtap='clickMark'
                 src='../../images/menu_address.png' >
             </cover-image>
             <cover-view>    

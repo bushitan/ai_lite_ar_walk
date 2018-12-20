@@ -1,6 +1,6 @@
 
 
-.info{
+.mark_info{
     position: absolute;
     /* width: 100%; */
     left: 0;
@@ -12,26 +12,35 @@
     padding: 15px;    
     background-color:rgba(0, 0, 0, 0.3);
 }
-.info_title{
+
+.mark_info_cancel{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+.mark_info_title{
     display: flex;
     align-items: center;
     margin-bottom: 5px;
 }
-.info_name{
+.mark_info_name{
     color: #ffc834 ;
     font-size: 11pt;
     margin-right: 10px;
 }
-.info_distance{
+.mark_info_distance{
     color: #fff;
     font-size: 9pt;
 }
-.info_summary{
+.mark_info_summary{
     color: #fff;
     font-size: 9pt;
     margin-right: 10px;
 }
-.info_des{
+.mark_info_des{
     margin-top: 5px;
     color: #fff;
     font-size: 9pt;      
@@ -39,14 +48,16 @@
     overflow:hidden;
 }
 
-.info_btn{
+.mark_info_btn{
     display: flex;
     justify-content: flex-end;
     flex-basis: 150px;
 }
-.info cover-image{
+.mark_info cover-image{
     width: 23px;
     height: 23px;
 
 }
+
+
 

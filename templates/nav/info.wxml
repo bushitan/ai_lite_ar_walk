@@ -8,7 +8,12 @@
         <cover-view class='nav_instruction'>从起点朝东,沿东华门大街步行239米,直行进入东安门大街</cover-view>
         <cover-view class='nav_des'>GPS信号弱，请步行到开阔地带</cover-view>
         
-        <cover-image class='nav_cancle' src='../../images/nav_cancle2.png'></cover-image>
+        <cover-image 
+            class='nav_cancle' 
+            src='../../images/nav_cancle2.png'
+            catchtap='clickNavCancel'
+        >
+        </cover-image>
     </cover-view>
 
 

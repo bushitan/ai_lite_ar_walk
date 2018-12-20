@@ -4,29 +4,31 @@
 <import src="../../templates/menu/base.wxml" />
 <import src="../../templates/map/map.wxml" />
 <import src="../../templates/mark/mark.wxml" />
-<import src="../../templates/info/info.wxml" />
+<import src="../../templates/mark_info/mark_info.wxml" />
 
 <camera device-position="back" flash="off"  class="camera">
 
 
-    <template is="menu_base" data="{{directionName}}"  />
+    <template is="menu_base" data="{{directionName}}"  wx:if="{{show.menu}}"/>
 
-    <template is="nav_info" data="{{navInfo,directionName}}" />
+    <template is="nav_info" data="{{navInfo,directionName}}"  wx:if="{{show.navInfo}}" />
 
-    <template is="nav_normal" data="{{imageList,navDirection,navIconHeight}}" />
+    <template is="nav_normal" data="{{imageList,navDirection,navIconHeight}}" wx:if="{{show.navIcon}}"  />
 
     <!-- 导航的mark -->
-    <!-- <template is="mark" data="{{markList}}" /> -->
+    <template is="mark" data="{{markList}}" wx:if="{{show.navMark}}"/>
 
-    <template is="mark" data="{{markList}}" />
+    <template is="mark" data="{{markList}}" wx:if="{{show.mark}}"/>
 
-    <template is="info" data="{{markList}}" />
+    <template is="mark_info" data="{{markList}}"  wx:if="{{show.markInfo}}"/>
 
     
-    <template is="map_camera" />
+    <template is="map_icon" wx:if="{{show.mapIcon}}" />
+    
+    <template is="map_camera" wx:if="{{show.mapCamera}}"/>
 </camera>
 
-<template is="map" data="{{navInfo,directionName}}" />
+<template is="map" data="{{navInfo,directionName}}"  wx:if="{{show.map}}"/>
 
 
 

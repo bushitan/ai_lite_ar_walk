@@ -71,6 +71,9 @@ Component({
             { name: "景点", id: 1 },
             { name: "厕所", id: 2 },
         ],
+
+        //显示控制
+        show:{},
     },
     ready() {
         GP = this       
@@ -108,7 +111,8 @@ Component({
             var _step = 0
             var _acc_z = 0.45
             // var tempAccZ = 0
-            ARUtils.render(GP, 280, _acc_z)
+            ARUtils.init(GP)
+            ARUtils.render( 90, _acc_z)
             //开启罗盘
             wx.onCompassChange(function (res) {
                 //更新位置
@@ -117,7 +121,7 @@ Component({
                     GP.getCurrentLocation()
                 }
                 var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z) //校正方向
-                ARUtils.render(GP, _direction, _acc_z)//渲染
+                ARUtils.render(_direction, _acc_z)//渲染
                 // GP.setData({
                 //     tempAccZ: tempAccZ
                 // })
@@ -154,15 +158,122 @@ Component({
 
 
         /**
-         * @method 点击导航图标
-         * @for ar
+         * @method 点击mark展示详情
+         * @for template/mark/mark.wxml
          * @param
          *      {object} e 事件对象
          */
         clickMark(e) {
-            ARUtils.queryMark("厕所", '22.8122400000,108.3995300000')
-            ARUtils.queryNav('22.8122400000,108.3995300000',"22.8194235482,108.3917355537")
+            var mark_id = e.currentTarget.dataset.mark_id
+            console.log(mark_id)
+            ARUtils.clickMark(mark_id)
+            // ARUtils.queryMark("厕所", '22.8122400000,108.3995300000')
+            // ARUtils.queryNav('22.8122400000,108.3995300000',"22.8194235482,108.3917355537")
         },
+
+        /**
+          * @method 关闭mark详情
+          * @for template/mark_info/mark_info.wxml
+          * @param
+          *      {object} e 事件对象
+          */
+        clickMarkInfoCancel(e) {
+            ARUtils.clickMarkInfoCancel()
+        },
+
+        /**
+          * @method 开启导航
+          * @for template/mark_info/mark_info.wxml
+          * @param
+          *      {object} e 事件对象
+          */
+        clickMarkInfoToNav(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            ARUtils.clickMarkInfoToNav()
+        },
+        /**
+          * @method 关闭导航
+          * @for template/nav/info.wxml
+          * @param
+          *      {object} e 事件对象
+          */
+        clickNavCancel(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            ARUtils.clickNavCancel()
+        },
+
+        
+
+        /**
+          * @method 开启导航的地图
+          * @for template/map/map.wxml
+          * @param
+          *      {object} e 事件对象
+          */
+        clickNavAndMap(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            ARUtils.clickNavAndMap()
+        },
+
+        /**
+          * @method 关闭导航的地图
+          * @for template/map/map.wxml
+          * @param
+          *      {object} e 事件对象
+          */
+        clickNavMapOff(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            ARUtils.clickNavMapOff()
+        },
+
+        /**
+          * @method 关闭导航
+          * @for template/map/map.wxml
+          * @param
+          *      {object} e 事件对象
+          */
+        clickNavOff(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            ARUtils.clickNavOff()
+        },
+
+
+        /************对外的接口 **************/
+
+        /**
+        * @method 设置
+        * @for template/menu/base.wxml
+        * @param
+        *      {object} e 事件对象
+        */
+        clickOption(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            this.triggerEvent('clickOption');
+        },
+
+        /**
+        * @method 搜索
+        * @for template/menu/base.wxml
+        * @param
+        *      {object} e 事件对象
+        */
+        clickSearch(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            this.triggerEvent('clickSearch');
+        },
+        /**
+        * @method 更多信息
+        * @for template/map/map.wxml
+        * @param
+        *      {object} e 事件对象
+        */
+        clickMarkInfoToMore(e) {
+            // var mark_id = e.currentTarget.dataset.mark_id
+            this.triggerEvent('clickMarkInfoToMore');
+        },
+        
+
+
 
         /**
          * @method 过去当前经纬度

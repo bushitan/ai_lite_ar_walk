@@ -24,13 +24,33 @@
         
         <!-- <cover-image class='map_switch' src='../../images/nav_map_switch.png'></cover-image>  -->
         <cover-view class='map_btn'>
-            <cover-image class='map_icon' src='../../images/nav_map_switch.png'></cover-image>
+            <cover-image 
+                class='map_icon' 
+                src='../../images/nav_map_switch.png'                
+                catchtap='clickNavMapOff'
+            >
+            </cover-image>
         </cover-view>
     </map>
 </template>
 
 <template name="map_camera">
     <cover-view class='map_camera'>      
-        <cover-image class='map_camera_bg' src='../../images/menu_bg.png'></cover-image> 
+        <cover-image 
+            class='map_camera_bg' 
+            src='../../images/menu_bg.png'
+        >
+        </cover-image> 
+    </cover-view>
+</template>
+
+<template name="map_icon">
+    <cover-view class='map_on_switch'>      
+        <cover-image 
+            class='map_on_switch_bg' 
+            src='../../images/menu_camera.png'
+            catchtap='clickNavAndMap'
+        >
+        </cover-image> 
     </cover-view>
 </template>

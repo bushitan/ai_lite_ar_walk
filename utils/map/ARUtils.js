@@ -4,7 +4,8 @@ var CompassUtils = require("CompassUtils.js")
 var AccelerometerUtils = require("AccelerometerUtils.js")
 var NavUtils = require("NavUtils.js")
 var MarkUtils = require("MarkUtils.js")
-var MenuUtils = require("MenuUtils.js") 
+var MenuUtils = require("MenuUtils.js")
+var SwitchUtils = require("SwitchUtils.js") 
 var QQMapWX = require('../wexin/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 var KEY = "5KFBZ-OSU6F-SUPJ5-NJPMP-JYMU3-YCBZJ"
@@ -12,13 +13,126 @@ qqmapsdk = new QQMapWX({
     key: KEY,
 });
 
+var GP
 module.exports = {
+    init: init,
+
+    // 点击事件
+    clickMark: clickMark,
+    clickMarkInfoCancel: clickMarkInfoCancel,
+    clickMarkInfoToNav: clickMarkInfoToNav,
+    clickNavCancel: clickNavCancel,
+    clickNavAndMap: clickNavAndMap,
+    clickNavMapOff: clickNavMapOff,
+    clickNavOff: clickNavOff,
+
+    // 基础公共功能
     render: render,
     queryMark: queryMark,
     queryNav: queryNav,
     filterAccelerometerZ: filterAccelerometerZ,
     filterCompassDirection: filterCompassDirection,
 }
+
+
+/**
+ * @method 初始化
+ * @for ARUtils
+ * @param
+ *      {object} gp 全局对象
+ */
+function init(gp){
+    GP = gp
+    GP.setData({
+        show: SwitchUtils.onLoad() 
+    })
+    
+}
+
+/**
+ * @method 打开mark详情
+ * @for ARUtils
+ * @param
+ *      {number} mark_id mark的ID
+ */
+function clickMark(mark_id) {
+    GP.setData({
+        show: SwitchUtils.onMarkInfo()
+    })
+}
+/**
+ * @method 关闭mark详情
+ * @for ARUtils
+ * @param
+ *      {number} mark_id mark的ID
+ */
+function clickMarkInfoCancel(mark_id) {
+    GP.setData({
+        show: SwitchUtils.offMarkInfo()
+    })
+}
+
+/**
+ * @method 在mark详情中打开导航
+ * @for ARUtils
+ * @param
+ *      {number} mark_id mark的ID
+ */
+function clickMarkInfoToNav(mark_id) {
+    GP.setData({
+        show: SwitchUtils.onNav()
+    })
+}
+
+/**
+ * @method 退出导航
+ * @for ARUtils
+ * @param
+ *      {number} mark_id mark的ID
+ */
+function clickNavCancel(mark_id) {
+    GP.setData({
+        show: SwitchUtils.offNav()
+    })
+}
+
+
+
+/**
+ * @method 在nav中打开地图，并设置绘制导航路线
+ * @for ARUtils
+ */
+function clickNavAndMap() {
+    GP.setData({
+        show: SwitchUtils.onNavMap()
+    })
+}
+/**
+ * @method 关闭导航地图
+ * @for ARUtils
+ */
+function clickNavMapOff() {
+    GP.setData({
+        show: SwitchUtils.offNavMap()
+    })
+}
+/**
+ * @method 关闭导航
+ * @for ARUtils
+ */
+function clickNavOff() {
+    GP.setData({
+        show: SwitchUtils.offNav()
+    })
+}
+
+
+
+
+
+
+
+
 
 /**
  * @method 渲染
@@ -28,7 +142,7 @@ module.exports = {
  *      {number} directionNum 罗盘方向
  *      {number} acc_zNum 罗盘方向
  */
-function render(GP, direction_num,acc_z_num) {
+function render( direction_num,acc_z_num) {
 
     //参数配置
     var _acc_z = acc_z_num
