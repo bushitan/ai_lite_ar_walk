@@ -5,7 +5,8 @@ var AccelerometerUtils = require("AccelerometerUtils.js")
 var NavUtils = require("NavUtils.js")
 var MarkUtils = require("MarkUtils.js")
 var MenuUtils = require("MenuUtils.js")
-var SwitchUtils = require("SwitchUtils.js") 
+var SwitchUtils = require("SwitchUtils.js")
+var ApiUtils = require("../../utils/map/ApiUtils.js")
 var QQMapWX = require('../wexin/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 var KEY = "5KFBZ-OSU6F-SUPJ5-NJPMP-JYMU3-YCBZJ"
@@ -79,9 +80,18 @@ function clickMarkInfoCancel(mark_id) {
  *      {number} mark_id mark的ID
  */
 function clickMarkInfoToNav(mark_id) {
-    GP.setData({
-        show: SwitchUtils.onNav()
-    })
+    // console.log(mark_id.length)
+    ApiUtils.getNavWalk(
+        '22.8122400000,108.3995300000',
+        "22.8194235482,108.3917355537",
+        callback
+    )
+    function callback(e){
+        console.log(e)
+        GP.setData({
+            show: SwitchUtils.onNav()
+        })
+    }
 }
 
 /**

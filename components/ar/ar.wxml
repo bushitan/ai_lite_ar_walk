@@ -6,6 +6,10 @@
 <import src="../../templates/mark/mark.wxml" />
 <import src="../../templates/mark_info/mark_info.wxml" />
 
+<!-- TODO
+    摄像头，location 为打开的授权提示页面
+ -->
+
 <camera device-position="back" flash="off"  class="camera">
 
 

@@ -1,5 +1,6 @@
 
 var ARUtils = require("../../utils/map/ARUtils.js")
+var ApiUtils = require("../../utils/map/ApiUtils.js")
 var Location = require("../../utils/map/Location.js")
 var GP
 
@@ -189,7 +190,14 @@ Component({
           */
         clickMarkInfoToNav(e) {
             // var mark_id = e.currentTarget.dataset.mark_id
+
+            // ApiUtils.getNavWalk(
+            //     '22.8122400000,108.3995300000', 
+            //     "22.8194235482,108.3917355537",
+            //     ARUtils.clickMarkInfoToNav
+            // )
             ARUtils.clickMarkInfoToNav()
+
         },
         /**
           * @method 关闭导航
