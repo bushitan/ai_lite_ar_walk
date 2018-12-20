@@ -41,8 +41,10 @@
 
 
 module.exports = {
-    start: start,
+    isStart:isStart,
+    init: init,
     isNextLocation: isNextLocation,
+    getNextLocation: getNextLocation,
 
     setMode: setMode,
     setPath: setPath,
@@ -59,15 +61,29 @@ module.exports = {
 var LocationUtils = require("LocationUtils.js")
 var Location = require("Location.js")
 
-var routes = {}  //完整路由
+// var routes = {}  //完整路由
+var routes = wx.getStorageSync("routes")
 var stepIndex = 0 //当前步骤
+
+
+/**
+ * @method 判断是否开始导航
+ */
+function isStart() {
+
+    if (JSON.stringify(routes) === '{}') 
+        return false
+    else 
+        return true
+}
+
 
 /**
  * @method 开始导航
  * @param
  *      {object} routes 腾讯的返回路由
  */
-function start(routes) {
+function init(routes) {
     routes = filterLocation(routes) //把location过滤
     stepIndex = 0
     
@@ -114,9 +130,6 @@ function filterLocation(routes) {
  */
 function isNextLocation(direction_num,self_location) {
 
-    //test
-
-    routes = wx.getStorageSync("routes")
 
 
     if (routes.hasOwnProperty("steps") == false)
@@ -134,6 +147,21 @@ function isNextLocation(direction_num,self_location) {
     // currentPath = txObject
 }
 
+
+/**
+ * @method 获取下一点的信息
+ * @param
+ *      {location} self_location 用户的位置
+ */
+function getNextLocation(self_location) {
+    var _step = routes.steps[stepIndex]
+    _step.instruction
+    return {
+        distance: LocationUtils.getDistanceAB(self_location, _step.location),
+        instruction: _step.instruction,
+        dialog: _step.dir_desc,
+    }
+}
 
 
 

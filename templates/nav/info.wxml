@@ -4,9 +4,9 @@
 <template name="nav_info" >
     
     <cover-view class='nav_info'>
-        <cover-view class='nav_distance'>320米</cover-view>
-        <cover-view class='nav_instruction'>从起点朝东,沿东华门大街步行239米,直行进入东安门大街</cover-view>
-        <cover-view class='nav_des'>GPS信号弱，请步行到开阔地带</cover-view>
+        <cover-view class='nav_distance'>{{navInfo.distance}}米</cover-view>
+        <cover-view class='nav_instruction'>{{navInfo.instruction}}</cover-view>
+        <cover-view class='nav_des'>{{navInfo.dialog}}</cover-view>
         
         <cover-image 
             class='nav_cancle' 
