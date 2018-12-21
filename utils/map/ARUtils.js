@@ -88,7 +88,8 @@ function clickMarkInfoToNav(mark_id) {
     )
     function callback(routes){
         // console.log(e)
-        NavUtils.init(routes)
+        NavUtils.initRoutes(routes)
+        
         GP.setData({
             show: SwitchUtils.onNav()
         })
@@ -197,10 +198,14 @@ function renderNav(direction_num, acc_z_num) {
     var _mark_list = GP.data.markList //用户传入mark的列表
     var _location = GP.data.GPSLocation //用户的地理位置
 
-    var _navInfo = NavUtils.getNextLocation(_location)//获取导航信息
-    var _nav_direction = NavUtils.isNextLocation(direction_num, _location)
-    var _nav_icon_height = NavUtils.getIconHeight(_acc_z)   //更新中央图标
-    var _navImageList = NavUtils.getImageList(_nav_direction, _acc_z, _location)//更新导航点
+    var _nav = NavUtils.renderRoutes(_direction, _acc_z, _location)
+    GP.setData({
+        nav:_nav
+    })
+    // var _navInfo = NavUtils.getNextLocation(_location)//获取导航信息
+    // var _nav_direction = NavUtils.isNextLocation(direction_num, _location)
+    // var _nav_icon_height = NavUtils.getIconHeight(_acc_z)   //更新中央图标
+    // var _navImageList = NavUtils.getImageList(_nav_direction, _acc_z, _location)//更新导航点
 /**
  * TODO
  * 1、下一点的信息
@@ -209,15 +214,15 @@ function renderNav(direction_num, acc_z_num) {
 
 
     //渲染
-    GP.setData({
-        // directionName: _direction_name, //方向名称
-        navInfo: _navInfo, //导航的总体信息
-        navDirection: _nav_direction,
-        navIconHeight: _nav_icon_height,
-        imageList: _navImageList, //导航图标
+    // GP.setData({
+    //     // directionName: _direction_name, //方向名称
+    //     navInfo: _navInfo, //导航的总体信息
+    //     navDirection: _nav_direction,
+    //     navIconHeight: _nav_icon_height,
+    //     imageList: _navImageList, //导航图标
 
-        // // compassStep: compassStep % 3,
-    })
+    //     // // compassStep: compassStep % 3,
+    // })
  }
 
 

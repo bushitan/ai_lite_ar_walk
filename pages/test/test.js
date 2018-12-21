@@ -4,7 +4,8 @@ var Line = require("../../utils/map/Line.js")
 var Angle = require("../../utils/map/Angle.js")
 var LocationUtils = require("../../utils/map/LocationUtils.js")
 var CompassUtils = require("../../utils/map/CompassUtils.js")
-var HeroUtils = require("../../utils/map/HeroUtils.js") 
+var HeroUtils = require("../../utils/map/HeroUtils.js")
+var NavUtils = require("../../utils/map/NavUtils.js") 
 
 Page({
 
@@ -19,20 +20,32 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var a = Location.create(22.8445090000, 108.3101860000) //广西电影制片厂
-        var b = Location.create(22.8441836241, 108.311709165) //歌迷时代
-        var c = LocationUtils.distance(a, b)
-        var d = LocationUtils.angleDirection(a, b)
+
+
+        // ARUtils.render(90, _acc_z)
+
+        var routes = wx.getStorageSync("routes")
+
+        // console.log(NavUtils.s())
         
-        console.log(d)
+        NavUtils.initRoutes(routes)
+        // console.log(NavUtils.s())
+        NavUtils.renderRoutes(90, 0.45, Location.create(22.8445090000, 108.3101860000))
+        
+        // var a = Location.create(22.8445090000, 108.3101860000) //广西电影制片厂
+        // var b = Location.create(22.8441836241, 108.311709165) //歌迷时代
+        // var c = LocationUtils.distance(a, b)
+        // var d = LocationUtils.angleDirection(a, b)
+        
+        // console.log(d)
 
-        var lineA = Line.create(600, 60)
-        var lineB = Line.create(100, 80)
-        var l = CompassUtils.includedAngle(lineA, lineB)
-        console.log(CompassUtils.includedAngle(lineA, lineB))
-        console.log(CompassUtils.includedAngle(lineB, lineA))
+        // var lineA = Line.create(600, 60)
+        // var lineB = Line.create(100, 80)
+        // var l = CompassUtils.includedAngle(lineA, lineB)
+        // console.log(CompassUtils.includedAngle(lineA, lineB))
+        // console.log(CompassUtils.includedAngle(lineB, lineA))
 
-        console.log(CompassUtils.checkReverse( lineA , 0.5))
+        // console.log(CompassUtils.checkReverse( lineA , 0.5))
     },
 
     /**

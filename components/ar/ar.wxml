@@ -15,12 +15,14 @@
 
     <template is="menu_base" data="{{directionName}}"  wx:if="{{show.menu}}"/>
 
-    <template is="nav_info" data="{{navInfo,directionName}}"  wx:if="{{show.navInfo}}" />
+    <template is="nav_info" data="{{navInfo:nav.info,directionName}}"  wx:if="{{show.navInfo}}" />
 
-    <template is="nav_normal" data="{{imageList,navDirection,navIconHeight}}" wx:if="{{show.navIcon}}"  />
+    <template is="nav_normal" 
+        data="{{imageList:nav.circleList,navDirection,navIconHeight:nav.iconHeight}}" 
+        wx:if="{{show.navIcon}}"  />
 
     <!-- 导航的mark -->
-    <template is="mark" data="{{markList}}" wx:if="{{show.navMark}}"/>
+    <template is="mark" data="{{markList:nav.currentStep}}" wx:if="{{show.navIcon}}"/>
 
     <template is="mark" data="{{markList}}" wx:if="{{show.mark}}"/>
 

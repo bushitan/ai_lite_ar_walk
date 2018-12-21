@@ -1,6 +1,11 @@
 //菜单工具类
 
+var QQMapWX = require('../wexin/qqmap-wx-jssdk.min.js');
 var KEY = "5KFBZ-OSU6F-SUPJ5-NJPMP-JYMU3-YCBZJ"
+var qqmapsdk;
+qqmapsdk = new QQMapWX({
+    key: KEY,
+});
 
 module.exports = {
     getNavWalk: getNavWalk,
