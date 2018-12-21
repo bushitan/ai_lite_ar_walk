@@ -77,7 +77,8 @@ function getMarkListByTXMap(key, location_str, callback) {
         location: location_str,
         // location: "23.1290800000, 113.2643600000",
         success: function (res) {
-            console.log(res);
+            // console.log(res);
+            callback(res)
         },
         fail: function (res) {
             console.log(res);

@@ -137,6 +137,7 @@ function clickNavOff() {
     GP.setData({
         show: SwitchUtils.offNav()
     })
+    NavUtils.end()
 }
 
 
@@ -243,19 +244,25 @@ function renderNav(direction_num, acc_z_num) {
  * @param
  *      {string} key 查询关键参数
  */
-function queryMark(key,location_str) {
+function queryMark(key) {
+    var _location = GP.data.GPSLocation
+    ApiUtils.getMarkListByTXMap(key, "23.1290800000,113.2643600000", callback)
+    function callback(res){
+        console.log(res)
+        //TODO 把查询的腾讯值，改变为marklist
+    }
     //搜索
-    qqmapsdk.search({
-        keyword: key,
-        location: location_str,
-        // location: "23.1290800000, 113.2643600000",
-        success: function (res) {
-            console.log(res);
-        },
-        fail: function (res) {
-            console.log(res);
-        },
-    })
+    // qqmapsdk.search({
+    //     keyword: key,
+    //     location: location_str,
+    //     // location: "23.1290800000, 113.2643600000",
+    //     success: function (res) {
+    //         console.log(res);
+    //     },
+    //     fail: function (res) {
+    //         console.log(res);
+    //     },
+    // })
 }
 
 /**

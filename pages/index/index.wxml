@@ -4,6 +4,9 @@
 
 
 <ar 
+    mode="normal"
+    keyword="{{keyword}}"
+    power="normal"
     markList="{{markList}}"
     catch:clickOption="clickOption"
     catch:clickSearch="clickSearch"

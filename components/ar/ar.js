@@ -3,7 +3,7 @@ var ARUtils = require("../../utils/map/ARUtils.js")
 var ApiUtils = require("../../utils/map/ApiUtils.js")
 var Location = require("../../utils/map/Location.js")
 var GP
-
+var queryLock = true
 Component({
     /**
      * 组件的属性列表
@@ -29,7 +29,21 @@ Component({
         },
         mode: {
             type: String,
-            value: "normal",  
+            value: "normal", //auto
+            observer(newVal, oldVal) {
+                if (newVal != "normal")
+                    return "custom"
+            },
+        },
+        keyword: {
+            type: String,
+            value: "", 
+            observer(newVal, oldVal) {
+                if (this.data.mode == "normal")
+                    // if (newVal != "")
+                    if (queryLock == false)
+                        ARUtils.queryMark(newVal)                
+            },
         },
         power: { 
             type: String, 
@@ -79,6 +93,11 @@ Component({
     ready() {
         GP = this       
         this.onInit()
+        queryLock = false
+        // if()
+        // console.log(this.data.keyword)
+        ARUtils.queryMark(this.data.keyword)
+
 
 
         const context = wx.createCanvasContext('navCanvas',this)

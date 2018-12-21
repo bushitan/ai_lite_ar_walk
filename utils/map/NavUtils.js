@@ -39,6 +39,13 @@ module.exports = {
 function isStart() {
     return start
 }
+/**
+ * @method 判断是否开始导航
+ */
+function end() {
+    routes = {}
+    start = false
+}
 
 /**
  * @method 开始导航

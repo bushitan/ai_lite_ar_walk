@@ -14,6 +14,8 @@ Page({
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
+        keyword:"酒店",
+
         markList: [
             {
                 id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
