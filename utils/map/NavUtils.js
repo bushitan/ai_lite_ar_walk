@@ -49,7 +49,7 @@ module.exports = {
     setMode: setMode,
     setPath: setPath,
     getInfo: getInfo,
-    getDirection: getDirection,
+    // getDirection: getDirection,
     getIconHeight: getIconHeight,
     getImageList: getImageList,
 
@@ -58,8 +58,10 @@ module.exports = {
 }
 
 
-var LocationUtils = require("LocationUtils.js")
 var Location = require("Location.js")
+
+var LocationUtils = require("LocationUtils.js")
+var Nav = require("Nav.js")
 
 // var routes = {}  //完整路由
 var routes = wx.getStorageSync("routes")
@@ -70,7 +72,6 @@ var stepIndex = 0 //当前步骤
  * @method 判断是否开始导航
  */
 function isStart() {
-
     if (JSON.stringify(routes) === '{}') 
         return false
     else 
@@ -84,67 +85,20 @@ function isStart() {
  *      {object} routes 腾讯的返回路由
  */
 function init(routes) {
-    routes = filterLocation(routes) //把location过滤
+    routes = Nav.TXFilterLocation(routes) //把location过滤
     stepIndex = 0
-    
+    // wx.setStorageSync("routes", routes)
 }
 
 
-/**
- * @method 设置导航模式
- * @param
- *      {objuect} routes 路由路线
- */
-function filterLocation(routes) {
-    // routes
-
-    var coors = routes.polyline, pl = [];
-    var steps = routes.steps
-    console.log(steps)
-
-
-    //坐标解压（返回的点串坐标，通过前向差分进行压缩）
-    var kr = 1000000;
-    for (var i = 2; i < coors.length; i++) {
-        coors[i] = Number(coors[i - 2]) + Number(coors[i]) / kr;
-    }
-
-    for(var i = 0;i<steps.length;i++){
-        // console.log(steps[i].polyline_idx)
-
-        var location = Location.create(
-            coors[steps[i].polyline_idx[0]],
-            coors[steps[i].polyline_idx[1]]
-        )
-        steps[i].location = location
-        // var location = coors[steps[i].polyline_idx[0]]
-    }
-    routes.steps = steps
-    return routes
-}
 
 /**
  * @method 判断是否到下一目标点
  * @param
  *      {location} self_location 用户的位置
  */
-function isNextLocation(direction_num,self_location) {
-
-
-
-    if (routes.hasOwnProperty("steps") == false)
-        return "导航未开始"
-    var _step_length = routes.steps.length
-    if (stepIndex >= _step_length - 1){
-        return "导航结束"
-    }
-
-    var _step = routes.steps[stepIndex]
-    console.log(_step)
-    var _next_location = _step.location
-    var _nav_direction = getDirection(direction_num, self_location, _next_location)
-    return _nav_direction
-    // currentPath = txObject
+function isNextLocation( direction_num, self_location) {
+    Nav.isNextLocation(routes, stepIndex,direction_num, self_location)
 }
 
 
@@ -215,21 +169,6 @@ function getInfo() {
         distance: "197",
         rate:"50",
     }
-}
-/**
- * @method 获取当前目标点方向
- * @param
- *      {string} direction 手机的方向数值
- *      {location} location 手机GPS经纬度
- * @return
- *      {number} value 手机与目标点方向加的夹角
- */
-function getDirection(direction, self_location,next_location) {
-    var _loc_self = self_location
-    var _loc_focus = next_location//目标点的location
-    var nextPointDirection = LocationUtils.getCompassDirectionAB(_loc_self, _loc_focus)
-    var value = LocationUtils.getAngleABLine(direction, nextPointDirection)
-    return value
 }
 
 /**

@@ -4,6 +4,7 @@ module.exports = {
     getDistanceAB: getDistanceAB,
     getCompassDirectionAB: getCompassDirectionAB,
     getAngleABLine: getAngleABLine,
+    getDirection: getDirection,
 }
 
 /**
@@ -93,6 +94,21 @@ function getAngleABLine(dir_phone, dir_nav) {
 
 
 
+/**
+ * @method 获取当前目标点方向
+ * @param
+ *      {string} direction 手机的方向数值
+ *      {location} location 手机GPS经纬度
+ * @return
+ *      {number} value 手机与目标点方向加的夹角
+ */
+function getDirection(direction, self_location, next_location) {
+    var _loc_self = self_location
+    var _loc_focus = next_location//目标点的location
+    var nextPointDirection = getCompassDirectionAB(_loc_self, _loc_focus)
+    var value = getAngleABLine(direction, nextPointDirection)
+    return value
+}
 
 
 // function getAngleABLine(lineA, lineB) {
