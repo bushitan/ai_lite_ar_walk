@@ -7,6 +7,8 @@ var CompassUtils = require("../../utils/map/CompassUtils.js")
 var HeroUtils = require("../../utils/map/HeroUtils.js")
 var NavUtils = require("../../utils/map/NavUtils.js") 
 
+
+var Storage = require("../../utils/storage.js") 
 Page({
 
     /**
@@ -15,12 +17,21 @@ Page({
     data: {
 
     },
+    search(e){
+        console.log(e.currentTarget.dataset.key)
+        var _keyword = e.currentTarget.dataset.key
+        wx.setStorageSync(Storage.MAP_KEYWORD, _keyword)
+        wx.navigateBack({
+            
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
 
+        return 
 
         // ARUtils.render(90, _acc_z)
 

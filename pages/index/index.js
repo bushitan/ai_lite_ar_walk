@@ -1,8 +1,9 @@
 
 //获取应用实例
 const app = getApp()
-var GEO = require("../../utils/geo.js") 
-
+var GEO = require("../../utils/geo.js")
+var Storage = require("../../utils/storage.js") 
+var GP
 
 
 
@@ -41,18 +42,22 @@ Page({
                 id: 1, x: 10, y: 50, name: "桃源山庄", distance: 500,
                 latitude: 22.8099692323, longitude: 108.3908343315, compass_value: 0
             },
-            
         ]
+    },
+    
+    onShow: function() {
+        var _keyword = wx.getStorageSync(Storage.MAP_KEYWORD)
+        if (_keyword.length > 0) {
+            GP.setData({
+                keyword: _keyword
+            })
+            wx.setStorageSync(Storage.MAP_KEYWORD,"")
+        }
 
     },
-    //事件处理函数
-    bindViewTap: function() {
-        wx.navigateTo({
-        url: '../logs/logs'
-        })
-    },
+
     onLoad: function () {
-
+        GP = this
         // var g = GEO.distance(22.847797, 108.306804, 22.8450354800, 108.3107908500)
         // var g = GEO.distance(22.8449251703, 108.3104860783, 22.845023057725694, 108.31077419704862)
 
@@ -78,7 +83,11 @@ Page({
         *      {object} e 事件对象
         */
         clickSearch(e) {
-            console.log(e, "clickSearch")
+            // console.log(e, "clickSearch")
+            wx.navigateTo({
+                url: '/pages/test/test',
+            })
+            
         },
         /**
         * @method 更多信息

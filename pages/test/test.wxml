@@ -1,2 +1,13 @@
 <!--pages/test/test.wxml-->
 <text>pages/test/test.wxml</text>
+
+<button 
+    catchtap='search'
+    data-key="车站"
+>搜索车站</button>
+
+
+<button 
+    catchtap='search'
+    data-key="厕所"
+>搜索厕所</button>

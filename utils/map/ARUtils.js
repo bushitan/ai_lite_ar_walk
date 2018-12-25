@@ -33,6 +33,9 @@ module.exports = {
     queryNav: queryNav,
     filterAccelerometerZ: filterAccelerometerZ,
     filterCompassDirection: filterCompassDirection,
+
+    //数据滤波
+    filterMarkList: filterMarkList, //过滤marklist
 }
 
 
@@ -361,5 +364,23 @@ function filterCompassDirection(direction,acc_z) {
 }
 
 
+/**
+ * @method 将markd原始数据变为展示数据
+ * @for ARUtils
+ * @param
+ *      {number} direction 罗盘方向
+ *      {number} acc_z Z轴姿势
+ * @return
+ *      {number} s 两点距离
+ */
+function filterMarkList(org_list,type){
+    var _org_list = org_list
 
+    var MODE_NORMAL = "normal"
+    var MODE_CUSTOM = "custom"
+    
+    var _list = MarkUtils.filterCustomList(_org_list)
+
+    return _list
+}
 

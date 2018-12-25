@@ -3,7 +3,13 @@ var ARUtils = require("../../utils/map/ARUtils.js")
 var ApiUtils = require("../../utils/map/ApiUtils.js")
 var Location = require("../../utils/map/Location.js")
 var GP
-var queryLock = true
+var keywordLock = true
+var MODE_NORMAL = "normal"
+var MODE_CUSTOM = "custom"
+
+
+var PropertyUtils = require("../../utils/map/PropertyUtils.js")
+var PropertyUtils
 Component({
     /**
      * 组件的属性列表
@@ -11,38 +17,45 @@ Component({
     properties: {
         markList: {
             type: Array,
-            value: [
+            value: [{
+                id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+                location: { latitude: 24.4972341880, longitude: 108.6384236813},
+                 compass_value: 0
+            },
             ], 
             observer(newVal, oldVal) {
-                // markList: [
-                //     {
-                //         id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
-                //         latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
-                //     }
-                var _list = []
-                for (var i = 0; i < newVal.length;i++){
-                    newVal[i].location =  Location.create(newVal[i].latitude, newVal[i].longitude)
-                    _list.push(newVal[i])
-                }
-                return _list
+
+                // return []
+                // if (this.data.mode == MODE_CUSTOM){
+                //     var _new = ARUtils.filterMarkList(newVal)
+                //     return _new
+                // }
+                // else 
+                //     return []
             }
         },
         mode: {
             type: String,
-            value: "normal", //auto
+            value: MODE_NORMAL, //custom
             observer(newVal, oldVal) {
-                if (newVal != "normal")
-                    return "custom"
+                var _mode 
+                if (newVal == MODE_NORMAL)
+                    _mode = MODE_NORMAL
+                else
+                    _mode = MODE_CUSTOM
+                this.setData({
+                    markInputMode: _mode
+                })
             },
         },
         keyword: {
             type: String,
-            value: "", 
+            value: "麦当劳", 
             observer(newVal, oldVal) {
-                if (this.data.mode == "normal")
-                    // if (newVal != "")
-                    if (queryLock == false)
-                        ARUtils.queryMark(newVal)                
+                if (this.data.markInputMode == MODE_NORMAL){
+                    this.setData({keyword: newVal})
+                    this.initSearch()   
+                }      
             },
         },
         power: { 
@@ -53,7 +66,7 @@ Component({
                 if (newVal == "low") frameFre = 140
                 if (newVal == "normal") frameFre = 70
                 if (newVal == "high") frameFre = 30
-                GP.setData({ GPSFrameFre: frameFre})
+                this.setData({ GPSFrameFre: frameFre})
             }
         }
 
@@ -63,6 +76,12 @@ Component({
      * 组件的初始数据
      */
     data: {
+        markList: [],
+        markInputMode: MODE_NORMAL,
+        keywordValue:"",
+        
+
+
         //基础数据
         GPSFrameFre: 70, //获取GPS坐标频率(按罗盘转动次数)
         GPSAccuray: 30, //GPS的精度
@@ -91,41 +110,31 @@ Component({
         show:{},
     },
     ready() {
-        GP = this       
-        this.onInit()
-        queryLock = false
-        // if()
-        // console.log(this.data.keyword)
-        ARUtils.queryMark(this.data.keyword)
+        GP = this      
+        console.log(GP.data.markList)
 
-
-
-        const context = wx.createCanvasContext('navCanvas',this)
-        context.setStrokeStyle('#00ff00')
-        context.setLineWidth(5)
-        context.rect(0, 0, 200, 200)
-        context.stroke()
-        context.setStrokeStyle('#ff0000')
-        context.setLineWidth(2)
-        context.moveTo(160, 100)
-        context.arc(100, 100, 60, 0, 2 * Math.PI, true)
-        context.moveTo(140, 100)
-        context.arc(100, 100, 40, 0, Math.PI, false)
-        context.moveTo(85, 80)
-        context.arc(80, 80, 5, 0, 2 * Math.PI, true)
-        context.moveTo(125, 80)
-        context.arc(120, 80, 5, 0, 2 * Math.PI, true)
-        context.stroke()
-        context.draw()
+        this.onInit() //初始化系统流程
     },
 
 
     /**
      * 组件的方法列表
      */
-    methods: {       
+    methods: {    
         /**
-        * @method 初始化
+        * @method 初始化关键字搜索模块
+        */
+        initSearch(){
+            //在正常模式下，才查询关键字
+            if (this.data.mode == MODE_NORMAL) {
+                console.log(this.data.keyword)
+                keywordLock = false
+                ARUtils.queryMark(this.data.keyword)            
+            }
+        },
+
+        /**
+        * @method 初始化系统流程
         */
         onInit() {
             var _step = 0
@@ -133,6 +142,7 @@ Component({
             // var tempAccZ = 0
             ARUtils.init(GP)
             ARUtils.render( 90, _acc_z)
+
             //开启罗盘
             wx.onCompassChange(function (res) {
                 //更新位置
@@ -161,6 +171,7 @@ Component({
             })
             GP.getQQMapInfo()
 
+            GP.initSearch() //初始化关键字搜索模块 
         },
 
         /**

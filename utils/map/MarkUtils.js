@@ -1,4 +1,5 @@
 
+var Location = require("Location.js")
 var LocationUtils = require("LocationUtils.js")
 
 
@@ -8,8 +9,28 @@ const DIRECTION_FRONT = "front" //正前方
 const DIRECTION_BACK = "back" //后方 
 module.exports = {
     // create: create,
-    getList: getList,
+    filterCustomList: filterCustomList,
+    getList: renderList,
 }
+
+
+/**
+ * @method 把用户自定义的数据，转变为marklist
+ * @for MarkUtils
+ * @param
+ *      {array} org_list 用户传入原始数据
+ */
+function filterCustomList(org_list){
+    var _org_list = org_list
+    var _list = []
+    for (var i = 0; i < _org_list.length; i++) {
+        var _m = _org_list[i]
+        _m.location = Location.create(_m.latitude, _m.longitude)
+        _list.push(_m)
+    }
+    return _list
+}
+
 
 
 /**
@@ -18,7 +39,7 @@ module.exports = {
  * @param
  *      {object} value 手机的方向数值
  */
-function getList(self_location,compass_direction_num, mark_list){
+function renderList(self_location,compass_direction_num, mark_list){
     var _location = self_location
     var _direction = compass_direction_num
     var _list = mark_list

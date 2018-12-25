@@ -2,9 +2,9 @@
 
 <!-- <title></title> -->
 
-
+<!-- normal  custom -->
 <ar 
-    mode="normal"
+    mode="normal323"
     keyword="{{keyword}}"
     power="normal"
     markList="{{markList}}"
