@@ -4,69 +4,61 @@ var ApiUtils = require("../../utils/map/ApiUtils.js")
 var Location = require("../../utils/map/Location.js")
 var GP
 var keywordLock = true
-var MODE_NORMAL = "normal"
-var MODE_CUSTOM = "custom"
+// var MODE_NORMAL = "normal"
+// var MODE_CUSTOM = "custom"
 
 
 var PropertyUtils = require("../../utils/map/PropertyUtils.js")
-var PropertyUtils
+var propertyUtils = new PropertyUtils({
+    mode:"normal"
+})
+
 Component({
     /**
      * 组件的属性列表
      */
     properties: {
-        markList: {
+        list: {
             type: Array,
-            value: [{
-                id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
-                location: { latitude: 24.4972341880, longitude: 108.6384236813},
-                 compass_value: 0
-            },
+            value: [
+                {
+                    id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
+                    location: { latitude: 24.4972341880, longitude: 108.6384236813},
+                    compass_value: 0
+                },
             ], 
             observer(newVal, oldVal) {
-
-                // return []
-                // if (this.data.mode == MODE_CUSTOM){
-                //     var _new = ARUtils.filterMarkList(newVal)
-                //     return _new
-                // }
-                // else 
-                //     return []
+                this.setData({
+                    markList: propertyUtils.filterCustomMarkList({ list: newVal })
+                })
             }
         },
         mode: {
             type: String,
-            value: MODE_NORMAL, //custom
+            value: "", //custom
             observer(newVal, oldVal) {
-                var _mode 
-                if (newVal == MODE_NORMAL)
-                    _mode = MODE_NORMAL
-                else
-                    _mode = MODE_CUSTOM
-                this.setData({
-                    markInputMode: _mode
-                })
+                propertyUtils.setMode({ mode: newVal })
+                // this.setData({
+                //     markInputMode: propertyUtils.filterMode({ mode: newVal })
+                // })
             },
         },
         keyword: {
             type: String,
             value: "麦当劳", 
             observer(newVal, oldVal) {
-                if (this.data.markInputMode == MODE_NORMAL){
-                    this.setData({keyword: newVal})
-                    this.initSearch()   
-                }      
+                this.setData({
+                    keyword: propertyUtils.filterKeyword({ keyword: newVal })
+                })        
             },
         },
         power: { 
             type: String, 
             value: 'normal', 
             observer(newVal, oldVal) {
-                var frameFre = 70
-                if (newVal == "low") frameFre = 140
-                if (newVal == "normal") frameFre = 70
-                if (newVal == "high") frameFre = 30
-                this.setData({ GPSFrameFre: frameFre})
+                this.setData({
+                    GPSFrameFre: propertyUtils.filterPower({ power: newVal })
+                }) 
             }
         }
 
@@ -77,7 +69,6 @@ Component({
      */
     data: {
         markList: [],
-        markInputMode: MODE_NORMAL,
         keywordValue:"",
         
 
@@ -113,6 +104,10 @@ Component({
         GP = this      
         console.log(GP.data.markList)
 
+
+        ARUtils.init(GP) //初始化类
+        this.onProperty()
+
         this.onInit() //初始化系统流程
     },
 
@@ -121,17 +116,18 @@ Component({
      * 组件的方法列表
      */
     methods: {    
+
         /**
-        * @method 初始化关键字搜索模块
+        * @method 初始化接口函数
         */
-        initSearch(){
-            //在正常模式下，才查询关键字
-            if (this.data.mode == MODE_NORMAL) {
-                console.log(this.data.keyword)
-                keywordLock = false
-                ARUtils.queryMark(this.data.keyword)            
+        onProperty(){
+            if ( propertyUtils.checkModeIsNormal() ){ //正常模式，查询key
+                this.setData({ markList: [] })
+                ARUtils.queryMark(this.data.keyword)       
             }
         },
+
+     
 
         /**
         * @method 初始化系统流程
@@ -140,7 +136,6 @@ Component({
             var _step = 0
             var _acc_z = 0.45
             // var tempAccZ = 0
-            ARUtils.init(GP)
             ARUtils.render( 90, _acc_z)
 
             //开启罗盘
@@ -155,15 +150,8 @@ Component({
                 // GP.setData({
                 //     tempAccZ: tempAccZ
                 // })
-                
             })
-            // wx.startAccelerometer({
-            //     interval: 'game'
-            // })
-            //开启三轴陀螺仪
-            // GP.setData({
-            //     tempAccZ: 10
-            // })
+
             wx.onAccelerometerChange(function (res) {
                 // console.log(res.z)
                 _acc_z = ARUtils.filterAccelerometerZ(res.z) //重力加速度
@@ -171,7 +159,6 @@ Component({
             })
             GP.getQQMapInfo()
 
-            GP.initSearch() //初始化关键字搜索模块 
         },
 
         /**
