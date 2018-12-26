@@ -125,9 +125,7 @@ Component({
                 this.setData({ markList: [] })
                 ARUtils.queryMark(this.data.keyword)       
             }
-        },
-
-     
+        },     
 
         /**
         * @method 初始化系统流程

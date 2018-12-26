@@ -5,9 +5,10 @@ var Angle = require("../../utils/map/Angle.js")
 var LocationUtils = require("../../utils/map/LocationUtils.js")
 var CompassUtils = require("../../utils/map/CompassUtils.js")
 var HeroUtils = require("../../utils/map/HeroUtils.js")
-var NavUtils = require("../../utils/map/NavUtils.js") 
+var NavUtils = require("../../utils/map/NavUtils.js")
+var Route = require("../../utils/map/Route.js") 
 
-
+var route
 var Storage = require("../../utils/storage.js") 
 Page({
 
@@ -15,7 +16,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        GPSLocation: { latitue: 23.1290800000, longitude: 113.2643600000 }
     },
     search(e){
         console.log(e.currentTarget.dataset.key)
@@ -31,17 +32,46 @@ Page({
      */
     onLoad: function (options) {
 
-        return 
+
+        route = new Route({
+            route: wx.getStorageSync("routes")
+        })
+        // wx.getStorageSync("routes")
+        // console.log(route.getCurrentStep())
+        var _gps = this.data.GPSLocation
+        var _d = 50
+        var _acc_z = 0.5
+
+        var _current_step = route.getCurrentStep()
+        var _step_location = _current_step.location
+        var _info = {
+            distance: LocationUtils.getDistanceAB(_gps, _step_location),
+            instruction: _current_step.instruction,
+            dialog: _current_step.dir_desc,
+        }
+        var _direction = LocationUtils.getDirection(_d, _gps, _step_location)
+        var _icon_height = route.getDerIconHeight({ acc_z: _acc_z })
+        var _circle_list = route.getImageList({ direction: _direction, acc_z: _acc_z})
+        
+        var _nav = {
+            info: _info,
+            currentStep: _current_step,
+            iconHeight: _icon_height,
+            circleList: _circle_list,
+        }
+        console.log(_nav)
+        
+        // return 
 
         // ARUtils.render(90, _acc_z)
 
-        var routes = wx.getStorageSync("routes")
+        // var routes = wx.getStorageSync("routes")
 
-        // console.log(NavUtils.s())
+        // // console.log(NavUtils.s())
         
-        NavUtils.initRoutes(routes)
-        // console.log(NavUtils.s())
-        NavUtils.renderRoutes(90, 0.45, Location.create(22.8445090000, 108.3101860000))
+        // NavUtils.initRoutes(routes)
+        // // console.log(NavUtils.s())
+        // NavUtils.renderRoutes(90, 0.45, Location.create(22.8445090000, 108.3101860000))
         
         // var a = Location.create(22.8445090000, 108.3101860000) //广西电影制片厂
         // var b = Location.create(22.8441836241, 108.311709165) //歌迷时代
@@ -57,6 +87,12 @@ Page({
         // console.log(CompassUtils.includedAngle(lineB, lineA))
 
         // console.log(CompassUtils.checkReverse( lineA , 0.5))
+    },
+
+    next(){
+        route.next()
+        console.log(
+            route.getCurrentStep())
     },
 
     /**

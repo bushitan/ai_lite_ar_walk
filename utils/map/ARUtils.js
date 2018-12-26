@@ -2,7 +2,10 @@
 var LocationUtils = require("LocationUtils.js")
 var CompassUtils = require("CompassUtils.js")
 var AccelerometerUtils = require("AccelerometerUtils.js")
+
 var NavUtils = require("NavUtils.js")
+navUtils = new NavUtils()
+
 var MarkUtils = require("MarkUtils.js")
 var MenuUtils = require("MenuUtils.js")
 var SwitchUtils = require("SwitchUtils.js")
@@ -91,7 +94,7 @@ function clickMarkInfoToNav(mark_id) {
     )
     function callback(routes){
         // console.log(e)
-        NavUtils.initRoutes(routes)
+        navUtils.setRoute(routes)
         
         GP.setData({
             show: SwitchUtils.onNav()
@@ -300,7 +303,7 @@ function queryNav(from_str,to_str) {
             for (var i = 0; i < coors.length; i += 2) {
                 pl.push({ latitude: coors[i], longitude: coors[i + 1] })
             }
-            NavUtils.setPath(pl)
+            // NavUtils.setPath(pl)
             // console.log(pl)
         }
     };
@@ -315,7 +318,7 @@ function queryNav(from_str,to_str) {
  */
 function setNavMode(mode) {
     var obj = { "baidu": "213" }
-    NavUtils.setMode(obj)
+    // NavUtils.setMode(obj)
 }
 
 

@@ -2,8 +2,8 @@
 
 var MarkUtils = require("MarkUtils.js")
 
-var MODE_NORMAL = "normal"
-var MODE_CUSTOM = "custom"
+var MODE_NORMAL = "normal"  //内置搜索导航
+var MODE_CUSTOM = "custom"  //自定义mark点
 var currentMode = MODE_NORMAL
 class PropertyUtils {
 
