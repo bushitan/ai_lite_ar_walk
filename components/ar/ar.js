@@ -135,6 +135,9 @@ Component({
             var _acc_z = 0.45
             // var tempAccZ = 0
             ARUtils.render( 90, _acc_z)
+            setInterval(function(){
+                ARUtils.render(90, _acc_z)
+            },1000)
 
             //开启罗盘
             wx.onCompassChange(function (res) {

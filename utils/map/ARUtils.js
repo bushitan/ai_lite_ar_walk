@@ -4,7 +4,7 @@ var CompassUtils = require("CompassUtils.js")
 var AccelerometerUtils = require("AccelerometerUtils.js")
 
 var NavUtils = require("NavUtils.js")
-navUtils = new NavUtils()
+var nav_utils = new NavUtils()
 
 var MarkUtils = require("MarkUtils.js")
 var MenuUtils = require("MenuUtils.js")
@@ -94,7 +94,8 @@ function clickMarkInfoToNav(mark_id) {
     )
     function callback(routes){
         // console.log(e)
-        navUtils.setRoute(routes)
+        nav_utils.setRoute({ route: routes })
+        nav_utils.start()
         
         GP.setData({
             show: SwitchUtils.onNav()
@@ -143,7 +144,7 @@ function clickNavOff() {
     GP.setData({
         show: SwitchUtils.offNav()
     })
-    NavUtils.end()
+    nav_utils.close()
 }
 
 
@@ -164,8 +165,11 @@ function clickNavOff() {
 function render( direction_num,acc_z_num) {
 
     //参数配置
+    if (nav_utils.isArrive()){
+        clickNavOff()
+    }
 
-    if (NavUtils.isStart() == false)
+    if (nav_utils.isStart() == false)
         renderMark(direction_num, acc_z_num) //普通渲染mark
     else 
         renderNav(direction_num, acc_z_num) //导航渲染
@@ -205,7 +209,13 @@ function renderNav(direction_num, acc_z_num) {
     var _mark_list = GP.data.markList //用户传入mark的列表
     var _location = GP.data.GPSLocation //用户的地理位置
 
-    var _nav = NavUtils.renderRoutes(_direction, _acc_z, _location)
+    // var _nav = NavUtils.renderRoutes(_direction, _acc_z, _location)
+    var _nav = nav_utils.render({
+        direction: _direction,
+        acc_z: _acc_z,
+        gps_location: _location,
+    })
+
     GP.setData({
         nav:_nav
     })
