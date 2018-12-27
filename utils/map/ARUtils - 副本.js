@@ -18,135 +18,28 @@ qqmapsdk = new QQMapWX({
 });
 
 var GP
+module.exports = {
+    init: init,
 
-var ARClick = require("ARClick.js")
+    // 点击事件
+    clickMark: clickMark,
+    clickMarkInfoCancel: clickMarkInfoCancel,
+    clickMarkInfoToNav: clickMarkInfoToNav,
+    clickNavCancel: clickNavCancel,
+    clickNavAndMap: clickNavAndMap,
+    clickNavMapOff: clickNavMapOff,
+    clickNavOff: clickNavOff,
 
-/**
- * @extends ARClick
- */
-class AR extends ARClick  {
-    A = 1
-    _B= 2
-    // #B=2
-    /**
-     * @method 构造函数
-     * 
-     * @param {Object} options 接口参数 
-     *      {Object} GP 全局对象
-     */
-    constructor(options){
-        super(options);
+    // 基础公共功能
+    render: render,
+    queryMark: queryMark,
+    queryNav: queryNav,
+    filterAccelerometerZ: filterAccelerometerZ,
+    filterCompassDirection: filterCompassDirection,
 
-        if (!options.GP) {throw Error('route值不能为空');}
-        GP = options.GP 
-        GP.setData({
-            show: SwitchUtils.onLoad()
-        })
-    }
-
-
-    /**
-     * @method 渲染
-     * 
-     * @param
-     *      {Number} direction罗盘方向
-     *      {Number} acc_z 罗盘方向
-     */
-    render(options) {
-        if (!options.direction) { throw Error('route值不能为空'); }
-        if (!options.acc_z) { throw Error('route值不能为空'); }
-
-        var _d = options.direction
-        var _acc_z = options.acc_z 
-
-        //到达地点
-        if (nav_utils.isArrive()) {
-            // clickNavOff()
-        }
-
-        if (nav_utils.isStart() == false)
-            renderMark(_d, _acc_z) //普通渲染mark
-        else
-            renderNav(_d, _acc_z) //导航渲染
-    }
-
-
-
-
-
+    //数据滤波
+    filterMarkList: filterMarkList, //过滤marklist
 }
-
-var Utils = {
-
-    /**
-     * @method 普通渲染
-     * 
-     * @param
-     *      {Number} direction罗盘方向
-     *      {Number} acc_z 罗盘方向
-     */
-    renderMark(direction_num, acc_z_num) {
-        var _acc_z = acc_z_num
-        var _direction = direction_num
-        var _mark_list = GP.data.markList //用户传入mark的列表
-        var _location = GP.data.GPSLocation //用户的地理位置
-        //渲染mark列表
-        var _direction_name = CompassUtils.getName(_direction)
-        var _mark_list = MarkUtils.getList(_location, _direction, _mark_list)
-        GP.setData({
-            markList: _mark_list, //标点位置
-        })
-    },
-
-    /**
-     * @method 导航渲染
-     * @for ARUtils
-     * @param
-     *      {number} directionNum 罗盘方向
-     *      {number} acc_zNum 罗盘方向
-     */
-    renderNav(direction_num, acc_z_num) {
-        var _acc_z = acc_z_num
-        var _direction = direction_num
-        var _mark_list = GP.data.markList //用户传入mark的列表
-        var _location = GP.data.GPSLocation //用户的地理位置
-        var _nav = nav_utils.render({
-                direction: _direction,
-                acc_z: _acc_z,
-                gps_location: _location,
-            })
-
-        GP.setData({
-            nav: _nav
-        })
-    }
-
-}
-
-module.exports = AR
-
-// module.exports = {
-//     init: init,
-
-//     // 点击事件
-//     clickMark: clickMark,
-//     clickMarkInfoCancel: clickMarkInfoCancel,
-//     clickMarkInfoToNav: clickMarkInfoToNav,
-//     clickNavCancel: clickNavCancel,
-//     clickNavAndMap: clickNavAndMap,
-//     clickNavMapOff: clickNavMapOff,
-//     clickNavOff: clickNavOff,
-
-//     // 基础公共功能
-//     render: render,
-//     queryMark: queryMark,
-//     queryNav: queryNav,
-//     filterAccelerometerZ: filterAccelerometerZ,
-//     filterCompassDirection: filterCompassDirection,
-
-//     //数据滤波
-//     filterMarkList: filterMarkList, //过滤marklist
-// }
 
 
 /**
@@ -454,6 +347,34 @@ function getNavInfo() {
 
 
 
+
+/**
+ * @method 过滤Z轴转动漂移
+ * @for ARUtils
+ * @param
+ *      {object} GP 全局对象，
+ * @return
+ *      {number} s 两点距离
+ */
+function filterAccelerometerZ(valueZ) {
+    return AccelerometerUtils.filterValueZ(valueZ)
+}
+
+
+/**
+ * @method 过滤Z轴转动漂移
+ * @for ARUtils
+ * @param
+ *      {number} direction 罗盘方向
+ *      {number} acc_z Z轴姿势
+ * @return
+ *      {number} s 两点距离
+ */
+function filterCompassDirection(direction,acc_z) {
+    direction = CompassUtils.filterDirection(direction)
+    direction = CompassUtils.checkReverse(direction, acc_z)
+    return direction
+}
 
 
 /**

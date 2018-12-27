@@ -8,6 +8,9 @@ var HeroUtils = require("../../utils/map/HeroUtils.js")
 var NavUtils = require("../../utils/map/NavUtils.js")
 var Route = require("../../utils/map/Route.js") 
 
+var ARUtils = require("../../utils/map/ARUtils.js")
+var ar_utils
+
 var route
 var Storage = require("../../utils/storage.js") 
 Page({
@@ -33,33 +36,8 @@ Page({
     onLoad: function (options) {
 
 
-        route = new Route({
-            route: wx.getStorageSync("routes")
-        })
-        // wx.getStorageSync("routes")
-        // console.log(route.getCurrentStep())
-        var _gps = this.data.GPSLocation
-        var _d = 50
-        var _acc_z = 0.5
-
-        var _current_step = route.getCurrentStep()
-        var _step_location = _current_step.location
-        var _info = {
-            distance: LocationUtils.getDistanceAB(_gps, _step_location),
-            instruction: _current_step.instruction,
-            dialog: _current_step.dir_desc,
-        }
-        var _direction = LocationUtils.getDirection(_d, _gps, _step_location)
-        var _icon_height = route.getDerIconHeight({ acc_z: _acc_z })
-        var _circle_list = route.getImageList({ direction: _direction, acc_z: _acc_z})
-        
-        var _nav = {
-            info: _info,
-            currentStep: _current_step,
-            iconHeight: _icon_height,
-            circleList: _circle_list,
-        }
-        console.log(_nav)
+        ar_utils = new  ARUtils({GP:this})
+        // console.log(ar_utils.getName())
         
         // return 
 
@@ -88,12 +66,50 @@ Page({
 
         // console.log(CompassUtils.checkReverse( lineA , 0.5))
     },
+    
 
     next(){
         route.next()
         console.log(
             route.getCurrentStep())
     },
+
+
+    // route = new Route({
+    //     route: wx.getStorageSync("routes")
+    // })
+    //     // wx.getStorageSync("routes")
+    //     // console.log(route.getCurrentStep())
+    //     var _gps = this.data.GPSLocation
+    //     var _d = 50
+    //     var _acc_z = 0.5
+
+    //     var _current_step = route.getCurrentStep()
+    //     var _step_location = _current_step.location
+    //     var _info = {
+    //     distance: LocationUtils.getDistanceAB(_gps, _step_location),
+    //     instruction: _current_step.instruction,
+    //     dialog: _current_step.dir_desc,
+    // }
+    //     var _direction = LocationUtils.getDirection(_d, _gps, _step_location)
+    //     var _icon_height = route.getDerIconHeight({ acc_z: _acc_z })
+    //     var _circle_list = route.getImageList({ direction: _direction, acc_z: _acc_z })
+        
+    //     var _nav = {
+    //     info: _info,
+    //     currentStep: _current_step,
+    //     iconHeight: _icon_height,
+    //     circleList: _circle_list,
+    // }
+    //     console.log(_nav)
+
+
+
+
+
+
+
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成

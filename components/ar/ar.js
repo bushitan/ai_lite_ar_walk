@@ -1,5 +1,6 @@
 
 var ARUtils = require("../../utils/map/ARUtils.js")
+var ar_utils
 var ApiUtils = require("../../utils/map/ApiUtils.js")
 var Location = require("../../utils/map/Location.js")
 var GP
@@ -70,7 +71,6 @@ Component({
     data: {
         markList: [],
         keywordValue:"",
-        
 
 
         //基础数据
@@ -104,8 +104,9 @@ Component({
         GP = this      
         console.log(GP.data.markList)
 
+        ar_utils = new ARUtils({GP:GP})
 
-        ARUtils.init(GP) //初始化类
+        // ARUtils.init(GP) //初始化类
         this.onProperty()
 
         this.onInit() //初始化系统流程
@@ -123,7 +124,7 @@ Component({
         onProperty(){
             if ( propertyUtils.checkModeIsNormal() ){ //正常模式，查询key
                 this.setData({ markList: [] })
-                ARUtils.queryMark(this.data.keyword)       
+                ar_utils.queryMark(this.data.keyword)       
             }
         },     
 
@@ -134,9 +135,9 @@ Component({
             var _step = 0
             var _acc_z = 0.45
             // var tempAccZ = 0
-            ARUtils.render( 90, _acc_z)
+            ar_utils.render( 90, _acc_z)
             setInterval(function(){
-                ARUtils.render(90, _acc_z)
+                ar_utils.render(90, _acc_z)
             },1000)
 
             //开启罗盘
@@ -146,8 +147,8 @@ Component({
                 if (_step % GP.data.GPSFrameFre == 0) {
                     GP.getCurrentLocation()
                 }
-                var _direction = ARUtils.filterCompassDirection(res.direction, _acc_z) //校正方向
-                ARUtils.render(_direction, _acc_z)//渲染
+                var _direction = ar_utils.filterCompassDirection(res.direction, _acc_z) //校正方向
+                ar_utils.render(_direction, _acc_z)//渲染
                 // GP.setData({
                 //     tempAccZ: tempAccZ
                 // })
@@ -155,7 +156,7 @@ Component({
 
             wx.onAccelerometerChange(function (res) {
                 // console.log(res.z)
-                _acc_z = ARUtils.filterAccelerometerZ(res.z) //重力加速度
+                _acc_z = ar_utils.filterAccelerometerZ(res.z) //重力加速度
                 
             })
             GP.getQQMapInfo()
@@ -252,16 +253,16 @@ Component({
             ARUtils.clickNavMapOff()
         },
 
-        /**
-          * @method 关闭导航
-          * @for template/map/map.wxml
-          * @param
-          *      {object} e 事件对象
-          */
-        clickNavOff(e) {
-            // var mark_id = e.currentTarget.dataset.mark_id
-            ARUtils.clickNavOff()
-        },
+        // /**
+        //   * @method 关闭导航
+        //   * @for template/map/map.wxml
+        //   * @param
+        //   *      {object} e 事件对象
+        //   */
+        // clickNavOff(e) {
+        //     // var mark_id = e.currentTarget.dataset.mark_id
+        //     ARUtils.clickNavOff()
+        // },
 
 
         /************对外的接口 **************/
