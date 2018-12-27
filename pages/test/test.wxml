@@ -1,7 +1,8 @@
 <!--pages/test/test.wxml-->
 <text>pages/test/test.wxml</text>
 
- {{tanName}}
+<view> {{tanName}}</view>
+
 <button 
     catchtap='next'
     data-key="车站"

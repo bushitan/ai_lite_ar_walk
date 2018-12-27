@@ -14,6 +14,9 @@ var propertyUtils = new PropertyUtils({
     mode:"normal"
 })
 
+
+// import Component from '../../utils/wxComponents'
+
 Component({
     /**
      * 组件的属性列表
@@ -82,7 +85,7 @@ Component({
 
         //罗盘
         directionName: "东",
-
+        cameraHeight:100,
         //导航
         navDirection:0,
 
@@ -102,7 +105,7 @@ Component({
     },
     ready() {
         GP = this      
-        console.log(GP.data.markList)
+        console.log("ready")
 
         ar_utils = new ARUtils({GP:GP})
 
@@ -124,7 +127,7 @@ Component({
         onProperty(){
             if ( propertyUtils.checkModeIsNormal() ){ //正常模式，查询key
                 this.setData({ markList: [] })
-                ar_utils.queryMark(this.data.keyword)       
+                ar_utils.queryMark({ keyword:this.data.keyword})       
             }
         },     
 
@@ -135,9 +138,9 @@ Component({
             var _step = 0
             var _acc_z = 0.45
             // var tempAccZ = 0
-            ar_utils.render( 90, _acc_z)
+            ar_utils.render({ direction: 90, acc_z: _acc_z})
             setInterval(function(){
-                ar_utils.render(90, _acc_z)
+                ar_utils.render({ direction: 90, acc_z: _acc_z })
             },1000)
 
             //开启罗盘
@@ -147,8 +150,8 @@ Component({
                 if (_step % GP.data.GPSFrameFre == 0) {
                     GP.getCurrentLocation()
                 }
-                var _direction = ar_utils.filterCompassDirection(res.direction, _acc_z) //校正方向
-                ar_utils.render(_direction, _acc_z)//渲染
+                var _direction = ar_utils.filterCompassDirection({ direction: res.direction, acc_z: _acc_z}) //校正方向
+                ar_utils.render({ direction: _direction, acc_z: _acc_z })
                 // GP.setData({
                 //     tempAccZ: tempAccZ
                 // })
@@ -156,7 +159,7 @@ Component({
 
             wx.onAccelerometerChange(function (res) {
                 // console.log(res.z)
-                _acc_z = ar_utils.filterAccelerometerZ(res.z) //重力加速度
+                _acc_z = ar_utils.filterAccelerometerZ({acc_z:res.z}) //重力加速度
                 
             })
             GP.getQQMapInfo()
@@ -170,9 +173,6 @@ Component({
          *      {object} e 事件对象
          */
         getQQMapInfo(e) {
-
-          
-
         },
 
 
@@ -186,7 +186,7 @@ Component({
         clickMark(e) {
             var mark_id = e.currentTarget.dataset.mark_id
             console.log(mark_id)
-            ARUtils.clickMark(mark_id)
+            ar_utils.clickMark(mark_id)
             // ARUtils.queryMark("厕所", '22.8122400000,108.3995300000')
             // ARUtils.queryNav('22.8122400000,108.3995300000',"22.8194235482,108.3917355537")
         },
@@ -198,7 +198,7 @@ Component({
           *      {object} e 事件对象
           */
         clickMarkInfoCancel(e) {
-            ARUtils.clickMarkInfoCancel()
+            ar_utils.clickMarkInfoCancel()
         },
 
         /**
@@ -215,7 +215,7 @@ Component({
             //     "22.8194235482,108.3917355537",
             //     ARUtils.clickMarkInfoToNav
             // )
-            ARUtils.clickMarkInfoToNav()
+            ar_utils.clickMarkInfoToNav()
 
         },
         /**
@@ -226,7 +226,7 @@ Component({
           */
         clickNavCancel(e) {
             // var mark_id = e.currentTarget.dataset.mark_id
-            ARUtils.clickNavCancel()
+            ar_utils.clickNavCancel()
         },
 
         
@@ -239,7 +239,7 @@ Component({
           */
         clickNavAndMap(e) {
             // var mark_id = e.currentTarget.dataset.mark_id
-            ARUtils.clickNavAndMap()
+            ar_utils.clickNavAndMap()
         },
 
         /**
@@ -250,7 +250,7 @@ Component({
           */
         clickNavMapOff(e) {
             // var mark_id = e.currentTarget.dataset.mark_id
-            ARUtils.clickNavMapOff()
+            ar_utils.clickNavMapOff()
         },
 
         // /**
@@ -299,8 +299,6 @@ Component({
             this.triggerEvent('clickMarkInfoToMore');
         },
         
-
-
 
         /**
          * @method 过去当前经纬度

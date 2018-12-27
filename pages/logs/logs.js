@@ -11,5 +11,16 @@ Page({
         return util.formatTime(new Date(log))
       })
     })
-  }
+
+    //   console.log(this.__previousPage)
+     
+  },
+    onUnload: function () {
+        var pages = getCurrentPages();
+        var prevPage = pages[pages.length - 2];  //上一个页面
+        prevPage.setData({
+            tanName: "个哈哈哈哈哈"
+        })
+
+    },
 })

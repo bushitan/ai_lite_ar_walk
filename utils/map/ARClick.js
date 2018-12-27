@@ -1,7 +1,13 @@
 
 var GP
 var ARBase = require("ARBase.js")
+var SwitchUtils = require("SwitchUtils.js")
+var ApiUtils = require("ApiUtils.js")
 
+var CAMERA = {
+    FULL:100,
+    WINDOW:80,
+}
 /**
  * @extends ARBase
  */
@@ -12,6 +18,9 @@ class ARClick extends ARBase {
         // console.log("ARBase", options)
         if (!options.GP) { throw Error('route值不能为空'); }
         GP = options.GP
+        GP.setData({
+            show: SwitchUtils.onLoad()
+        })
     }
 
     /**
@@ -44,15 +53,17 @@ class ARClick extends ARBase {
      */
     clickMarkInfoToNav(mark_id) {
         // console.log(mark_id.length)
+        var that = this
         ApiUtils.getNavWalk(
             '22.8122400000,108.3995300000',
             "22.8194235482,108.3917355537",
             callback
         )
+
         function callback(routes) {
             // console.log(e)
-            nav_utils.setRoute({ route: routes })
-            nav_utils.start()
+            that.nav_utils.setRoute({ route: routes })
+            that.nav_utils.start()
 
             GP.setData({
                 show: SwitchUtils.onNav()
@@ -70,7 +81,7 @@ class ARClick extends ARBase {
         GP.setData({
             show: SwitchUtils.offNav()
         })
-        nav_utils.close()
+        this.nav_utils.close()
     }
 
     /**
@@ -78,7 +89,8 @@ class ARClick extends ARBase {
      */
     clickNavAndMap() {
         GP.setData({
-            show: SwitchUtils.onNavMap()
+            show: SwitchUtils.onNavMap(),
+            cameraHeight: CAMERA.WINDOW,
         })
     }
 
@@ -87,7 +99,8 @@ class ARClick extends ARBase {
      */
     clickNavMapOff() {
         GP.setData({
-            show: SwitchUtils.offNavMap()
+            show: SwitchUtils.offNavMap(),
+            cameraHeight: CAMERA.FULL,
         })
     }
 

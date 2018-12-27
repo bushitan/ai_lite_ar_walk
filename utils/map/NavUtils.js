@@ -27,7 +27,7 @@ class NavUtils {
      *   必填  {Object} route 百度获取的导航路由  
      */
     setRoute(options) {
-        if (!options.route) {
+        if (options.hasOwnProperty("route") == false) {
             throw Error('route值不能为空');
         }
         var _r = options.route
@@ -96,9 +96,13 @@ class NavUtils {
      *      {Object} 导航展示信息
      */
     render(options) {
-        if (!options.direction) { throw Error('direction值不能为空'); }
-        if (!options.acc_z) { throw Error('acc_z值不能为空'); }
-        if (!options.gps_location) { throw Error('gps_location值不能为空'); }
+
+        
+        
+        
+        if (options.hasOwnProperty("direction") == false) { throw Error('direction值不能为空'); }
+        if (options.hasOwnProperty("acc_z") == false) { throw Error('acc_z值不能为空'); }
+        if (options.hasOwnProperty("gps_location") == false) { throw Error('gps_location值不能为空'); }
 
         var _d = options.direction
         var _acc_z = options.acc_z

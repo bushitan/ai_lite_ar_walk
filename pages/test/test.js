@@ -1,33 +1,49 @@
 // pages/test/test.js
-var Location = require("../../utils/map/Location.js")
-var Line = require("../../utils/map/Line.js")
-var Angle = require("../../utils/map/Angle.js")
-var LocationUtils = require("../../utils/map/LocationUtils.js")
-var CompassUtils = require("../../utils/map/CompassUtils.js")
-var HeroUtils = require("../../utils/map/HeroUtils.js")
-var NavUtils = require("../../utils/map/NavUtils.js")
-var Route = require("../../utils/map/Route.js") 
+// var Location = require("../../utils/map/Location.js")
+// var Line = require("../../utils/map/Line.js")
+// var Angle = require("../../utils/map/Angle.js")
+// var LocationUtils = require("../../utils/map/LocationUtils.js")
+// var CompassUtils = require("../../utils/map/CompassUtils.js")
+// var HeroUtils = require("../../utils/map/HeroUtils.js")
+// var NavUtils = require("../../utils/map/NavUtils.js")
+// var Route = require("../../utils/map/Route.js") 
 
-var ARUtils = require("../../utils/map/ARUtils.js")
-var ar_utils
+// var ARUtils = require("../../utils/map/ARUtils.js")
+// var ar_utils
 
-var route
-var Storage = require("../../utils/storage.js") 
+// var route
+// var Storage = require("../../utils/storage.js")
+
+// var Storage = require("../../utils/storage.js") 
+
+// import Page from '../../utils/wxPage'
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        GPSLocation: { latitue: 23.1290800000, longitude: 113.2643600000 }
+        GPSLocation: { latitue: 23.1290800000, longitude: 113.2643600000 },
+        tanName:"321321",
     },
-    search(e){
-        console.log(e.currentTarget.dataset.key)
+    search(e) {
         var _keyword = e.currentTarget.dataset.key
-        wx.setStorageSync(Storage.MAP_KEYWORD, _keyword)
-        wx.navigateBack({
-            
+        var pages = getCurrentPages();
+        var prevPage = pages[pages.length - 2];  //上一个页面
+        prevPage.setData({
+            keyword: _keyword
         })
+        wx.navigateBack({})
+        // wx.navigateTo({
+        //     url: '/pages/logs/logs',
+        // })
+        // console.log(e.currentTarget.dataset.key)
+        // var _keyword = e.currentTarget.dataset.key
+        // wx.setStorageSync(Storage.MAP_KEYWORD, _keyword)
+        // wx.navigateBack({
+            
+        // })
     },
 
     /**
@@ -36,7 +52,7 @@ Page({
     onLoad: function (options) {
 
 
-        ar_utils = new  ARUtils({GP:this})
+        // ar_utils = new  ARUtils({GP:this})
         // console.log(ar_utils.getName())
         
         // return 
@@ -122,7 +138,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        // console.log(getCurrentPages())
     },
 
     /**

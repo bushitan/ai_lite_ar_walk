@@ -20,7 +20,7 @@
             
             
             <cover-view class='menu_flex'> 
-                <cover-view class='menu_search'>酒店</cover-view>
+                <cover-view class='menu_search'>{{keyword}}</cover-view>
                 <cover-image 
                     src='../../images/menu_search.png' 
                     class='menu_icon right'                
