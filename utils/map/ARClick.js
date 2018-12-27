@@ -16,7 +16,7 @@ class ARClick extends ARBase {
 
         super(options);
         // console.log("ARBase", options)
-        if (!options.GP) { throw Error('route值不能为空'); }
+        if (!options.GP) { throw Error('GP值不能为空'); }
         GP = options.GP
         GP.setData({
             show: SwitchUtils.onLoad()

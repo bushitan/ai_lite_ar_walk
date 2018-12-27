@@ -28,6 +28,8 @@ class AR extends ARClick  {
         super(options)
         if (options.hasOwnProperty("GP") == false)  { throw Error('GP值不能为空');}
         GP = options.GP 
+
+        this.mark_utils = new MarkUtils({ list: GP.data.markList }) 
     }
 
 
@@ -50,15 +52,10 @@ class AR extends ARClick  {
         }
 
         if (this.nav_utils.isStart() == false)
-            Utils.renderMark(_d, _acc_z, this.nav_utils) //普通渲染mark
+            Utils.renderMark(_d, _acc_z, this.mark_utils) //普通渲染mark
         else
             Utils.renderNav(_d, _acc_z, this.nav_utils) //导航渲染
     }
-
-
-
-
-
 }
 
 var Utils = {
@@ -70,13 +67,14 @@ var Utils = {
      *      {Number} direction罗盘方向
      *      {Number} acc_z 罗盘方向
      */
-    renderMark(direction_num, acc_z_num) {
+    renderMark(direction_num, acc_z_num, mark_utils) {
         var _acc_z = acc_z_num
         var _direction = direction_num
-        var _mark_list = GP.data.markList //用户传入mark的列表
+        // var _mark_list = GP.data.markList //用户传入mark的列表
         var _location = GP.data.GPSLocation //用户的地理位置
         //渲染mark列表
-        var _mark_list = MarkUtils.getList(_location, _direction, _mark_list)
+        // var _mark_list = MarkUtils.render(_location, _direction, _mark_list)
+        var _mark_list = mark_utils.render(_location, _direction)
         GP.setData({
             markList: _mark_list, //标点位置
         })

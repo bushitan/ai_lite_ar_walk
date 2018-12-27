@@ -7,7 +7,7 @@ class ARBase {
     name="tan"
     constructor(options){
         // console.log("ARBase", options)
-        if (!options.GP) { throw Error('route值不能为空'); }
+        if (!options.GP) { throw Error('GP值不能为空'); }
         GP = options.GP
 
         this.nav_utils = new NavUtils()
@@ -61,7 +61,7 @@ class ARBase {
 
         _d = CompassUtils.filterDirection(_d)
         _d = CompassUtils.checkReverse(_d, _acc_z)
-        return direction
+        return _d
     }
 
 }

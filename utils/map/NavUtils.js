@@ -34,7 +34,8 @@ class NavUtils {
         console.log(_r)
 
         this.route = new Route({
-            route: wx.getStorageSync("routes")
+            // route: wx.getStorageSync("routes")
+            route: _r
         })
     }
 

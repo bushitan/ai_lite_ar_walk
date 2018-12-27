@@ -139,9 +139,9 @@ Component({
             var _acc_z = 0.45
             // var tempAccZ = 0
             ar_utils.render({ direction: 90, acc_z: _acc_z})
-            setInterval(function(){
-                ar_utils.render({ direction: 90, acc_z: _acc_z })
-            },1000)
+            // setInterval(function(){
+            //     ar_utils.render({ direction: 90, acc_z: _acc_z })
+            // },1000)
 
             //开启罗盘
             wx.onCompassChange(function (res) {

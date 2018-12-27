@@ -36,7 +36,9 @@ class PropertyUtils {
         var MODE_NORMAL = "normal"
         var MODE_CUSTOM = "custom"
         console.log(_org_list)
-        var _list = MarkUtils.filterCustomList(_org_list)
+        var customMark = new MarkUtils({ list: _org_list})
+        // var _list = MarkUtils.filterCustomList(_org_list)
+        var _list = customMark.filter()
 
         return _list
     }
@@ -100,6 +102,5 @@ class PropertyUtils {
         if (_p == "high") _fram_fre = 30
         return _fram_fre
     }
-    
 }
 module.exports = PropertyUtils;
