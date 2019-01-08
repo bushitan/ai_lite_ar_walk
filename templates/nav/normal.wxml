@@ -14,7 +14,7 @@ const DIRECTION_BACK = 14 //后方  -->
     </wxs>
     <!-- <cover-view class='nav_box' > -->
         <cover-view class='nav'>
-            <block wx:for="{{imageList}}">
+            <block wx:for="{{imageList}}" wx:key="index">
                 <cover-image 
                     class='nav_icon' 
                     src='../../images/nav_point.png'                

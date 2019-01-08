@@ -14,7 +14,7 @@
                 src='../../images/menu_address.png' >
             </cover-image>
             <cover-view>    
-                <cover-view class='title'>{{item.name}}</cover-view>
+                <cover-view class='title'>{{item.title}}</cover-view>
                 <cover-view  class='title'>{{item.distance}}米</cover-view>
                 <cover-view  
                     class='title' 
@@ -23,4 +23,17 @@
             </cover-view>
         </cover-view>
     </block>
+</template>
+
+<template name="mark_hide_num">
+    <cover-view class='mark_hide_num'>
+        <cover-view class='left' wx:if='{{leftNum != 0}}'>
+            <cover-image class='icon' src='../../images/menu_address.png'></cover-image>
+            <cover-view>{{leftNum}}</cover-view>
+        </cover-view>
+        <cover-view class='right' wx:if='{{rightNum != 0}}'>
+            <cover-image class='icon' src='../../images/menu_address.png'></cover-image>
+            <cover-view>{{rightNum}}</cover-view>
+        </cover-view>
+    </cover-view>
 </template>

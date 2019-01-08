@@ -1,6 +1,1 @@
-{
-    "usingComponents": {
-        "ar": "../../components/ar/ar",        
-        "title": "../../components/title/title"
-    }
-}
+{}

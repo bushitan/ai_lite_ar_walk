@@ -1,4 +1,4 @@
-var Location = require("Location.js")
+    var Location = require("Location.js")
 var Angle = require("Angle.js")
 module.exports = {
     getDistanceAB: getDistanceAB,

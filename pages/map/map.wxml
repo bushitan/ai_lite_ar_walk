@@ -1,0 +1,21 @@
+<!--pages/map/map.wxml-->
+<!-- <text>pages/map/map.wxml</text> -->
+<!-- <camera>
+</camera> -->
+
+    <!-- mode="nav" -->
+<stage
+    list="{{pointList}}"
+    direction="{{direction}}"
+    acc_z="{{accZ}}"
+    mode="{{mode}}"
+    step="{{step}}"
+    focus="{{focusList}}"
+    navInfo="{{navInfo}}"
+    gps="{{GPSLocation}}"
+    polyline="{{polyline}}"
+    catch:startNav="startNav"
+    catch:closeNav="closeNav"
+>
+</stage>
+

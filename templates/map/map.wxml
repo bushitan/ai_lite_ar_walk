@@ -1,17 +1,35 @@
 
 
+        <!-- longitude="{{polylineObj.points.longitude}}"
+        latitude="{{polylineObj.points.latitude}}" -->
 
 <template name="map">
+<!-- {{polylineObj}}
+
+<map
+  id="map"
+  longitude="113.324520"
+  latitude="23.099994"
+  scale="14"
+  controls="{{controls}}"
+  bindcontroltap="controltap"
+  markers="{{markers}}"
+  bindmarkertap="markertap"
+  polyline="{{polylineObj}}"
+  bindregionchange="regionchange"
+  show-location
+  style="width: 100%; height: 300px;"
+></map> -->
     <map
         id="map"
-        longitude="113.324520"
-        latitude="23.099994"
-        scale="14"
+        latitude="{{map.latitude}}"
+        longitude="{{map.longitude}}"
+        scale="18"
         controls="{{controls}}"
         bindcontroltap="controltap"
         markers="{{markers}}"
         bindmarkertap="markertap"
-        polyline="{{polyline}}"
+        polyline="{{map.polyline}}"
         bindregionchange="regionchange"
         show-location
         enable-scroll="true"
@@ -21,8 +39,6 @@
         class='map'
     >    
         <cover-image class='map_dialog' src='../../images/map_dialog.png'></cover-image> 
-        
-        <!-- <cover-image class='map_switch' src='../../images/nav_map_switch.png'></cover-image>  -->
         <cover-view class='map_btn'>
             <cover-image 
                 class='map_icon' 

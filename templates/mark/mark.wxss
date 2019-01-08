@@ -30,3 +30,30 @@
 .mark  .select{
     border:2px solid #ffc834 ;
 }
+
+
+.mark_hide_num{
+    
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.mark_hide_num .left , .mark_hide_num .right{  
+    text-align: center;  
+    background-color:rgba(0, 0, 0, 0.3);
+    /* width: 50px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    font-size: 9pt;
+    color: #ffffff;
+}
+
+.mark_hide_num .icon{
+    width: 20px;
+    height: 20px;
+    /* margin-right:5px;  */
+} 

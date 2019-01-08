@@ -1,4 +1,2 @@
-/* pages/test/test.wxss */
-page{
-    background-color: #eee;
-}
+/* plugin/pages/test.wxss */
+

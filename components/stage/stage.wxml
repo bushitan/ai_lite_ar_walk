@@ -1,0 +1,78 @@
+
+<import src="../../templates/nav/info.wxml" />
+<import src="../../templates/nav/normal.wxml" />
+<import src="../../templates/menu/base.wxml" />
+<import src="../../templates/map/map.wxml" />
+<import src="../../templates/mark/mark.wxml" />
+<import src="../../templates/mark_info/mark_info.wxml" />
+
+<!-- TODO
+    摄像头，location 为打开的授权提示页面
+ -->
+<camera device-position="back" flash="off"  class="camera" style=' height:{{cameraHeight}}vh;'>
+
+    <template is="menu_base" data="{{directionName,keyword}}"  wx:if="{{show.menu}}"/>
+
+    <template is="nav_info" data="{{navInfo:navInfo,directionName}}"  wx:if="{{show.navInfo}}" />
+
+    <template is="nav_normal" 
+        data="{{imageList:nav.circleList,navDirection,navIconHeight:nav.iconHeight}}" 
+        wx:if="{{show.navIcon}}"  />
+
+    <!-- 导航的mark -->
+    <template is="mark" data="{{markList:nav.focusList}}" wx:if="{{show.navIcon}}"/>
+
+    <!-- 普通的mark -->
+    <template is="mark" data="{{markList}}" wx:if="{{show.mark}}"/>
+    <template is="mark_hide_num" data="{{leftNum,rightNum}}" wx:if="{{show.mark}}"/>
+    <!-- 点击普通mark展示的详情 -->
+    <template is="mark_info" data="{{markInfo}}"  wx:if="{{show.markInfo}}"/>
+
+    
+    <template is="map_icon" wx:if="{{show.mapIcon}}" />
+    
+    <template is="map_camera" wx:if="{{show.mapCamera}}"/>
+</camera>
+
+<template is="map" data="{{navInfo,directionName,map,markers}}"  wx:if="{{show.map}}"/>
+
+
+
+    <!-- <cover-view style='position:absolute;bottom:80px' catchtap='clickMark' data-target_id='1'>导航 </cover-view> -->
+
+
+    <!-- 导航箭头 -->
+     <!-- hidden='{{!navIsOpen}}' -->
+    <!-- <cover-view class='nav_box' >
+        <cover-view class='nav'>
+            <block wx:for="{{imageList}}">
+                <cover-image 
+                    class='nav_icon' 
+                    src='{{navIcon}}'                
+                    style='top:{{item.y +800 }}rpx;left:{{item.x  + 325}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
+                ></cover-image>
+                 width: {{item.w}}px; height: {{item.h}}px;
+                <cover-view
+                    class='nav_icon__cyc {{ compassStep == index? "nav_icon__light":""}}' 
+                    src='{{navIcon}}'                
+                    style='top:{{item.y + 900}}rpx;left:{{item.x  + 325}}rpx;width:{{item.w}}rpx;height:{{item.h}}rpx'
+                >前</cover-view>
+
+            </block> 
+
+        </cover-view>
+    </cover-view> -->
+
+
+
+
+    <!-- 顶部方向 -->
+    <!-- <cover-view class='direction'>      
+        <cover-image class='direction_bg' src='../../images/menu_bg_revese.png'></cover-image>  
+         <cover-view class='direction_center'>
+            <cover-image src='../../images/arrow.png' class='direction_arrow'></cover-image>
+         </cover-view>
+         <cover-view>{{directionName}}</cover-view>
+    </cover-view> -->
+
+    <!-- <template is="menu_base" data="{{directionName}}"  /> -->

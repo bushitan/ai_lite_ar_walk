@@ -8,11 +8,11 @@
             >
             </cover-image>
             <cover-view class='mark_info_title'>
-                <cover-view class='mark_info_name'>坤丽便利店</cover-view>
-                <cover-view class='mark_info_distance'>156.56m</cover-view>
+                <cover-view class='mark_info_name'>{{markInfo.title}}</cover-view>
+                <cover-view class='mark_info_distance'>{{markInfo.distance}}米</cover-view>
             </cover-view>
-            <cover-view class='mark_info_summary'>北湖街道万秀村南巷200号</cover-view>
-            <cover-view class='mark_info_des'>北湖街道万秀村南巷200号北湖街道万秀村南巷200号北湖街道万秀村南巷200号</cover-view>
+            <cover-view class='mark_info_summary'>{{markInfo.address}}</cover-view>
+            <cover-view class='mark_info_des'>{{markInfo.des}}</cover-view>
         </cover-view>
         <cover-view class='mark_info_btn'>
             <cover-image 
@@ -25,6 +25,7 @@
                 class='' 
                 src='../../images/menu_address.png' 
                 catchtap='clickMarkInfoToNav'
+                data-mark_id="{{markInfo.id}}"
             >
             </cover-image>
         </cover-view>

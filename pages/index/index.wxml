@@ -1,15 +1,2 @@
-<!--index.wxml-->
-
-<!-- <title></title> -->
-
-<!-- normal  custom -->
-<ar 
-    mode="custom"
-    keyword="{{keyword}}"
-    power="normal"
-    list="{{markList}}"
-    catch:clickOption="clickOption"
-    catch:clickSearch="clickSearch"
-    catch:clickMarkInfoToMore="clickMarkInfoToMore"
->
-</ar>
+<!--pages/index/index.wxml-->
+<text>pages/index/index.wxml</text>

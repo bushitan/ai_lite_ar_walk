@@ -1,105 +1,66 @@
-
-//获取应用实例
-const app = getApp()
-var GEO = require("../../utils/geo.js")
-var Storage = require("../../utils/storage.js") 
-var GP
-
-
-
-
+// pages/index/index.js
 Page({
+
+    /**
+     * 页面的初始数据
+     */
     data: {
-        motto: 'Hello World',
-        userInfo: {},
-        hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
-        keyword:"酒店",
-
-        markList: [
-            {
-                id: 1, x: 10, y: 50, name: "水浒人家", distance: 500,
-                latitude: 24.4972341880, longitude: 108.6384236813, compass_value: 0
-            },
-            {
-                id: 1, x: 10, y: 50, name: "广西民族影城", distance: 500,
-                latitude: 22.8122400000, longitude: 108.3995300000, compass_value: 0
-            },
-            {
-                id: 1, x: 10, y: 50, name: "邮政小区", distance: 500,
-                latitude: 22.8194235482, longitude: 108.3917355537, compass_value: 0
-            },
-            {
-                id: 1, x: 10, y: 50, name: "水电大厦", distance: 500,
-                latitude: 22.8134306166, longitude:  108.3889245987, compass_value: 0
-            },
-            {
-                id: 1, x: 10, y: 50, name: "泰迪咖啡(航洋店)", distance: 500,
-                latitude: 22.8147953668, longitude: 108.3848476410, compass_value: 0
-            },
-            {
-                id: 1, x: 10, y: 50, name: "桃源山庄", distance: 500,
-                latitude: 22.8099692323, longitude: 108.3908343315, compass_value: 0
-            },
-        ]
-    },
-    
-    onShow: function() {
-        var _keyword = wx.getStorageSync(Storage.MAP_KEYWORD)
-        if (_keyword.length > 0) {
-            GP.setData({
-                keyword: _keyword
-            })
-            wx.setStorageSync(Storage.MAP_KEYWORD,"")
-        }
-
-    },
-
-    onLoad: function () {
-        GP = this
-        // var g = GEO.distance(22.847797, 108.306804, 22.8450354800, 108.3107908500)
-        // var g = GEO.distance(22.8449251703, 108.3104860783, 22.845023057725694, 108.31077419704862)
-
-        var g = GEO.compassBetweenAngle(200,5)
-        console.log(g )
- 
     },
 
     /**
-    * @method 设置
-    * @for template/menu/base.wxml
-    * @param
-    *      {object} e 事件对象
-    */
-        clickOption(e) {
-            console.log(e,"Option")
-        },
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
 
-        /**
-        * @method 搜索
-        * @for template/menu/base.wxml
-        * @param
-        *      {object} e 事件对象
-        */
-        clickSearch(e) {
-            // console.log(e, "clickSearch")
-            wx.navigateTo({
-                url: '/pages/test/test',
-            })
-            
-        },
-        /**
-        * @method 更多信息
-        * @for template/map/map.wxml
-        * @param
-        *      {object} e 事件对象
-        */
-        clickMarkInfoToMore(e) {
-            console.log(e, "clickMarkInfoToMore")
-        },
+    },
 
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
+    },
 
-    onShareAppMessage(){},
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+
+    }
 })
