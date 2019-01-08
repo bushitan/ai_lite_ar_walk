@@ -8,62 +8,25 @@ const DIRECTION_BACK = 14 //后方  -->
 
     <wxs module="m1"> 
         function getTop(tempAccZ){
-            return  (70 - tempAccZ) / 2
+            return  (140 - tempAccZ) / 2
         }
         module.exports.getTop = getTop; 
     </wxs>
-    <!-- <cover-view class='nav_box' > -->
-        <cover-view class='nav'>
-            <block wx:for="{{imageList}}" wx:key="index">
-                <cover-image 
-                    class='nav_icon' 
-                    src='../../images/nav_point.png'                
-                    style='top:{{item.y}}rpx;left:{{item.x}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
-                ></cover-image>
-            </block> 
-        </cover-view>
-    <!-- </cover-view> -->
-
-    <cover-view class='nav_normal'>
-        <!-- <cover-view class='nav_rel'> -->
-        <cover-image class='icon_arrow' 
-            src='../../images/nav_icon_center.png' 
-            style='height:{{navIconHeight}}px;margin-top:{{m1.getTop(navIconHeight)}}px;'
-            >
-        </cover-image>
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- </cover-view> -->
 
     
-        <!-- <cover-image class='icon_arrow' 
-            src='../../images/nav_left.png' 
-            wx:if="{{navDirection==11}}">
-        </cover-image>
+    <block wx:for="{{navCircleList}}" wx:key="index">
+        <cover-image 
+            class='nav_icon' 
+            src='../../images/nav_point.png'                
+            style='top:{{item.y}}rpx;left:{{item.x}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
+        ></cover-image>
+    </block> 
+    <cover-view class='nav_normal' style='top:{{navIcon.y}}rpx'>
         <cover-image class='icon_arrow' 
-            src='../../images/nav_right.png' 
-            wx:if="{{navDirection==12}}">
+            src='../../images/nav_icon_center.png' 
+            style='width:{{navIcon.width}}rpx;height:{{navIcon.height}}rpx;margin-top:{{m1.getTop(navIcon.height)}}rpx;'
+            >
         </cover-image>
-        <cover-image class='icon_arrow' 
-            src='../../images/nav_front_1.png' 
-            wx:if="{{navDirection==13}}">
-        </cover-image>
-        <cover-image class='icon_arrow' 
-            src='../../images/nav_back.png' 
-            wx:if="{{navDirection==14}}">
-        </cover-image> -->
     </cover-view>
+
 </template>

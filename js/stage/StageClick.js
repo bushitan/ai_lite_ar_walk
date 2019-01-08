@@ -75,7 +75,8 @@ class StageClick extends StagePropertyFilter {
         var s = new SwitchUtils()
         GP.setData({
             show: s.onNavMap(),
-            cameraHeight:80,
+            cameraHeight: 80,
+            navOffsetY: 640,
         })
     }
 
@@ -88,6 +89,7 @@ class StageClick extends StagePropertyFilter {
         GP.setData({
             show: s.onNav(),
             cameraHeight:100,
+            navOffsetY:840,
         })
 
     }

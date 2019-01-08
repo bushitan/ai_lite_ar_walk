@@ -19,7 +19,7 @@ Page({
         isSearch:true,
         pointList:[],
         direction:0, //罗盘方向
-        accZ:0.2, //手机俯仰姿势
+        accZ:0, //手机俯仰姿势
 
         focusList:[{
             id: 14573289671493206044,                
@@ -52,12 +52,13 @@ Page({
     onLoad: function (options) {
         GP = this
         arUtils = new ARUtils({ GP:this })
-        setInterval(function(){
-            GP.setData({
-                direction:parseInt(Math.random() * 300)
-            })
-            arUtils.renderRoute()
-        },1000)
+        // setInterval(function(){
+        //     GP.setData({
+        //         direction: parseInt(Math.random() * 300)
+        //         // direction: 20
+        //     })
+        //     arUtils.renderRoute()
+        // },1000)
 
         GP.turnOn()
     },
@@ -67,6 +68,7 @@ Page({
             GP.setData({
                 direction:res.direction
             })
+            arUtils.renderRoute()
         })
 
         wx.onAccelerometerChange(function (res) {

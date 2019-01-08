@@ -1,7 +1,8 @@
 .nav_info{
     
     /* background-color:#fff; */
-    
+    /* position: absolute;
+    width: 100%; */
     background-color:rgba(0, 0, 0, 0.3);
     color: #fff;
     text-align: center;

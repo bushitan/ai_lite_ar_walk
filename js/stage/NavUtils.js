@@ -48,17 +48,19 @@ var Utils = {
             var _nav_direction = nav_direction
             var _angle = Math.abs(_nav_direction) * Math.PI / 180
             var _start_x = 350
-            var _start_y = 785
-            var _w = 50
+            var _start_y = OFFSET_Y + ICON_RADIUS_HALF + CIRCLE_RADIUS_HALF
+            _start_y =_start_y + SPACE_3D - SPACE_3D * acc_z //根据acc_z往下分离
+            console.log(_start_y)
+            var _w = CIRCLE_RADIUS
             var _h = (Math.abs(acc_z)) * _w + 14
-            if (_h > 50)
-                _h = 50
+            if (_h > CIRCLE_RADIUS)
+                _h = CIRCLE_RADIUS
             var _space = (Math.abs(acc_z)) * _w / 2 + 5
-            var BaseL = 50 + 30  // _h + _space
+            var BaseL = CIRCLE_RADIUS + SPACE_RADIUS  // _h + _space
             var L = _space + _h
             var _dx = BaseL * Math.sin(_angle)
             var _dy = L * Math.cos(_angle)
-            var _list = [], _length = 5
+            var _list = [], _length = CIRCLE_LENGTH
             for (var i = 0; i < _length; i++) {
                 var temp = {
                     x: _start_x + _dx * i * side_x,
@@ -70,9 +72,38 @@ var Utils = {
             }
             return _list
         }
-    }
+    },
 
+
+    getNavIcon(acc_z) {
+        var tempAccZ = (Math.abs(acc_z)) * ICON_RANGE
+        tempAccZ = tempAccZ + ICON_BASE
+        tempAccZ = parseInt(tempAccZ)
+        if (tempAccZ > ICON_RADIUS)
+            tempAccZ = ICON_RADIUS
+        return {
+            y: OFFSET_Y,
+            width: ICON_RADIUS,
+            height: tempAccZ,
+        }
+    },
 }
+
+var OFFSET_Y = 840   //基础高度
+var ICON_RADIUS = 140 
+var ICON_RADIUS_HALF = ICON_RADIUS / 2
+var ICON_BASE = 40
+var ICON_RANGE = 100
+
+var CIRCLE_LENGTH = 5
+var CIRCLE_RADIUS = 50
+var CIRCLE_RADIUS_HALF = CIRCLE_RADIUS / 2
+var CIRCLE_BASE = 40
+var CIRCLE_RANGE = 100
+
+var SPACE_RADIUS =  30
+var SPACE_3D = 16   //图标与方向3D效果的分离
+
 class NavUtils extends MarkUtils{
     constructor(options) {
         super(options)
@@ -86,6 +117,7 @@ class NavUtils extends MarkUtils{
     render() {
         var _direction = GP.data.direction //acc_z做为属性
         var _acc_z = GP.data.acc_z //acc_z做为属性
+        OFFSET_Y = GP.data.navOffsetY 
 
         //终点
         var _list = GP.data.focusList
@@ -94,12 +126,14 @@ class NavUtils extends MarkUtils{
         //中心图标俯仰
         var _icon_height = Utils.getDerIconHeight(_acc_z)
 
-
+        var _nav_icon = Utils.getNavIcon(_acc_z)
         var _circle_list = Utils.getImageList(_direction, _acc_z)
+        
         return {
             focusList: _list,
             iconHeight: _icon_height,
-            circleList: _circle_list,
+            navIcon: _nav_icon,
+            navCircleList: _circle_list,
         }
     }
 }

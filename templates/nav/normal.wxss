@@ -2,22 +2,14 @@
 
 .nav_normal{
     position: absolute;
-    top:700rpx;
+    top:-7000rpx;
     width: 100%;
     display: flex;
     justify-content: center;
 }
-
-/* .nav_rel{
-    position: relative;
-    width: 70px;
-    height: 70px;
-} */
 .nav_normal .icon_arrow{
-    /* position: absolute; */
-    /* margin-top:0px; */
-    width: 70px;
-    height: 70px;
+    /* width: 140rpx;
+    height: 140rpx; */
     z-index: 999;
 }
 

@@ -57,7 +57,7 @@ Component({
             type: String,
             value: MODE_MARK,
             observer(newVal, oldVal) {
-                // console.log(newVal,"modes")
+                console.log(newVal,"modes")
                 if (newVal == MODE_MARK) //渲染mark
                     this.setData({ show: stageUtils.setModeMark()})                        
                 else
@@ -128,6 +128,7 @@ Component({
         focusList:[], //终点数组
         show: {},//显示控制
         cameraHeight: 100, //摄像头高度，可空出容纳map
+        navOffsetY:840, //导航图标的偏移量，打开地图时会变化
 
         map:{}, //地图数据
         markers: [],
