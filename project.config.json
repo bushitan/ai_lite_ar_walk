@@ -13,8 +13,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.0",
-	"appid": "wx76cc2152eea29e91",
-	"projectname": "AR%E6%99%AF%E5%8C%BA",
+	"appid": "wxd2f409241725502b",
+	"projectname": "%E6%89%BE%E5%BA%97%E5%BA%97",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -50,6 +50,12 @@
 					"name": "test",
 					"pathName": "pages/test/test",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "木可咖啡店",
+					"pathName": "pages/map/map",
+					"query": "mode=0&group_id=1"
 				}
 			]
 		}

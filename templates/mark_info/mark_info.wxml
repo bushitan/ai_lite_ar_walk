@@ -13,6 +13,7 @@
             </cover-view>
             <cover-view class='mark_info_summary'>{{markInfo.address}}</cover-view>
             <cover-view class='mark_info_des'>{{markInfo.des}}</cover-view>
+            <!-- <cover-image class='mark_info_cover' src='../../images/cover.jpg'></cover-image> -->
         </cover-view>
         <cover-view class='mark_info_btn'>
             <cover-image 

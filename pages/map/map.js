@@ -44,6 +44,10 @@ Page({
         mode:"mark",
         polyline:[],// 导航路径
 
+
+        groupMode: 1,//根据关键字
+        groupID: 1,//群ID
+        groupKeyword: "KFC",//默认搜索关键字
     },
 
     /**
@@ -51,18 +55,56 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-        arUtils = new ARUtils({ GP:this })
-        // setInterval(function(){
-        //     GP.setData({
-        //         direction: parseInt(Math.random() * 300)
-        //         // direction: 20
-        //     })
-        //     arUtils.renderRoute()
-        // },1000)
 
-        GP.turnOn()
+        console.log(options.mode,options.group_id)
+        arUtils = new ARUtils({ GP:this })
+        setInterval(function(){
+            GP.setData({
+                direction: parseInt(Math.random() * 300)
+                // direction: 20
+            })
+            arUtils.renderRoute()
+        },1000)
+
+        // GP.turnOn()
+        GP.onRequest()
     },
 
+
+
+    // sea
+
+
+    /**
+     * 初始化工具
+     */
+    onInit() {
+        if (GP.data.isSearch) {
+            GP.setData({
+                isSearch: false
+            })
+            arUtils.search({
+                "keyword": GP.data.keyword,
+                "GPSLocation": GP.data.GPSLocation
+            })
+        }
+
+    },
+
+
+
+
+    onRequest(){
+        wx.request({
+            url: 'https://www.51zfgx.com/ai/lite/search/shop/',
+            data:{
+                "group_id":2
+            },
+            success(res){
+                console.log(res)
+            },
+        })
+    },
     turnOn(){
         wx.onCompassChange(function (res) {
             GP.setData({
@@ -85,7 +127,7 @@ Page({
         
         this.getLocation()
 
-        this.onInit() //测试类
+        // this.onInit() //测试类
     },
 
     /**
@@ -107,22 +149,6 @@ Page({
         })
     },
 
-
-    /**
-     * 初始化工具
-     */
-    onInit() {
-        if (GP.data.isSearch){
-            GP.setData({
-                isSearch:false
-            })
-            arUtils.search({
-                "keyword": GP.data.keyword,
-                "GPSLocation": GP.data.GPSLocation
-            })
-        }
-
-    },
 
 
     startNav(e){
