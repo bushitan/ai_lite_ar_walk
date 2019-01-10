@@ -37,13 +37,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": ""
+					"query": "mode=0&group_id=1"
 				},
 				{
 					"id": 1,
@@ -52,10 +52,16 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "木可咖啡店",
 					"pathName": "pages/map/map",
-					"query": "mode=0&group_id=1"
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "index酒店",
+					"pathName": "pages/index/index",
+					"query": "mode=1&keyword=酒店"
 				}
 			]
 		}

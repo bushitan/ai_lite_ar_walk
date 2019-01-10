@@ -1,10 +1,10 @@
 // pages/index/index.js
 var ARUtils = require("../../js/ar/ARUtils.js")
 var arUtils
-var ApiUtils = require("ApiUtils.js")
+var ApiUtils = require("../../js/ar/ApiUtils.js")
 var apiUtils
-var Location = require("Location.js")
-
+var Location = require("../../js/ar/Location.js")
+var LocationUtils = require("../../js/ar/LocationUtils.js")
 var GP
 var GROUP_MODE_ID = 0
 var GROUP_MODE_KEYWORD = 1
@@ -23,13 +23,21 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        options = {
+            mode:1,
+            keyword:"美食",
+        }
+        
+
         GP = this 
         arUtils = new ARUtils({ GP: this })
         apiUtils = new ApiUtils()
         
         GP.filterOptions(options)
         GP.route()
-      
+        wx.showLoading({
+            title: '坐标寻找中...',
+        })
     },
 
     /**
@@ -65,7 +73,38 @@ Page({
      * @method 搜索后台的group数组
      */
     searchGroup() {
+        wx.request({
+            url: 'https://www.51zfgx.com/ai/lite/search/shop/',
+            data: {
+                "group_id": GP.data.groupID
+            },
+            success(res) {
+                console.log(res.data)
+                // wx.setStorageSync("mark_list",res.data)
+                var _data = GP.filterGroupToAPI(res.data.shop_list)
+                GP.callback({
+                    data: _data
+                })
+            },
+        })
+    },
 
+    filterGroupToAPI(shop_list){
+        var _list = shop_list
+        var _temp_list = []
+        for (var i = 0; i < _list.length;i++){
+            var _s = _list[i]
+            _temp_list.push({
+                'id': _s.id,
+                'title': _s.name,
+                'address': _s.address,
+                'tel': _s.phone,
+                'category': _s.category,
+                // 'type': _s.type,
+                'location': { lat:_s.latitude, lng:_s.longitude },
+            })
+        }
+        return _temp_list
     },
 
     /**
@@ -85,15 +124,34 @@ Page({
                 var _keyword = GP.data.keyword
                 var _location = new Location({ 'latitue': res.latitude, 'longitude': res.longitude })
                 var _location_str = _location.getString()
-                apiUtils.getMarkList(_keyword, _location_str , this._searchCallback)
-                callback()
+                apiUtils.getMarkList(_keyword, _location_str, GP.callback)
+
+                GP.setData({
+                    location: _location
+                })
+                // callback()
             }
         })
-
     },
 
-    callback(){
+    callback(res){
+        console.log(res)
+        var locationUtils = new LocationUtils()
+        var _list = locationUtils.formatSearch({
+            list: res.data,
+            location: GP.data.location,
+        })
 
+
+        wx.setStorageSync("mark_list", _list)
+        wx.setStorageSync("keyword", GP.data.keyword)
+
+
+        setTimeout(function () {
+            wx.navigateTo({
+                url: '/pages/map/map',
+            })
+        },1500)
     },
 
 
@@ -104,3 +162,11 @@ Page({
 
     }
 })
+
+// id
+// title
+// address
+// tel
+// category
+// type
+// location:{lat , lng}

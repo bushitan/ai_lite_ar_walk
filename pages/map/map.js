@@ -55,19 +55,25 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-
         console.log(options.mode,options.group_id)
         arUtils = new ARUtils({ GP:this })
-        setInterval(function(){
-            GP.setData({
-                direction: parseInt(Math.random() * 300)
-                // direction: 20
-            })
-            arUtils.renderRoute()
-        },1000)
 
-        // GP.turnOn()
-        GP.onRequest()
+        GP.setData({
+            pointList: wx.getStorageSync("mark_list"),
+            keyword: wx.getStorageSync("keyword"),
+        })        
+        
+
+        // setInterval(function(){
+        //     GP.setData({
+        //         direction: parseInt(Math.random() * 300)
+        //         // direction: 20
+        //     })
+        //     arUtils.renderRoute()
+        // },1000)
+
+        GP.turnOn()
+        
     },
 
 
