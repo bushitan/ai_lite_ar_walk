@@ -1,5 +1,5 @@
 
-var ARBase = require("ARBase.js")
+var ARFilter = require("ARFilter.js")
 var RouteUtils = require("RouteUtils.js")
 var routeUtils = new RouteUtils({ start: false })
 var GP
@@ -8,7 +8,7 @@ var MODE_NAV = "nav"
 /**
  * @method  AR的基础类
  */
-class ARRoute extends ARBase {
+class ARRoute extends ARFilter {
     constructor(options) {
         super(options)
         if (!options.GP) { throw Error('GP值不能为空'); }

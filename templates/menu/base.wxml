@@ -2,7 +2,29 @@
 
 
 <template name="menu_base" >
+
+
     <cover-view class='menu_base'>
+        <cover-view class='menu_father'> 
+            <!-- <cover-image 
+                src='../../images/menu_option.png' 
+                class='icon_left'
+                catchtap='clickOption'
+            >
+            </cover-image> -->
+            
+             <cover-view class='icon_left'></cover-view>
+             <cover-view class='title'>{{title}}</cover-view>
+             <cover-view class='icon_left'></cover-view>
+        </cover-view>
+    </cover-view>
+</template>
+
+
+
+
+
+    <!-- <cover-view class='menu_base'>
         <cover-view class='menu_father'> 
             <cover-image 
                 src='../../images/menu_option.png' 
@@ -10,17 +32,8 @@
                 catchtap='clickOption'
             >
             </cover-image>
-
-            <!-- <cover-view class='menu_direction'>  
-                <cover-view class='menu_direction_center'>
-                    <cover-image src='../../images/arrow.png' class='menu_direction_arrow'></cover-image>
-                </cover-view>
-                <cover-view>{{directionName}}</cover-view>
-            </cover-view> -->
-            
-            
             <cover-view class='menu_flex'> 
-                <cover-view class='menu_search'>{{keyword}}</cover-view>
+                <cover-view class='menu_search'>{{title}}</cover-view>
                 <cover-image 
                     src='../../images/menu_search.png' 
                     class='menu_icon right'                
@@ -29,10 +42,4 @@
                 </cover-image>
             </cover-view>
         </cover-view>
-        <!-- <cover-view class='menu_sub'> 
-            <cover-view class=' node'>酒店</cover-view>
-            <cover-view class=' node'>酒店</cover-view>
-            <cover-view class=' node'>酒店</cover-view>
-        </cover-view> -->
-    </cover-view>
-</template>
+    </cover-view> -->

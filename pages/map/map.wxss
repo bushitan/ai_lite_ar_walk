@@ -1,1 +1,6 @@
 /* pages/map/map.wxss */
+
+
+page{
+    background-color: #000;
+}

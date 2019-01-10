@@ -2,7 +2,7 @@
 
 
 var StageUtils = require("../../js/stage/StageUtils.js")
-var stageUtils
+var stageUtils = new StageUtils({GP:true})
 var GP 
 // var SpriteMark = require("../../js/stage/SpriteMark.js")
 
@@ -18,8 +18,8 @@ Component({
                     this.setData({
                         markList: stageUtils.filterMarkList({ list: newVal })
                     })
-                    console.log(newVal)
-                    console.log(GP.data.markList)
+                    // console.log(newVal)
+                    // console.log(GP.data.markList)
 
                 }
             }
@@ -107,6 +107,17 @@ Component({
                 })
             }
         },
+        
+        
+        keyword: {
+            type: String,
+            value: "",
+            observer(newVal, oldVal){
+                this.setData({
+                    title: newVal
+                })
+            }
+        },
 
         // gps: {
         //     type: Object,
@@ -133,6 +144,7 @@ Component({
         map:{}, //地图数据
         markers: [],
 
+        title:"",
         // polylineObj:[], //导航路径
         //标记
         // clickMarkID: 2,//点击mark的id

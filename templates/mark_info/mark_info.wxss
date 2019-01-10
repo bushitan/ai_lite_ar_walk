@@ -47,13 +47,18 @@
     text-overflow:ellipsis;
     overflow:hidden;
 }
+.mark_info_cover{
+    margin-top:10px;
+    width: 72px;
+    height: 72px;
+}
 
 .mark_info_btn{
     display: flex;
     justify-content: flex-end;
     flex-basis: 150px;
 }
-.mark_info cover-image{
+.mark_info .mark_info_icon{
     width: 23px;
     height: 23px;
 

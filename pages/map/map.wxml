@@ -5,6 +5,7 @@
 
     <!-- mode="nav" -->
 <stage
+    keyword="{{keyword}}"
     list="{{pointList}}"
     direction="{{direction}}"
     acc_z="{{accZ}}"

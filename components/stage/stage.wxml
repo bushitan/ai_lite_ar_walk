@@ -12,7 +12,7 @@
 
 <camera device-position="back" flash="off"  class="camera" style=' height:{{cameraHeight}}vh;'>
 
-    <template is="menu_base" data="{{directionName,keyword}}"  wx:if="{{show.menu}}"/>
+    <template is="menu_base" data="{{directionName,title}}"  wx:if="{{show.menu}}"/>
 
     <template is="nav_info" data="{{navInfo:navInfo,directionName}}"  wx:if="{{show.navInfo}}" />
 

@@ -10,6 +10,9 @@ const DIRECTION_BACK = "back" //后方
 var leftNum = 0
 var rightNum = 0
 
+var OFFSET_Y = 800   //基础高度
+var OFFSET_ACC = 300   //基础高度
+var OFFSET_DIST = 500   //基础高度
 /**
  * @method  开关对象对象
  */
@@ -55,7 +58,9 @@ class MarkUtils {
             var _m = _list[i]
             var _x = this._locationToScreen(direction, _list[i].compass_direction)
             _list[i].x = _x
-            _list[i].y = 500
+            var _offset_dist = _list[i].distance * (0 - OFFSET_DIST / 500) + OFFSET_DIST
+            
+            _list[i].y = OFFSET_Y - OFFSET_ACC * Math.abs(acc_z) - Math.abs(acc_z) - _offset_dist
         }
         return _list
     }

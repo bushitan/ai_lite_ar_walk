@@ -8,10 +8,27 @@
     width: 100%;   */
     display: flex;
     justify-content:space-between;
-    
+    align-items: center;
     background-color:rgba(0, 0, 0, 0.3);
-    padding: 15px 0;
+    padding: 36px 15px 14px;
 }
+
+.menu_base .icon_left{
+    width: 23px;
+    height: 23px;
+}
+
+.menu_base .title{
+    font-size: 14pt;
+    font-weight: bolder;
+    color: #fff;
+}
+
+
+
+
+
+
 .menu_flex {
     display: flex;
     align-items: center;

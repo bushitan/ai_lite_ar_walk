@@ -16,13 +16,13 @@
         </cover-view>
         <cover-view class='mark_info_btn'>
             <cover-image 
-                class='' 
+                class='mark_info_icon' 
                 src='../../images/menu_laugth.png'
                 catchtap='clickMarkInfoToMore'
             >
             </cover-image>
             <cover-image 
-                class='' 
+                class='mark_info_icon' 
                 src='../../images/menu_address.png' 
                 catchtap='clickMarkInfoToNav'
                 data-mark_id="{{markInfo.id}}"

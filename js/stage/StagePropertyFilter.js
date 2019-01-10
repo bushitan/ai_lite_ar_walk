@@ -107,7 +107,7 @@ class StagePropertyFilter extends StageBase{
     filterMapPolyline(options = {}) {
         if (!options.hasOwnProperty('polyline')) { throw Error('polyline值不能为空') }
         var _polyline = options.polyline
-        console.log(_polyline,"poliline")
+        // console.log(_polyline,"poliline")
         // _polyline = [23.128729, 113.264359, 23.128729, 113.264259, 23.128729, 113.264259]
 
         var _points = []

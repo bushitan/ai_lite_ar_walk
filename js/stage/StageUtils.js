@@ -30,7 +30,7 @@ class StageUtils extends StageClick {
             leftNum: _num.leftNum,
             rightNum:_num.rightNum,
         })
-        console.log(GP.data.leftNum, GP.data.rightNum)
+        // console.log(GP.data.leftNum, GP.data.rightNum)
     }
 
     /**
