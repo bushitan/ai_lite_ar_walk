@@ -171,7 +171,14 @@ Page({
         arUtils.closeRoute()
 
     },
-
+    clickOption(){
+        // wx.redirectTo({
+        //     url: '/pages/my/my',
+        // })
+        wx.navigateBack({
+            
+        })
+    },
 
 
 
