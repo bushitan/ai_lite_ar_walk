@@ -14,6 +14,8 @@
             <cover-view class='mark_info_summary'>{{markInfo.address}}</cover-view>
             <cover-view class='mark_info_des'>{{markInfo.des}}</cover-view>
             <!-- <cover-image class='mark_info_cover' src='../../images/cover.jpg'></cover-image> -->
+            <cover-image class='mark_info_cover' src='https://mmbiz.qpic.cn/mmbiz_jpg/ZfKmc14jJmAlbvOSN4cHlJzv4YLLnRjVotXPKia9U7ho3HWmY9FMZVxXlGokmagvttESXoZPwBaWHvaiaU7lPyJQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1'></cover-image>
+            
         </cover-view>
         <cover-view class='mark_info_btn'>
             <cover-image 

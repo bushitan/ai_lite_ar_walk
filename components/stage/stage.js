@@ -228,5 +228,14 @@ Component({
         clickOption(){
             this.triggerEvent('clickOption');
         },
+
+        /**
+         * 导航到新页面
+         */
+        clickMarkInfoToMore(){
+            wx.navigateTo({
+                url: '/pages/content/content',
+            })
+        },
     },
 })

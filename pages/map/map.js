@@ -143,12 +143,13 @@ Page({
         wx.getLocation({
             type: 'gcj02',
             success(res) {
-                // GP.setData({
-                //     GPSLocation: { latitue: res.latitude, longitude: res.longitude} ,
-                //     GPSAccuracy: res.accuracy,
-                //     GPSSpeed: res.speed,
-                // })
+                GP.setData({
+                    GPSLocation: { latitue: res.latitude, longitude: res.longitude} ,
+                    GPSAccuracy: res.accuracy,
+                    GPSSpeed: res.speed,
+                })
 
+                console.log(GP.data.GPSLocation)
                 //TODO 进入 
                 // arUtils.checkNav()
             }

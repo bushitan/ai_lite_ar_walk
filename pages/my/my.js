@@ -12,10 +12,11 @@ Page({
      */
     data: {
         list: [
-            { group_id: 1, name: "星巴克" },
+            { group_id: 1, name: "木可咖啡" },
             { group_id: 2, name: "广西大学" },
-            { group_id: 3, name: "木可咖啡" },
-            { group_id: 4, name: "KFC" },
+            { group_id: 3, name: "广西大学（4点）" },
+            // { group_id: 3, name: "木可咖啡" },
+            // { group_id: 4, name: "KFC" },
         ],
 
         // latitue:23,
@@ -56,7 +57,10 @@ Page({
         }, 2000)
     },
 
-    searchBtn(){
+    searchBtn() {
+        wx.showLoading({
+            title: '查询中...',
+        })
         var _location = GP.data.location
         var _location_str = _location.getString()
         apiUtils.getMarkList("酒店", _location_str, GP.callback)
@@ -65,6 +69,9 @@ Page({
 
     clickBtn(e) {
         var _group_id = e.currentTarget.dataset.group_id
+        wx.showLoading({
+            title: '查询中...',
+        })
         GP.setData({
             keyword: e.currentTarget.dataset.name
         })
@@ -117,6 +124,7 @@ Page({
         //     url: '/pages/my/my',
         // })
         setTimeout(function () {
+            wx.hideLoading()
             wx.navigateTo({
                 url: '/pages/map/map',
             })
