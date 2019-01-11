@@ -223,5 +223,10 @@ Component({
         clickNavMapOff(e) {
             stageUtils.clickNavMapOff()
         },
+
+
+        clickOption(){
+            this.triggerEvent('clickOption');
+        },
     },
 })

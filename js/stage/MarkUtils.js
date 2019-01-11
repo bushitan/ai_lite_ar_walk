@@ -60,7 +60,8 @@ class MarkUtils {
             _list[i].x = _x
             var _offset_dist = _list[i].distance * (0 - OFFSET_DIST / 500) + OFFSET_DIST
             
-            _list[i].y = OFFSET_Y - OFFSET_ACC * Math.abs(acc_z) - Math.abs(acc_z) - _offset_dist
+            // _list[i].y = OFFSET_Y - OFFSET_ACC * Math.abs(acc_z) - Math.abs(acc_z) - _offset_dist
+            _list[i].y = OFFSET_Y - OFFSET_ACC * Math.abs(acc_z) - Math.abs(acc_z) 
         }
         return _list
     }

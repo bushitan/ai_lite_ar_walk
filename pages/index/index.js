@@ -19,10 +19,20 @@ Page({
         keyword: "KFC",//群关键字
     },
 
-    /**
+    /** 
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading({
+            title: '坐标寻找中...',
+        })
+        setTimeout(function () {
+            wx.navigateTo({
+                url: '/pages/my/my',
+            })
+        }, 1500)
+        return
+
         options = {
             mode:1,
             keyword:"美食",
@@ -35,9 +45,7 @@ Page({
         
         GP.filterOptions(options)
         GP.route()
-        wx.showLoading({
-            title: '坐标寻找中...',
-        })
+
     },
 
     /**
@@ -122,7 +130,7 @@ Page({
                 //     }
                 // })
                 var _keyword = GP.data.keyword
-                var _location = new Location({ 'latitue': res.latitude, 'longitude': res.longitude })
+                var _location = new Location({ 'latitude': res.latitude, 'longitude': res.longitude })
                 var _location_str = _location.getString()
                 apiUtils.getMarkList(_keyword, _location_str, GP.callback)
 

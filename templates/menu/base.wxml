@@ -6,14 +6,14 @@
 
     <cover-view class='menu_base'>
         <cover-view class='menu_father'> 
-            <!-- <cover-image 
+            <cover-image 
                 src='../../images/menu_option.png' 
                 class='icon_left'
                 catchtap='clickOption'
             >
-            </cover-image> -->
+            </cover-image>
             
-             <cover-view class='icon_left'></cover-view>
+             <!-- <cover-view class='icon_left'></cover-view> -->
              <cover-view class='title'>{{title}}</cover-view>
              <cover-view class='icon_left'></cover-view>
         </cover-view>

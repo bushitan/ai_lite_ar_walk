@@ -1,0 +1,24 @@
+/* pages/my/my.wxss */
+.box{
+    padding: 70px 20px ;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+}
+.search .input{
+    background-color: #eee;
+    font-size: 9pt;
+    padding: 5px 15px;
+    width: 60%;
+}
+.search .input_btn{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.mark{
+    margin-top: 30px;
+}

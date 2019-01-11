@@ -17,6 +17,7 @@
     polyline="{{polyline}}"
     catch:startNav="startNav"
     catch:closeNav="closeNav"
+    catch:clickOption="clickOption"
 >
 </stage>
 
