@@ -119,19 +119,19 @@ Component({
             }
         },
 
-        // gps: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) {
-        //         var _markers = stageUtils.filterMarkerGPS({ 
-        //             markers: this.data.markers,
-        //             gps: newVal 
-        //         })
-        //         this.setData({
-        //             markers: _markers
-        //         })
-        //     }
-        // },
+        gps: {
+            type: Object,
+            value: {},
+            observer(newVal, oldVal) {
+                var _markers = stageUtils.filterMarkerGPS({ 
+                    markers: this.data.markers,
+                    gps: newVal 
+                })
+                this.setData({
+                    markers: _markers
+                })
+            }
+        },
     },
     data: {
         markList: [], //mark数组

@@ -15,7 +15,7 @@ Page({
             { group_id: 1, name: "木可咖啡" },
             { group_id: 2, name: "广西大学" },
             { group_id: 3, name: "广西大学（4点）" },
-            // { group_id: 3, name: "木可咖啡" },
+            { group_id: 4, name: "福彩大厦" },
             // { group_id: 4, name: "KFC" },
         ],
 
