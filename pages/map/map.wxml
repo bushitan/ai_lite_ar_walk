@@ -1,10 +1,22 @@
 <!--pages/map/map.wxml-->
-<!-- <text>pages/map/map.wxml</text> -->
-<!-- <camera>
-</camera> -->
 
-    <!-- mode="nav" -->
+<view class='btn_content'>
+    <button size='mini' catchtap=''>普通标点</button>
+    <button size='mini' catchtap=''>展示</button>
+    <button size='mini' catchtap=''>导航开始</button>
+    <button size='mini' catchtap=''>导航结束</button>
+</view>
 <stage
+    list="{{pointList}}"
+    dir="{{direction}}"
+    z="{{accZ}}"
+    mode="{{mode}}"
+    focus="{{focusList}}"
+>
+</stage>
+
+
+<!-- 
     keyword="{{keyword}}"
     list="{{pointList}}"
     direction="{{direction}}"
@@ -17,7 +29,4 @@
     polyline="{{polyline}}"
     catch:startNav="startNav"
     catch:closeNav="closeNav"
-    catch:clickOption="clickOption"
->
-</stage>
-
+    catch:clickOption="clickOption" -->

@@ -67,6 +67,8 @@ class ApiUtils {
             success: function (res) {
                 console.log(res)
                 var _route = res.data.result.routes[0]
+
+                wx.setStorageSync("nav_list", _route)
                 callback(_route)
             }
         };

@@ -118,7 +118,7 @@ Page({
         })
         console.log(_list)
 
-        wx.setStorageSync("mark_list", _list)
+        wx.setStorageSync("point_list", _list)
         wx.setStorageSync("keyword", GP.data.keyword)
         //          wx.redirectTo({
         //     url: '/pages/my/my',
@@ -126,7 +126,7 @@ Page({
         setTimeout(function () {
             wx.hideLoading()
             wx.navigateTo({
-                url: '/pages/map/map',
+                url: '/pages/map1/map1',
             })
         }, 1500)
     },

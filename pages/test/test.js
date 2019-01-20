@@ -1,10 +1,10 @@
 // plugin/pages/test.js
 
-var Loaction = require("../../js/ar/Location.js")
-var LocationUtils = require("../../js/ar/LocationUtils.js")
-var StageUtils = require("../../js/stage/StageUtils.js")
-var Sprite = require("../../js/stage/Sprite.js")
-var ARUtils = require("../../js/ar/ARUtils.js")
+// var Loaction = require("../../js/ar/Location.js")
+// var LocationUtils = require("../../js/ar/LocationUtils.js")
+// var StageUtils = require("../../js/stage/StageUtils.js")
+// var Sprite = require("../../js/stage/Sprite.js")
+// var ARUtils = require("../../js/ar/ARUtils.js")
 Page({
 
     /**
