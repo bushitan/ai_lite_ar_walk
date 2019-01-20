@@ -13,87 +13,6 @@ Component({
     properties: {
 
 
-        // /**模式 */
-        // mode:{
-        //     type: String,
-        //     value: MODE_MARK,
-        //     observer(newVal, oldVal) {
-        //         console.log(newVal,"modes")
-        //         if (newVal == MODE_MARK) //渲染mark
-        //             this.setData({ show: stageUtils.setModeMark()})                        
-        //         else
-        //             this.setData({ show: stageUtils.setModeNav() })
-        //     }
-        // },
-
-        // /**下一点 */
-        // step: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) { }
-        // },
-
-        // /**
-        //  * 结束点 
-        // */
-        // focus: {
-        //     type: Array,
-        //     value: [],
-        //     observer(newVal, oldVal) {
-        //         if (newVal)
-        //             this.setData({ //
-        //                 focusList: stageUtils.filterMarkList({ list: newVal })
-        //             })
-        //      }
-        // },
-
-        // navInfo: {
-        //     type: Object,
-        //     value: {},
-        // },
-
-        // polyline: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) {
-        //         var _map = stageUtils.filterMapPolyline({ polyline: newVal })
-        //         var _markers = stageUtils.filterMarkerInit({
-        //             start: { latitude: newVal[0], longitude: newVal[1]},
-        //             end: { latitude: newVal[newVal.length - 2], longitude: newVal[newVal.length - 1]},
-        //         })
-
-        //         this.setData({
-        //             map: _map,
-        //             markers: _markers
-        //         })
-        //     }
-        // },
-        
-        
-        // keyword: {
-        //     type: String,
-        //     value: "",
-        //     observer(newVal, oldVal){
-        //         this.setData({
-        //             title: newVal
-        //         })
-        //     }
-        // },
-
-        // gps: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) {
-        //         var _markers = stageUtils.filterMarkerGPS({ 
-        //             markers: this.data.markers,
-        //             gps: newVal 
-        //         })
-        //         this.setData({
-        //             markers: _markers
-        //         })
-        //     }
-        // },
-
         keyword: {
             type: String,
             value: "",
@@ -271,3 +190,89 @@ Component({
         },
     },
 })
+
+
+
+
+
+
+        // /**模式 */
+        // mode:{
+        //     type: String,
+        //     value: MODE_MARK,
+        //     observer(newVal, oldVal) {
+        //         console.log(newVal,"modes")
+        //         if (newVal == MODE_MARK) //渲染mark
+        //             this.setData({ show: stageUtils.setModeMark()})                        
+        //         else
+        //             this.setData({ show: stageUtils.setModeNav() })
+        //     }
+        // },
+
+        // /**下一点 */
+        // step: {
+        //     type: Object,
+        //     value: {},
+        //     observer(newVal, oldVal) { }
+        // },
+
+        // /**
+        //  * 结束点 
+        // */
+        // focus: {
+        //     type: Array,
+        //     value: [],
+        //     observer(newVal, oldVal) {
+        //         if (newVal)
+        //             this.setData({ //
+        //                 focusList: stageUtils.filterMarkList({ list: newVal })
+        //             })
+        //      }
+        // },
+
+        // navInfo: {
+        //     type: Object,
+        //     value: {},
+        // },
+
+        // polyline: {
+        //     type: Object,
+        //     value: {},
+        //     observer(newVal, oldVal) {
+        //         var _map = stageUtils.filterMapPolyline({ polyline: newVal })
+        //         var _markers = stageUtils.filterMarkerInit({
+        //             start: { latitude: newVal[0], longitude: newVal[1]},
+        //             end: { latitude: newVal[newVal.length - 2], longitude: newVal[newVal.length - 1]},
+        //         })
+
+        //         this.setData({
+        //             map: _map,
+        //             markers: _markers
+        //         })
+        //     }
+        // },
+
+
+        // keyword: {
+        //     type: String,
+        //     value: "",
+        //     observer(newVal, oldVal){
+        //         this.setData({
+        //             title: newVal
+        //         })
+        //     }
+        // },
+
+        // gps: {
+        //     type: Object,
+        //     value: {},
+        //     observer(newVal, oldVal) {
+        //         var _markers = stageUtils.filterMarkerGPS({ 
+        //             markers: this.data.markers,
+        //             gps: newVal 
+        //         })
+        //         this.setData({
+        //             markers: _markers
+        //         })
+        //     }
+        // },
