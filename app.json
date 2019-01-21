@@ -1,11 +1,11 @@
 {
     "pages":[
         "pages/map/map",
+        "pages/test/test",
         "pages/index/index",
         "pages/content/content",
         "pages/my/my",
         "pages/map1/map1",
-        "pages/test/test",
         "pages/logs/logs"
     ],
     "window":{

@@ -38,13 +38,26 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var location = new LocationUtils()
-        var a = location.format({
-            list: wx.getStorageSync("mark_list"),
-            location: { latitue: 23.1590800000, longitude: 113.2443600000 }
+        // var location = new LocationUtils()
+        // var a = location.format({
+        //     list: wx.get0StorageSync("mark_list"),
+        //     location: { latitue: 23.1590800000, longitude: 113.2443600000 }
+        // })
+        // console.log(a)
+
+
+        var API = require("../../js/ar/ApiUtils.js")
+        var api = new API()
+        api.getRoute({
+            fromStr: "23.1598800000,113.2446900000",
+            toStr:"23.1590800000,113.2443600000",
+            // callback
         })
-        console.log(a)
+        // function callback(res){
+        //     console
+        // }
     },
+
 
 
 

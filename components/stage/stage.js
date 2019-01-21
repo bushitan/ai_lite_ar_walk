@@ -7,8 +7,11 @@
 var GP 
 // var SpriteMark = require("../../js/stage/SpriteMark.js")
 var PropertyUtils = require("../../js/stage/PropertyUtils.js")
-// var MODE_MARK = "mark"
-// var MODE_NAV = "nav"
+var ShowUtils = require("../../js/stage/ShowUtils.js")
+var RenderUtils = require("../../js/stage/RenderUtils.js")
+var renderUtils = new RenderUtils()
+var MODE_MARK = "mark"
+var MODE_NAV = "nav"
 Component({
     properties: {
 
@@ -45,20 +48,20 @@ Component({
         },
         mode:{
             type: String,
-            value: "mark",
+            value: MODE_MARK,
             observer(newVal, oldVal) {
                 console.log(newVal,"modes")
-                // if (newVal == "mark") //渲染mark
-                //     this.setData({ show: stageUtils.setModeMark()})                        
-                // else
-                //     this.setData({ show: stageUtils.setModeNav() })
+                if (newVal == MODE_MARK) //渲染mark
+                    this.setData({ show: ShowUtils.onMark()})                        
+                else
+                    this.setData({ show: ShowUtils.onNav() })
             }
         },
         //下一点方向
-        nextDir: {
+        next: {
             type: Object,
             value: {},
-            observer(newVal, oldVal) { this.setData({ nextDirection: newVal }) }
+            observer(newVal, oldVal) { this.setData({ nextPoint: newVal }) }
         },
         //导航终点
         focus: {
@@ -71,37 +74,58 @@ Component({
         },
     },
     data: {
-        title:"木可咖啡",
+        title:"酒店",
         direction:0,
         accZ:0,
         pointList:[],
         pontInfo:{},
-        nextDirection:0, 
+        nextPoint:{}, 
         focusList:[],
         center:{},
         navList:[],
         cameraHeight:100,
         navOffsetY:840,
+
+        show:{}, //显示开关
         //标记
         // clickMarkID: 2,//点击mark的id
 
     },
     ready() {
         GP = this
-        // stageUtils = new StageUtils({GP:this})
-        // this.setData({ show: stageUtils.setModeMark() })                 
+        GP.setData({
+            show: ShowUtils.onMark()
+        })            
     },
 
     methods:{
         //渲染
         render(){
-                // if (this.data.mode == MODE_MARK) //渲染mark
-                //     stageUtils.rendMark()
-                // else  //渲染导航
-                // {
-                //     stageUtils.rendNav()
 
-                // }
+            var point_list = this.data.pointList
+            var focus_list = this.data.focusList
+            var d = this.data.direction
+            var z = this.data.accZ
+            //默认下一点是60方向
+            //测试用
+            var next_dir = this.data.nextPoint.direction || 60 
+            // console.log(nex_dir)
+            if (this.data.mode == MODE_MARK) //渲染mark
+                this.setData({
+                    pointList:renderUtils.point(point_list, d, z),
+                })
+                
+                // stageUtils.rendMark()
+            else  //渲染导航
+            {
+                this.setData({
+                    navList:renderUtils.nav(next_dir,d,z ),
+                    focusList:renderUtils.focus(focus_list,d,z ),
+                    center:renderUtils.center(z),
+                })
+                // stageUtils.rendNav()
+
+            }
         },
 
 

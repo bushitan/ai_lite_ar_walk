@@ -7,10 +7,12 @@
     <button size='mini' catchtap=''>导航结束</button>
 </view>
 <stage
+    keyword="木可咖啡"
     list="{{pointList}}"
     dir="{{direction}}"
     z="{{accZ}}"
     mode="{{mode}}"
+    next="{{nextPoint}}"
     focus="{{focusList}}"
 >
 </stage>

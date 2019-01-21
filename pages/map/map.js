@@ -21,8 +21,11 @@ Page({
     onLoad: function (options) {
         GP = this
         this.setData({
-            pointList: wx.getStorageSync("point_list")
+            pointList: wx.getStorageSync("point_list"),
+            nextPoint: wx.getStorageSync("nav_list").steps[0],
         })
+        // console.log(wx.getStorageSync("nav_list"))
+        // console.log(wx.getStorageSync("point_list"))
 
         setInterval(function(){
             GP.setData({
