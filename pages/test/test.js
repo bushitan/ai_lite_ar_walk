@@ -5,6 +5,7 @@
 // var StageUtils = require("../../js/stage/StageUtils.js")
 // var Sprite = require("../../js/stage/Sprite.js")
 // var ARUtils = require("../../js/ar/ARUtils.js")
+// var ARUtils = require("../../js/ar/ARUtils.js")
 Page({
 
     /**
@@ -38,24 +39,21 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // var location = new LocationUtils()
-        // var a = location.format({
-        //     list: wx.get0StorageSync("mark_list"),
-        //     location: { latitue: 23.1590800000, longitude: 113.2443600000 }
+
+
+        // var API = require("../../js/ar/ApiUtils.js")
+        // var api = new API()
+        // api.getRoute({
+        //     fromStr: "23.1598800000,113.2446900000",
+        //     toStr:"23.1590800000,113.2443600000",
+        //     // callback
         // })
-        // console.log(a)
 
-
-        var API = require("../../js/ar/ApiUtils.js")
-        var api = new API()
-        api.getRoute({
-            fromStr: "23.1598800000,113.2446900000",
-            toStr:"23.1590800000,113.2443600000",
-            // callback
-        })
-        // function callback(res){
-        //     console
-        // }
+        var point = require("../../js/stage/PointFn.js")
+        var angle = point.getIncludeAngle(10, 200)
+        console.log(angle)
+        var angle = point.getIncludeAngle(200 , 10)
+        console.log(angle)
     },
 
 

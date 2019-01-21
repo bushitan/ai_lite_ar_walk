@@ -7,8 +7,8 @@ const DIRECTION_BACK = 14 //后方  -->
 <template name="nav_normal" >
 
     <wxs module="m1"> 
-        function getTop(tempAccZ){
-            return  (140 - tempAccZ) / 2
+        function getTop(z){
+            return  (140 - z) / 2
         }
         module.exports.getTop = getTop; 
     </wxs>

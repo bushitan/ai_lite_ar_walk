@@ -109,24 +109,23 @@ Component({
             //默认下一点是60方向
             //测试用
             var next_dir = this.data.nextPoint.direction || 60 
-            // console.log(nex_dir)
-            if (this.data.mode == MODE_MARK) //渲染mark
+            if (this.data.mode == MODE_MARK) { //渲染mark
                 this.setData({
-                    pointList:renderUtils.point(point_list, d, z),
-                })
-                
-                // stageUtils.rendMark()
+                    pointList: renderUtils.point(point_list, d, z),
+                })      
+            }                        
             else  //渲染导航
             {
                 this.setData({
-                    navList:renderUtils.nav(next_dir,d,z ),
-                    focusList:renderUtils.focus(focus_list,d,z ),
-                    center:renderUtils.center(z),
+                    focusList: renderUtils.point(focus_list, d, z), //目标终点
+                    center: renderUtils.center(z),//中心icon手机方向
+                    navList:renderUtils.nav(next_dir,d,z ),//下一点方向
                 })
-                // stageUtils.rendNav()
-
             }
         },
+
+
+
 
 
 
@@ -214,89 +213,3 @@ Component({
         },
     },
 })
-
-
-
-
-
-
-        // /**模式 */
-        // mode:{
-        //     type: String,
-        //     value: MODE_MARK,
-        //     observer(newVal, oldVal) {
-        //         console.log(newVal,"modes")
-        //         if (newVal == MODE_MARK) //渲染mark
-        //             this.setData({ show: stageUtils.setModeMark()})                        
-        //         else
-        //             this.setData({ show: stageUtils.setModeNav() })
-        //     }
-        // },
-
-        // /**下一点 */
-        // step: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) { }
-        // },
-
-        // /**
-        //  * 结束点 
-        // */
-        // focus: {
-        //     type: Array,
-        //     value: [],
-        //     observer(newVal, oldVal) {
-        //         if (newVal)
-        //             this.setData({ //
-        //                 focusList: stageUtils.filterMarkList({ list: newVal })
-        //             })
-        //      }
-        // },
-
-        // navInfo: {
-        //     type: Object,
-        //     value: {},
-        // },
-
-        // polyline: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) {
-        //         var _map = stageUtils.filterMapPolyline({ polyline: newVal })
-        //         var _markers = stageUtils.filterMarkerInit({
-        //             start: { latitude: newVal[0], longitude: newVal[1]},
-        //             end: { latitude: newVal[newVal.length - 2], longitude: newVal[newVal.length - 1]},
-        //         })
-
-        //         this.setData({
-        //             map: _map,
-        //             markers: _markers
-        //         })
-        //     }
-        // },
-
-
-        // keyword: {
-        //     type: String,
-        //     value: "",
-        //     observer(newVal, oldVal){
-        //         this.setData({
-        //             title: newVal
-        //         })
-        //     }
-        // },
-
-        // gps: {
-        //     type: Object,
-        //     value: {},
-        //     observer(newVal, oldVal) {
-        //         var _markers = stageUtils.filterMarkerGPS({ 
-        //             markers: this.data.markers,
-        //             gps: newVal 
-        //         })
-        //         this.setData({
-        //             markers: _markers
-        //         })
-        //     }
-        // },
