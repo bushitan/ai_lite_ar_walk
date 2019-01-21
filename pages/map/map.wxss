@@ -1,4 +1,5 @@
 /* pages/map/map.wxss */
+@import "../../templates/map/map.wxss";
 
 .btn_content{
     margin-top: 40px;

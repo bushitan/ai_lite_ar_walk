@@ -10,7 +10,7 @@
     摄像头，location 为打开的授权提示页面
  -->
 
-<camera device-position="back" flash="off"  class="camera" style=' height:{{cameraHeight}}vh;'>
+<camera device-position="back" flash="off"  class="camera" style=' height:{{cameraHeight}};'>
 
     <template is="menu_base" data="{{directionName,title}}"  wx:if="{{show.menu}}"/>
 
@@ -21,21 +21,21 @@
         wx:if="{{show.navIcon}}"  />
 
     <!-- 导航的mark -->
-    <template is="mark" data="{{markList:nav.focusList}}" wx:if="{{show.navIcon}}"/>
+    <template is="mark" data="{{markList:nav.focusList}}" />
 
     <!-- 普通的mark -->
-    <template is="mark" data="{{markList}}" wx:if="{{show.mark}}"/>
+    <template is="mark" data="{{markList:pointList}}" wx:if="{{show.mark}}"/>
     <template is="mark_hide_num" data="{{leftNum,rightNum}}" wx:if="{{show.mark}}"/>
     <!-- 点击普通mark展示的详情 -->
-    <template is="mark_info" data="{{markInfo}}"  wx:if="{{show.markInfo}}"/>
+    <template is="mark_info" data="{{markInfo:pointInfo}}"  wx:if="{{show.markInfo}}"/>
 
     
+    <template is="map_camera" wx:if="{{show.navIcon}}" />
     <template is="map_icon" wx:if="{{show.mapIcon}}" />
     
-    <template is="map_camera" wx:if="{{show.mapCamera}}"/>
 </camera>
-
-<template is="map" data="{{navInfo,directionName,map,markers}}"  wx:if="{{show.map}}"/>
+<!-- wx:if="{{show.mapCamera}}" -->
+<!-- <template is="map" data="{{navInfo,directionName,map,markers}}"  wx:if="{{show.map}}"/> -->
 
 
 

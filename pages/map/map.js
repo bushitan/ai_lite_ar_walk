@@ -12,7 +12,10 @@ Page({
         accZ: 0, //手机俯仰姿势
         mode: "mark",
         focusList:[], //导航终点
+        nextPoint:{},
 
+        cameraHeight:"100vh",
+        showMap:false,
     },
 
     /**
@@ -22,7 +25,7 @@ Page({
         GP = this
         this.setData({
             pointList: wx.getStorageSync("point_list"),
-            nextPoint: wx.getStorageSync("nav_list").steps[0],
+            // nextPoint: wx.getStorageSync("nav_list").steps[0],
         })
         // console.log(wx.getStorageSync("nav_list"))
         // console.log(wx.getStorageSync("point_list"))
@@ -34,7 +37,27 @@ Page({
         },1000)
     },
 
+    startNav(e){
+        console.log(e.detail)
+    },
 
+
+
+
+    //打开地图
+    openMap(){
+        GP.setData({
+            cameraHeight: "80vh",
+            showMap:true,
+        })
+    },
+    //关闭地图
+    clickNavMapOff() {
+        GP.setData({
+            cameraHeight: "100vh",
+            showMap: false,
+        })
+    },
 
 
     /**

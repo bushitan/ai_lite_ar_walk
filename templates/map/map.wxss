@@ -63,7 +63,7 @@
 
 /******* 打开地图的按钮 ***********/
 .map_on_switch{
-    position: absolute;
+    position: fixed;
     right: 15px;
     bottom: 15px;
     /* height: 52px; */

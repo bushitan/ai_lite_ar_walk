@@ -19,7 +19,14 @@ Component({
         keyword: {
             type: String,
             value: "",
-            observer(newVal, oldVal) {this.setData({ title: newVal })}
+            observer(newVal, oldVal) { this.setData({ title: newVal }) }
+        },
+        height : {
+            type: String,
+            value: "100vh",
+            observer(newVal, oldVal) {
+                 this.setData({ cameraHeight: newVal 
+            }) }
         },
         //标记点数组
         list: {
@@ -78,24 +85,22 @@ Component({
         direction:0,
         accZ:0,
         pointList:[],
-        pontInfo:{},
+        pointInfo:{},
         nextPoint:{}, 
         focusList:[],
         center:{},
         navList:[],
-        cameraHeight:100,
+        cameraHeight:"100vh",
         navOffsetY:840,
 
-        show:{}, //显示开关
+        show: ShowUtils.onMark(), //显示开关
         //标记
         // clickMarkID: 2,//点击mark的id
 
     },
     ready() {
         GP = this
-        GP.setData({
-            show: ShowUtils.onMark()
-        })            
+        
     },
 
     methods:{
@@ -113,6 +118,7 @@ Component({
                 this.setData({
                     pointList: renderUtils.point(point_list, d, z),
                 })      
+                // console.log(this.data.pointList)
             }                        
             else  //渲染导航
             {
@@ -139,19 +145,23 @@ Component({
          */
         clickMark(e) {
             var _mark_id = e.currentTarget.dataset.mark_id
-            console.log(GP.data.list)
-            stageUtils.clickMark({ mark_id: _mark_id})
-        
+            
+            var _list = this.data.list
+            var _info = {}
+            for (var i = 0; i < _list.length; i++) {
+                if (_list[i].id == _mark_id)
+                    _info = _list[i]
+            }
+            this.setData({
+                pointInfo: _info,
+                show: ShowUtils.onInfo(),
+            })
         },
 
-        /**
-             * @method 关闭mark详情
-             * @for template/mark_info/mark_info.wxml
-             * @param
-             *      {object} e 事件对象
-             */
+        // 关闭详情 latitue,longitude
+        // @for template/mark_info/mark_info.wxml
         clickMarkInfoCancel(e) {
-            stageUtils.clickMarkInfoCancel()
+            this.setData({show: ShowUtils.onMark()})
         },
 
 
@@ -163,7 +173,15 @@ Component({
           */
         clickMarkInfoToNav(e) {
             var _mark_id = e.currentTarget.dataset.mark_id
-            this.triggerEvent('startNav', _mark_id);
+            var _loc_str 
+            var _list = this.data.list
+            for (var i = 0; i < _list.length; i++) {
+                if (_list[i].id == _mark_id){
+                    console.log(_list[i])
+                    _loc_str = _list[i].latitue + ',' + _list[i].longitude
+                }
+            }
+            this.triggerEvent('startNav', _loc_str);
         },
         /**
            * @method 关闭导航
@@ -185,7 +203,8 @@ Component({
         */
         clickNavAndMap(e) {
             // var mark_id = e.currentTarget.dataset.mark_id
-            stageUtils.clickNavAndMap()
+            // stageUtils.clickNavAndMap()
+            this.triggerEvent('openMap');
         },
 
         /**
@@ -195,7 +214,9 @@ Component({
           *      {object} e 事件对象
           */
         clickNavMapOff(e) {
-            stageUtils.clickNavMapOff()
+            // stageUtils.clickNavMapOff()
+
+            // this.triggerEvent('closeMap');
         },
 
 

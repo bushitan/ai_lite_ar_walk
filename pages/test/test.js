@@ -40,6 +40,9 @@ Page({
      */
     onLoad: function (options) {
 
+        wx.navigateTo({
+            url: '/pages/map/map?',
+        })
 
         // var API = require("../../js/ar/ApiUtils.js")
         // var api = new API()
@@ -49,11 +52,11 @@ Page({
         //     // callback
         // })
 
-        var point = require("../../js/stage/PointFn.js")
-        var angle = point.getIncludeAngle(10, 200)
-        console.log(angle)
-        var angle = point.getIncludeAngle(200 , 10)
-        console.log(angle)
+        // var point = require("../../js/stage/PointFn.js")
+        // var angle = point.getIncludeAngle(10, 200)
+        // console.log(angle)
+        // var angle = point.getIncludeAngle(200 , 10)
+        // console.log(angle)
     },
 
 
