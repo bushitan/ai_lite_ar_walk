@@ -10,8 +10,7 @@ var PropertyUtils = require("../../js/stage/PropertyUtils.js")
 var ShowUtils = require("../../js/stage/ShowUtils.js")
 var RenderUtils = require("../../js/stage/RenderUtils.js")
 var renderUtils = new RenderUtils()
-var MODE_MARK = "mark"
-var MODE_NAV = "nav"
+var MODE_MARK = "mark", MODE_NAV = "nav"
 Component({
     properties: {
 

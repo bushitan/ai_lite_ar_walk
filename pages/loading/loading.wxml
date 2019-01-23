@@ -1,0 +1,2 @@
+<!--pages/index/index.wxml-->
+<image src='../../images/loading.jpg' class='bg'></image>

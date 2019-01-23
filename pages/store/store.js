@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/store/store.js
 Page({
 
     /**
@@ -13,12 +13,6 @@ Page({
      */
     onLoad: function (options) {
 
-    },
-
-    toMy(){
-        wx.navigateTo({
-            url: '/pages/my/my',
-        })
     },
 
     /**

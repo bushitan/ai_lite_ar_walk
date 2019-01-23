@@ -1,0 +1,68 @@
+/* pages/store/store.wxss */
+
+/*****相机******/
+.camera{
+    position: fixed;
+    width: 100%;
+    height: 350rpx;
+    top: 0;
+}
+.camera .btn{
+    width:100%;
+    height: 350rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.camera .des{
+    padding: 5px 10px;
+    background-color: #f67428;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 11pt;
+}
+
+/****article****/
+.article{
+    margin: 350rpx 0 70px;
+    padding: 15px;
+}
+.article .content{
+    background-color: #eee;
+    height: 1000px;
+}
+
+
+
+/****底部菜单****/
+.menu {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    padding: 15px 25px 25px;
+    background-color: #fff;
+    /* border-top: 1px solid #e7e7e7; */
+}
+
+.menu .node {
+    margin-right: 15px;
+}
+.menu .title {
+    font-size: 11pt;
+}
+.menu .border{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+.menu .weight{
+    font-weight: bolder;
+}
+.menu .line {
+    width: 15px;
+    height: 3px;
+    background-color: #000;
+    
+}

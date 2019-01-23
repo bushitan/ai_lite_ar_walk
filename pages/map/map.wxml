@@ -17,6 +17,7 @@
     focus="{{focusList}}"
     catch:startNav="startNav"
     catch:openMap="openMap"
+    catch:clickOption="clickOption" 
 >
 </stage>
 

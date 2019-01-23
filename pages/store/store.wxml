@@ -1,0 +1,26 @@
+<!--pages/store/store.wxml-->
+
+<camera class='camera'>    
+    <cover-view class='btn'>    
+        <cover-view class='des'>打开AR导航</cover-view>
+    </cover-view>
+</camera>
+
+<view class='article'>
+    <view class='content'></view>
+</view>
+
+<view class='menu'>
+    <view class='node'>
+        <view class='title weight'>浏览记录</view>
+        <view class='border'>
+            <view class='line'></view>
+        </view>
+    </view>
+    <view class='node'>
+        <view class='title '>浏览记录</view>
+        <view class='border'>
+            <view class=''></view>
+        </view>
+    </view>
+</view>

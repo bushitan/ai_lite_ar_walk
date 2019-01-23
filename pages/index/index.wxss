@@ -1,11 +1,39 @@
 /* pages/index/index.wxss */
 
-.bg{
-    position: absolute;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
+/*****历史记录******/
+.trace {
+    padding: 45px 0 15px 30px;
+}
+
+.trace .mark {
+    padding-bottom:15px; 
+    font-size: 11pt;
+    font-weight: bolder;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.trace .node{
+    padding: 15px 15px 0 0;
+}
+.trace .border{
+    padding-bottom:15px; 
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e7e7e7;
+}
+.trace .word{    
+    width: calc( 750rpx - 45px - 116px - 10px );
+}
+.trace .title{    
+    font-size: 11pt;
+}
+.trace .des{    
+    margin-top: 5px;
+    font-size: 9pt;
+    color: #888;
+}
+.trace .cover{
+    flex-basis: 116px;
+    width: 116px;
+    height: 72px;
 }

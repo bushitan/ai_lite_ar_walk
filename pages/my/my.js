@@ -131,10 +131,16 @@ Page({
         }, 1500)
     },
 
+    toStore() {
+        wx.navigateTo({
+            url: '/pages/store/store',
+        })
+    },
+
     /**
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
 
-    }
+    },
 })

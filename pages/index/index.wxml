@@ -1,2 +1,13 @@
 <!--pages/index/index.wxml-->
-<image src='../../images/loading.jpg' class='bg'></image>
+<view class='trace'>
+    <view class='mark'>浏览记录</view>
+    <view class='node'>
+        <view class='border' catchtap='toMy'>
+            <view class='word'>
+                <view class='title'>门店咖啡拉花</view>
+                <view class='des'>花门店咖啡拉花门店咖啡拉花咖啡拉花门店咖啡拉花门店咖啡拉花门店咖啡拉花门店咖啡拉花门店</view>
+            </view>
+            <image src='../../images/swiper1.jpg' class='cover'></image>
+        </view>
+    </view>
+</view>
