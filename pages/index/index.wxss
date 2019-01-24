@@ -2,12 +2,12 @@
 
 /*****历史记录******/
 .trace {
-    padding: 45px 0 15px 30px;
+    padding: 10px 0 15px 30px;
 }
 
 .trace .mark {
     padding-bottom:15px; 
-    font-size: 11pt;
+    font-size: 12pt;
     font-weight: bolder;
     border-bottom: 1px solid #e7e7e7;
 }

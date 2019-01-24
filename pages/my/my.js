@@ -126,7 +126,7 @@ Page({
         setTimeout(function () {
             wx.hideLoading()
             wx.navigateTo({
-                url: '/pages/map1/map1',
+                url: '/pages/map/map',
             })
         }, 1500)
     },
