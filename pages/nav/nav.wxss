@@ -1,0 +1,10 @@
+/* pages/map/map.wxss */
+@import "../../templates/map/map.wxss";
+
+.btn_content{
+    margin-top: 40px;
+    padding: 15px;
+}
+.btn_content button{
+    margin-right: 5px;
+}

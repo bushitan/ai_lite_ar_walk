@@ -1,12 +1,14 @@
 {
     "pages":[
         "pages/index/index",
-        "pages/store/store",
+        "pages/nav/nav",
         "pages/my/my",
+        "pages/editor/editor",
+        "pages/store/store",
+        "pages/self/self",
         "pages/loading/loading",
         "pages/map/map",
         "pages/content/content",
-        "pages/map_route/map_route",
         
 
         "pages/test/test",
@@ -18,6 +20,18 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "找店店",
         "navigationBarTextStyle":"black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "浏览记录"
+            },
+            {
+                "pagePath": "pages/self/self",
+                "text": "我的编辑"
+            }
+        ]
     },
     "permission": {
         "scope.userLocation": {

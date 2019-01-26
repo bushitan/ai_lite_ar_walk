@@ -19,17 +19,21 @@
     background-color: #f67428;
     color: #fff;
     border-radius: 5px;
+    
     font-size: 11pt;
 }
 
 /****article****/
 .article{
-    margin: 350rpx 0 70px;
+    margin: 350rpx 0 0;
     padding: 15px;
 }
 .article .content{
     background-color: #eee;
     height: 1000px;
+}
+.article image{
+    width: 100%;
 }
 
 
@@ -66,3 +70,4 @@
     background-color: #000;
     
 }
+

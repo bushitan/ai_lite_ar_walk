@@ -1,0 +1,15 @@
+
+
+
+<view class='space'></view>
+<view class='group' catchtap='toStore'>
+    <image class='cover' src='../../images/group1.jpg' mode='widthFix'></image>
+    <view class='title'>咖啡拉花门店</view>
+    <view class='des'>使用高品质咖啡豆、鲜牛奶进行的专业咖啡拉花教学...</view>
+</view>
+
+
+<button class='btn_add' size='mini' type="primary" catchtap='toEditor'>添加地点</button>
+<!-- <view class='space'></view> -->
+
+<!-- <view style='height:40px;'></view> -->

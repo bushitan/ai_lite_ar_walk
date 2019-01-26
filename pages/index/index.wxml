@@ -1,13 +1,23 @@
 <!--pages/index/index.wxml-->
+<view class='space'></view>
 <view class='trace'>
     <view class='mark'>浏览记录</view>
     <view class='node'>
-        <view class='border' catchtap='toMy'>
+        <view class='border' catchtap='toStore'>
             <view class='word'>
-                <view class='title'>门店咖啡拉花</view>
-                <view class='des'>花门店咖啡拉花门店咖啡拉花咖啡拉花门店咖啡拉花门店咖啡拉花门店咖啡拉花门店咖啡拉花门店</view>
+                <view class='title'>NO.1 咖啡拉花门店</view>
+                <view class='des'>使用高品质咖啡豆、鲜牛奶进行的专业咖啡拉花教学</view>
             </view>
-            <image src='../../images/swiper1.jpg' class='cover'></image>
+            <image src='../../images/group1.jpg' class='cover'></image>
+        </view>
+    </view>
+    <view class='node'>
+        <view class='border' catchtap='toStore'>
+            <view class='word'>
+                <view class='title'>NO.2 手工坊门店</view>
+                <view class='des'>课程含手工皮具短款钱包课程、皮带课程、A5笔记本课程各一个</view>
+            </view>
+            <image src='../../images/group2.jpg' class='cover'></image>
         </view>
     </view>
 </view>

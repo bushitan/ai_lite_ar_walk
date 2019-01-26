@@ -1,0 +1,41 @@
+<!--pages/map/map.wxml-->
+
+<!-- <view class='btn_content'>
+    <button size='mini' catchtap=''>普通标点</button>
+    <button size='mini' catchtap=''>展示</button>
+    <button size='mini' catchtap=''>导航开始</button>
+    <button size='mini' catchtap=''>导航结束</button>
+</view> -->
+<stage
+    keyword="木可咖啡"
+    height="{{cameraHeight}}"
+    list="{{pointList}}"
+    dir="{{direction}}"
+    z="{{accZ}}"
+    mode="{{mode}}"
+    next="{{nextPoint}}"
+    focus="{{focusList}}"
+    catch:startNav="startNav"
+    catch:openMap="openMap"
+    catch:clickOption="clickOption" 
+>
+</stage>
+
+
+<import src="../../templates/map/map.wxml" />
+<template is="map" data="{{navInfo,directionName,map,markers}}"  wx:if="{{showMap}}"/>
+
+<!-- 
+    keyword="{{keyword}}"
+    list="{{pointList}}"
+    direction="{{direction}}"
+    acc_z="{{accZ}}"
+    mode="{{mode}}"
+    step="{{step}}"
+    focus="{{focusList}}"
+    navInfo="{{navInfo}}"
+    gps="{{GPSLocation}}"
+    polyline="{{polyline}}"
+    catch:startNav="startNav"
+    catch:closeNav="closeNav"
+    catch:clickOption="clickOption" -->

@@ -20,7 +20,12 @@ Page({
             url: '/pages/my/my',
         })
     },
-
+    toStore() {
+        wx.navigateTo({
+            url: '/pages/store/store',
+        })
+    },
+    
     //获取群组
     getGroup(){
         // wx.request()

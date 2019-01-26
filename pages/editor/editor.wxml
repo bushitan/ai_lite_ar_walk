@@ -1,0 +1,33 @@
+
+
+<!-- <mark color="#187bbf" title="入场券"></mark>
+<view style='height:10px;'></view>
+ <block wx:for="{{signList}}">
+    <ticket title="{{item.meet_name}} " status="已付款（SN:{{item.sign_id}}）" qr="{{item.sign_id}}" name="{{item.cost_name}}"></ticket>
+</block> 
+ <ticket title="{{signList[0].meet_name}} " status="已付款（SN:{{signList[0].sign_id}}）" qr="{{signList[0].sign_id}}" name="{{signList[0].cost_name}}"></ticket> -->
+
+<view class='space'></view>
+<view  class="xx_line__gray">
+    <mark color="#187bbf" title="请完善店铺内容"></mark>
+</view>
+<view class="xx_input ">
+    <xx-input name="名称" placeholder="请输入店铺名称" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+        <view class='xx_line__gray'></view> 
+    <xx-input name="概述" placeholder="请输入概述" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+        <view class='xx_line__gray'></view> 
+    <xx-input name="封面图片" placeholder="请填封面图片地址" bindinput='inputPhone' value='{{userInfo.phone}}'></xx-input>
+
+    <view class='xx_line__gray'></view>     
+    <xx-input name="内容图片" placeholder="请填内容图片地址" bindinput='inputCompany' value='{{userInfo.company}}'></xx-input>
+    <view class='xx_line__gray'></view>     
+    <xx-input name="精度" placeholder="请填精度"  bindinput='inputTaxpayerNumber' value='{{userInfo.taxpayer_number}}'></xx-input>
+
+    <view class='xx_line__gray'></view>     
+    <xx-input name="纬度" placeholder="请填纬度" bindinput='inputCompanyAddress' value='{{userInfo.company_address}}'></xx-input>
+
+</view>
+
+<view class="xx_button__hx" hover-class='xx_button__hx_press' bindtap="updateInfo">更新</view>
+<view class="xx_button__normal" hover-class='xx_button__normal_press' bindtap="back">返回</view>
+<view style='height:30px;'></view> 
