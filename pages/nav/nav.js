@@ -6,7 +6,7 @@ var KEY = "5KFBZ-OSU6F-SUPJ5-NJPMP-JYMU3-YCBZJ"
 qqmapsdk = new QQMapWX({
     key: KEY,
 });
-
+var APP = getApp()
 
 var GP
 Page({
@@ -16,15 +16,29 @@ Page({
      */
     data: {
         title:"",
-        pointList: [],
+
+        //罗盘、三轴陀螺仪、
         direction: 0, //罗盘方向
         accZ: 0, //手机俯仰姿势
-        mode: "mark",
-        focusList:[], //导航终点
-        nextPoint:0,
+        // mode: "nav",
 
+        //浮动点
+        pointList: [],
+        focusList: [], //导航终点
+
+        //导航模块
+        route:{}, //导航信息
+        nextStep: {}, //下一点的信息
+        
+        //地图相关
         cameraHeight:"100vh",
         showMap:false,
+
+        //gps定位信息
+        latitue: '',
+        longitude: '',
+        accuracy:'',
+        speed:'',
     },
 
     /**
@@ -32,79 +46,80 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-        GP.setData({
-            focus: { 
-                latitue: options.latitude, 
-                longitude: options.longitude 
-            }
-        })
+
+        console.log(APP.globalData.focusList )
+        var _list = APP.globalData.focusList
         this.setData({
-            pointList: wx.getStorageSync("point_list"),
+            focusList: _list,
+            focusLatitue: _list[0].location.lat,
+            focusLongitude: _list[0].location.lng,
             // nextPoint: wx.getStorageSync("nav_list").steps[0],
         })
-        // console.log(wx.getStorageSync("nav_list"))
-        // console.log(wx.getStorageSync("point_list"))
 
-        setInterval(function(){
+        GP.startRender()
+    },
+
+    //开始渲染
+    startRender(){
+        //罗盘
+        var  i = 0 
+        GP.getLocation(true)
+        wx.onCompassChange(function (res) {
             GP.setData({
-                direction: 0
-                // direction: parseInt(Math.random() * 300)
+                direction: res.direction
             })
-        },1000)
-        GP.getGroup()
-        // GP.startNav()
-    },
-
-    getGroup(){
-        wx.request({
-            url: 'https://www.51zfgx.com/ai/lite/search/shop/',
-            data: {
-                "group_id": 1
-            },
-            success(res) {
-                console.log(res.data)
-                GP.setData({
-                    pointList: filterGroupToAPI(res.data.shop_list),
-                    focusList: filterGroupToAPI(res.data.shop_list),
-                })
-            },
-        })
-
-        function filterGroupToAPI(shop_list){
-            var _list = shop_list
-            var _temp_list = []
-            for (var i = 0; i < _list.length; i++) {
-                var _s = _list[i]
-                _temp_list.push({
-                    'id': _s.id,
-                    'title': _s.name,
-                    'address': _s.address,
-                    'tel': _s.phone,
-                    'category': _s.category,
-                    'location': { lat: _s.latitude, lng: _s.longitude },
-                })
+            if( i % 70 == 0){
+                GP.getLocation()
             }
-            return _temp_list
-        }
+            // GP.render()
+        })
+        //三轴陀螺仪
+        wx.onAccelerometerChange(function (res) {
+            GP.setData({
+                accZ: res.z
+            })
+        })
     },
 
-    startNav(e){
+    //渲染步骤
+    //TODO 手机倒下一个点10米范围内，设置下一个
+    // render(){
+
+    // },
+
+    //获取自身定位
+    getLocation(isQueryRoute) {
         wx.getLocation({
             type: 'gcj02',
             success(res) {
                 GP.setData({
-                    location: { latitue: res.latitude, longitude: res.longitude }
+                    latitue: res.latitude,
+                    longitude: res.longitude ,
+                    accuracy: res.accuracy,
+                    speed: res.speed,
                 })
+
+                //查询导航数据
+                if (isQueryRoute) {
+                    var from_str = res.latitude + "," + res.longitude
+                    var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
+                    GP.getRoute(from_str, to_str)
+
+                }
+
+                // TODO 手机倒下一个点10米范围内，设置下一个
+                // console.log(GP.data.GPSLocation)
             }
         })
     },
 
-    getRoute(options) {
+    //查询导航数据
+    getRoute(from_str, to_str) {
         // var from_str = options.fromStr
         // var to_str = options.toStr
         // var callback = options.callback
-        var from_str = GP.data.location.latitude + "," + GP.data.location.longitude 
-        var to_str = GP.data.focus.latitude + "," + GP.data.focus.longitude  
+        // var from_str = GP.data.location.latitude + "," + GP.data.location.longitude
+        // var to_str = GP.data.focus.latitude + "," + GP.data.focus.longitude
         // 步行导航
         var opt = {
             //WebService请求地址，from为起点坐标，to为终点坐标，开发key为必填
@@ -118,15 +133,95 @@ Page({
             success: function (res) {
                 console.log(res)
                 var _route = res.data.result.routes[0]
-
+                GP.setData({
+                    // isNav:true,
+                    route:_route,
+                    nextStep: _route.steps[0],
+                })
                 // wx.setStorageSync("nav_list", _route)
                 // GP.setData({ nextPoint: _route.steps[0]})
-               
+
                 // callback(_route)
             }
         };
         wx.request(opt);
     },
+
+        // GP.setData({
+        //     focus: { 
+        //         latitue: options.latitude, 
+        //         longitude: options.longitude 
+        //     }
+        // })
+        // this.setData({
+        //     pointList: wx.getStorageSync("point_list"),
+        //     // nextPoint: wx.getStorageSync("nav_list").steps[0],
+        // })
+        // // console.log(wx.getStorageSync("nav_list"))
+        // // console.log(wx.getStorageSync("point_list"))
+
+        // setInterval(function(){
+        //     GP.setData({
+        //         direction: 0
+        //         // direction: parseInt(Math.random() * 300)
+        //     })
+        // },1000)
+
+
+        
+    // },
+
+
+    // startNav(e){
+    //     wx.getLocation({
+    //         type: 'gcj02',
+    //         success(res) {
+    //             GP.setData({
+    //                 location: { latitue: res.latitude, longitude: res.longitude }
+    //             })
+    //         }
+    //     })
+    // },
+
+
+
+
+
+
+
+
+
+
+
+
+    // getRoute(options) {
+    //     // var from_str = options.fromStr
+    //     // var to_str = options.toStr
+    //     // var callback = options.callback
+    //     var from_str = GP.data.location.latitude + "," + GP.data.location.longitude 
+    //     var to_str = GP.data.focus.latitude + "," + GP.data.focus.longitude  
+    //     // 步行导航
+    //     var opt = {
+    //         //WebService请求地址，from为起点坐标，to为终点坐标，开发key为必填
+    //         url: 'https://apis.map.qq.com/ws/direction/v1/walking/'
+    //             + '?from=' + from_str
+    //             + '&to=' + to_str
+    //             + '&key=' + KEY,
+    //         method: 'GET',
+    //         dataType: 'json',
+    //         //请求成功回调
+    //         success: function (res) {
+    //             console.log(res)
+    //             var _route = res.data.result.routes[0]
+
+    //             // wx.setStorageSync("nav_list", _route)
+    //             // GP.setData({ nextPoint: _route.steps[0]})
+               
+    //             // callback(_route)
+    //         }
+    //     };
+    //     wx.request(opt);
+    // },
 
 
 

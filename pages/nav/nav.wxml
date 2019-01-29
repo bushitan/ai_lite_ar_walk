@@ -8,12 +8,12 @@
 </view> -->
 <stage
     keyword="木可咖啡"
+    mode="nav"
     height="{{cameraHeight}}"
     list="{{pointList}}"
     dir="{{direction}}"
     z="{{accZ}}"
-    mode="{{mode}}"
-    next="{{nextPoint}}"
+    next="{{nextStep}}"
     focus="{{focusList}}"
     catch:startNav="startNav"
     catch:openMap="openMap"
