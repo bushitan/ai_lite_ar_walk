@@ -54,10 +54,10 @@ class renderUtils {
         var _list = [], _length = 5
         for (var i = 0; i < _length; i++) {
             _list.push({
-                x: NavFn.getScreenX(),
-                y: NavFn.getScreenY(),
+                x: NavFn.getScreenX(nextDir, z , i),
+                y: NavFn.getScreenY(nextDir,z,i),
                 w: NavFn.getWidth(),
-                h: NavFn.getHeight(),
+                h: NavFn.getHeight(z),
             })
         }
         return _list

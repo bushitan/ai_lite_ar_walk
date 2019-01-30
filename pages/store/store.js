@@ -50,6 +50,7 @@ Page({
                 console.log(res.data)
                 var _shop_obj = filterGroupToAPI(res.data.shop_list)
                 APP.globalData.focusList = _shop_obj
+                wx.setStorageSync("focusList", _shop_obj)
                 GP.setData({
                     isPrepare:true,
                     focusList: _shop_obj,

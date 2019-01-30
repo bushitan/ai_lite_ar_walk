@@ -67,7 +67,7 @@ Component({
         next: {
             type: Object,
             value: {},
-            observer(newVal, oldVal) { this.setData({ nextPoint: newVal }) }
+            observer(newVal, oldVal) { this.setData({ nextStep: newVal }) }
         },
         //导航终点
         focus: {
@@ -82,10 +82,10 @@ Component({
     data: {
         title:"酒店",
         direction:0,
-        accZ:0,
+        accZ:0.1,
         pointList:[],
         pointInfo:{},
-        nextPoint:{}, 
+        nextStep:{}, 
         focusList:[],
         center:{},
         navList:[],
@@ -108,11 +108,12 @@ Component({
 
             var point_list = this.data.pointList
             var focus_list = this.data.focusList
+            // console.log(focus_list)
             var d = this.data.direction
             var z = this.data.accZ
             //默认下一点是60方向
             //测试用
-            var next_dir = this.data.nextPoint.direction || 60 
+            var next_dir = this.data.nextStep.direction || 180
             if (this.data.mode == MODE_MARK) { //渲染mark
                 this.setData({
                     pointList: renderUtils.point(point_list, d, z),
