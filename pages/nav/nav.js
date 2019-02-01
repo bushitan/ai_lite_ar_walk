@@ -60,12 +60,12 @@ Page({
         })
 
         GP.startRender()
-        // setInterval(function(){
-        //     GP.setData({
-        //         // direction: 0
-        //         direction: parseInt(Math.random() * 300)
-        //     })
-        // },1000)
+        setInterval(function(){
+            GP.setData({
+                // direction: 0
+                direction: parseInt(Math.random() * 300)
+            })
+        },1000)
     },
 
     //开始渲染
@@ -170,12 +170,15 @@ Page({
     //更新下一步
     refreshNextStep(step){
         console.log(step)
+
+        //与下一点的距离
         step.distance = GeoFn.distance(
             GP.data.latitue,
             GP.data.longitude,
             step.latitue,
             step.longitude,
         )
+        //下一点的方向
         step.direction = 60
         GP.setData({
             nextStep:{},

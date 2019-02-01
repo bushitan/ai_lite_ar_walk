@@ -26,7 +26,7 @@ module.exports = {
     compass(latA, lngA, latB, lngB) {
         var A = { latitue: latA, longitude: lngA }
         var B = { latitue: latB, longitude: lngB }
-        var D = new Location({ latitue: A.latitue, longitude: B.longitude })
+        var D = { latitue: A.latitue, longitude: B.longitude }
         // var D = Location.create(A.latitue, B.longitude) //水平辅助点
         var _distance = this.getDistanceAB({ locationA: A, locationB: B })
         var _duan = this.getDistanceAB({ locationA: A, locationB: D })
