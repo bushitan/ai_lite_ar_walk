@@ -18,6 +18,7 @@ Page({
      */
     data: {
         title:"",
+        mode:"nav", //导航模式
 
         //罗盘、三轴陀螺仪、
         direction: 0, //罗盘方向
@@ -31,6 +32,7 @@ Page({
         //导航模块
         route:{}, //导航信息
         nextStep: {}, //下一点的信息
+        routeIndex:0,
         
         //地图相关
         cameraHeight:"100vh",
@@ -115,11 +117,38 @@ Page({
                     GP.getRoute(from_str, to_str)
                 }
 
-                // GP.refreshNextStep()
+                // if (
 
-                // TODO 手机倒下一个点10米范围内，设置下一个
-                // console.log(GP.data.GPSLocation)
+                // )
+                //与下一点的距离
+                var _distance = GeoFn.distance(
+                    GP.data.latitue,
+                    GP.data.longitude,
+                    GP.data.nextStep.latitue,
+                    GP.data.nextStep.longitude,
+                )
+                //距离小于5米
+                if(_distance < 5) {
+                    //是否导航结束
+                    if (GP.data.routeIndex >= GP.data.route.steps.length ){
+                        GP.end()
+                        return
+                    }
+                    var _index = GP.data.routeIndex + 1
+                    var _nextStep = GP.data.route.steps[_index]
+                    GP.setData({
+                        nextStep: GP.refreshNextStep(_nextStep),
+                        routeIndex: _index,
+                    })
+                }
             }
+        })
+    },
+
+    //导航结束
+    end(){
+        GP.setData({
+            mode:"end"
         })
     },
 
@@ -157,10 +186,10 @@ Page({
                 var _route = filter(res.data.result.routes[0])
 
                 GP.setData({
-                    route: _route      
+                    route: _route,
+                    nextStep: GP.refreshNextStep(_route.steps[0]),
+                    routeIndex:0,
                 })
-
-                GP.refreshNextStep(_route.steps[0])
                 
             }
         };
@@ -172,17 +201,32 @@ Page({
         console.log(step)
 
         //与下一点的距离
-        step.distance = GeoFn.distance(
+        var _distance = GeoFn.distance(
             GP.data.latitue,
             GP.data.longitude,
             step.latitue,
             step.longitude,
         )
+        //纵轴辅助计算距离
+        var _dh = GeoFn.distance(
+            GP.data.latitue,
+            GP.data.longitude,
+            step.latitue,
+            GP.data.longitude,
+        )
+
         //下一点的方向
-        step.direction = 60
-        GP.setData({
-            nextStep:{},
-        })
+        step.distance = _distance
+        //角度 + 象限判断
+        step.direction = GeoFn.compass(
+            GP.data.latitue,
+            GP.data.longitude,
+            step.latitue,
+            step.longitude,
+            GeoFn.angle(_dh, _distance)  //角度计算
+        )
+
+        return step
     },
 
 

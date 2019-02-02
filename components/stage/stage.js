@@ -10,7 +10,7 @@ var PropertyUtils = require("../../js/stage/PropertyUtils.js")
 var ShowUtils = require("../../js/stage/ShowUtils.js")
 var RenderUtils = require("../../js/stage/RenderUtils.js")
 var renderUtils = new RenderUtils()
-var MODE_MARK = "mark", MODE_NAV = "nav"
+var MODE_MARK = "mark", MODE_END = "end", MODE_NAV = "nav"
 Component({
     properties: {
 
@@ -58,7 +58,16 @@ Component({
             observer(newVal, oldVal) {
                 console.log(newVal,"modes")
                 if (newVal == MODE_MARK) //渲染mark
-                    this.setData({ show: ShowUtils.onMark()})                        
+                    this.setData({ show: ShowUtils.onMark()})  
+                if (newVal == MODE_END) {
+                    wx.showModal({
+                        title: '导航结束',
+                        content: '到达目的地，店铺就在周边',
+                        success:function(){
+                            wx.navigateBack({})
+                        },
+                    })
+                }
                 else
                     this.setData({ show: ShowUtils.onNav() })
             }

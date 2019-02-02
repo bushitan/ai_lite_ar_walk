@@ -23,17 +23,28 @@ module.exports = {
     },
 
     //罗盘方向角
-    compass(latA, lngA, latB, lngB) {
-        var A = { latitue: latA, longitude: lngA }
-        var B = { latitue: latB, longitude: lngB }
-        var D = { latitue: A.latitue, longitude: B.longitude }
+    angle( _dh,_distance) {
+        // var A = { latitue: latA, longitude: lngA }
+        // var B = { latitue: latB, longitude: lngB }
+        // var D = { latitue: A.latitue, longitude: B.longitude }
         // var D = Location.create(A.latitue, B.longitude) //水平辅助点
-        var _distance = this.getDistanceAB({ locationA: A, locationB: B })
-        var _duan = this.getDistanceAB({ locationA: A, locationB: D })
-        var value = 180 * Math.asin(_duan / _distance) / Math.PI
+        // var _distance = this.getDistanceAB({ locationA: A, locationB: B })
+        // var _duan = this.getDistanceAB({ locationA: A, locationB: D })
+        var value = 180 * Math.asin(_dh / _distance) / Math.PI
         //TODO 四个象限
         return parseInt(value)
-    }
+    },
+    compass(latA, lngA, latB, lngB, angle) {
+        if (latB >= latA && lngB >= lngA) //第一象限
+            return angle
+        if (latB < latA && lngB >= lngA) //第四象限
+            return 180 + angle
+        if (latB < latA && lngB < lngA) //第三象限
+            return 270 - angle
+        if (latB >= latA && lngB < lngA) //第二象限
+            return 360 - angle
+    },
+
 
     
 }

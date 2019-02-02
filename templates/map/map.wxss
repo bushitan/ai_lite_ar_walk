@@ -64,8 +64,8 @@
 /******* 打开地图的按钮 ***********/
 .map_on_switch{
     position: fixed;
-    right: 15px;
-    bottom: 15px;
+    right: 25px;
+    bottom: 30px;
     /* height: 52px; */
 }
 .map_on_switch .map_on_switch_bg{

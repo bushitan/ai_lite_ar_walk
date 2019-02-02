@@ -65,6 +65,17 @@ class SwitchUtils  {
     }
 
     /**
+     * 打开导航
+     */
+    onNavEnd() {
+        this.navInfo = true
+        this.navIcon = true
+        this.mapIcon = true
+        this.navMark = true
+        return this._get()
+    }
+
+    /**
      * 打开导航地图
      */
     onNavMap(){
