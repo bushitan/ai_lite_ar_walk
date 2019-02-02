@@ -31,3 +31,5 @@
 <view class="xx_button__hx" hover-class='xx_button__hx_press' bindtap="updateInfo">更新</view>
 <view class="xx_button__normal" hover-class='xx_button__normal_press' bindtap="back">返回</view>
 <view style='height:30px;'></view> 
+
+<!-- <web-view src="https://xcx.308308.com/huaxun_2/admin/login/?next=/huaxun_2/admin/"></web-view> -->

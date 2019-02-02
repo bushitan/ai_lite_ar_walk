@@ -1,5 +1,6 @@
 {
     "pages":[
+        "pages/content/content",
         "pages/index/index",
         "pages/nav/nav",
         "pages/my/my",
@@ -8,7 +9,6 @@
         "pages/self/self",
         "pages/loading/loading",
         "pages/map/map",
-        "pages/content/content",
         
 
         "pages/test/test",
