@@ -32,6 +32,11 @@
   </block>
   <button
     class="editor-submit-btn"
+    type='primary'
+    style="background-color: {{buttonNormalColor}}; color: {{buttonTextColor}}"
+    bindtap="onPreview">预览</button>
+  <button
+    class="editor-submit-btn"
     style="background-color: {{buttonBackgroundColor}}; color: {{buttonTextColor}}"
     bindtap="onFinish">完成</button>
 </view>

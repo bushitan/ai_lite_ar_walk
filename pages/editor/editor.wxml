@@ -11,22 +11,31 @@
 <view  class="xx_line__gray">
     <mark color="#187bbf" title="请完善店铺内容"></mark>
 </view>
+<view class='cover'>
+    <image src='../../images/group2.jpg' mode="widthFix" wx:if="{{cover_url.length > 0}}"></image>
+    <view class='des' hover-class='des_click' wx:else>点击上传封面</view>
+</view>
 <view class="xx_input ">
     <xx-input name="名称" placeholder="请输入店铺名称" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
         <view class='xx_line__gray'></view> 
     <xx-input name="概述" placeholder="请输入概述" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
-        <view class='xx_line__gray'></view> 
-    <xx-input name="封面图片" placeholder="请填封面图片地址" bindinput='inputPhone' value='{{userInfo.phone}}'></xx-input>
 
     <view class='xx_line__gray'></view>     
-    <xx-input name="内容图片" placeholder="请填内容图片地址" bindinput='inputCompany' value='{{userInfo.company}}'></xx-input>
-    <view class='xx_line__gray'></view>     
-    <xx-input name="精度" placeholder="请填精度"  bindinput='inputTaxpayerNumber' value='{{userInfo.taxpayer_number}}'></xx-input>
+    
+    <xx-input name="位置"  placeholder="点击右边获取位置" mode="check" 
+        bindinput='inputCompanyAddress' value='{{userInfo.company_address}}'
+        catch:click='getLocation' btnName="获取位置"
+    ></xx-input>
 
     <view class='xx_line__gray'></view>     
-    <xx-input name="纬度" placeholder="请填纬度" bindinput='inputCompanyAddress' value='{{userInfo.company_address}}'></xx-input>
+    
+    <xx-input name="详情" placeholder="已编字符：{{shop.content.length}}个" mode="content" 
+        bindinput='inputCompanyAddress' value='{{userInfo.company_address}}'
+        catch:click='toContent' btnName="编辑内容"
+    ></xx-input>
 
 </view>
+<!-- <button catchtap='toContent'>编辑内容</button> -->
 
 <view class="xx_button__hx" hover-class='xx_button__hx_press' bindtap="updateInfo">更新</view>
 <view class="xx_button__normal" hover-class='xx_button__normal_press' bindtap="back">返回</view>

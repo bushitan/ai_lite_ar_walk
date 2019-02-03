@@ -42,9 +42,9 @@
   border-radius: 10rpx;
 }
 
-.editor-submit-btn::before, .editor-submit-btn::after {
+/* .editor-submit-btn::before, .editor-submit-btn::after {
   border: none;
-}
+} */
 
 .editor-add-wrapper {
   display: flex;

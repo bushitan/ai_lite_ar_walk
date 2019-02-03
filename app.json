@@ -1,10 +1,10 @@
 {
     "pages":[
-        "pages/content/content",
         "pages/index/index",
+        "pages/editor/editor",
+        "pages/content/content",
         "pages/nav/nav",
         "pages/my/my",
-        "pages/editor/editor",
         "pages/store/store",
         "pages/self/self",
         "pages/loading/loading",

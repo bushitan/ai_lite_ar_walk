@@ -3,3 +3,31 @@
   margin: 30px;
   text-align: center;
 }
+
+.prepare{
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    padding: 15px;
+    background-color: #fff;
+}
+.prepare .btn_back{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.btn_preview{
+        /* position: fixed;
+    left: 0;
+    right: 0;
+    top: 0; */
+}
+
+.xing-p{
+    font-size: 9pt;
+    margin: 5px 0 ;
+}
+

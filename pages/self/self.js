@@ -12,10 +12,10 @@ Page({
      */
     data: {
         list: [
-            { group_id: 1, name: "木可咖啡" },
-            { group_id: 2, name: "广西大学" },
-            { group_id: 3, name: "广西大学（4点）" },
-            { group_id: 4, name: "福彩大厦" },
+            { shop_id: 1, name: "木可咖啡" },
+            { shop_id: 2, name: "广西大学" },
+            { shop_id: 3, name: "广西大学（4点）" },
+            { shop_id: 4, name: "福彩大厦" },
             // { group_id: 4, name: "KFC" },
         ],
 
@@ -38,11 +38,6 @@ Page({
             })
         })
         GP.initLocation()
-    },
-    toEditor(){
-        wx.navigateTo({
-            url: '/pages/editor/editor',
-        })
     },
     
 
@@ -137,11 +132,32 @@ Page({
         }, 1500)
     },
 
-    toStore() {
+    /**
+     * 导航：店面展示
+     */
+    toStore(e) {
         wx.navigateTo({
-            url: '/pages/store/store',
+            url: '/pages/store/store?shop_id=' + e.currentTarget.dataset.shop_id,
         })
     },
+    /**
+     * 导航：店面数据修改
+     */
+    toUpdate(e) {
+        wx.navigateTo({
+            url: '/pages/editor/editor?shop_id=' +  e.currentTarget.dataset.shop_id,
+        })
+    },
+    /**
+     * 导航：新增店面
+     */
+    toEditor(e) {
+        wx.navigateTo({
+            url: '/pages/editor/editor',
+        })
+    },
+
+
 
     /**
      * 用户点击右上角分享

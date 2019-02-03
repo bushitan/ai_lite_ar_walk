@@ -58,3 +58,46 @@
     </view>
     </picker>
 </view>
+
+
+
+<view wx:if="{{mode == MODE_CHECK}}">
+    <view class="xx_input__node ">
+        <view >
+                <view class="xx_input__name ">{{name}}</view>
+        </view>
+        <view class='xx_input__line'>
+            <input class="" placeholder="{{placeholder}}" bindinput="input" value='{{value}}' />
+        </view>
+        <view class='btn_right' catchtap="click" hover-class='btn_click'>{{btnName}}</view>
+    </view>
+</view>
+
+
+<view wx:if="{{mode == MODE_CONTENT}}">
+    <view class="xx_input__node ">
+        <view >
+                <view class="xx_input__name ">{{name}}</view>
+        </view>
+        <view class='xx_input__line'>
+            <view class='placeholder'>{{placeholder}}</view>
+            <!-- <input class="" placeholder="{{placeholder}}" bindinput="input" value='{{value}}' /> -->
+        </view>
+        <view class='btn_right' catchtap="click" hover-class='btn_click'>{{btnName}}</view>
+    </view>
+</view>
+<!-- <view wx:if="{{mode == MODE_CHECK}}">
+    <picker bindchange="change" value="{{index}}" range="{{array}}">
+    <view class="xx_input__node ">
+        <view >
+                <view class="xx_input__name ">{{name}}</view>
+        </view>
+        
+            <view class='xx_input__line'>                
+                <input class="" disabled='true' placeholder="{{placeholder}}" bindinput="input" value='{{array[index]}}' />
+            </view>
+            <view class=" xx_menu__node_access xx_text__right"></view>
+            <view>获取位置</view>
+    </view>
+    </picker>
+</view> -->

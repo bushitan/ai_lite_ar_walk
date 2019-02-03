@@ -1,42 +1,78 @@
 // components/xing-editor.js
+const qiniuUploader = require("qiniuUploader");
+// var options = {
+//     region: 'ECN', // 华北区
+//     uptokenURL: 'http://127.0.0.1:8000/ai/lite/qiniu/token/',
+//     // uptoken: 'xxx',
+//     domain: 'http://clickz.bkt.clouddn.com',
+//     shouldUseQiniuFileName: true
+// };
+// qiniuUploader.init(options);
+
+
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-    //图片上传相关属性，参考wx.uploadFile
-    imageUploadUrl: String,
-    imageUploadName: String,
-    imageUploadHeader: Object,
-    imageUploadFormData: Object,
-    imageUploadKeyChain: String, //例：'image.url'
+    /**
+     * 组件的属性列表
+     */
+    properties: {
+        //图片上传相关属性，参考wx.uploadFile
+        imageUploadUrl: String,
+        imageUploadName: String,
+        imageUploadHeader: Object,
+        imageUploadFormData: Object,
+        imageUploadKeyChain: String, //例：'image.url'
 
-    //是否在选择图片后立即上传
-    // uploadImageWhenChoose: {
-    //   type: Boolean,
-    //   value: false,
-    // },
+        //是否在选择图片后立即上传
+        // uploadImageWhenChoose: {
+        //   type: Boolean,
+        //   value: false,
+        // },
 
-    //输入内容
-    nodes: Array,
-    html: String,
+        //输入内容
+        nodes: Array,
+        html: {
+            type: String,
+            value: '',
+            observer(newVal, oldVal) {
+                const nodeList = this.HTMLtoNodeList();
+                const textBufferPool = [];
+                nodeList.forEach((node, index) => {
+                    if (node.name === 'p') {
+                        textBufferPool[index] = node.children[0].text;
+                    }
+                })
+                this.setData({
+                    textBufferPool,
+                    nodeList,
+                })
+            }
+        },
 
-    //内容输出格式，参考rich-text组件，默认为节点列表
-    outputType: {
-      type: String,
-      value: 'html',
+        //内容输出格式，参考rich-text组件，默认为节点列表
+        outputType: {
+            type: String,
+            value: 'html',
+        },
+
+        buttonBackgroundColor: {
+            type: String,
+            value: '#409EFF',
+        },
+
+        buttonNormalColor: {
+            type: String,
+            value: '#1AAD19',
+        },
+        buttonNormalTextColor: {
+            type: String,
+            value: '#000',
+        },
+
+        buttonTextColor: {
+            type: String,
+            value: '#fff',
+        },
     },
-
-    buttonBackgroundColor: {
-      type: String,
-      value: '#409EFF',
-    },
-
-    buttonTextColor: {
-      type: String,
-      value: '#fff',
-    },
-  },
 
   /**
    * 组件的初始数据
@@ -171,16 +207,27 @@ Component({
       })
     },
 
-    /**
+      /**
+       * 事件：预览
+       */
+      onPreview: function (e) {
+        wx.showLoading({
+              title: '正在保存',
+          })
+          this.writeTextToNode();
+          this.prepareOutput();
+        //   this.triggerEvent("preview")
+
+      },    /**
      * 事件：提交内容
      */
-    onFinish: function (e) {
-      wx.showLoading({
-        title: '正在保存',
-      })
-      this.writeTextToNode();
-      this.handleOutput();
-    },
+      onFinish: function (e) {
+          wx.showLoading({
+              title: '正在保存',
+          })
+          this.writeTextToNode();
+          this.handleOutput();
+      },
 
     /**
      * 方法：HTML转义
@@ -271,6 +318,7 @@ Component({
       return this.data.nodeList.map(node => `<${node.name} ${Object.keys(node.attrs).map(key => `${key}="${node.attrs[key]}"`).join(' ')}>${node.children ? this.htmlEncode(node.children[0].text) : ''}</${node.name}>`).join('');
     },
 
+
     /**
      * 方法：上传图片
      */
@@ -317,13 +365,139 @@ Component({
         return;
       }
       const node = nodeList[index];
-      if (node.name === 'img' && !node.attrs._uploaded) {
-        this.uploadImage(node).then(() => {
-          this.handleOutput(index + 1)
+    //   var that = this
+    if (node.name === 'img' && !node.attrs._uploaded) {
+        this.getToken().then((res) => {
+            // console.log(arguments)
+            var key = res.data.key
+            var uptoken = res.data.uptoken
+            // console.log(uptoken, key)
+            this.uploadQiniuImage(node,uptoken,key).then((res) => {
+                console.log("up success " ,res)
+                this.handleOutput(index + 1)
+            })
         });
+
+        // this.getToken(node).then(() => {
+        //     this.handleOutput(index + 1)
+        // });
+        //   .then(()=>{
+        //       this.uploadQiniuImage()
+        //   })
+        // this.uploadImage(node).then(() => {
+        //   this.handleOutput(index + 1)
+        // });
       } else {
         this.handleOutput(index + 1);
       }
     },
+
+
+      /**
+       * 方法：获取图片
+       */
+      getToken() {
+          return new Promise(resolve => {
+              wx.request({
+                  url: "http://127.0.0.1:8000/ai/lite/qiniu/token/",
+                  success: function (res) {
+                      console.log("uploadQiniuImage", res)
+                      resolve(res);
+                  },
+              })
+          })
+      },
+      /**
+        * 方法 ： 上传图片成功
+        */
+      uploadQiniuImage(node,uptoken,key) {
+        // var that = this
+        return new Promise(resolve => {
+            // var filePath = node.attrs.src
+            wx.uploadFile({
+                url: 'https://up.qbox.me',
+                // filePath: tempFilePaths[0],//图片
+                filePath: node.attrs.src,//小视频
+                name: 'file',
+                formData: {
+                    'key': key,
+                    'token': uptoken,
+                },
+                success: function (res) {
+                    console.log("in uploadQiniuImage ")
+                    node.attrs.src = "http://img.12xiong.top/" + key;
+                    node.attrs._uploaded = true;
+                    resolve(res);
+                },
+                fail(error) {
+                    if (GP.uploadFailAction != undefined)
+                        GP.uploadFailAction()
+                },
+            })
+
+            // let options = {
+            //     filePath: node.attrs.src,
+            //     url: this.properties.imageUploadUrl,
+            //     name: this.properties.imageUploadName,
+            // }
+            // if (this.properties.imageUploadHeader) {
+            //     options.header = this.properties.imageUploadHeader;
+            // }
+            // if (this.properties.imageUploadFormData) {
+            //     options.formData = this.properties.imageUploadFormData;
+            // }
+            // options.success = res => {
+            //     const keyChain = this.properties.imageUploadKeyChain.split('.');
+            //     let url = JSON.parse(res.data);
+            //     keyChain.forEach(key => {
+            //         url = url[key];
+            //     })
+            //     node.attrs.src = url;
+            //     node.attrs._uploaded = true;
+            //     resolve();
+            // }
+            // wx.uploadFile(options);
+
+            // qiniuUploader.upload(
+            //     filePath, 
+            //     (res) => {
+            //         node.attrs.src = url;
+            //         node.attrs._uploaded = true;
+            //         // resolve();
+            //         // that.setData({
+            //         //     'imageObject': res
+            //         // });
+            //     }, (error) => {
+            //         console.error('error: ' + JSON.stringify(error));
+            //     },
+            //     {
+            //         region: 'ECN',
+            //         key: key, // [非必须]自定义文件 key。如果不设置，默认为使用微信小程序 API 的临时文件名
+            //         uptoken: uptoken, // 由其他程序生成七牛 uptoken
+
+            //     },
+            // );
+        })
+      },
+
+     
+
+    /**
+     * 方法:预览
+     */
+      prepareOutput (index = 0) {
+          let nodeList = this.data.nodeList;
+          if (index >= nodeList.length) {
+              wx.hideLoading();
+              if (this.properties.outputType.toLowerCase() === 'array') {
+                  this.triggerEvent('preview', { content: this.data.nodeList });
+              }
+              if (this.properties.outputType.toLowerCase() === 'html') {
+                  this.triggerEvent('preview', { content: this.nodeListToHTML() });
+              }
+              return;
+          }
+          this.prepareOutput(index + 1);
+      },
   }
 })

@@ -25,7 +25,11 @@ Page({
     onLoad: function (options) {
 
         GP = this
+
+        var shop_id = options.shop_id //商店的id
+
         GP.getGroup()
+
     },
     toNav(){
         if (GP.data.isPrepare)

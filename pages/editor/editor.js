@@ -12,11 +12,46 @@ Page({
         userInfo:{},
         lock:false,
         bb:"43243254",
+
+        shop:{
+            cover_url:"",
+            content:"321321",
+        },
     },
     onLoad: function (options) {
         GP = this
+        console.log(options)
         // GP.onInit()
     },
+
+    /* 
+    *   事件：商铺定位
+    */
+    getLocation(){
+        wx.chooseLocation({
+            success(res) {
+                console.log(res)
+            }
+        })
+        // wx.getLocation({
+        //     type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
+        //     success(res) {
+        //         const latitude = res.latitude
+        //         const longitude = res.longitude
+        //         wx.openLocation({
+        //             latitude,
+        //             longitude,
+        //             scale: 18
+        //         })
+        //     }
+        // })
+    },
+    toContent(){
+        wx.navigateTo({
+            url: '/pages/content/content',
+        })
+    },
+
     back(){
         wx.navigateBack({
             
