@@ -1,7 +1,7 @@
 
 var GP
 var APP = getApp()
-var API 
+const API = require("../../utils/api.js");
 var KEY
 
 
@@ -21,8 +21,47 @@ Page({
     onLoad: function (options) {
         GP = this
         console.log(options)
+        if (options.hasOwnProperty("shop_id"))
+            GP.getContent(options.shop_id)
         // GP.onInit()
     },
+
+    //获取内容
+    getContent(shop_id) {
+        wx.showLoading({
+            title: '数据加载中',
+        })
+        return API.Request({
+            url: API.URL_SHOP_GET,
+            data: { shop_id: shop_id },
+            success: function (res) {
+                GP.setData({
+                    shop: res.data.shop,
+                })
+                wx.hideLoading()
+            },
+        })
+    },
+
+    //确定更新
+    confirm(){
+        return API.Request({
+            url: API.URL_SHOP_ADD,
+            data:{
+
+            },
+            success: function (res) {
+                GP.setData({
+                    shopList: res.data.shop_list,
+                })
+            },
+        })
+    },
+
+
+
+
+
 
     /* 
     *   事件：商铺定位

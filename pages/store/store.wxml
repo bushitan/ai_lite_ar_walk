@@ -9,13 +9,19 @@
         </camera>
     </view>
 
-    <scroll-view scroll-y="ture" class='article'>
+<view class='prepare'>
+    <rich-text nodes="{{shop.content}}" ></rich-text>
+    <view style='height:50px;'></view>
+    <!-- <button class='btn_back' catchtap='offPreview' type='primary'>返回编辑</button> -->
+</view>
+    <!-- <scroll-view scroll-y="ture" class='article'> -->
         <!-- <view class='article'> -->
-            <view class='content'>
-                <image src='{{content}}' mode='widthFix'></image>
-            </view>
+            <!-- <view class='content'> -->
+                <!-- <rich-text nodes="{{shop.content}}"></rich-text> -->
+                <!-- <image src='{{shop.content}}' mode='widthFix'></image> -->
+            <!-- </view> -->
         <!-- </view> -->
-    </scroll-view>
+    <!-- </scroll-view> -->
 <!-- <view class='menu'>
     <view class='node'>
         <view class='title weight'>浏览记录</view>

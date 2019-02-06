@@ -5,12 +5,16 @@ var apiUtils = new ApiUtils()
 var Location = require("../../js/ar/Location.js")
 var LocationUtils = require("../../js/ar/LocationUtils.js")
 var GP
+
+const API = require("../../utils/api.js");
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        shopList:[],
         list: [
             { shop_id: 1, name: "木可咖啡" },
             { shop_id: 2, name: "广西大学" },
@@ -31,15 +35,29 @@ Page({
     onLoad: function (options) {
         GP = this
 
-        GP.setData({
-            location: new Location({ 
-                'latitue': 23.258445, 
-                'longitude': 107.985462 
-            })
-        })
-        GP.initLocation()
+        // GP.setData({
+        //     location: new Location({ 
+        //         'latitue': 23.258445, 
+        //         'longitude': 107.985462 
+        //     })
+        // })
+        // GP.initLocation()
+        GP.getShopList()
     },
-    
+    getShopList(code) {
+        return API.Request({
+            url: API.URL_SHOP_LIST,
+            success: function (res) {
+                GP.setData({
+                    shopList: res.data.shop_list,
+                })
+                // console.log("getUserID", res.data.user.id)
+                // wx.setStorageSync(API.KEY_USER_ID, res.data.user.id)
+            },
+        })
+    },
+
+
 
     /**
      * 不停更新gps
@@ -145,7 +163,7 @@ Page({
      */
     toUpdate(e) {
         wx.navigateTo({
-            url: '/pages/editor/editor?shop_id=' +  e.currentTarget.dataset.shop_id,
+            url: '/pages/editor/editor?shop_id=' + e.currentTarget.dataset.shop_id,
         })
     },
     /**

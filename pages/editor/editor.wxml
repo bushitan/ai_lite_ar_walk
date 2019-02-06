@@ -18,6 +18,8 @@
 <view class="xx_input ">
     <xx-input name="名称" placeholder="请输入店铺名称" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
         <view class='xx_line__gray'></view> 
+    <xx-input name="标题" placeholder="请输入店铺名称" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+        <view class='xx_line__gray'></view> 
     <xx-input name="概述" placeholder="请输入概述" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
 
     <view class='xx_line__gray'></view>     

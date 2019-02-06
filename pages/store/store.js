@@ -8,6 +8,8 @@ qqmapsdk = new QQMapWX({
 });
 var GP
 var APP = getApp()
+const API = require("../../utils/api.js");
+
 Page({
 
     /**
@@ -17,6 +19,8 @@ Page({
         isPrepare:false,
         focusList:[], //导航结束点
         content: "../../images/coffee_content.jpg",
+        shopID:1,
+        shop:{},
     },
 
     /**
@@ -27,10 +31,34 @@ Page({
         GP = this
 
         var shop_id = options.shop_id //商店的id
-
-        GP.getGroup()
-
+        GP.setData({
+            shopID: shop_id || 1
+        })
+        GP.getContent()
     },
+
+    getContent(){
+        return API.Request({
+            url: API.URL_SHOP_GET,
+            data: { shop_id:GP.data.shopID},
+            success: function (res) {
+                GP.setData({
+                    shop: res.data.shop,
+                })
+                // console.log("getUserID", res.data.user.id)
+                // wx.setStorageSync(API.KEY_USER_ID, res.data.user.id)
+            },
+        })
+    },
+
+
+
+
+
+
+
+
+
     toNav(){
         if (GP.data.isPrepare)
             wx.navigateTo({

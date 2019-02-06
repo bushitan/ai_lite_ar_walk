@@ -83,3 +83,21 @@
     
 }
 
+
+/******内容详情*****/
+
+
+.prepare{
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    padding: 15px;
+    background-color: #fff;
+}
+
+.xing-p{
+    font-size: 9pt;
+    margin: 5px 0 ;
+}
