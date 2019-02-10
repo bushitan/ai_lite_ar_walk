@@ -9,24 +9,23 @@
 
 <view class='space'></view>
 <view  class="xx_line__gray">
-    <mark color="#187bbf" title="请完善店铺内容"></mark>
+    <mark color="{{color}}" title="请完善店铺内容"></mark>
 </view>
-<view class='cover'>
+<view class='cover' catchtap='chooseImage'>
     <image src='../../images/group2.jpg' mode="widthFix" wx:if="{{cover_url.length > 0}}"></image>
     <view class='des' hover-class='des_click' wx:else>点击上传封面</view>
 </view>
 <view class="xx_input ">
-    <xx-input name="名称" placeholder="请输入店铺名称" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+    <xx-input name="名称" placeholder="请输入店铺名称" bindinput='inputName' value='{{shop.name}}'></xx-input>
         <view class='xx_line__gray'></view> 
-    <xx-input name="标题" placeholder="请输入店铺名称" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+    <xx-input name="标题" placeholder="请输入展示标题" bindinput='inputTitle' value='{{shop.title}}'></xx-input>
         <view class='xx_line__gray'></view> 
-    <xx-input name="概述" placeholder="请输入概述" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
-
+    <xx-input name="简介" placeholder="请输入展示简介" bindinput='inputSummary' value='{{shop.summary}}'></xx-input>
     <view class='xx_line__gray'></view>     
     
     <xx-input name="位置"  placeholder="点击右边获取位置" mode="check" 
-        bindinput='inputCompanyAddress' value='{{userInfo.company_address}}'
-        catch:click='getLocation' btnName="获取位置"
+        bindinput='inputAddress' value='{{shop.address}}'
+        catch:click='inputLocation' btnName="获取位置"
     ></xx-input>
 
     <view class='xx_line__gray'></view>     
@@ -39,8 +38,18 @@
 </view>
 <!-- <button catchtap='toContent'>编辑内容</button> -->
 
-<view class="xx_button__hx" hover-class='xx_button__hx_press' bindtap="updateInfo">更新</view>
-<view class="xx_button__normal" hover-class='xx_button__normal_press' bindtap="back">返回</view>
+<view class='menu'>
+    <button 
+        class='menu_btn'
+        catchtap='confirm'
+        style="background-color:{{color}}; color: #ffffff"
+        type='primary'
+        hover-class='click'
+    >更新</button>
+</view>
+
+<!-- <view class="xx_button__hx" hover-class='xx_button__hx_press' catchtap='confirm'>更新</view>
+<view class="xx_button__normal" hover-class='xx_button__normal_press' bindtap="back">返回</view> -->
 <view style='height:30px;'></view> 
 
 <!-- <web-view src="https://xcx.308308.com/huaxun_2/admin/login/?next=/huaxun_2/admin/"></web-view> -->

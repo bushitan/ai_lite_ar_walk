@@ -1,15 +1,16 @@
 <!--pages/index/index.wxml-->
-<view class='space'></view>
+<!-- <view class='space'></view> -->
 <view class='group'>
     <view class='mark'>浏览记录</view>
     <block wx:for="{{shopList}}" wx:key="index">
         <view class='node'>
-            <view class='border' catchtap='toStore'>
+            <view class='border' catchtap='toStore' hover-class='click'>
                 <view class='word'>
                     <view class='title'>{{item.title}}</view>
                     <view class='des'>{{item.summary}}</view>
+                    <view class='des'>（地址：{{item.address }}） </view>
                 </view>
-                <image src='{{item.cover}}' class='cover' ></image>
+                <image src='{{item.cover == "" ? "../../images/dialog_image_null.png": item.cover}}' class='cover' ></image>
             </view>
         </view>
         <view class='line' hidden='{{index == shopList.length-1}}'></view>

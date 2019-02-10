@@ -7,10 +7,17 @@
         <cover-view class='nav_distance'>{{navInfo.distance}}米</cover-view>
         <cover-view class='nav_instruction'>{{navInfo.instruction}}</cover-view>
         <cover-view class='nav_des'>{{navInfo.dialog}}</cover-view>
-        
-        <cover-image 
+          
+        <!-- <cover-image 
             class='nav_cancle' 
             src='../../images/nav_cancle2.png'
+            catchtap='clickNavCancel'
+        >
+        </cover-image> -->
+
+        <cover-image 
+            class='nav_back' 
+            src='../../images/menu_option.png'
             catchtap='clickNavCancel'
         >
         </cover-image>

@@ -37,14 +37,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32rpx;
+  /* font-size: 32rpx; */
   margin-top: 20rpx;
   border-radius: 10rpx;
 }
 
-/* .editor-submit-btn::before, .editor-submit-btn::after {
+.editor-submit-btn::before, .editor-submit-btn::after {
   border: none;
-} */
+}
 
 .editor-add-wrapper {
   display: flex;

@@ -4,7 +4,6 @@
         "pages/editor/editor",
         "pages/content/content",
         "pages/nav/nav",
-        "pages/my/my",
         "pages/store/store",
         "pages/self/self",
         "pages/loading/loading",
@@ -12,7 +11,6 @@
         
 
         "pages/test/test",
-        "pages/map1/map1",
         "pages/logs/logs"
     ],
     "window":{
@@ -22,14 +20,22 @@
         "navigationBarTextStyle":"black"
     },
     "tabBar": {
+        "color": "#cdcdcd",
+        "selectedColor": "#ffbc34",
+        "backgroundColor":"#ffffff",
+        "borderStyle":"white",
         "list": [
             {
                 "pagePath": "pages/index/index",
-                "text": "浏览记录"
+                "text": "浏览记录",
+                "iconPath": "images/tabbar_view.png",
+                "selectedIconPath": "images/tabbar_view_select.png"
             },
             {
                 "pagePath": "pages/self/self",
-                "text": "我的编辑"
+                "text": "我的编辑",
+                "iconPath": "images/tabbar_self.png",
+                "selectedIconPath": "images/tabbar_self_select.png"
             }
         ]
     },

@@ -94,7 +94,11 @@ Component({
         accZ:0.1,
         pointList:[],
         pointInfo:{},
-        nextStep:{}, 
+        nextStep:{
+            distance:80,
+            instruction:"个人号突然好",
+            dialog:"4728937893dhuisahdsoaih 萨达撒的",
+        }, 
         focusList:[],
         center:{},
         navList:[],

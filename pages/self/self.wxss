@@ -108,16 +108,17 @@ page{
 
 .group .node{
     margin-top: 10px;
-    padding: 15px ;
+    padding:5px  15px 10px;
     background-color: #fff 
 }
 .group .border{
-    padding-bottom:10px; 
+    padding:10px 0; 
     border-bottom: 1rpx solid #e7e7e7;
 
     display: flex;
     justify-content: space-between;
 }
+
 .group .word{    
     width: calc( 750rpx - 45px - 116px - 10px );
 }
@@ -134,6 +135,14 @@ page{
     width: 116px;
     height: 72px;
 }
+.group .icon_delete{
+    text-align: right;
+}
+.group .icon_delete image{
+    width:16px;
+    height:16px;
+}
+
 .group .icon{
     padding: 10px  0 0 ;
     text-align: right;
@@ -142,11 +151,13 @@ page{
     width:23px;
     height:23px;
 }
-
 /*****添加按钮******/
 
 .btn_add{
     position:fixed;
-    bottom: 15px; 
-    left: 15px;
+    width: 100%;
+    text-align: center;
+    bottom: 10px; 
+     /*left: 15px; */
 }
+

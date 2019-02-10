@@ -31,9 +31,9 @@ Page({
 
     onInit(){
         API.Login().then((code) => {
-            this.getUserID(code)
-        }).then(()=>{
-            this.getTraceList()
+            this.getUserID(code).then(() => {
+                this.getTraceList()
+            })
         })
     },
 

@@ -10,6 +10,13 @@
     border-bottom: 1rpx #f0f0f0 solid;
 }
 
+.menu{
+    padding: 15px;
+}
+
+.menu_btn::before, .menu_btn::after {
+  border: none;
+}
 .xx_button__normal , .xx_button__hx{
 margin: 15px 15px 0;
 padding: 12pt 15px; 
@@ -17,26 +24,26 @@ text-align: center;
 font-size: 11pt;
 line-height: 11pt;
 }
-/* 次要按钮 */
+
 .xx_button__normal{
 color:#000000;
 background-color:#F8F8F8;
 border:1px solid rgba(0, 0, 0, 0.2);
 
 }
-/* button 按钮 */
+
 .xx_button__normal_press{
 color:rgba(0, 0, 0, 0.6);
-background-color:#DEDEDE;
+background-color:#ededed;
 }
 .xx_button__hx{
 color:#FFFFFF;
-background-color:#0087ce;
+background-color:#ffbc34;
 }
 
 .xx_button__hx_press{
     color:rgba(255, 255, 255, 0.6);
-    background-color:#0053a5;
+    background-color:#fec656;
 }
 
 
@@ -60,6 +67,7 @@ background-color:#0087ce;
 }
 
 .cover .des_click{
+    color: #888;
     background-color: #f0f0f0;
 }
 

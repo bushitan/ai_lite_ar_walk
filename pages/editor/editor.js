@@ -7,22 +7,33 @@ var KEY
 
 Page({
     data: {
-        male: ['男', '女'],
-        area:['北京','广西','天津','广东'],
-        userInfo:{},
-        lock:false,
-        bb:"43243254",
-
-        shop:{
-            cover_url:"",
-            content:"321321",
+        // male: ['男', '女'],
+        // area:['北京','广西','天津','广东'],
+        // userInfo:{},
+        // lock:false,
+        // bb:"43243254",
+        color:"#ffbc34",
+        shop: {
+            'shop_id': "",
+            'cover': "",
+            'name': "",
+            'title': "",
+            'summary': "",
+            'content': "",
+            'address': "",
+            'latitude': "",
+            'longitude': "",
         },
     },
     onLoad: function (options) {
         GP = this
         console.log(options)
-        if (options.hasOwnProperty("shop_id"))
+        if (options.hasOwnProperty("shop_id")){
+            var shop = GP.data.shop
+            shop["shop_id"] = options.shop_id
+            GP.setData({ shop: shop})
             GP.getContent(options.shop_id)
+        }
         // GP.onInit()
     },
 
@@ -47,49 +58,83 @@ Page({
     confirm(){
         return API.Request({
             url: API.URL_SHOP_ADD,
-            data:{
-
-            },
+            data: GP.data.shop,
             success: function (res) {
-                GP.setData({
-                    shopList: res.data.shop_list,
+                var pages = getCurrentPages();
+                var prePage = pages[pages.length - 2];
+                prePage.setData({
+                    shopList:res.data.shop_list
+                })
+                wx.showModal({
+                    title: '店铺创建成功',
+                    content: '',
+                    showCancel:false,
+                    confirmText:"返回",
+                    success() {
+                        wx.navigateBack({})
+                    },
                 })
             },
         })
     },
 
+    /*******编辑内容模块*****/
 
+    //选择图片
+    chooseImage(){
+        console.log("upload")
+        wx.chooseImage({
+            count:1,
+            sizeType:'compressed',
+            success: function(res) {
+                console.log(res)
+            },
+        })
+    },
+    //基础输入数据更新
+    inputBase(key, value) {
+        var shop = GP.data.shop
+        shop[key] = value
+        GP.setData({
+            shop: shop
+        })
+    },
 
-
-
-
-    /* 
-    *   事件：商铺定位
-    */
-    getLocation(){
+    //输入名称
+    inputName(e) { GP.inputBase("name", e.detail) },
+    //输入标题
+    inputTitle(e) { GP.inputBase("title", e.detail) },
+    //输入简介
+    inputSummary(e) { GP.inputBase("summary", e.detail) },
+    //事件：输入商铺定位
+    inputLocation() {
         wx.chooseLocation({
             success(res) {
                 console.log(res)
+                GP.inputBase("address", res.address)
+                GP.inputBase("latitude", res.latitude)
+                GP.inputBase("longitude", res.longitude) 
             }
         })
-        // wx.getLocation({
-        //     type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
-        //     success(res) {
-        //         const latitude = res.latitude
-        //         const longitude = res.longitude
-        //         wx.openLocation({
-        //             latitude,
-        //             longitude,
-        //             scale: 18
-        //         })
-        //     }
-        // })
     },
+    inputAddress(e) { GP.inputBase("address", e.detail) },
+    //导航：内容编辑框
     toContent(){
+        wx.setStorageSync("temp_content", GP.data.shop.content)
         wx.navigateTo({
             url: '/pages/content/content',
         })
     },
+
+
+
+
+
+
+
+
+
+
 
     back(){
         wx.navigateBack({
@@ -97,13 +142,6 @@ Page({
         })
     },
 
-    inputName(e) {
-        var _userInfo = GP.data.userInfo
-        _userInfo.name = e.detail
-        GP.setData({
-            userInfo: _userInfo
-        })
-    },
     inputPhone(e) {
         var _userInfo = GP.data.userInfo
         _userInfo.phone = e.detail

@@ -1,10 +1,11 @@
 // pages/index/index.js
-var ARUtils = require("../../js/ar/ARUtils.js")
+// var ARUtils = require("../../js/ar/ARUtils.js")
 var arUtils
-var ApiUtils = require("../../js/ar/ApiUtils.js")
+// var ApiUtils = require("../../js/ar/ApiUtils.js")
 var apiUtils
-var Location = require("../../js/ar/Location.js")
-var LocationUtils = require("../../js/ar/LocationUtils.js")
+// var Location = require("../../js/ar/Location.js")
+// var LocationUtils = require("../../js/ar/LocationUtils.js")
+var Location, LocationUtils
 var GP
 var GROUP_MODE_ID = 0
 var GROUP_MODE_KEYWORD = 1

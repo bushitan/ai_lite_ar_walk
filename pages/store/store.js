@@ -1,11 +1,6 @@
 // pages/store/store.js
 
-var QQMapWX = require('../../utils/wexin/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
-var KEY = "5KFBZ-OSU6F-SUPJ5-NJPMP-JYMU3-YCBZJ"
-qqmapsdk = new QQMapWX({
-    key: KEY,
-});
+
 var GP
 var APP = getApp()
 const API = require("../../utils/api.js");
@@ -43,10 +38,9 @@ Page({
             data: { shop_id:GP.data.shopID},
             success: function (res) {
                 GP.setData({
+                    isPrepare: true,
                     shop: res.data.shop,
                 })
-                // console.log("getUserID", res.data.user.id)
-                // wx.setStorageSync(API.KEY_USER_ID, res.data.user.id)
             },
         })
     },
@@ -54,16 +48,16 @@ Page({
 
 
 
-
-
-
-
-
     toNav(){
-        if (GP.data.isPrepare)
+        if (GP.data.isPrepare) {
+            // var options = "?name=" + GP.data.name +
+            //     "&latitude=" + GP.data.latitude +
+            //     "&longitude=" + GP.data.longitude    
+            wx.setStorageSync('shopList', [GP.data.shop])            
             wx.navigateTo({
                 url: '/pages/nav/nav',
             })
+        }
         else
             wx.showModal({
                 title: '请稍后重试',

@@ -1,12 +1,8 @@
 // pages/map/map.js
 
-var QQMapWX = require('../../utils/wexin/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
-var KEY = "5KFBZ-OSU6F-SUPJ5-NJPMP-JYMU3-YCBZJ"
-qqmapsdk = new QQMapWX({
-    key: KEY,
-});
-var GeoFn = require('../../js/geo/geoFn.js');
+
+var NavUtils = require('navUtils.js');
+var navUtils = new NavUtils()
 
 var APP = getApp()
 
@@ -31,7 +27,11 @@ Page({
 
         //导航模块
         route:{}, //导航信息
-        nextStep: {}, //下一点的信息
+        nextStep: {
+            distance: 80,
+            instruction: "个人号突然好",
+            dialog: "4728937893dhuisahdsoaih 萨达撒的",
+        },  //下一点的信息
         routeIndex:0,
         
         //地图相关
@@ -52,16 +52,19 @@ Page({
         GP = this
 
         console.log(APP.globalData.focusList )
-        // var _list = APP.globalData.focusList
-        var _list = wx.getStorageSync("focusList" )
+        var _shop_list = wx.getStorageSync("shopList" )
+        
         this.setData({
-            focusList: _list,
-            focusLatitue: _list[0].location.lat,
-            focusLongitude: _list[0].location.lng,
+            focusList: _shop_list,
+            focusLatitue: _shop_list[0].latitude,
+            focusLongitude: _shop_list[0].longitude,
             // nextPoint: wx.getStorageSync("nav_list").steps[0],
         })
 
-        GP.startRender()
+
+        GP.initRoute(_shop_list.latitude, _shop_list.longitude)
+
+
         setInterval(function(){
             GP.setData({
                 // direction: 0
@@ -70,11 +73,37 @@ Page({
         },1000)
     },
 
+    //初始化：导航路径
+    initRoute(focusLatitude, focusLongitude){
+        // var from_str = res.latitude + "," + res.longitude
+        // var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
+        navUtils.initLocation().then((res) => {
+            GP.setData({
+                latitue: res.latitude,
+                longitude: res.longitude,
+                accuracy: res.accuracy,
+                speed: res.speed,
+            })
+            var from_str = res.latitude + "," + res.longitude
+            var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
+            //请求具体路径
+            navUtils.requestRoute(from_str, to_str).then( (route)=>{
+                GP.setData({
+                    route: route,
+                    nextStep: navUtils.refreshNextStep(GP,route.steps[0]),
+                    routeIndex: 0,
+                })
+                GP.startRender()
+            })
+        })
+       
+    },
+
     //开始渲染
     startRender(){
         //罗盘
         var  i = 0 
-        GP.getLocation(true)
+        // GP.getLocation(true)
         wx.onCompassChange(function (res) {
             GP.setData({
                 direction: res.direction
@@ -111,11 +140,11 @@ Page({
                 })
 
                 //查询导航数据
-                if (isQueryRoute) {
-                    var from_str = res.latitude + "," + res.longitude
-                    var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
-                    GP.getRoute(from_str, to_str)
-                }
+                // if (isQueryRoute) {
+                //     var from_str = res.latitude + "," + res.longitude
+                //     var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
+                //     GP.getRoute(from_str, to_str)
+                // }
 
                 // if (
 
@@ -137,7 +166,7 @@ Page({
                     var _index = GP.data.routeIndex + 1
                     var _nextStep = GP.data.route.steps[_index]
                     GP.setData({
-                        nextStep: GP.refreshNextStep(_nextStep),
+                        nextStep: navUtils.refreshNextStep(GP,_nextStep),
                         routeIndex: _index,
                     })
                 }
@@ -152,120 +181,7 @@ Page({
         })
     },
 
-    //查询导航数据
-    getRoute(from_str, to_str) {
-
-        // 步行导航
-        var opt = {
-            //WebService请求地址，from为起点坐标，to为终点坐标，开发key为必填
-            url: 'https://apis.map.qq.com/ws/direction/v1/walking/'
-                + '?from=' + from_str
-                + '&to=' + to_str
-                + '&key=' + KEY,
-            method: 'GET',
-            dataType: 'json',
-            //请求成功回调
-            success: function (res) {
-                
-                function filter(routes) {
-                    var coors = routes.polyline, pl = [];
-                    var steps = routes.steps
-                    console.log(steps)
-                    //坐标解压（返回的点串坐标，通过前向差分进行压缩）
-                    var kr = 1000000;
-                    for (var i = 2; i < coors.length; i++) {
-                        coors[i] = Number(coors[i - 2]) + Number(coors[i]) / kr;
-                    }
-                    for (var i = 0; i < steps.length; i++) {
-                        steps[i].latitue = coors[steps[i].polyline_idx[0]]
-                        steps[i].longitude = coors[steps[i].polyline_idx[1]]
-                    }
-                    routes.steps = steps
-                    return routes
-                }
-                var _route = filter(res.data.result.routes[0])
-
-                GP.setData({
-                    route: _route,
-                    nextStep: GP.refreshNextStep(_route.steps[0]),
-                    routeIndex:0,
-                })
-                
-            }
-        };
-        wx.request(opt);
-    },
-
-    //更新下一步
-    refreshNextStep(step){
-        console.log(step)
-
-        //与下一点的距离
-        var _distance = GeoFn.distance(
-            GP.data.latitue,
-            GP.data.longitude,
-            step.latitue,
-            step.longitude,
-        )
-        //纵轴辅助计算距离
-        var _dh = GeoFn.distance(
-            GP.data.latitue,
-            GP.data.longitude,
-            step.latitue,
-            GP.data.longitude,
-        )
-
-        //下一点的方向
-        step.distance = _distance
-        //角度 + 象限判断
-        step.direction = GeoFn.compass(
-            GP.data.latitue,
-            GP.data.longitude,
-            step.latitue,
-            step.longitude,
-            GeoFn.angle(_dh, _distance)  //角度计算
-        )
-
-        return step
-    },
-
-
-
-        // GP.setData({
-        //     focus: { 
-        //         latitue: options.latitude, 
-        //         longitude: options.longitude 
-        //     }
-        // })
-        // this.setData({
-        //     pointList: wx.getStorageSync("point_list"),
-        //     // nextPoint: wx.getStorageSync("nav_list").steps[0],
-        // })
-        // // console.log(wx.getStorageSync("nav_list"))
-        // // console.log(wx.getStorageSync("point_list"))
-
-        // setInterval(function(){
-        //     GP.setData({
-        //         direction: 0
-        //         // direction: parseInt(Math.random() * 300)
-        //     })
-        // },1000)
-
-
-        
-    // },
-
-
-    // startNav(e){
-    //     wx.getLocation({
-    //         type: 'gcj02',
-    //         success(res) {
-    //             GP.setData({
-    //                 location: { latitue: res.latitude, longitude: res.longitude }
-    //             })
-    //         }
-    //     })
-    // },
+  
 
 
 
@@ -274,38 +190,6 @@ Page({
 
 
 
-
-
-
-
-    // getRoute(options) {
-    //     // var from_str = options.fromStr
-    //     // var to_str = options.toStr
-    //     // var callback = options.callback
-    //     var from_str = GP.data.location.latitude + "," + GP.data.location.longitude 
-    //     var to_str = GP.data.focus.latitude + "," + GP.data.focus.longitude  
-    //     // 步行导航
-    //     var opt = {
-    //         //WebService请求地址，from为起点坐标，to为终点坐标，开发key为必填
-    //         url: 'https://apis.map.qq.com/ws/direction/v1/walking/'
-    //             + '?from=' + from_str
-    //             + '&to=' + to_str
-    //             + '&key=' + KEY,
-    //         method: 'GET',
-    //         dataType: 'json',
-    //         //请求成功回调
-    //         success: function (res) {
-    //             console.log(res)
-    //             var _route = res.data.result.routes[0]
-
-    //             // wx.setStorageSync("nav_list", _route)
-    //             // GP.setData({ nextPoint: _route.steps[0]})
-               
-    //             // callback(_route)
-    //         }
-    //     };
-    //     wx.request(opt);
-    // },
 
 
 

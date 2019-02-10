@@ -6,6 +6,7 @@
     background-color:rgba(0, 0, 0, 0.3);
     color: #fff;
     text-align: center;
+    padding: 20px 0 0;
 }
 .nav_info .nav_distance{
     color: #ffc834 ;
@@ -27,6 +28,14 @@
     position: absolute;
     top: 0px;
     right: 15px;
+    width: 23px;
+    height: 23px;
+}
+
+.nav_info .nav_back{
+    position: absolute;
+    top: 40px;
+    left: 15px;
     width: 23px;
     height: 23px;
 }

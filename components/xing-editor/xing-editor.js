@@ -56,12 +56,15 @@ Component({
 
         buttonBackgroundColor: {
             type: String,
-            value: '#409EFF',
+            // value: '#409EFF',
+            value: '#ffbc34',
+            
         },
 
         buttonNormalColor: {
             type: String,
-            value: '#1AAD19',
+            // value: '#1AAD19',
+            value: '#409EFF',
         },
         buttonNormalTextColor: {
             type: String,
