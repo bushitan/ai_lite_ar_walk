@@ -1,12 +1,10 @@
 // pages/map/map.js
-
-
+var GeoFn = require('../../js/geo/geoFn.js');
 var NavUtils = require('navUtils.js');
 var navUtils = new NavUtils()
-
 var APP = getApp()
-
 var GP
+var MODE_NAV="nav",MODE_MARK="mark"
 Page({
 
     /**
@@ -14,7 +12,7 @@ Page({
      */
     data: {
         title:"",
-        mode:"nav", //导航模式
+        mode: MODE_NAV, //导航模式
 
         //罗盘、三轴陀螺仪、
         direction: 0, //罗盘方向
@@ -39,10 +37,16 @@ Page({
         showMap:false,
 
         //gps定位信息
-        latitue: '',
+        latitude: '',
         longitude: '',
         accuracy:'',
         speed:'',
+
+        latitude: '',
+        longitude:'',
+
+        polyline:[], //导航路线
+        markers:[],
     },
 
     /**
@@ -56,39 +60,66 @@ Page({
         
         this.setData({
             focusList: _shop_list,
-            focusLatitue: _shop_list[0].latitude,
+            focusLatitude: _shop_list[0].latitude,
             focusLongitude: _shop_list[0].longitude,
             // nextPoint: wx.getStorageSync("nav_list").steps[0],
         })
 
-
         GP.initRoute(_shop_list.latitude, _shop_list.longitude)
 
 
-        setInterval(function(){
-            GP.setData({
-                // direction: 0
-                direction: parseInt(Math.random() * 300)
-            })
-        },1000)
+
+        // setInterval(function(){
+        //     GP.setData({
+        //         // direction: 0
+        //         direction: parseInt(Math.random() * 300)
+        //     })
+        // },1000)
     },
+
 
     //初始化：导航路径
     initRoute(focusLatitude, focusLongitude){
-        // var from_str = res.latitude + "," + res.longitude
-        // var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
-        navUtils.initLocation().then((res) => {
+        navUtils.getLocation().then((res) => {
+            this.setData({
+                markers: [{ //标记点
+                    iconPath: '../../images/map_hero.png',
+                    id: 0,
+                    latitude: 22.8365877155,
+                    longitude: 108.2939911945,
+                    width: 50,
+                    height: 50
+                }]
+            })
             GP.setData({
-                latitue: res.latitude,
+                latitude: res.latitude,
                 longitude: res.longitude,
                 accuracy: res.accuracy,
                 speed: res.speed,
             })
             var from_str = res.latitude + "," + res.longitude
-            var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
+            var to_str = GP.data.focusLatitude + "," + GP.data.focusLongitude
             //请求具体路径
             navUtils.requestRoute(from_str, to_str).then( (route)=>{
+
+                var polyline = route.polyline
+                var points = []
+                for (var i = 0; i < polyline.length;i=i + 2 ){
+                    points.push({
+                        latitude: polyline[i],
+                        longitude: polyline[i+1],
+                    })
+                }
+                var polyline = [{
+                    points: points,
+                    color: '#FF0000DD',
+                    width: 2,
+                    dottedLine: true
+                }]
+                // route.polyline = polyline
+
                 GP.setData({
+                    polyline: polyline,
                     route: route,
                     nextStep: navUtils.refreshNextStep(GP,route.steps[0]),
                     routeIndex: 0,
@@ -96,7 +127,6 @@ Page({
                 GP.startRender()
             })
         })
-       
     },
 
     //开始渲染
@@ -105,11 +135,16 @@ Page({
         var  i = 0 
         // GP.getLocation(true)
         wx.onCompassChange(function (res) {
+            console.log(res.direction)
             GP.setData({
                 direction: res.direction
             })
             if( i % 70 == 0){
-                GP.getLocation()
+                navUtils.getLocation().then((res) => {
+                    
+                  
+                    GP.isNext()
+                })
             }
             // GP.render()
         })
@@ -121,86 +156,44 @@ Page({
         })
     },
 
-    //渲染步骤
-    //TODO 手机倒下一个点10米范围内，设置下一个
-    // render(){
-
-    // },
-
-    //获取自身定位
-    getLocation(isQueryRoute) {
-        wx.getLocation({
-            type: 'gcj02',
-            success(res) {
+    //判断：是否到导航下一点
+    isNext(){
+        const RANGE = 5  //5米的范围
+        //与下一点的距离
+        var _distance = GeoFn.distance(
+            GP.data.latitude,
+            GP.data.longitude,
+            GP.data.nextStep.latitude,
+            GP.data.nextStep.longitude,
+        )
+        //距离小于5米
+        if (_distance < RANGE) {
+            //是否导航结束
+            if (GP.data.routeIndex >= GP.data.route.steps.length) {
                 GP.setData({
-                    latitue: res.latitude,
-                    longitude: res.longitude ,
-                    accuracy: res.accuracy,
-                    speed: res.speed,
+                    mode: "end"
                 })
-
-                //查询导航数据
-                // if (isQueryRoute) {
-                //     var from_str = res.latitude + "," + res.longitude
-                //     var to_str = GP.data.focusLatitue + "," + GP.data.focusLongitude
-                //     GP.getRoute(from_str, to_str)
-                // }
-
-                // if (
-
-                // )
-                //与下一点的距离
-                var _distance = GeoFn.distance(
-                    GP.data.latitue,
-                    GP.data.longitude,
-                    GP.data.nextStep.latitue,
-                    GP.data.nextStep.longitude,
-                )
-                //距离小于5米
-                if(_distance < 5) {
-                    //是否导航结束
-                    if (GP.data.routeIndex >= GP.data.route.steps.length ){
-                        GP.end()
-                        return
-                    }
-                    var _index = GP.data.routeIndex + 1
-                    var _nextStep = GP.data.route.steps[_index]
-                    GP.setData({
-                        nextStep: navUtils.refreshNextStep(GP,_nextStep),
-                        routeIndex: _index,
-                    })
-                }
+                return
             }
-        })
+            else{
+                var _index = GP.data.routeIndex + 1
+                var _nextStep = GP.data.route.steps[_index]
+                GP.setData({
+                    nextStep: navUtils.refreshNextStep(GP, _nextStep),
+                    routeIndex: _index,
+                })
+            }
+        }
     },
 
-    //导航结束
-    end(){
-        GP.setData({
-            mode:"end"
-        })
-    },
-
-  
-
-
-
-
-
-
-
-
-
-
-
-    //打开地图
+    //按钮：打开地图
     openMap(){
         GP.setData({
             cameraHeight: "80vh",
             showMap:true,
         })
     },
-    //关闭地图
+    //按钮：关闭地图
     clickNavMapOff() {
         GP.setData({
             cameraHeight: "100vh",
@@ -208,6 +201,7 @@ Page({
         })
     },
 
+    //按钮：返回上一页
     clickOption(){
         wx.navigateBack({
             

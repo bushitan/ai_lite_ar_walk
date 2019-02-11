@@ -41,7 +41,8 @@ Component({
             type: Number,
             value: 0,
             observer(newVal, oldVal) {
-                this.setData({ direction: PropertyUtils.direction(newVal, this.data.accZ ) })
+                console.log(newVal, oldVal)
+                this.setData({ direction: PropertyUtils.direction(newVal, oldVal, this.data.accZ ) })
                 // console.log(this.data.direction)
                 this.render()
             }
@@ -72,7 +73,7 @@ Component({
                     this.setData({ show: ShowUtils.onNav() })
             }
         },
-        //下一点方向
+        //下一点
         next: {
             type: Object,
             value: {},
@@ -127,6 +128,7 @@ Component({
             //默认下一点是60方向
             //测试用
             var next_dir = this.data.nextStep.direction || 180
+            // var next_dir = this.data.direction
             if (this.data.mode == MODE_MARK) { //渲染mark
                 this.setData({
                     pointList: renderUtils.point(point_list, d, z),
@@ -157,6 +159,8 @@ Component({
          *      {object} e 事件对象
          */
         clickMark(e) {
+            return
+            
             var _mark_id = e.currentTarget.dataset.mark_id
             
             var _list = this.data.list

@@ -13,29 +13,23 @@ class NavUtils {
 
     }
 
-    initLocation(){
+    //初始化经纬度
+    getLocation(){
         return new Promise(resolve => {
+            
+            //测试接口
             resolve({
                 latitude: 22.8365877155,
                 longitude: 108.2939911945,
                 accuracy:0,
                 speed:0,
-            })
-           
-           
-
-            wx.getLocation({
-                type: 'gcj02',
-                success(res) {
-                    resolve(res)
-                    // GP.setData({
-                    //     latitue: res.latitude,
-                    //     longitude: res.longitude,
-                    //     accuracy: res.accuracy,
-                    //     speed: res.speed,
-                    // })
-                }
-            })
+            })      
+            // wx.getLocation({
+            //     type: 'gcj02',
+            //     success(res) {
+            //         resolve(res)
+            //     }
+            // })
         })
     }
 
@@ -71,12 +65,6 @@ class NavUtils {
                         return routes
                     }
                     var _route = filter(res.data.result.routes[0])
-
-                    // GP.setData({
-                    //     route: _route,
-                    //     nextStep: GP.refreshNextStep(_route.steps[0]),
-                    //     routeIndex: 0,
-                    // })
                     resolve(_route)
                 }
             };
@@ -108,6 +96,38 @@ class NavUtils {
 
         //下一点的方向
         step.distance = _distance
+        //角度 + 象限判断
+        step.direction = GeoFn.compass(
+            GP.data.latitue,
+            GP.data.longitude,
+            step.latitue,
+            step.longitude,
+            GeoFn.angle(_dh, _distance)  //角度计算
+        )
+
+        return step
+    }
+
+    getNextDir(GP, step) {
+        console.log(step)
+
+        //与下一点的距离
+        var _distance = GeoFn.distance(
+            GP.data.latitue,
+            GP.data.longitude,
+            step.latitue,
+            step.longitude,
+        )
+        //纵轴辅助计算距离
+        var _dh = GeoFn.distance(
+            GP.data.latitue,
+            GP.data.longitude,
+            step.latitue,
+            GP.data.longitude,
+        )
+
+        //下一点的方向
+        step.distance = s
         //角度 + 象限判断
         step.direction = GeoFn.compass(
             GP.data.latitue,

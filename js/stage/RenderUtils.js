@@ -53,9 +53,10 @@ class renderUtils {
 
         var _list = [], _length = 5
         for (var i = 0; i < _length; i++) {
+            var angle = PointFn.getSelfAngle(d, nextDir)
             _list.push({
-                x: NavFn.getScreenX(nextDir, z , i),
-                y: NavFn.getScreenY(nextDir,z,i),
+                x: NavFn.getScreenX(angle, z , i),
+                y: NavFn.getScreenY(angle,z,i),
                 w: NavFn.getWidth(),
                 h: NavFn.getHeight(z),
             })

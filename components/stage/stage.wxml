@@ -23,15 +23,19 @@
     <!-- 导航的mark -->
     <template is="mark" data="{{markList:focusList}}" />
 
-    <!-- 普通的mark -->
-    <template is="mark" data="{{markList:pointList}}" wx:if="{{show.mark}}"/>
-    <template is="mark_hide_num" data="{{leftNum,rightNum}}" wx:if="{{show.mark}}"/>
-    <!-- 点击普通mark展示的详情 -->
-    <template is="mark_info" data="{{markInfo:pointInfo}}"  wx:if="{{show.markInfo}}"/>
-
-    
     <template is="map_camera" wx:if="{{show.navIcon}}" />
     <template is="map_icon" wx:if="{{show.mapIcon}}" />
+
+
+
+
+    <!-- 普通的mark -->
+    <!-- <template is="mark" data="{{markList:pointList}}" wx:if="{{show.mark}}"/>
+    <template is="mark_hide_num" data="{{leftNum,rightNum}}" wx:if="{{show.mark}}"/> -->
+    <!-- 点击普通mark展示的详情 -->
+    <!-- <template is="mark_info" data="{{markInfo:pointInfo}}"  wx:if="{{show.markInfo}}"/> -->
+
+    
     
 </camera>
 <!-- wx:if="{{show.mapCamera}}" -->

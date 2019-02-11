@@ -22,8 +22,38 @@
 </stage>
 
 
-<import src="../../templates/map/map.wxml" />
-<template is="map" data="{{navInfo,directionName,map,markers}}"  wx:if="{{showMap}}"/>
+<!-- <import src="../../templates/map/map.wxml" />
+<template is="map" data="{{navInfo,directionName,map,markers}}"  wx:if="{{showMap}}"/> -->
+<view wx:if="{{showMap}}">
+    <map
+        id="map"
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        scale="18"
+        controls="{{controls}}"
+        bindcontroltap="controltap"
+        markers="{{markers}}"
+        bindmarkertap="markertap"
+        polyline="{{polyline}}"
+        bindregionchange="regionchange"
+        show-location
+        enable-scroll="true"
+        enable-overlooking="true"
+        show-compass="true"
+        enable-rotate="true"
+        class='map'
+    >    
+        <cover-image class='map_dialog' src='../../images/map_dialog.png'></cover-image> 
+        <cover-view class='map_btn'>
+            <cover-image 
+                class='map_icon' 
+                src='../../images/nav_map_switch.png'                
+                catchtap='clickNavMapOff'
+            >
+            </cover-image>
+        </cover-view>
+    </map>
+</view>
 
 <!-- 
     keyword="{{keyword}}"
