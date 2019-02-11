@@ -2,8 +2,8 @@
 
 var KEY_USER_ID = "USER_ID"
 // const URL = "http://127.0.0.1:8000"
-const URL = "http://192.168.200.101:8000"
-// const URL = "http://192.168.43.113:8000"
+// const URL = "http://192.168.200.101:8000"
+const URL = "http://192.168.43.113:8000"
 
 module.exports = {
     KEY_USER_ID: KEY_USER_ID,

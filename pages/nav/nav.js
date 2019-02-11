@@ -69,12 +69,12 @@ Page({
 
 
 
-        setInterval(function(){
-            GP.setData({
-                // direction: 0
-                direction: parseInt(Math.random() * 300)
-            })
-        },1000)
+        // setInterval(function(){
+        //     GP.setData({
+        //         // direction: 0
+        //         direction: parseInt(Math.random() * 300)
+        //     })
+        // },1000)
     },
 
 
@@ -168,30 +168,23 @@ Page({
         )
         //距离小于5米
         if (_distance < RANGE) {
-            if (GP.data.routeIndex >= GP.data.route.steps.length) { 
-                GP.end()  //导航结束
+            //是否导航结束
+            if (GP.data.routeIndex >= GP.data.route.steps.length) {
+                GP.setData({
+                    mode: "end"
+                })
+                return
             }
             else{
-                GP.next()  //下一点
+                var _index = GP.data.routeIndex + 1
+                var _nextStep = GP.data.route.steps[_index]
+                GP.setData({
+                    nextStep: navUtils.refreshNextStep(GP, _nextStep),
+                    routeIndex: _index,
+                })
             }
         }
     },
-
-
-    next(){
-        var _index = GP.data.routeIndex + 1
-        var _nextStep = GP.data.route.steps[_index]
-        GP.setData({
-            nextStep: navUtils.refreshNextStep(GP, _nextStep),
-            routeIndex: _index,
-        })
-    },
-    end(){
-        GP.setData({
-            mode: "end"
-        })
-    },
-
 
     //按钮：打开地图
     openMap(){
