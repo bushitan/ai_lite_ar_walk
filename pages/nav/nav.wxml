@@ -6,6 +6,8 @@
     <button size='mini' catchtap=''>导航开始</button>
     <button size='mini' catchtap=''>导航结束</button>
 </view> -->
+<button catchtap='next'>下一点</button>
+<button catchtap='end'>结束</button>
 <stage
     keyword="木可咖啡"
     mode="{{mode}}"
