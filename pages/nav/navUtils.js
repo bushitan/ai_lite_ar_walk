@@ -58,7 +58,7 @@ class NavUtils {
                             coors[i] = Number(coors[i - 2]) + Number(coors[i]) / kr;
                         }
                         for (var i = 0; i < steps.length; i++) {
-                            steps[i].latitue = coors[steps[i].polyline_idx[0]]
+                            steps[i].latitude = coors[steps[i].polyline_idx[0]]
                             steps[i].longitude = coors[steps[i].polyline_idx[1]]
                         }
                         routes.steps = steps
@@ -81,16 +81,16 @@ class NavUtils {
 
         //与下一点的距离
         var _distance = GeoFn.distance(
-            GP.data.latitue,
+            GP.data.latitude,
             GP.data.longitude,
-            step.latitue,
+            step.latitude,
             step.longitude,
         )
         //纵轴辅助计算距离
         var _dh = GeoFn.distance(
-            GP.data.latitue,
+            GP.data.latitude,
             GP.data.longitude,
-            step.latitue,
+            step.latitude,
             GP.data.longitude,
         )
 
@@ -98,9 +98,9 @@ class NavUtils {
         step.distance = _distance
         //角度 + 象限判断
         step.direction = GeoFn.compass(
-            GP.data.latitue,
+            GP.data.latitude,
             GP.data.longitude,
-            step.latitue,
+            step.latitude,
             step.longitude,
             GeoFn.angle(_dh, _distance)  //角度计算
         )
@@ -113,16 +113,16 @@ class NavUtils {
 
         //与下一点的距离
         var _distance = GeoFn.distance(
-            GP.data.latitue,
+            GP.data.latitude,
             GP.data.longitude,
-            step.latitue,
+            step.latitude,
             step.longitude,
         )
         //纵轴辅助计算距离
         var _dh = GeoFn.distance(
-            GP.data.latitue,
+            GP.data.latitude,
             GP.data.longitude,
-            step.latitue,
+            step.latitude,
             GP.data.longitude,
         )
 
@@ -130,9 +130,9 @@ class NavUtils {
         step.distance = s
         //角度 + 象限判断
         step.direction = GeoFn.compass(
-            GP.data.latitue,
+            GP.data.latitude,
             GP.data.longitude,
-            step.latitue,
+            step.latitude,
             step.longitude,
             GeoFn.angle(_dh, _distance)  //角度计算
         )
