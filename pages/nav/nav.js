@@ -69,20 +69,22 @@ Page({
 
 
 
-        setInterval(function(){
-            GP.setData({
-                // direction: 0
-                direction: parseInt(Math.random() * 300)
-            })
-        },1000)
+        // setInterval(function(){
+        //     GP.setData({
+        //         // direction: 0
+        //         direction: parseInt(Math.random() * 300)
+        //     })
+        // },1000)
     },
 
 
     //初始化：导航路径
     initRoute(focusLatitude, focusLongitude){
+        //获取位置
         navUtils.getLocation().then((res) => {
+            //设置标记点
             this.setData({
-                markers: [{ //标记点
+                markers: [{ 
                     iconPath: '../../images/map_hero.png',
                     id: 0,
                     latitude: 22.8365877155,
@@ -91,15 +93,22 @@ Page({
                     height: 50
                 }]
             })
+
             GP.setData({
                 latitude: res.latitude,
                 longitude: res.longitude,
                 accuracy: res.accuracy,
                 speed: res.speed,
             })
+            //更新目标点的距离
+            GP.setData({
+                focusList: navUtils.refreshFocusDis(GP.data.focusList, res.latitude, res.longitude)
+            })
+            
+
+            //请求导航数据      
             var from_str = res.latitude + "," + res.longitude
             var to_str = GP.data.focusLatitude + "," + GP.data.focusLongitude
-            //请求具体路径
             navUtils.requestRoute(from_str, to_str).then( (route)=>{
 
                 var polyline = route.polyline
@@ -187,9 +196,16 @@ Page({
         })
     },
     end(){
-        GP.setData({
-            mode: "end"
+        wx.showModal({
+            title: '导航结束',
+            content: '到达目的地，店铺就在周边',
+            success: function () {
+                wx.navigateBack({})
+            },
         })
+        // GP.setData({
+        //     mode: "end"
+        // })
     },
 
 

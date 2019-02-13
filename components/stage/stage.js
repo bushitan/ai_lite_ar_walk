@@ -42,7 +42,7 @@ Component({
             value: 0,
             observer(newVal, oldVal) {
                 console.log(newVal, oldVal)
-                this.setData({ direction: PropertyUtils.direction(newVal, oldVal, this.data.accZ ) })
+                this.setData({ direction: PropertyUtils.direction(newVal, oldVal, this.data.accZ )                  })
                 // console.log(this.data.direction)
                 this.render()
             }
@@ -60,15 +60,6 @@ Component({
                 console.log(newVal,"modes")
                 if (newVal == MODE_MARK) //渲染mark
                     this.setData({ show: ShowUtils.onMark()})  
-                if (newVal == MODE_END) {
-                    wx.showModal({
-                        title: '导航结束',
-                        content: '到达目的地，店铺就在周边',
-                        success:function(){
-                            wx.navigateBack({})
-                        },
-                    })
-                }
                 else
                     this.setData({ show: ShowUtils.onNav() })
             }

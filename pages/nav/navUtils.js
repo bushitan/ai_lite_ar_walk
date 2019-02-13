@@ -136,11 +136,19 @@ class NavUtils {
             step.longitude,
             GeoFn.angle(_dh, _distance)  //角度计算
         )
-
         return step
     }
 
-
+    refreshFocusDis(focusList, latitude, longitude){
+        var distance = GeoFn.distance(
+            focusList[0].latitude,
+            focusList[0].longitude,
+            latitude,
+            longitude,
+        )
+        focusList[0].distance = distance        
+        return focusList
+    }
 
 
 }
