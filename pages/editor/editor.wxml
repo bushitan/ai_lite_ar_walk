@@ -12,7 +12,7 @@
     <mark color="{{color}}" title="请完善店铺内容"></mark>
 </view>
 <view class='cover' catchtap='chooseImage'>
-    <image src='../../images/group2.jpg' mode="widthFix" wx:if="{{cover_url.length > 0}}"></image>
+    <image src='{{shop.cover}}' mode="widthFix" wx:if="{{shop.cover.length > 0}}"></image>
     <view class='des' hover-class='des_click' wx:else>点击上传封面</view>
 </view>
 <view class="xx_input ">

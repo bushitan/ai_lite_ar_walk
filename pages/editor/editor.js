@@ -13,6 +13,7 @@ Page({
         // lock:false,
         // bb:"43243254",
         color:"#ffbc34",
+        isNewCover:false,
         shop: {
             'shop_id': "",
             'cover': "",
@@ -56,26 +57,60 @@ Page({
 
     //确定更新
     confirm(){
-        return API.Request({
-            url: API.URL_SHOP_ADD,
-            data: GP.data.shop,
-            success: function (res) {
+        if (GP.data.isNewCover)
+            API.Qiniu(GP.data.shop.cover).then(() =>{
+                a()
+            })
+        else 
+            a()
+
+        function a(){
+            var options = {
+                url: API.URL_SHOP_ADD,
+                data: GP.data.shop,
+            }
+            API.Request(options).then((res) => {
                 var pages = getCurrentPages();
                 var prePage = pages[pages.length - 2];
                 prePage.setData({
-                    shopList:res.data.shop_list
+                    shopList: res.data.shop_list
                 })
                 wx.showModal({
-                    title: '店铺创建成功',
+                    title: res.data.msg,
                     content: '',
-                    showCancel:false,
-                    confirmText:"返回",
+                    showCancel: false,
+                    confirmText: "返回",
                     success() {
                         wx.navigateBack({})
                     },
                 })
-            },
-        })
+            })
+        }
+        // API.QiniuToken().then( (res)=>{
+        //     console.log(res)
+            
+            // API.Request({
+            //     url: API.URL_SHOP_ADD,
+            //     data: GP.data.shop,
+            //     success: function (res) {
+            //         var pages = getCurrentPages();
+            //         var prePage = pages[pages.length - 2];
+            //         prePage.setData({
+            //             shopList: res.data.shop_list
+            //         })
+            //         wx.showModal({
+            //             title: res.data.msg,
+            //             content: '',
+            //             showCancel: false,
+            //             confirmText: "返回",
+            //             success() {
+            //                 wx.navigateBack({})
+            //             },
+            //         })
+            //     },
+            // })
+        // })
+       
     },
 
     /*******编辑内容模块*****/
@@ -88,9 +123,16 @@ Page({
             sizeType:'compressed',
             success: function(res) {
                 console.log(res)
+                var shop = GP.data.shop
+                shop.cover = res.tempFilePaths[0]
+                GP.setData({ 
+                    isNewCover: true,
+                    shop: shop,
+                })
             },
         })
     },
+    
     //基础输入数据更新
     inputBase(key, value) {
         var shop = GP.data.shop
