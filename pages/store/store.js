@@ -108,6 +108,10 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
-
+        return {
+            title:"AR地图导航：" + GP.data.shop.name,
+            path: "/pages/index/index?shop_id=" + GP.data.shop.shop_id,
+            imageUrl: GP.data.shop.cover,
+        }
     }
 })

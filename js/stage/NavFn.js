@@ -36,7 +36,7 @@ var nav = {
     //z 俯仰角
     //i 第i个点
     getScreenY: function (nextDir,z,i) {
-        const BaseY = 840 + 70 +25
+        const BaseY = 840 + 70 + 33 - parseInt(Math.abs(33 * z))
         const BaseSpace = 80
         const CIRCLE_RADIUS = 50 //圆圈大小
 

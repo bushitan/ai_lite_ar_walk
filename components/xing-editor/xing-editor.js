@@ -1,5 +1,6 @@
 // components/xing-editor.js
 const qiniuUploader = require("qiniuUploader");
+const API = require("../../utils/api.js");
 // var options = {
 //     region: 'ECN', // 华北区
 //     uptokenURL: 'http://127.0.0.1:8000/ai/lite/qiniu/token/',
@@ -402,7 +403,7 @@ Component({
       getToken() {
           return new Promise(resolve => {
               wx.request({
-                  url: "http://127.0.0.1:8000/ai/lite/qiniu/token/",
+                  url: API.URL_QINIU_TOKEN,
                   success: function (res) {
                       console.log("uploadQiniuImage", res)
                       resolve(res);

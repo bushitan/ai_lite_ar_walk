@@ -16,11 +16,11 @@
             </view>
             <view class='border' catchtap='toStore' data-shop_id='{{item.shop_id}}' hover-class='click'>
                 <view class='word'>
-                    <view class='title'>{{item.title == ""?"（未填写标题）":item.title}}</view>
-                    <view class='des'>{{item.summary == ""?"（未填写简介）":item.summary}}</view>
-                    <view class='des'>（地址：{{item.address }}） </view>
-                    <view class='des'>（经度：{{item.longitude }}） </view>
-                    <view class='des'>（纬度：{{item.latitude }}） </view>
+                    <view class='title'>{{item.name == ""?"（未填写标题）":item.name}}</view>
+                    <view class='des'>{{item.title == ""?"（未填写简介）":item.title}}</view>
+                    <view class='des'>**地址：{{item.address }} </view>
+                    <view class='des'>**经度：{{item.longitude }} </view>
+                    <view class='des'>**纬度：{{item.latitude }} </view>
                 </view>
                 <image src='{{item.cover == "" ? "../../images/dialog_image_null.png": item.cover}}' class='cover'></image>
             </view>

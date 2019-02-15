@@ -16,16 +16,21 @@ Page({
     onLoad: function (options) {
         GP = this
         this.onInit()
+
+        if(options.hasOwnProperty("shop_id")){
+            GP.navStore(options.shop_id)
+        }
     },
 
-    toMy(){
-        wx.navigateTo({
-            url: '/pages/my/my',
-        })
+    toMy(e){        
+        GP.navStore(e.currentTarget.dataset.shop_id)
     },
-    toStore() {
+    toStore(e) {
+        GP.navStore(e.currentTarget.dataset.shop_id)
+    },
+    navStore(id){
         wx.navigateTo({
-            url: '/pages/store/store',
+            url: '/pages/store/store?shop_id=' + id,
         })
     },
 

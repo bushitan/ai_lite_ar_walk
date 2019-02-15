@@ -18,18 +18,18 @@ class NavUtils {
         return new Promise(resolve => {
             
             //测试接口
-            resolve({
-                latitude: 22.8365877155,
-                longitude: 108.2939911945,
-                accuracy:0,
-                speed:0,
-            })      
-            // wx.getLocation({
-            //     type: 'gcj02',
-            //     success(res) {
-            //         resolve(res)
-            //     }
-            // })
+            // resolve({
+            //     latitude: 22.8365877155,
+            //     longitude: 108.2939911945,
+            //     accuracy:0,
+            //     speed:0,
+            // })      
+            wx.getLocation({
+                type: 'gcj02',
+                success(res) {
+                    resolve(res)
+                }
+            })
         })
     }
 
@@ -127,7 +127,7 @@ class NavUtils {
         )
 
         //下一点的方向
-        step.distance = s
+        step.distance = _distance
         //角度 + 象限判断
         step.direction = GeoFn.compass(
             GP.data.latitude,
@@ -140,13 +140,30 @@ class NavUtils {
     }
 
     refreshFocusDis(focusList, latitude, longitude){
-        var distance = GeoFn.distance(
-            focusList[0].latitude,
-            focusList[0].longitude,
+        //距离
+        var _distance = GeoFn.distance(
             latitude,
             longitude,
+            focusList[0].latitude,
+            focusList[0].longitude,
         )
-        focusList[0].distance = distance        
+        //纵轴辅助计算距离
+        var _dh = GeoFn.distance(
+            latitude,
+            longitude,
+            focusList[0].latitude,
+            longitude,
+        )
+
+        focusList[0].distance = _distance  
+        focusList[0].compass_direction = GeoFn.compass(
+            latitude,
+            longitude,
+            focusList[0].latitude,
+            focusList[0].longitude,
+            GeoFn.angle(_dh, _distance)  //角度计算
+        )
+
         return focusList
     }
 

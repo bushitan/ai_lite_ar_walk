@@ -37,13 +37,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "mode=0&group_id=1"
+					"query": "shop_id=4",
+					"scene": null
 				},
 				{
 					"id": 1,
@@ -85,7 +86,7 @@
 					"id": 7,
 					"name": "store",
 					"pathName": "pages/store/store",
-					"query": "shop_id=1",
+					"query": "shop_id=5",
 					"scene": null
 				},
 				{

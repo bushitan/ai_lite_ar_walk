@@ -58,7 +58,13 @@ Page({
     //确定更新
     confirm(){
         if (GP.data.isNewCover)
-            API.Qiniu(GP.data.shop.cover).then(() =>{
+            API.Qiniu(GP.data.shop.cover).then((key) =>{
+
+                var shop = GP.data.shop
+                shop.cover = "http://img.12xiong.top/" + key
+                GP.setData({
+                    shop: shop,
+                })
                 a()
             })
         else 
@@ -122,6 +128,9 @@ Page({
             count:1,
             sizeType:'compressed',
             success: function(res) {
+                // GP.setData({ 
+                //     isNewCover: true,
+                // })
                 console.log(res)
                 var shop = GP.data.shop
                 shop.cover = res.tempFilePaths[0]

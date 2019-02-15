@@ -16,12 +16,12 @@
     <view class='des' hover-class='des_click' wx:else>点击上传封面</view>
 </view>
 <view class="xx_input ">
-    <xx-input name="名称" placeholder="请输入店铺名称" bindinput='inputName' value='{{shop.name}}'></xx-input>
+    <xx-input name="简称" placeholder="请输入店铺简称" bindinput='inputName' value='{{shop.name}}'></xx-input>
         <view class='xx_line__gray'></view> 
-    <xx-input name="标题" placeholder="请输入展示标题" bindinput='inputTitle' value='{{shop.title}}'></xx-input>
+    <xx-input name="全称" placeholder="请输入展示全称" bindinput='inputTitle' value='{{shop.title}}'></xx-input>
         <view class='xx_line__gray'></view> 
-    <xx-input name="简介" placeholder="请输入展示简介" bindinput='inputSummary' value='{{shop.summary}}'></xx-input>
-    <view class='xx_line__gray'></view>     
+    <!-- <xx-input name="简介" placeholder="请输入展示简介" bindinput='inputSummary' value='{{shop.summary}}'></xx-input>
+    <view class='xx_line__gray'></view>      -->
     
     <xx-input name="位置"  placeholder="点击右边获取位置" mode="check" 
         bindinput='inputAddress' value='{{shop.address}}'

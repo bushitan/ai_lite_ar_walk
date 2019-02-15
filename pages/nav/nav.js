@@ -26,9 +26,9 @@ Page({
         //导航模块
         route:{}, //导航信息
         nextStep: {
-            distance: 80,
-            instruction: "个人号突然好",
-            dialog: "4728937893dhuisahdsoaih 萨达撒的",
+            distance: 88,
+            instruction: "",
+            dialog: "",
         },  //下一点的信息
         routeIndex:0,
         
@@ -77,35 +77,24 @@ Page({
         // },1000)
     },
 
+    refreshLocation(res){
+        GP.setData({
+            latitude: res.latitude,
+            longitude: res.longitude,
+            accuracy: res.accuracy,
+            speed: res.speed,
+        })
+        //更新目标点的距离
+        GP.setData({
+            focusList: navUtils.refreshFocusDis(GP.data.focusList, res.latitude, res.longitude)
+        })
+    },
 
     //初始化：导航路径
     initRoute(focusLatitude, focusLongitude){
         //获取位置
-        navUtils.getLocation().then((res) => {
-            //设置标记点
-            this.setData({
-                markers: [{ 
-                    iconPath: '../../images/map_hero.png',
-                    id: 0,
-                    latitude: 22.8365877155,
-                    longitude: 108.2939911945,
-                    width: 50,
-                    height: 50
-                }]
-            })
-
-            GP.setData({
-                latitude: res.latitude,
-                longitude: res.longitude,
-                accuracy: res.accuracy,
-                speed: res.speed,
-            })
-            //更新目标点的距离
-            GP.setData({
-                focusList: navUtils.refreshFocusDis(GP.data.focusList, res.latitude, res.longitude)
-            })
-            
-
+        navUtils.getLocation(GP).then((res) => {
+            GP.refreshLocation(res)
             //请求导航数据      
             var from_str = res.latitude + "," + res.longitude
             var to_str = GP.data.focusLatitude + "," + GP.data.focusLongitude
@@ -144,14 +133,14 @@ Page({
         var  i = 0 
         // GP.getLocation(true)
         wx.onCompassChange(function (res) {
-            console.log(res.direction)
+            // console.log(res.direction)
             GP.setData({
                 direction: res.direction
             })
-            if( i % 70 == 0){
+            i++
+            if( i % 10 == 0){
                 navUtils.getLocation().then((res) => {
-                    
-                  
+                    GP.refreshLocation(res)
                     GP.isNext()
                 })
             }
@@ -235,6 +224,10 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
-
+        return {
+            title: "AR地图导航：" + GP.data.focusList[0].name,
+            path: "/pages/index/index?shop_id=" + GP.data.focusList[0].shop_id,
+            imageUrl: GP.data.focusList[0].cover,
+        }
     }
 })

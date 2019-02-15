@@ -41,7 +41,7 @@ Component({
             type: Number,
             value: 0,
             observer(newVal, oldVal) {
-                console.log(newVal, oldVal)
+                // console.log(newVal, oldVal)
                 this.setData({ direction: PropertyUtils.direction(newVal, oldVal, this.data.accZ )                  })
                 // console.log(this.data.direction)
                 this.render()
@@ -198,9 +198,12 @@ Component({
            *      {object} e 事件对象
            */
         clickNavCancel(e) {
+            wx.navigateBack({
+                
+            })
             // var _mark_id = e.currentTarget.dataset.mark_id
-            this.triggerEvent('closeNav');
-            stageUtils.clickNavCancel()
+            // this.triggerEvent('closeNav');
+            // stageUtils.clickNavCancel()
         },
         
         /**

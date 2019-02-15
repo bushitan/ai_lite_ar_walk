@@ -93,11 +93,15 @@
     bottom: 0;
     right: 0;
     left: 0; */
-    padding: 15px;
+    padding: 10px;
     background-color: #fff;
 }
+/* .prepare img{
+    width: 300px !important;
+} */
 
 .xing-p{
-    font-size: 9pt;
+    font-size: 11pt ;
+    line-height: 1.3rem;
     margin: 5px 0 ;
 }

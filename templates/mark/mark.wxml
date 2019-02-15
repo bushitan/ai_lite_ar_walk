@@ -14,7 +14,7 @@
                 src='../../images/menu_address.png' >
             </cover-image>
             <cover-view>    
-                <cover-view class='title'>{{item.title}}</cover-view>
+                <cover-view class='title'>{{item.name}}</cover-view>
                 <cover-view  class='title'>{{item.distance}}米</cover-view>
                 <!-- <cover-view  
                     class='title' 

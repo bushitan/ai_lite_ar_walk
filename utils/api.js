@@ -2,8 +2,9 @@
 
 var KEY_USER_ID = "USER_ID"
 // const URL = "http://127.0.0.1:8000"
-const URL = "http://192.168.200.101:8000"
-
+// const URL = "http://192.168.200.101:8000"
+// const URL = "http://192.168.1.101:8000"
+const URL = "https://www.51zfgx.com"
 // const URL = "http://192.168.43.113:8000"
 
 module.exports = {
@@ -109,11 +110,11 @@ module.exports = {
                 name: 'file',
                 formData: {
                     'key': options.key,
-                    'token': options.uptoken,
+                    'token': options.token,
                 },
                 success: function (res) {
                     if (options.hasOwnProperty("success")) options.success(res)
-                    resolve(res);
+                    resolve(options.key);
                    
                     // if (options.hasOwnProperty("fail")) options.fail(res)
                     // resolve(res);

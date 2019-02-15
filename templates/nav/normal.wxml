@@ -21,12 +21,13 @@ const DIRECTION_BACK = 14 //后方  -->
             style='top:{{item.y}}rpx;left:{{item.x}}rpx ; width: {{item.w}}rpx; height: {{item.h}}rpx;'
         ></cover-image>
     </block> 
+
     <cover-view class='nav_normal' style='top:{{navIcon.y}}rpx'>
         <cover-image class='icon_arrow' 
+            
             src='../../images/nav_icon_center.png' 
             style='width:{{navIcon.width}}rpx;height:{{navIcon.height}}rpx;margin-top:{{m1.getTop(navIcon.height)}}rpx;'
             >
         </cover-image>
     </cover-view>
-
 </template>

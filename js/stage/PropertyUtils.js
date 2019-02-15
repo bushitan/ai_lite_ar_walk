@@ -15,6 +15,7 @@ var PropertyUtils = {
             var _sprite = new SpriteMark({
                 id: _m.id,
                 title: _m.title,
+                name:_m.name,
                 // address: _m.address,
                 // category: _m.category,
                 latitue: _m.latitue,
