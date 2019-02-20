@@ -1,0 +1,36 @@
+<!--pages/geo/geo.wxml-->
+<map 
+    class='map'
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+    bindmarkertap="clickMarker"
+    show-location
+    enable-scroll="true"
+    enable-overlooking="true"
+    show-compass="true"
+    enable-rotate="true"
+    scale="16"
+>
+    <cover-view class='callout' hidden='{{!isShowCallout}}'>
+        <cover-view class='box'>
+            <cover-image class='cover' src='{{currentShop.cover}}' mode='aspectFit'></cover-image>
+             <cover-view class='content'>
+                <cover-view class='name'>{{currentShop.name}}</cover-view>
+                <cover-view class='title'>{{currentShop.title}}</cover-view>
+                <cover-view class='tool'>
+                    <cover-view 
+                        class='nav btn' 
+                        catchtap='toStore' 
+                        data-shop_id="{{currentShop.shop_id}}" >实景导航</cover-view>
+                    <cover-view class='collect btn' catchtap='toCollect'>集点卡</cover-view>
+                </cover-view>
+            </cover-view>
+        </cover-view >
+    </cover-view>
+
+    
+    <cover-view class='search' >
+        <cover-view class='btn' >搜索</cover-view>
+    </cover-view>
+</map>

@@ -1,0 +1,70 @@
+/* pages/geo/geo.wxss */
+
+.map{
+    width: 100vw;
+    height: 100vh;
+}
+
+.callout{
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    right: 30px;
+    padding: 15px;
+    background-color: #ffffff;
+}
+.callout .box{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.callout .cover{
+    width: 96px;
+    height: 64px;
+}
+.callout .content{
+    padding-left:10px 
+}
+.callout .name {    
+    font-size: 11pt;
+}
+.callout .title{
+    font-size: 9pt;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.callout .tool{
+    display: flex;
+    /* justify-content: flex-end; */
+    margin-top: 5px;
+}
+.callout .btn{
+    font-size: 9pt;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+.callout .nav{
+    background-color:#ffbc34;
+    margin-right: 10px;
+
+}
+.callout .collect{
+    background-color:yellowgreen;
+}
+
+
+.search {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.search .btn {
+    font-size: 11pt;
+    background-color: #ffbc34;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 30px;
+}

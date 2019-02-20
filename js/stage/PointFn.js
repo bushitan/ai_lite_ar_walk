@@ -24,7 +24,8 @@ var point = {
         var halfWidth = screenWidth / 2
         var baseStep = parseInt(screenWidth / baseAngle)
         if ( Math.abs(angle) > baseAngle)
-            return 1000
+            if (angle > 0) return 630
+            else return 10
         else 
             return halfWidth + baseStep * angle        
     },

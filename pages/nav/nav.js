@@ -42,8 +42,9 @@ Page({
         accuracy:'',
         speed:'',
 
-        latitude: '',
-        longitude:'',
+        //地图中心经纬度
+        centerLatitude: '',
+        centerLongitude:'',
 
         polyline:[], //导航路线
         markers:[],
@@ -90,6 +91,31 @@ Page({
         })
     },
 
+    //设置起始位置icon
+    setRouteIcon(startLat,startLng,endLat,endLng){
+        GP.setData({
+            markers: [
+                {
+                    iconPath: '../../images/map_start.png',
+                    id: 0,
+                    latitude: startLat,
+                    longitude: startLng,
+                    width: 50,
+                    height: 50
+                },
+                {
+                    iconPath: '../../images/map_end.png',
+                    id: 0,
+                    latitude: endLat,
+                    longitude: endLng,
+                    width: 50,
+                    height: 50
+                },
+            ],
+            centerLatitude: startLat,
+            centerLongitude: startLng,
+        })
+    },
     //初始化：导航路径
     initRoute(focusLatitude, focusLongitude){
         //获取位置
@@ -98,6 +124,9 @@ Page({
             //请求导航数据      
             var from_str = res.latitude + "," + res.longitude
             var to_str = GP.data.focusLatitude + "," + GP.data.focusLongitude
+            //设置起始位置icon
+            GP.setRouteIcon(res.latitude, res.longitude, GP.data.focusLatitude, GP.data.focusLongitude)
+
             navUtils.requestRoute(from_str, to_str).then( (route)=>{
 
                 var polyline = route.polyline
@@ -201,8 +230,10 @@ Page({
     //按钮：打开地图
     openMap(){
         GP.setData({
-            cameraHeight: "80vh",
+            cameraHeight: "70vh",
             showMap:true,
+            centerLatitude: GP.data.latitude,
+            centerLongitude: GP.data.longitude,
         })
     },
     //按钮：关闭地图

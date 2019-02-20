@@ -29,8 +29,8 @@
 <view wx:if="{{showMap}}">
     <map
         id="map"
-        latitude="{{latitude}}"
-        longitude="{{longitude}}"
+        latitude="{{centerLatitude}}"
+        longitude="{{centerLongitude}}"
         scale="18"
         controls="{{controls}}"
         bindcontroltap="controltap"

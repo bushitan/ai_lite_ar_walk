@@ -1,5 +1,6 @@
 {
     "pages":[
+        "pages/geo/geo",
         "pages/index/index",
         "pages/editor/editor",
         "pages/content/content",
@@ -25,6 +26,12 @@
         "backgroundColor":"#ffffff",
         "borderStyle":"white",
         "list": [
+            {
+                "pagePath": "pages/geo/geo",
+                "text": "咖啡地图",
+                "iconPath": "images/tabbar_view.png",
+                "selectedIconPath": "images/tabbar_view_select.png"
+            },
             {
                 "pagePath": "pages/index/index",
                 "text": "浏览记录",
