@@ -31,7 +31,7 @@ Page({
 
     getTraceList() {
         return API.Request({
-            url: API.URL_SHOP_LIST,
+            url: API.URL_SHOP_LIST_SEARCH,
             success: function (res) {
                 GP.setData({
                     shopList: res.data.shop_list,
