@@ -14,7 +14,11 @@
 >
     <cover-view class='callout' hidden='{{!isShowCallout}}'>
         <cover-view class='box'>
-            <cover-image class='cover' src='{{currentShop.cover}}' mode='aspectFit'></cover-image>
+            <cover-image 
+                class='cover' 
+                src='{{currentShop.cover}}' 
+                mode='aspectFit'
+                hidden='{{ currentShop.cover == "" ? true:false}}'></cover-image>
              <cover-view class='content'>
                 <cover-view class='name'>{{currentShop.name}}</cover-view>
                 <cover-view class='title'>{{currentShop.title}}</cover-view>
@@ -31,6 +35,6 @@
 
     
     <cover-view class='search' >
-        <cover-view class='btn' >搜索</cover-view>
+        <cover-view class='btn' catchtap='toAI' >找LOGO，买一送一</cover-view>
     </cover-view>
 </map>

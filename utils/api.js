@@ -1,15 +1,15 @@
 
 
 var KEY_USER_ID = "USER_ID"
-const URL = "http://127.0.0.1:8000"
+// const URL = "http://127.0.0.1:8000"
 // const URL = "http://192.168.200.101:8000"
 // const URL = "http://192.168.1.101:8000"
-// const URL = "https://www.51zfgx.com"
+const URL = "https://www.51zfgx.com"
 // const URL = "http://192.168.43.113:8000"
 
 
-// const APPID = "wxd2f409241725502b" //diandian
-const APPID = "wx7500cd1b23a33998" //coffee
+// const APPID = "wxd2f409241725502b" //找店店
+const APPID = "wx7500cd1b23a33998" //咖啡小地图
 
 module.exports = {
     KEY_USER_ID: KEY_USER_ID,
@@ -23,7 +23,7 @@ module.exports = {
     URL_SHOP_ADD: URL +"/ai/lite/shop/add/", //增加、更新店铺
     URL_SHOP_DELETE: URL + "/ai/lite/shop/delete/", //删除店铺
     URL_SHOP_LIST: URL + "/ai/lite/shop/list/",//获取店铺列表
-    URL_SHOP_LIST_SEARCH: URL + "/ai/lite/shop/list/search/",//获取店铺列表
+    URL_SHOP_LIST_SEARCH: URL + "/ai/lite/shop/list/search/",//搜索店铺列表
     URL_SHOP_GET: URL +"/ai/lite/shop/get/", //获取店铺内容
     URL_SHOP_TRACE: URL +"/ai/lite/shop/trace/",//获取用户记录
 

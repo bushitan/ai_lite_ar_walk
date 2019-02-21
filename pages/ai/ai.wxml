@@ -1,0 +1,36 @@
+<!--pages/ai/ai.wxml-->
+
+<view wx:if="{{isCameraPage}}">
+    <view class='article'>
+        <view class='title'>AI识别活动</view>
+        <view class='des'>
+            <label>规则：</label>
+            给星湖Lee的logo拍照，参与活动买一送一哦！！
+        </view>
+    </view>
+    <view class='camera'>
+        <camera ></camera>
+    </view>
+    <view class='btn'>
+        <button catchtap='takePhoto' style='background-color:#ffbc34;color:#fff'>AI识别</button>
+    </view>
+</view>
+
+<view wx:else >
+    <view class='article'>
+        <view class='title'>识别成功</view>
+        <view class='des'>
+            这张图片是Lee的Logo！
+        </view>
+    </view>
+    <view  class='snapshot'>
+        <image src='{{imageSnapshot}}'></image>
+    </view>
+    
+    <view class='btn'>
+        <button catchtap='toPreview' style='background-color:#ffbc34;color:#fff'>保存图片（点击按钮，长按保存）</button>
+    </view>
+    <view class='btn'>
+        <button catchtap='toPhoto' >重新识别</button>
+    </view>
+</view>

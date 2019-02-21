@@ -1,6 +1,7 @@
 {
     "pages":[
         "pages/geo/geo",
+        "pages/ai/ai",
         "pages/index/index",
         "pages/editor/editor",
         "pages/content/content",
@@ -17,7 +18,7 @@
     "window":{
         "backgroundTextStyle":"light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "找店店",
+        "navigationBarTitleText": "咖啡小地图",
         "navigationBarTextStyle":"black"
     },
     "tabBar": {

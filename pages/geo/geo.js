@@ -58,26 +58,26 @@ Page({
                 width: 40,
                 height: 40,
                 callout: {
-                    content: shop.name,
+                    content: shop.title,
                     fontSize: 14,
                     color: '#ffffff',
                     bgColor: '#000000',
                     padding: 8,
                     borderRadius: 4,
                     boxShadow: '4px 8px 16px 0 rgba(0)',
-                    display:"ALWAYS",
+                    // display:"ALWAYS",
                 },
-                // label: {
-                //     content: shop.name,
-                //     anchorX: 0,
-                //     anchorY:0,
-                //     fontSize: 14,
-                //     color: '#ffffff',
-                //     bgColor: '#000000',
-                //     padding: 8,
-                //     borderRadius: 4,
-                //     boxShadow: '4px 8px 16px 0 rgba(0)'
-                // },
+                label: {
+                    content: shop.name,
+                    anchorX: 0,
+                    anchorY:0,
+                    fontSize: 14,
+                    color: '#ffffff',
+                    bgColor: '#000000',
+                    padding: 8,
+                    borderRadius: 4,
+                    boxShadow: '4px 8px 16px 0 rgba(0)'
+                },
             })
         }
             
@@ -107,6 +107,12 @@ Page({
         })
     },
     
+    //跳转到AI
+    toAI(){
+        wx.navigateTo({
+            url: '/pages/ai/ai',
+        })
+    },
     //跳转到store
     toStore(e) {
         GP.navStore(e.currentTarget.dataset.shop_id)
