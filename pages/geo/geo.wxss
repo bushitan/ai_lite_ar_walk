@@ -65,6 +65,7 @@
     font-size: 11pt;
     background-color: #ffbc34;
     color: #fff;
-    padding: 10px 25px;
-    border-radius: 30px;
+    /* padding: 10px 25px; */
+    padding: 30px;
+    border-radius: 50%;
 }

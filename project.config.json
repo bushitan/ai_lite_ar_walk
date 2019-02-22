@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 13,
 			"list": [
 				{
 					"id": 0,
@@ -112,6 +112,13 @@
 					"id": -1,
 					"name": "party",
 					"pathName": "pages/party/party",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/search/search",
 					"query": "",
 					"scene": null
 				},

@@ -34,7 +34,7 @@
     </cover-view>
 
     
-    <!-- <cover-view class='search' >
-        <cover-view class='btn' catchtap='toSearch' >搜  索</cover-view>
-    </cover-view> -->
+    <cover-view class='search' >
+        <cover-view class='btn' catchtap='toSearch' >AI打卡</cover-view>
+    </cover-view>
 </map>

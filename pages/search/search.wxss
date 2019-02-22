@@ -1,1 +1,70 @@
 /* pages/search/search.wxss */
+page{
+    background-color: #fff;
+    font-size: 11pt;
+}
+
+.tab {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+.tab .input {
+    background-color: #efefef;
+    flex-grow: 1;
+    padding:5px 10px;
+    font-size: 9pt;
+    color: #888;
+}
+.tab .cancel{
+    padding-left: 15px;
+    color: #888;
+}
+
+/**********历史记录*********/
+.trace{
+    padding: 15px;
+}
+.trace .title{
+    font-weight: bolder;
+}
+
+.trace .node{
+    display: inline-block;
+    /* font-weight: bolder; */
+    background-color: #efefef;
+    margin:10px 5px 0px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    line-height: 20px;
+    font-size: 9pt;
+    color: #888;
+}
+
+/**********推荐*********/
+.hot{
+    padding: 15px;
+}
+.hot .title{
+    font-weight: bolder;
+    color: orangered;
+}
+.hot .list{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+.hot .node{
+    text-align: center;
+    display: inline-block;
+    width: 35%;
+    background-color: #efefef;
+    margin:10px 5px 0px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    line-height: 20px;
+    font-size: 9pt;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}

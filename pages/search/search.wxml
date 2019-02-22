@@ -1,2 +1,25 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class='tab'>
+    <input 
+        class='input'
+        focus='true'
+        placeholder='请输入咖啡店名'  ></input>
+    <view class='cancel' catchtap='back'>取消</view>
+</view>
+
+<view class='trace' hidden='{{traceList.length == 0}}'>
+    <view class='title'>历史记录</view>
+    <block wx:for="{{traceList}}">
+        <view class='node'>{{item}}</view>
+    </block>
+</view>
+
+
+<view class='hot'>
+    <view class='title'>火热推荐</view>
+    <view class='list'>
+        <block wx:for="{{hotList}}">
+            <view class='node' catchtap='to'>{{item}}</view>
+        </block>
+    </view>
+</view>
