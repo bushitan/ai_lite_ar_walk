@@ -8,8 +8,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        latitude: '22.81927',
-        longitude: '108.38432',
+        latitude: '22.81077',
+        longitude: '108.340187',
         isShowCallout:false,
         currentShop:{},
         shopList: [],
@@ -38,9 +38,9 @@ Page({
                     markers:GP.initMarker( res.data.shop_list),
                 })
 
-                GP.setData({
-                    currentShop: GP.getMarkerInfo(6)
-                })
+                // GP.setData({
+                //     currentShop: GP.getMarkerInfo(6)
+                // })
             },
         })
     },
@@ -55,6 +55,7 @@ Page({
                 latitude: shop.latitude,
                 longitude: shop.longitude,
                 iconPath: "../../images/map_coffee.png",
+                // iconPath: "../../images/1.gif",
                 width: 40,
                 height: 40,
                 callout: {
@@ -72,8 +73,8 @@ Page({
                     anchorX: 0,
                     anchorY:0,
                     fontSize: 14,
-                    color: '#ffffff',
-                    bgColor: '#000000',
+                    color: '#888',
+                    bgColor: '#fff',
                     padding: 8,
                     borderRadius: 4,
                     boxShadow: '4px 8px 16px 0 rgba(0)'
@@ -124,11 +125,14 @@ Page({
     },
     
     //到集点卡
-    toCollect(){
-        wx.showModal({
-            title: '功能即将开放',
-            content: '多喝多送福利',
+    toSearch(){
+        wx.navigateTo({
+            url: '/pages/search/search',
         })
+        // wx.showModal({
+        //     title: '功能即将开放',
+        //     content: '多喝多送福利',
+        // })
     },
     /**
      * 用户点击右上角分享

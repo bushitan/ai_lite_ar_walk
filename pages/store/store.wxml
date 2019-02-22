@@ -1,4 +1,5 @@
 <!--pages/store/store.wxml-->
+<import src="../../utils/wxParse/wxParse.wxml"/>
 
     <view class='camera'>
         <camera >    
@@ -10,29 +11,24 @@
     </view>
 
 <view class='prepare'>
-    <rich-text nodes="{{shop.content}}" ></rich-text>
+    <view wx:if="{{article.nodes == ''}}" class='node_dialog'>
+        <view>店铺还没有提供门店照片，点击上方导航直达目的</view>
+    </view>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" wx:else />
     <view style='height:50px;'></view>
-    <!-- <button class='btn_back' catchtap='offPreview' type='primary'>返回编辑</button> -->
 </view>
-    <!-- <scroll-view scroll-y="ture" class='article'> -->
-        <!-- <view class='article'> -->
-            <!-- <view class='content'> -->
-                <!-- <rich-text nodes="{{shop.content}}"></rich-text> -->
-                <!-- <image src='{{shop.content}}' mode='widthFix'></image> -->
-            <!-- </view> -->
-        <!-- </view> -->
-    <!-- </scroll-view> -->
-<!-- <view class='menu'>
-    <view class='node'>
-        <view class='title weight'>浏览记录</view>
-        <view class='border'>
-            <view class='line'></view>
+
+<view class='menu'>
+    <view class='logo'>
+        <image  src='../../images/store_logo.jpg'></image>
+        <view class='des' >
+            <view class='name'>魏啊未</view>
+            <view class='job'>(地址贡献者)</view>
         </view>
     </view>
-    <view class='node'>
-        <view class='title '>浏览记录</view>
-        <view class='border'>
-            <view class=''></view>
-        </view>
+    <view>
+        <button size='mini' class='collect'>收藏</button>
+        <button size='mini'>告诉好友</button>
     </view>
-</view> -->
+   
+</view>

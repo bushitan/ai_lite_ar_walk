@@ -1,4 +1,5 @@
 /* pages/store/store.wxss */
+@import "../../utils/wxParse/wxParse.wxss";
 
 /*****相机******/
 
@@ -34,54 +35,13 @@
     font-size: 11pt;
 }
 
-/****article****/
-.article{
-    white-space: nowrap; 
-    height: calc(100vh -  350rpx )
-
-}
-.article .content{
-    background-color: #eee;
-    height: 1000px;
-}
-.article image{
-    width: 100%;
-}
-
-
-
-/****底部菜单****/
-.menu {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    padding: 15px 25px 25px;
-    background-color: #fff;
-    /* border-top: 1px solid #e7e7e7; */
-}
-
-.menu .node {
-    margin-right: 15px;
-}
-.menu .title {
+.node_dialog{
+    text-align: center;
     font-size: 11pt;
 }
-.menu .border{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-}
-.menu .weight{
-    font-weight: bolder;
-}
-.menu .line {
-    width: 15px;
-    height: 3px;
-    background-color: #000;
-    
-}
+
+
+
 
 
 /******内容详情*****/
@@ -104,4 +64,37 @@
     font-size: 11pt ;
     line-height: 1.3rem;
     margin: 5px 0 ;
+}
+
+
+/******菜单*******/
+.menu{
+   
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    /* width: 100%; */
+    background-color: #fff;
+    border-top: 1rpx solid #eee; 
+    color: #888;
+    display: flex ;
+    justify-content: space-between;
+}
+.menu .logo {
+    display: flex;
+    align-items: center;
+}
+.menu .logo image{
+    width: 32px; 
+    height: 32px;
+    border-radius: 50%;
+}
+.menu .des{
+    margin-left: 10px;
+    font-size: 9pt
+}
+.menu .collect{
+    margin-right: 10px;
 }

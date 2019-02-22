@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <!-- <view class='space'></view> -->
 <view class='group'>
-    <view class='mark'>浏览记录</view>
+    <view class='mark'>我的收藏</view>
     <block wx:for="{{shopList}}" wx:key="index">
         <view class='node'>
             <view class='border' catchtap='toStore' data-shop_id="{{item.shop_id}}" hover-class='click'>

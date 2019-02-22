@@ -66,3 +66,32 @@ App({
 })
 
 // "navigationStyle":"custom"
+
+
+
+// "tabBar": {
+//     "color": "#cdcdcd",
+//         "selectedColor": "#ffbc34",
+//             "backgroundColor": "#ffffff",
+//                 "borderStyle": "white",
+//                     "list": [
+//                         {
+//                             "pagePath": "pages/geo/geo",
+//                             "text": "咖啡地图",
+//                             "iconPath": "images/tabbar_view.png",
+//                             "selectedIconPath": "images/tabbar_view_select.png"
+//                         },
+//                         {
+//                             "pagePath": "pages/index/index",
+//                             "text": "浏览记录",
+//                             "iconPath": "images/tabbar_view.png",
+//                             "selectedIconPath": "images/tabbar_view_select.png"
+//                         },
+//                         {
+//                             "pagePath": "pages/self/self",
+//                             "text": "我的编辑",
+//                             "iconPath": "images/tabbar_self.png",
+//                             "selectedIconPath": "images/tabbar_self_select.png"
+//                         }
+//                     ]
+// },

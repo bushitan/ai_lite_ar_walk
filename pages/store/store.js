@@ -1,5 +1,5 @@
 // pages/store/store.js
-
+var WxParse = require('../../utils/wxParse/wxParse.js');
 
 var GP
 var APP = getApp()
@@ -37,9 +37,13 @@ Page({
             url: API.URL_SHOP_GET,
             data: { shop_id:GP.data.shopID},
             success: function (res) {
+
+                var that = this;
+                WxParse.wxParse('article', 'html', res.data.shop.content, GP, 0);
+                
                 GP.setData({
                     isPrepare: true,
-                    shop: res.data.shop,
+                    // shop: res.data.shop,
                 })
             },
         })

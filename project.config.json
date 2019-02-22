@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -86,7 +86,7 @@
 					"id": 7,
 					"name": "store",
 					"pathName": "pages/store/store",
-					"query": "shop_id=5",
+					"query": "shop_id=36",
 					"scene": null
 				},
 				{
@@ -105,6 +105,20 @@
 					"id": -1,
 					"name": "ai",
 					"pathName": "pages/ai/ai",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "party",
+					"pathName": "pages/party/party",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/search/search",
 					"query": "",
 					"scene": null
 				}

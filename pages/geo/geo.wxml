@@ -27,14 +27,14 @@
                         class='nav btn' 
                         catchtap='toStore' 
                         data-shop_id="{{currentShop.shop_id}}" >实景导航</cover-view>
-                    <cover-view class='collect btn' catchtap='toCollect'>集点卡</cover-view>
+                    <cover-view class='collect btn' catchtap='toAI'>找LOGO</cover-view>
                 </cover-view>
             </cover-view>
         </cover-view >
     </cover-view>
 
     
-    <cover-view class='search' >
-        <cover-view class='btn' catchtap='toAI' >找LOGO，买一送一</cover-view>
-    </cover-view>
+    <!-- <cover-view class='search' >
+        <cover-view class='btn' catchtap='toSearch' >搜  索</cover-view>
+    </cover-view> -->
 </map>
