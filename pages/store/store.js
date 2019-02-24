@@ -43,7 +43,7 @@ Page({
                 
                 GP.setData({
                     isPrepare: true,
-                    // shop: res.data.shop,
+                    shop: res.data.shop,
                 })
             },
         })

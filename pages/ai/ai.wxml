@@ -2,10 +2,10 @@
 
 <view wx:if="{{isCameraPage}}">
     <view class='article'>
-        <view class='title'>打卡活动</view>
+        <view class='title'>打卡</view>
         <view class='des'>
-            <label>规则：</label>
-            打卡有可能获得商家福利哦！！
+            <!-- <label>规则：</label> -->
+            打卡可获得{{name}}的福利哦！！
         </view>
     </view>
     <view class='camera'>
@@ -19,9 +19,9 @@
 <view wx:else >
     <view class='article'>
         <view class='title'>打卡成功</view>
-        <view class='des'>
+        <!-- <view class='des'>
             这张图片是Lee的Logo！
-        </view>
+        </view> -->
     </view>
     <view  class='snapshot'>
         <image src='{{imageSnapshot}}' mode="widthFix" catchtap='toPreview'></image>
@@ -32,7 +32,7 @@
         <button catchtap='toPreview' style='background-color:#ffbc34;color:#fff'>保存图片（点击按钮，长按保存）</button>
     </view>
     <view class='btn'>
-        <button catchtap='toPhoto' >重新识别</button>
+        <button catchtap='toPhoto' >重新打卡</button>
     </view>
 </view>
 

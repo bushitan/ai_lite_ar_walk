@@ -61,20 +61,21 @@ Component({
                 var width = newVal.width
                 var height = newVal.height
                 console.log(newVal,path)
-                // this.getImageInfo(path).then((res) => {
-                    var _width = 450
-                    var _height = parseInt(height * _width / width)
-                    this.setData({
-                        width: _width,
-                        height: _height,
-                    })
+                var _width = 450
+                var _height = parseInt(height * _width / width)
+                this.setData({
+                    width: _width,
+                    height: _height,
+                })
+                this.getImageInfo(path).then((res) => {
+                  
                     this.getCanvas(path, _width, _height, title)
                     // var that = this
                     // setTimeout(function(){
                     //     this.getCanvas(path, _width, _height, title)
                     // },1000)
                     
-                // })
+                })
             }
         },
 
@@ -95,7 +96,7 @@ Component({
             var logoHeight = this.data.logoHeight
             canvas = wx.createCanvasContext(downCanvasID, this)
             canvas.setFillStyle('white')
-            canvas.fillRect(0, 0, width + borderSize * 2, height + logoHeight + borderSize * 3)
+            canvas.fillRect(0, 0,2000,2000)
             canvas.drawImage(
                 path,
                 borderSize, /*画图要预留边框空白*/
@@ -110,7 +111,7 @@ Component({
             canvas.setFillStyle("#000000")
             // canvas.fillText('2018.10.17', (_width + _border) / 2 - 30, _height + 30)
             // canvas.drawImage('../../images/qr.jpg', (_width + _border) - 70, _height + 40, 60, 60)
-            canvas.font = "bolder 18px Arial";
+            canvas.font = "small-caps bold 24px/1 sans-serif;";
             // font = "bold 30px Arial";
             canvas.fillText(title, borderSize , height + borderSize*3 )
             canvas.font = "18px Arial";
@@ -132,20 +133,20 @@ Component({
                     y: 0,
                     // width: this.data.bgWidth,
                     // height: this.data.bgHeight,
-                    width: width + borderSize * 2,
+                    width: 490,
                     height: height + logoHeight + borderSize * 3,
                     // destWidth: 100,
                     // destHeight: 100,
                     canvasId: downCanvasID,
                     success(res) {
 
-                        wx.getImageInfo({
-                            src: res.tempFilePath,
-                            success(res) {
-                                // resolve(res)
-                                console.log(res)
-                            }
-                        })
+                        // wx.getImageInfo({
+                        //     src: res.tempFilePath,
+                        //     success(res) {
+                        //         // resolve(res)
+                        //         console.log(res)
+                        //     }
+                        // })
 
 
 

@@ -12,4 +12,5 @@
 
 
     
-<canvas canvas-id="downCanvas" class="canvas" style='width:{{width + borderSize * 2 }}px ;height:{{height + logoHeight + borderSize*3}}px' ></canvas>
+<!-- <canvas canvas-id="downCanvas" class="canvas" style='width:490px ;height:{{height + logoHeight + borderSize*3}}px' ></canvas> -->
+<canvas canvas-id="downCanvas" class="canvas" style='width:2000px ;height:2000px' ></canvas>

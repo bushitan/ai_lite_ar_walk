@@ -12,6 +12,7 @@
 .article .des{
     margin-top: 10px;
     font-size: 11pt;
+    text-align: center;
 }
 .article .des label{
     font-weight: bolder;

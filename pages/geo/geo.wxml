@@ -28,7 +28,11 @@
                         class='nav btn' 
                         catchtap='toStore' 
                         data-shop_id="{{currentShop.shop_id}}" >探店</cover-view>
-                    <cover-view class='collect btn' catchtap='toAI'>打卡</cover-view>
+                    <cover-view class='collect btn' 
+                        catchtap='toAI' 
+                        data-name="{{currentShop.name}}"
+                        data-summary="{{currentShop.summary}}"
+                    >打卡</cover-view>
                     <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view>
                 </cover-view>
             </cover-view>

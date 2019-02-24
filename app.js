@@ -66,7 +66,13 @@ App({
 })
 
 // "navigationStyle":"custom"
-
+    // ,
+    // {
+    //     "pagePath": "pages/index/index",
+    //     "text": "我的收藏",
+    //     "iconPath": "images/tabbar_self.png",
+    //     "selectedIconPath": "images/tabbar_self_select.png"
+    // }
 
 
 // "tabBar": {

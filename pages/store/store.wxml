@@ -18,7 +18,7 @@
     <view style='height:50px;'></view>
 </view>
 
-<view class='menu'>
+<view class='menu' >
     <view class='logo'>
         
         <button size='mini' class='collect' type='primary'>打卡</button>

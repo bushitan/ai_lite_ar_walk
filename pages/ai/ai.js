@@ -23,6 +23,12 @@ Page({
      */
     onLoad: function (options) {
         GP = this
+        var name = options.name.replace(/\@/g, '&')
+        var summary = options.summary.replace(/\@/g, '&')
+        GP.setData({
+            name: name,
+            summary: summary || "我在" + name +"，来偶遇吗",
+        })
     },
 
 
@@ -38,7 +44,7 @@ Page({
                     // isCameraPage:false,
                     imageSnapshot: "../../images/dialog_image_null.png",
                     makeLandmark:{
-                        title: "我在Dahe&Lee咖啡工作室，来偶遇吗",
+                        title: GP.data.summary,
                         path: res.tempImagePath,
                         width: res.width,
                         height: res.height,

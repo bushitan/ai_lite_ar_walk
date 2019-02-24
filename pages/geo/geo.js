@@ -109,9 +109,11 @@ Page({
     },
     
     //跳转到AI
-    toAI(){
+    toAI(e) {
+        var name = e.currentTarget.dataset.name.replace(/\&/g, '@')
+        var summary = e.currentTarget.dataset.summary.replace(/\&/g, '@')
         wx.navigateTo({
-            url: '/pages/ai/ai',
+            url: '/pages/ai/ai?name=' + name + "&summary=" + summary,
         })
     },
     //跳转到store
