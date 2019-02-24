@@ -20,11 +20,13 @@
 
 <view class='menu'>
     <view class='logo'>
-        <image  src='../../images/store_logo.jpg'></image>
+        
+        <button size='mini' class='collect' type='primary'>打卡</button>
+        <!-- <image  src='../../images/store_logo.jpg'></image>
         <view class='des' >
             <view class='name'>魏啊未</view>
             <view class='job'>(地址贡献者)</view>
-        </view>
+        </view> -->
     </view>
     <view>
         <button size='mini' class='collect'>收藏</button>

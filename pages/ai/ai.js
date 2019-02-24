@@ -6,8 +6,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isCameraPage:true, 
-        imageSnapshot:"",
+        isCameraPage: true,
+        imageSnapshot: "../../images/dialog_image_null.png",
+        // imageSnapshot: "",
+        
+
+        // makeLandmark: {
+        //     title: "我在Dahe&Lee咖啡工作室，来偶遇吗",
+        //     path: "../../images/loading.jpg",
+        // },
+        makeLandmark:{},
     },
 
     /**
@@ -27,13 +35,30 @@ Page({
             success: (res) => {
                 console.log(res)
                 GP.setData({
-                    isCameraPage:false,
-                    imageSnapshot :res.tempImagePath,
+                    // isCameraPage:false,
+                    imageSnapshot: "../../images/dialog_image_null.png",
+                    makeLandmark:{
+                        title: "我在Dahe&Lee咖啡工作室，来偶遇吗",
+                        path: res.tempImagePath,
+                        width: res.width,
+                        height: res.height,
+                    },
+                    // imageSnapshot :res.tempImagePath,
                 })
             }
         })
     },
 
+    getSnaphot(e){
+        var snaphot = e.detail
+        // wx.previewImage({
+        //     urls: [snaphot],
+        // })
+        GP.setData({
+            isCameraPage: false,
+            imageSnapshot: snaphot
+        })
+    },
     //预览图片
     toPreview(){
         wx.previewImage({

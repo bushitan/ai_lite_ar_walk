@@ -51,6 +51,10 @@
 }
 .callout .collect{
     background-color:yellowgreen;
+    margin-right: 10px;
+}
+.callout .cancle{
+    background-color:#eee;
 }
 
 
@@ -65,7 +69,7 @@
     font-size: 11pt;
     background-color: #ffbc34;
     color: #fff;
-    /* padding: 10px 25px; */
-    padding: 30px;
-    border-radius: 50%;
+    padding: 10px 25px;
+    /* padding: 30px; */
+    border-radius: 20px;
 }

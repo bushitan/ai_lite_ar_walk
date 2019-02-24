@@ -12,6 +12,7 @@
     enable-rotate="true"
     scale="16"
 >
+
     <cover-view class='callout' hidden='{{!isShowCallout}}'>
         <cover-view class='box'>
             <cover-image 
@@ -26,8 +27,9 @@
                     <cover-view 
                         class='nav btn' 
                         catchtap='toStore' 
-                        data-shop_id="{{currentShop.shop_id}}" >实景导航</cover-view>
-                    <cover-view class='collect btn' catchtap='toAI'>找LOGO</cover-view>
+                        data-shop_id="{{currentShop.shop_id}}" >探店</cover-view>
+                    <cover-view class='collect btn' catchtap='toAI'>打卡</cover-view>
+                    <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view>
                 </cover-view>
             </cover-view>
         </cover-view >
@@ -35,6 +37,6 @@
 
     
     <cover-view class='search' >
-        <cover-view class='btn' catchtap='toSearch' >AI打卡</cover-view>
+        <cover-view class='btn' catchtap='toSearch' >搜索</cover-view>
     </cover-view>
 </map>

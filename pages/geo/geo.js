@@ -134,6 +134,14 @@ Page({
         //     content: '多喝多送福利',
         // })
     },
+
+    //关闭冒泡窗
+    toCancle(){
+        GP.setData({
+            isShowCallout:false,
+        })
+    },
+    
     /**
      * 用户点击右上角分享
      */
