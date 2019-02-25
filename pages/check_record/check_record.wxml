@@ -1,0 +1,17 @@
+<!--pages/check_record/check_record.wxml-->
+ 
+
+ <cover 
+    mode="agenda" 
+    list="{{recordList}}" 
+    catchclick="clickAgenda"
+    catch:snapshot=""
+    catch:address=""
+    catch:share=""
+></cover>
+
+<view class='search' >
+    <!-- <view class='btn' catchtap='toSearch' >+</view> -->
+    <button size='mini' type='primary'>添加</button>
+</view>
+

@@ -1,6 +1,8 @@
 {
     "pages":[
+        "pages/check_record/check_record",
         "pages/geo/geo",
+        "pages/check/check",
         "pages/ai/ai",
         "pages/search/search",
         "pages/party/party",
@@ -36,16 +38,22 @@
                 "selectedIconPath": "images/tabbar_view_select.png"
             },
             {
-                "pagePath": "pages/party/party",
-                "text": "小聚会",
+                "pagePath": "pages/check/check",
+                "text": "打卡地图",
                 "iconPath": "images/tabbar_view.png",
                 "selectedIconPath": "images/tabbar_view_select.png"
             },
             {
-                "pagePath": "pages/index/index",
-                "text": "我的收藏",
-                "iconPath": "images/tabbar_self.png",
-                "selectedIconPath": "images/tabbar_self_select.png"
+                "pagePath": "pages/check_record/check_record",
+                "text": "打卡记录",
+                "iconPath": "images/tabbar_view.png",
+                "selectedIconPath": "images/tabbar_view_select.png"
+            },
+            {
+                "pagePath": "pages/party/party",
+                "text": "小聚会",
+                "iconPath": "images/tabbar_view.png",
+                "selectedIconPath": "images/tabbar_view_select.png"
             }
         ]
     },

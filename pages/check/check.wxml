@@ -1,0 +1,16 @@
+<!--pages/check/check.wxml-->
+
+<!-- <web-view src="https://mp.weixin.qq.com/s/nyadfBSgW8TJ2ZZghIATiA"></web-view> -->
+<map 
+    class='map'
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+    bindmarkertap="clickMarker"
+    show-location
+    enable-scroll="true"
+    enable-overlooking="true"
+    show-compass="true"
+    enable-rotate="true"
+    scale="1"
+></map>

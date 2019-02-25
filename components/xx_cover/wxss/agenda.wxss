@@ -1,0 +1,64 @@
+
+.agenda{
+    margin-bottom: 15px;
+}
+
+.agenda  .timeline { 
+  position: relative; 
+} 
+.agenda .timeline::before { 
+  content: ''; 
+  position: absolute; 
+  top: 25px; 
+  bottom: 15px;
+  left: 15px; 
+  height: 100%; 
+  width: 1px; 
+  background: #d2d2d2; 
+} 
+
+.agenda .point { 
+    width:8px;
+    height:8px;
+    background:#fff;
+    border:2px solid #555;
+    margin:5px;
+    border-radius:6px;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    overflow:hidden;
+    z-index: 999;
+    /* display:inline-block; */
+    /* float:left; */
+}
+.agenda .start_time{
+    color: #888;
+}
+
+.agenda .content{
+    margin-left: 15px;
+    padding: 10px 15px ; 
+    background-color: #fff; 
+    border-radius: 5px;
+    box-shadow:0px 2px 5px #efefef;
+}
+
+
+.agenda .content .snapshot{
+    width: 100%;
+}
+
+.agenda .content .summary{
+    font-size: 11pt;
+}
+
+.agenda  .tool{
+    display: flex;
+    /* justify-content: flex-end; */
+}
+.agenda  .icon{
+    width: 32px;
+    height: 32px;
+    margin-left: 5px;
+}
+
