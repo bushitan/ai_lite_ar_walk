@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -133,6 +133,13 @@
 					"id": -1,
 					"name": "ai",
 					"pathName": "pages/ai/ai",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "check_upload",
+					"pathName": "pages/check_upload/check_upload",
 					"scene": null
 				}
 			]

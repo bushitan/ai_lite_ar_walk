@@ -1,8 +1,10 @@
 {
     "pages":[
+        "pages/geo/geo",
+        "pages/check_camera/check_camera",
+        "pages/check_upload/check_upload",
         "pages/check/check",
         "pages/check_record/check_record",
-        "pages/geo/geo",
         "pages/ai/ai",
         "pages/search/search",
         "pages/party/party",
@@ -29,7 +31,7 @@
         "color": "#cdcdcd",
         "selectedColor": "#ffbc34",
         "backgroundColor":"#ffffff",
-        "borderStyle":"white",
+        "borderStyle":"black",
         "list": [
             {
                 "pagePath": "pages/geo/geo",

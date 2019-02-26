@@ -1,0 +1,4 @@
+/* pages/check_camera/check_camera.wxss */
+page{
+    background-color: #fff;
+}

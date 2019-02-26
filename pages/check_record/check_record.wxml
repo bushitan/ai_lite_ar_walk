@@ -5,13 +5,13 @@
     mode="agenda" 
     list="{{recordList}}" 
     catchclick="clickAgenda"
-    catch:snapshot=""
-    catch:address=""
-    catch:share=""
+    catch:image="prepareImage"
+    catch:address="address"
+    catch:share="share"
 ></cover>
 
 <view class='search' >
     <!-- <view class='btn' catchtap='toSearch' >+</view> -->
-    <button size='mini' type='primary'>添加</button>
+    <!-- <button size='mini' type='primary' catchtap='toCheckUpload'>新增打卡</button> -->
 </view>
 

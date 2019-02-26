@@ -1,8 +1,34 @@
 /* pages/geo/geo.wxss */
 
+/* 搜索 */
+page{
+    background-color: #fff;
+    font-size: 11pt;
+}
+
+
+.tab {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+.tab .input {
+    background-color: #efefef;
+    flex-grow: 1;
+    padding:5px 10px;
+    font-size: 9pt;
+    color: #888;
+}
+.tab .cancel{
+    padding-left: 15px;
+    color: #1AAD19;
+}
+
+
 .map{
     width: 100vw;
-    height: 100vh;
+    height: calc( 100vh - 57px );
+    /* height: calc( 100vh - 57px - 20px ); */
 }
 
 .callout{
@@ -72,4 +98,11 @@
     padding: 10px 25px;
     /* padding: 30px; */
     border-radius: 20px;
+}
+
+
+.footer{
+    font-size: 8pt;
+    line-height: 20px;
+    background-color: #fff;
 }

@@ -1,0 +1,15 @@
+<!--pages/check_upload/check_upload.wxml-->
+
+<view class='box'>
+    <view class='btn'>
+        <button size='mini' type='primary' catchtap='confirm'>打卡</button>
+    </view>
+    <textarea placeholder='这一刻的想法...' bindinput="input" ></textarea>
+    <view class='list'>
+        <block  wx:for="{{imageList}}">
+            <image class='node' src='{{item.path}}' catchtap='prepare' data-path="{{item.path}}" ></image>
+        </block>
+        <image class='add node' src='../../images/check_add.png' mode='widthFix' catchtap='add'></image>
+    </view>
+    <view class='footer'>*自动获取当前位置</view>
+</view>

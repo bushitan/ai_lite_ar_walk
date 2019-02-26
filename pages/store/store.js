@@ -107,6 +107,20 @@ Page({
         }
     },
 
+    //跳到上传打卡图片
+    toCheckUpload() {
+
+        wx.chooseImage({
+            count: 1,
+            success: function (res) {
+                wx.navigateTo({
+                    url: '/pages/check_upload/check_upload?path=' + res.tempFilePaths[0],
+                })
+            }
+        })
+
+    },
+
 
     /**
      * 用户点击右上角分享

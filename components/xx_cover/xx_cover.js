@@ -43,8 +43,8 @@ Component({
       },
 
       //点击截图
-      clickSnapshot(e) {
-          this.triggerEvent('snapshot', e.currentTarget.dataset.index);
+      clickImage(e) {
+          this.triggerEvent('image', e.currentTarget.dataset.image_url);
       },
       //点击店铺地址
       clickAddress(e) {

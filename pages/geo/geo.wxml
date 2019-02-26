@@ -1,4 +1,14 @@
 <!--pages/geo/geo.wxml-->
+
+<view class='tab' catchtap='toSearch' >
+    <input 
+        class='input'
+        placeholder='请输入咖啡店名'  
+        disabled="true"
+    ></input>
+    <view class='cancel' >搜索</view>
+</view>
+
 <map 
     class='map'
     latitude="{{latitude}}"
@@ -25,22 +35,23 @@
                 <cover-view class='title'>{{currentShop.title}}</cover-view>
                 <cover-view class='tool'>
                     <cover-view 
-                        class='nav btn' 
+                        class='collect btn' 
                         catchtap='toStore' 
-                        data-shop_id="{{currentShop.shop_id}}" >探店</cover-view>
-                    <cover-view class='collect btn' 
+                        data-shop_id="{{currentShop.shop_id}}" >探店打卡</cover-view>
+                    <!-- <cover-view class=' nav  btn' 
                         catchtap='toAI' 
                         data-name="{{currentShop.name}}"
                         data-summary="{{currentShop.summary}}"
-                    >打卡</cover-view>
+                    >到店打卡</cover-view> -->
                     <cover-view class='cancle btn' catchtap='toCancle'>关闭</cover-view>
                 </cover-view>
             </cover-view>
         </cover-view >
     </cover-view>
 
-    
+    <!-- catchtap='toCheckUpload'  -->
     <cover-view class='search' >
-        <cover-view class='btn' catchtap='toSearch' >搜索</cover-view>
+        <cover-view class='btn' catchtap='toCheckUpload'>拍照打卡</cover-view>  
     </cover-view>
 </map>
+<!-- <view class='footer'>广告文字</view> -->

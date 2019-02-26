@@ -21,7 +21,7 @@
 <view class='menu' >
     <view class='logo'>
         
-        <button size='mini' class='collect' type='primary'>打卡</button>
+        <button size='mini' class='check' type='primary' catchtap='toCheckUpload'>拍照打卡</button>
         <!-- <image  src='../../images/store_logo.jpg'></image>
         <view class='des' >
             <view class='name'>魏啊未</view>
@@ -29,8 +29,8 @@
         </view> -->
     </view>
     <view>
-        <button size='mini' class='collect'>收藏</button>
-        <button size='mini'>告诉好友</button>
+        <!-- <button size='mini' class='collect'>收藏</button> -->
+        <button size='mini' open-type='share'>告诉好友</button>
     </view>
    
 </view>

@@ -1,4 +1,5 @@
 // pages/check_record/check_record.js
+var GP 
 Page({
 
     /**
@@ -7,79 +8,88 @@ Page({
     data: {
         recordList: [
             {
-                summary:"随便测试一下随便测试一下随便测试一下随便测试一下",
+                summary: "做了个小包包",
+                snapshot: "../../images/group1.jpg",
+                record_id: 1,
+                shop_id: 1,
+                start_time: "2019-02-25 08:22",
+            },
+            {
+                summary: "不上传图片，纯粹打个卡",
                 snapshot: "", //../../images/group1.jpg
                 record_id: 1,
                 shop_id: "",
-                start_time:"2019-02-25 08:22",
-            },
-            {
-                summary: "随便测试一下",
-                snapshot: "../../images/group2.jpg",
-                record_id: 1,
-                shop_id: 1,
                 start_time: "2019-02-25 08:22",
             },
             {
-                summary: "随便测试一下",
-                snapshot: "../../images/store_logo.jpg",
+                summary: "喝了杯小咖啡",
+                snapshot: "../../images/group2.jpg", //
                 record_id: 1,
-                shop_id: 1,
+                shop_id: "",
                 start_time: "2019-02-25 08:22",
             },
+            // {
+            //     summary: "随便测试一下",
+            //     snapshot: "../../images/store_logo.jpg",
+            //     record_id: 1,
+            //     shop_id: 1,
+            //     start_time: "2019-02-25 08:22",
+            // },
         ],
         
-
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        GP = this
+        // GP.setData({
+        //     recordList: GP.data.recordList.reverse()
+        // })
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    onShow(){
+        var recordList = GP.data.recordList
+        var recod = wx.getStorageSync("record")
+        if (recod == ""){
+           
+        }
+        else{
+            recordList.unshift(recod)
+            GP.setData({
+                recordList: recordList
+            })
+            var recod = wx.setStorageSync("record","")
+        }
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
+    //跳到上传打卡图片
+    toCheckUpload() {
+        wx.navigateTo({
+            url: '/pages/check_upload/check_upload',
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
 
+    //预览图片
+    prepareImage(e){
+        wx.previewImage({
+            urls: [e.detail],
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
+    address(){
+        wx.navigateTo({
+            url: '/pages/store/store?shop_id=36',
+        })
+        // wx.showModal({
+        //     title: '跳转店铺按钮',
+        //     content: '',
+        // })
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
 
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
 
     /**
      * 用户点击右上角分享

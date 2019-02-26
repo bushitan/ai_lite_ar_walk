@@ -1,0 +1,44 @@
+/* pages/check_upload/check_upload.wxss */
+
+page{
+    background-color: #fff;
+}
+
+.box{
+    padding: 15px;
+}
+
+.box .btn{
+    text-align: right;
+    /* display: flex;
+    justify-content: flex-end; */
+
+}
+
+.box textarea{
+    /* background-color: #eee; */
+    width: 100%;
+    font-size: 11pt;
+    margin-bottom: 3px;
+    height: 120px;
+}
+.box .list{
+    display: flex;
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+}
+.box .node {
+    width: calc( (750rpx - 30px - 8px ) / 3  );
+    height: calc( (750rpx - 30px - 8px ) / 3  );
+    margin-top:2px;
+    margin-right: 2px; 
+}
+.box .add{
+    background-color: #eee;
+}
+
+.footer{
+    font-size: 9pt;
+    color: #888;
+    margin-top: 10px;
+}

@@ -15,8 +15,8 @@
                             src='{{item.snapshot}}' 
                             mode='widthFix' 
                             hidden='{{item.snapshot == "" ? true : false}}'
-                            catchtap='clickSnapshot'
-                            data-record_id="{{item.record_id}}"
+                            catchtap='clickImage'
+                            data-image_url="{{item.snapshot}}"
                         ></image>
                         <view class='tool'>
                             <image 
@@ -25,13 +25,13 @@
                                 catchtap='clickAddress'
                                 data-shop_id="{{item.shop_id}}"
                                 hidden='{{item.shop_id == "" ? true : false}}'
-                            ></image>          
-                            <image 
+                            ></image>         
+                            <!-- <image 
                                 class='icon' 
                                 src='../../images/menu_laugth.png'
                                 catchtap='clickShare'
                                 data-record_id="{{item.record_id}}"
-                            ></image>
+                            ></image>  -->
                         </view>
                         <!-- <view class='xx_agenda__title'>{{item.title}}</view>
                         <view class='xx_f_9 xx_m_t6'>{{item.summary}}</view>
