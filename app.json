@@ -1,8 +1,8 @@
 {
     "pages":[
+        "pages/check/check",
         "pages/check_record/check_record",
         "pages/geo/geo",
-        "pages/check/check",
         "pages/ai/ai",
         "pages/search/search",
         "pages/party/party",
