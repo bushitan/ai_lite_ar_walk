@@ -20,7 +20,7 @@
     enable-overlooking="true"
     show-compass="true"
     enable-rotate="true"
-    scale="13"
+    scale="5"
 >
 
     <cover-view class='callout' hidden='{{!isShowCallout}}'>

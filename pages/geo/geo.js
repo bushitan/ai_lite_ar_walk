@@ -22,6 +22,7 @@ Page({
     onLoad: function (options) {
         GP = this
         APP.login()
+        
     },
 
     onInit(){
