@@ -4,22 +4,48 @@
         class='input'
         focus='true'
         placeholder='请输入咖啡店名'  ></input>
-    <view class='cancel' catchtap='back'>取消</view>
+    <view class='cancel' catchtap='back'>搜索</view>
 </view>
 
-<view class='trace' hidden='{{traceList.length == 0}}'>
+<!-- <view class='trace' hidden='{{traceList.length == 0}}'>
     <view class='title'>历史记录</view>
     <block wx:for="{{traceList}}">
         <view class='node'>{{item}}</view>
     </block>
-</view>
+</view> -->
 
 
 <view class='hot'>
     <view class='title'>火热推荐</view>
     <view class='list'>
         <block wx:for="{{hotList}}">
-            <view class='node' catchtap='to'>{{item}}</view>
+            <view 
+                class='node' 
+                catchtap='toAddress' 
+                data-latitude="{{item.latitude}}"
+                data-longitude="{{item.longitude}}" 
+            >
+                {{item.name}}
+            </view>
         </block>
     </view>
 </view>
+
+
+shop_id	:	9
+		
+user_id	:	5
+		
+name	:	乐知
+		
+title	:	察也
+		
+latitude	:	22.8194850863312
+		
+address	:	南宁市荣和山水美地温馨湾(民族大道155号)
+		
+cover	:	http://img.12xiong.top/ai_server_2019_02_16_16_40_42.jpg
+		
+longitude	:	108.405176814623
+		
+summary	:	

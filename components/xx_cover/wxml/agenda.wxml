@@ -3,6 +3,19 @@
         <block wx:for="{{coverList}}" wx:key="index" >
             <view class=' timeline'>
                 <view class='xx_p_t15 xx_p_lr15'>
+
+                    <!-- 新增打卡 -->
+                    <block wx:if="{{index == 0}}">
+                        <view class='xx_flex' style='margin-left:-10px;'  >
+                            <view class='point'></view>
+                            <view class='xx_f_10 start_time '>Now</view>
+                        </view>
+                        <view class='search' >
+                            <view class='btn' catchtap='clickCamera'>拍照打卡</view>  
+                        </view>
+                    </block>
+
+                    <!-- 原有列表 -->
                     <view class='xx_flex' style='margin-left:-10px;'>
                         <view class='point'></view>
                         <view class='xx_f_10 start_time '>{{item.start_time}}</view>

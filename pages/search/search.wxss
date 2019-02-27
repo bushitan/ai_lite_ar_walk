@@ -18,7 +18,7 @@ page{
 }
 .tab .cancel{
     padding-left: 15px;
-    color: #888;
+    color: #1AAD19;
 }
 
 /**********历史记录*********/

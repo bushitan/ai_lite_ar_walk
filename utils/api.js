@@ -13,6 +13,8 @@ const APPID = "wx7500cd1b23a33998" //咖啡小地图
 
 module.exports = {
     KEY_USER_ID: KEY_USER_ID,
+    KEY_USER_INFO: "user_info",
+    KEY_SHOP_LIST:"shop_list",
     // KEY_SHOP_TRACE: "SHOP_TRACE",
 
     URL_QINIU_TOKEN: URL + "/ai/lite/qiniu/token/",  //上传token

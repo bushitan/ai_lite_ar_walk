@@ -1,17 +1,31 @@
 <!--pages/check_record/check_record.wxml-->
- 
 
+
+
+<view class="xx_menu ">
+    <view class="xx_menu__node "  wx:if="{{userInfo}}">
+        <view class="xx_menu__node_logo" catchtap="clickLogo">
+            <image src="{{userInfo.avatarUrl}}" ></image>
+            
+            <view class="xx_text__title">{{userInfo.nickName}}</view> 
+        </view>
+        <view class="xx_menu__node_name">
+             <button size='mini'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">更新</button>
+        </view>
+    </view>
+    <view class=" btn "  wx:else>
+        <button size='mini' type='primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo">打卡登陆</button>
+    </view>
+
+</view>  
  <cover 
     mode="agenda" 
     list="{{recordList}}" 
     catchclick="clickAgenda"
+    catch:camera="toCheckUpload"
     catch:image="prepareImage"
     catch:address="address"
     catch:share="share"
 ></cover>
 
-<view class='search' >
-    <!-- <view class='btn' catchtap='toSearch' >+</view> -->
-    <!-- <button size='mini' type='primary' catchtap='toCheckUpload'>新增打卡</button> -->
-</view>
 

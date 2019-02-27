@@ -1,4 +1,5 @@
 // pages/check_record/check_record.js
+const API = require("../../utils/api.js");
 var GP 
 Page({
 
@@ -6,6 +7,11 @@ Page({
      * 页面的初始数据
      */
     data: {
+
+
+        userInfo: false,
+
+
         recordList: [
             {
                 summary: "做了个小包包",
@@ -44,9 +50,13 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-        // GP.setData({
-        //     recordList: GP.data.recordList.reverse()
-        // })
+      
+        var userInfo = wx.getStorageSync(API.KEY_USER_INFO)
+        if (userInfo != "")
+            GP.setData({
+                userInfo: userInfo
+            })
+
     },
 
     onShow(){
@@ -64,10 +74,39 @@ Page({
         }
     },
 
+    getUserInfo(){
+        wx.getUserInfo({
+            success: function (res) {
+                // console.log(res);
+                // that.data.userInfo = res.userInfo;
+                var userInfo = res.userInfo
+                var info = {
+                    nickName: userInfo.nickName,
+                    avatarUrl: userInfo.avatarUrl,
+                    gender: userInfo.gender,// 性别 0：未知、1：男、2：女
+                    province: userInfo.province,
+                    city: userInfo.city,
+                    country: userInfo.country,
+                }
+                GP.setData({
+                    userInfo: info 
+                })
+                wx.setStorageSync(API.KEY_USER_INFO, info)
+            }
+        })
+    },
+
+
+
     //跳到上传打卡图片
     toCheckUpload() {
-        wx.navigateTo({
-            url: '/pages/check_upload/check_upload',
+        wx.chooseImage({
+            count: 1,
+            success: function (res) {
+                wx.navigateTo({
+                    url: '/pages/check_upload/check_upload?path=' + res.tempFilePaths[0],
+                })
+            }
         })
     },
 

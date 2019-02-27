@@ -1,4 +1,4 @@
-// pages/geo/geo.js
+33// pages/geo/geo.js
 const API = require("../../utils/api.js");
 var APP =getApp()
 var GP 
@@ -37,7 +37,7 @@ Page({
                     shopList: res.data.shop_list,
                     markers:GP.initMarker( res.data.shop_list),
                 })
-
+                wx.setStorageSync(API.KEY_SHOP_LIST, res.data.shop_list)
                 // GP.setData({
                 //     currentShop: GP.getMarkerInfo(6)
                 // })
@@ -144,19 +144,25 @@ Page({
         })
     },
 
-    //跳到上传打卡图片
-    toCheckUpload(){
-
-        wx.chooseImage({
-            count: 1,
-            success: function (res) {
-                wx.navigateTo({
-                    url: '/pages/check_upload/check_upload?path=' + res.tempFilePaths[0],
-                })
-            }
+    toEditor(){
+        wx.navigateTo({
+            url: '/pages/geo_share/geo_share',
         })
-        
     },
+
+    // //跳到上传打卡图片
+    // toCheckUpload(){
+
+    //     wx.chooseImage({
+    //         count: 1,
+    //         success: function (res) {
+    //             wx.navigateTo({
+    //                 url: '/pages/check_upload/check_upload?path=' + res.tempFilePaths[0],
+    //             })
+    //         }
+    //     })
+        
+    // },
     
     /**
      * 用户点击右上角分享

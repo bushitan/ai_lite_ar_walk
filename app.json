@@ -35,25 +35,19 @@
         "list": [
             {
                 "pagePath": "pages/geo/geo",
-                "text": "咖啡地图",
-                "iconPath": "images/tabbar_view.png",
-                "selectedIconPath": "images/tabbar_view_select.png"
-            },
-            {
-                "pagePath": "pages/check/check",
-                "text": "打卡地图",
+                "text": "探店",
                 "iconPath": "images/tabbar_view.png",
                 "selectedIconPath": "images/tabbar_view_select.png"
             },
             {
                 "pagePath": "pages/check_record/check_record",
-                "text": "打卡记录",
+                "text": "打卡",
                 "iconPath": "images/tabbar_view.png",
                 "selectedIconPath": "images/tabbar_view_select.png"
             },
             {
-                "pagePath": "pages/party/party",
-                "text": "小聚会",
+                "pagePath": "pages/check/check",
+                "text": "我的地图",
                 "iconPath": "images/tabbar_view.png",
                 "selectedIconPath": "images/tabbar_view_select.png"
             }

@@ -62,3 +62,23 @@
     margin-left: 5px;
 }
 
+
+
+
+
+.search {
+    /* position: absolute;
+    bottom: 10px; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px 15px;
+}
+.search .btn {
+    font-size: 11pt;
+    background-color: #ffbc34;
+    color: #fff;
+    padding: 10px 25px;
+    /* padding: 30px; */
+    border-radius: 20px;
+}

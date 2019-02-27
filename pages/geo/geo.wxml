@@ -20,7 +20,7 @@
     enable-overlooking="true"
     show-compass="true"
     enable-rotate="true"
-    scale="16"
+    scale="13"
 >
 
     <cover-view class='callout' hidden='{{!isShowCallout}}'>
@@ -37,7 +37,7 @@
                     <cover-view 
                         class='collect btn' 
                         catchtap='toStore' 
-                        data-shop_id="{{currentShop.shop_id}}" >探店打卡</cover-view>
+                        data-shop_id="{{currentShop.shop_id}}" >探店</cover-view>
                     <!-- <cover-view class=' nav  btn' 
                         catchtap='toAI' 
                         data-name="{{currentShop.name}}"
@@ -51,7 +51,7 @@
 
     <!-- catchtap='toCheckUpload'  -->
     <cover-view class='search' >
-        <cover-view class='btn' catchtap='toCheckUpload'>拍照打卡</cover-view>  
+        <cover-view class='btn' catchtap='toEditor'>贡献地址</cover-view>  
     </cover-view>
 </map>
 <!-- <view class='footer'>广告文字</view> -->

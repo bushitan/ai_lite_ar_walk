@@ -42,6 +42,9 @@ Component({
           this.triggerEvent('click', e.currentTarget.dataset.index);
       },
 
+      clickCamera(){
+          this.triggerEvent('camera');
+      },
       //点击截图
       clickImage(e) {
           this.triggerEvent('image', e.currentTarget.dataset.image_url);
