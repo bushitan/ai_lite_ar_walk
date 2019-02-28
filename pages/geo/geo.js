@@ -21,7 +21,6 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-<<<<<<< HEAD
         // APP.login()
 
         if (options.hasOwnProperty("shop_id")) {
@@ -34,10 +33,6 @@ Page({
         wx.navigateTo({
             url: '/pages/store/store?shop_id=' + id,
         })
-=======
-        APP.login()
-        
->>>>>>> origin/master
     },
 
     onInit(){

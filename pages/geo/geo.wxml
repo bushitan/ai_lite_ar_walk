@@ -19,11 +19,7 @@
     enable-overlooking="true"
     show-compass="true"
     enable-rotate="true"
-<<<<<<< HEAD
     scale="6"
-=======
-    scale="5"
->>>>>>> origin/master
 >
 
     <cover-view class='callout' hidden='{{!isShowCallout}}'>
