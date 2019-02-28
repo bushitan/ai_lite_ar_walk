@@ -1,0 +1,25 @@
+
+
+<view class='box'> 
+    <block wx:for="{{list}}">
+        <view class='node'>
+            <view class='discovery'>    
+                <image  src='../../images/store_logo.jpg'></image>        
+                <view class='des' >
+                    <view class='name'>魏啊未</view>
+                    <view class='job'>19-09-21</view>
+                </view>
+            </view>
+            <!-- <view  > -->
+                <image
+                    src='{{item.snapshot}}'
+                    class='cover'
+                    mode='widthFix' 
+                    wx:if="{{item.snapshot}}"
+                ></image>
+            <!-- </view> -->
+            <!-- <view style='height:20px;' wx:else></view> -->
+            <view class='comment'>{{item.summary}}</view>
+        </view>
+    </block>
+</view>

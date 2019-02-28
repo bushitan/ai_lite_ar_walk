@@ -159,9 +159,16 @@
 				},
 				{
 					"id": 18,
-					"name": "store_none",
+					"name": "store",
 					"pathName": "pages/store/store",
 					"query": "shop_id=36",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "store_none",
+					"pathName": "pages/store/store",
+					"query": "shop_id=35",
 					"scene": null
 				}
 			]

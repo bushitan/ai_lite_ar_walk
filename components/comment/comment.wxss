@@ -1,0 +1,38 @@
+.box{
+    padding: 15px;
+
+}
+
+.node{
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+
+ .discovery {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+ .discovery image{
+    width: 32px; 
+    height: 32px;
+    border-radius: 50%;
+}
+.discovery .des{
+    margin-left: 10px;
+    font-size: 9pt
+}
+.discovery .collect{
+    margin-right: 10px;
+}
+
+
+.cover {
+    width: 100%;
+}
+
+.comment {
+    font-size: 11pt;
+    padding:5px 10px 15px;
+}
