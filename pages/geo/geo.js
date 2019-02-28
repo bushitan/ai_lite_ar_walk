@@ -1,4 +1,4 @@
-33// pages/geo/geo.js
+// pages/geo/geo.js
 const API = require("../../utils/api.js");
 var APP =getApp()
 var GP 
@@ -11,7 +11,7 @@ Page({
         latitude: '22.81077',
         longitude: '108.340187',
         isShowCallout:false,
-        currentShop:{},
+        currentShop: { cover:""},
         shopList: [],
         markers: [],
     },
@@ -21,11 +21,22 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-        APP.login()
+        // APP.login()
+
+        if (options.hasOwnProperty("shop_id")) {
+            GP.navStore(options.shop_id)
+        }
+
+        GP.getTraceList()
+    },
+    navStore(id) {
+        wx.navigateTo({
+            url: '/pages/store/store?shop_id=' + id,
+        })
     },
 
     onInit(){
-        wx.setStorageSync(API.KEY_USER_ID, 3)
+        // wx.setStorageSync(API.KEY_USER_ID, 3)
         GP.getTraceList()
     },
 

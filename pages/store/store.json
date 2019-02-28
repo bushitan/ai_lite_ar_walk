@@ -1,1 +1,5 @@
-{}
+{
+    "usingComponents": {
+        "cover": "../../components/xx_cover_com/xx_cover_com"
+    }
+}

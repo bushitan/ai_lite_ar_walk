@@ -16,6 +16,30 @@ Page({
         content: "../../images/coffee_content.jpg",
         shopID:1,
         shop:{},
+
+        recordList: [
+            {
+                summary: "做了个小包包",
+                snapshot: "../../images/group1.jpg",
+                record_id: 1,
+                shop_id: 1,
+                start_time: "2019-02-25 08:22",
+            },
+            {
+                summary: "不上传图片，纯粹打个卡",
+                snapshot: "", //../../images/group1.jpg
+                record_id: 1,
+                shop_id: "",
+                start_time: "2019-02-25 08:22",
+            },
+            {
+                summary: "喝了杯小咖啡",
+                snapshot: "../../images/group2.jpg", //
+                record_id: 1,
+                shop_id: "",
+                start_time: "2019-02-25 08:22",
+            },
+        ],
     },
 
     /**
@@ -128,7 +152,7 @@ Page({
     onShareAppMessage: function () {
         return {
             title:"AR地图导航：" + GP.data.shop.name,
-            path: "/pages/index/index?shop_id=" + GP.data.shop.shop_id,
+            path: "/pages/geo/geo?shop_id=" + GP.data.shop.shop_id,
             imageUrl: GP.data.shop.cover,
         }
     }

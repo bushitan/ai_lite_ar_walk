@@ -34,13 +34,6 @@ Page({
                 shop_id: "",
                 start_time: "2019-02-25 08:22",
             },
-            // {
-            //     summary: "随便测试一下",
-            //     snapshot: "../../images/store_logo.jpg",
-            //     record_id: 1,
-            //     shop_id: 1,
-            //     start_time: "2019-02-25 08:22",
-            // },
         ],
         
     },

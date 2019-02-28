@@ -8,7 +8,6 @@
     ></input>
     <view class='cancel' >搜索</view>
 </view>
-
 <map 
     class='map'
     latitude="{{latitude}}"
@@ -20,16 +19,17 @@
     enable-overlooking="true"
     show-compass="true"
     enable-rotate="true"
-    scale="13"
+    scale="6"
 >
 
     <cover-view class='callout' hidden='{{!isShowCallout}}'>
         <cover-view class='box'>
             <cover-image 
                 class='cover' 
-                src='{{currentShop.cover}}' 
+                src='{{currentShop.cover == "" ? "" : currentShop.cover }}' 
                 mode='aspectFit'
-                hidden='{{ currentShop.cover == "" ? true:false}}'></cover-image>
+                wx:if='{{ currentShop.cover == "" ? false:true}}'
+            ></cover-image>
              <cover-view class='content'>
                 <cover-view class='name'>{{currentShop.name}}</cover-view>
                 <cover-view class='title'>{{currentShop.title}}</cover-view>
@@ -51,6 +51,7 @@
 
     <!-- catchtap='toCheckUpload'  -->
     <cover-view class='search' >
+        <!-- <cover-view class='btn' catchtap='toEditor'>最近的店</cover-view> -->
         <cover-view class='btn' catchtap='toEditor'>贡献地址</cover-view>  
     </cover-view>
 </map>

@@ -1,0 +1,63 @@
+ <template name="mode_agenda"> 
+    <view class="agenda" >
+        <block wx:for="{{coverList}}" wx:key="index" >
+            <view class=' timeline'>
+                <view class='xx_p_t15 xx_p_lr15'>
+
+                    <!-- 新增打卡 -->
+                    <block wx:if="{{index == 0}}">
+                        <view class='xx_flex' style='margin-left:-10px;'  >
+                            <view class='point'></view>
+                            <view class='xx_f_10 start_time '>Now</view>
+                        </view>
+                        <view class='search' >
+                            <view class='btn' catchtap='clickCamera'>拍照打卡</view>  
+                        </view>
+                    </block>
+
+                    <!-- 原有列表 -->
+                    <view class='xx_flex' style='margin-left:-10px;'>
+                        <view class='point'></view>
+                        <view class='xx_f_10 start_time '>{{item.start_time}}</view>
+                    </view>
+                    <view class='content' catchtap='click' data-index="{{index}}"> 
+                        <view class='summary'>{{item.summary}}</view>      
+                        <view style='height:8px;' hidden='{{item.snapshot == "" ? true : false}}'></view>             
+                        <image
+                            class='snapshot' 
+                            src='{{item.snapshot}}' 
+                            mode='widthFix' 
+                            hidden='{{item.snapshot == "" ? true : false}}'
+                            catchtap='clickImage'
+                            data-image_url="{{item.snapshot}}"
+                        ></image>
+                        <view class='tool'>
+                            <image 
+                                class='icon' 
+                                src='../../images/menu_address.png' 
+                                catchtap='clickAddress'
+                                data-shop_id="{{item.shop_id}}"
+                                hidden='{{item.shop_id == "" ? true : false}}'
+                            ></image>         
+                            <!-- <image 
+                                class='icon' 
+                                src='../../images/menu_laugth.png'
+                                catchtap='clickShare'
+                                data-record_id="{{item.record_id}}"
+                            ></image>  -->
+                        </view>
+                        <!-- <view class='xx_agenda__title'>{{item.title}}</view>
+                        <view class='xx_f_9 xx_m_t6'>{{item.summary}}</view>
+                        <view class='xx_f_7 xx_m_t8'>{{item.start_time}} - {{item.end_time}}  | {{item.des}}</view> -->
+                    </view>
+                </view>
+            </view>
+        </block>     
+        <view class='xx_p_t15 xx_p_lr15'>
+            <view class='xx_flex' style='margin-left:-10px;'>
+                <view class='point'></view>
+                <view class='xx_f_10 '>没拉没啦</view>
+            </view>
+        </view>
+    </view> 
+ </template> 

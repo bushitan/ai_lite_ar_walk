@@ -4,7 +4,7 @@
     <view class='camera'>
         <camera >    
             <cover-view class='btn'>    
-                <cover-view class='des' catchtap='toNav' wx:if="{{isPrepare}}">打开AR导航</cover-view>
+                <cover-view class='des' catchtap='toNav' wx:if="{{isPrepare}}">打开AR步行导航</cover-view>
                 <cover-view class='des' catchtap='toNav' wx:else >AR导航准备中</cover-view>
             </cover-view>
         </camera>
@@ -12,26 +12,44 @@
 
 <view class='prepare'>
     <view wx:if="{{article.nodes == ''}}" class='node_dialog'>
-        <view>店铺还没有提供门店照片，点击上方导航直达目的</view>
+        <!-- 探索者 -->
+        <!-- <view class='discovery'>            
+            <view class='des' >
+                <view class='name'>魏啊未</view>
+                <view class='job'>(地址贡献者)</view>
+            </view>
+            <image  src='../../images/store_logo.jpg'></image>
+        </view> -->
+
+        <view>店铺还没有提供门店内容</view>
+        <view>将在店铺上，永久记录下第一位探索者的名字</view>
+        <!-- <button size='mini' type='primary' >贡献门店内容</button> -->
     </view>
     <template is="wxParse" data="{{wxParseData:article.nodes}}" wx:else />
     <view style='height:50px;'></view>
 </view>
 
+<!-- <view>地址贡献者 / 贡献地址按钮</view>
+<view>店家</view>
+<view>探店打卡</view>
+<view>探店评论</view> -->
+
+ <!-- <cover 
+    mode="agenda" 
+    list="{{recordList}}" 
+    catchclick="clickAgenda"
+    catch:camera="toCheckUpload"
+    catch:image="prepareImage"
+    catch:address="address"
+    catch:share="share"
+></cover> -->
+
+
 <view class='menu' >
-    <view class='logo'>
-        
-        <image  src='../../images/store_logo.jpg'></image>
-        <view class='des' >
-            <view class='name'>魏啊未</view>
-            <view class='job'>(地址贡献者)</view>
-        </view>
-    </view>
-    <view>
+    <!-- <view > -->
         <!-- <button size='mini' class='collect'>收藏</button> -->
-        
         <button size='mini' class='check collect' type='primary' catchtap='toCheckUpload'>探店打卡</button>
         <button size='mini' open-type='share'>告诉好友</button>
-    </view>
+    <!-- </view> -->
    
 </view>

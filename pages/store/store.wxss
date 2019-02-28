@@ -82,19 +82,22 @@
     display: flex ;
     justify-content: space-between;
 }
-.menu .logo {
+
+
+
+ .discovery {
     display: flex;
     align-items: center;
 }
-.menu .logo image{
+ .discovery image{
     width: 32px; 
     height: 32px;
     border-radius: 50%;
 }
-.menu .des{
+.discovery .des{
     margin-left: 10px;
     font-size: 9pt
 }
-.menu .collect{
+.discovery .collect{
     margin-right: 10px;
 }
