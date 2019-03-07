@@ -58,6 +58,11 @@ page{
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+    margin: 3px 0 ;
+}
+.callout .distance{
+    font-size: 9pt;
+    color: #888;
 }
 .callout .tool{
     display: flex;
@@ -101,8 +106,21 @@ page{
 }
 
 
-.footer{
-    font-size: 8pt;
-    line-height: 20px;
-    background-color: #fff;
+
+.share {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
 }
+.share .btn {
+    font-size: 11pt;
+    background-color: #ffbc34;
+    color: #fff;
+    padding: 10px 13px;
+    /* padding: 30px; */
+    border-radius: 50%;
+}
+

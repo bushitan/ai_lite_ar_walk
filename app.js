@@ -101,3 +101,33 @@ App({
 //                         }
 //                     ]
 // },
+
+
+
+
+// "tabBar": {
+//     "color": "#cdcdcd",
+//         "selectedColor": "#ffbc34",
+//             "backgroundColor": "#ffffff",
+//                 "borderStyle": "black",
+//                     "list": [
+//                         {
+//                             "pagePath": "pages/geo/geo",
+//                             "text": "探店",
+//                             "iconPath": "images/tabbar_view.png",
+//                             "selectedIconPath": "images/tabbar_view_select.png"
+//                         },
+//                         {
+//                             "pagePath": "pages/check_record/check_record",
+//                             "text": "打卡",
+//                             "iconPath": "images/tabbar_view.png",
+//                             "selectedIconPath": "images/tabbar_view_select.png"
+//                         },
+//                         {
+//                             "pagePath": "pages/check/check",
+//                             "text": "我的地图",
+//                             "iconPath": "images/tabbar_view.png",
+//                             "selectedIconPath": "images/tabbar_view_select.png"
+//                         }
+//                     ]
+// },

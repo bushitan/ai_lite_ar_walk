@@ -131,11 +131,15 @@ Page({
         }
     },
 
-    //跳到上传打卡图片
-    toCheckUpload() {
 
+    //跳到上传打卡图片
+    toCheck(e) {
+        var style = e.currentTarget.dataset.style
+        var sourceType = ['camera']
+        if (style == "photo") sourceType = ['album']
         wx.chooseImage({
             count: 1,
+            sourceType: sourceType,
             success: function (res) {
                 wx.navigateTo({
                     url: '/pages/check_upload/check_upload?path=' + res.tempFilePaths[0],

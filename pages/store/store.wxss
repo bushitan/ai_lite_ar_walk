@@ -1,5 +1,6 @@
 /* pages/store/store.wxss */
 @import "../../utils/wxParse/wxParse.wxss";
+@import "../../templates/share/share.wxss";
 
 /*****相机******/
 
@@ -72,12 +73,17 @@
     border-radius: 50%;
     background-color: #eee;
 }
+.prepare .check_photo{
+    color: #ffbc34;
+    font-size: 9pt;
+    padding: 3px 0;
+}
 .prepare .share{
     position: absolute;
-    top: 8px;
+    top: 10px;
     right: 10px;
-    width: 32px;
-    height:32px;
+    /* width: 25px;
+    height:25px; */
 }
 
 /* .prepare img{

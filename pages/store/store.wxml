@@ -1,5 +1,6 @@
 <!--pages/store/store.wxml-->
 <import src="../../utils/wxParse/wxParse.wxml"/>
+<import src="../../templates/share/share.wxml"/>
 
     <view class='camera'>
         <camera >    
@@ -11,7 +12,8 @@
     </view>
 
 <view class='prepare'>
-    <view wx:if="{{article.nodes == ''}}" class='node_dialog'>
+    <!-- <view wx:if="{{article.nodes == ''}}" class='node_dialog'> -->
+    <view class='node_dialog'>
         <!-- 探索者 -->
         <!-- <view class='discovery'>            
             <view class='des' >
@@ -28,15 +30,23 @@
         <view class='mark'>15107713265</view>
         <view class='mark'>周一至周日 08:30-22:00</view>
         <view>
-            <image class='check' src='../../images/menu_camera1.png'></image>
+            <image class='check' catchtap='toCheck' data-style="camera" src='../../images/menu_camera1.png'></image>
+            <view class='check_photo' catchtap='toCheck' data-style="photo" >选择相册图片</view>
         </view>
-        <image class='share' src='../../images/menu_laugth.png'></image>
 
+
+        <view class='share'>
+            <template is="share"/>
+        </view>
+        <!-- <button  class='share' size='mini'>
+            分享
+            <image src='../../images/menu_share.png'></image>
+        </button> -->
 
         <!-- <button size='mini' type='primary' >贡献门店内容</button> -->
     </view>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}" wx:else />
-    <!-- <view style='height:50px;'></view> -->
+    <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" wx:else /> -->
+
 </view>
 
 <view class='footer'>还未有人打卡，第一个是你么？</view>

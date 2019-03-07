@@ -9,6 +9,7 @@
     <view class='cancel' >搜索</view>
 </view>
 <map 
+    id='map'
     class='map'
     latitude="{{latitude}}"
     longitude="{{longitude}}"
@@ -19,7 +20,7 @@
     enable-overlooking="true"
     show-compass="true"
     enable-rotate="true"
-    scale="6"
+    scale="{{scale}}"
 >
 
     <cover-view class='callout' hidden='{{!isShowCallout}}'>
@@ -33,6 +34,7 @@
              <cover-view class='content'>
                 <cover-view class='name'>{{currentShop.name}}</cover-view>
                 <cover-view class='title'>{{currentShop.title}}</cover-view>
+                <cover-view class='distance' >距离: {{currentShop.distance}}</cover-view>
                 <cover-view class='tool'>
                     <cover-view 
                         class='collect btn' 
@@ -52,7 +54,10 @@
     <!-- catchtap='toCheckUpload'  -->
     <cover-view class='search' >
         <!-- <cover-view class='btn' catchtap='toEditor'>最近的店</cover-view> -->
-        <cover-view class='btn' catchtap='toEditor'>贡献地址</cover-view>  
+        <cover-view class='btn' catchtap='toSelfLocation'>我的位置</cover-view>  
+    </cover-view>
+
+    <cover-view class='share' >
+        <cover-view class='btn' catchtap='toEditor'>+</cover-view>  
     </cover-view>
 </map>
-<!-- <view class='footer'>广告文字</view> -->

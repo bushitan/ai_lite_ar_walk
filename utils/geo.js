@@ -7,6 +7,7 @@ const DIRECTION_BACK = "back" //后方
 
 module.exports = {
     distance:distance,
+    distaceStrFilter: distaceStrFilter,
     markValueToScreenXY: markValueToScreenXY,
     compassDirectionAngle: compassDirectionAngle,
     compassBetweenAngle:compassBetweenAngle,
@@ -44,6 +45,16 @@ function distance(lat_a, lng_a, lat_b, lng_b) {
     s = Math.round(s * 10000) / 10000; 
     return s;
 }
+
+function distaceStrFilter(distace){
+    if (distace > 1000)
+        return parseInt(distace/1000) + " km"
+    else
+        return parseInt(distace) + " m"
+}
+
+
+
 
 /**
  * @method 两点所连直线的罗盘方向角

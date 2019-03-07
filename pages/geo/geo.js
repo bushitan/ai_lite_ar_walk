@@ -1,5 +1,6 @@
 // pages/geo/geo.js
 const API = require("../../utils/api.js");
+const MATH_GEO = require("../../utils/geo.js");
 var APP =getApp()
 var GP 
 Page({
@@ -14,6 +15,7 @@ Page({
         currentShop: { cover:""},
         shopList: [],
         markers: [],
+        scale:6,
     },
 
     /**
@@ -99,7 +101,14 @@ Page({
     //点击冒泡
     clickMarker(e){
         console.log(e.markerId)
-        console.log()
+        console.log(GP.getMarkerInfo(e.markerId))
+        var currentShop = GP.getMarkerInfo(e.markerId)
+        var _d = MATH_GEO.distance(
+            GP.data.latitude,GP.data.longitude,
+            currentShop.latitude, currentShop.longitude
+        )
+
+        currentShop.distance = MATH_GEO.distaceStrFilter(_d)
         GP.setData({
             currentShop:GP.getMarkerInfo(e.markerId),
             isShowCallout:true,
@@ -117,6 +126,16 @@ Page({
         wx.showModal({
             title: '此标记点不存在',
         })
+    },
+
+    //跳转到最近的店
+    toSelfLocation(){
+        //TODO
+        var map = wx.createMapContext("map")
+        GP.setData({
+            scale:15,
+        })
+        map.moveToLocation()
     },
     
     //跳转到AI
