@@ -3,6 +3,7 @@ const API = require("../../utils/api.js");
 const MATH_GEO = require("../../utils/geo.js");
 var APP =getApp()
 var GP 
+var mapContext
 Page({
 
     /**
@@ -30,11 +31,7 @@ Page({
         }
 
         GP.getTraceList()
-    },
-    navStore(id) {
-        wx.navigateTo({
-            url: '/pages/store/store?shop_id=' + id,
-        })
+        mapContext = wx.createMapContext("map")
     },
 
     onInit(){
@@ -131,11 +128,10 @@ Page({
     //跳转到最近的店
     toSelfLocation(){
         //TODO
-        var map = wx.createMapContext("map")
         GP.setData({
             scale:15,
         })
-        map.moveToLocation()
+        mapContext.moveToLocation()
     },
     
     //跳转到AI
@@ -148,7 +144,11 @@ Page({
     },
     //跳转到store
     toStore(e) {
-        GP.navStore(e.currentTarget.dataset.shop_id)
+        // var latitude = e.currentTarget.dataset.latitude
+        // var longitude = e.currentTarget.dataset.longitude
+        // mapContext.moveToLocation()
+            GP.navStore(e.currentTarget.dataset.shop_id)
+     
     },
     navStore(id) {
         wx.navigateTo({

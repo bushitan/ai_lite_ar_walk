@@ -3,14 +3,16 @@
 @import "../../templates/share/share.wxss";
 
 /*****相机******/
-
+page{
+    background-color: #fff;
+}
 .camera{
     width: 100%;
-    height:60vh;
+    height:calc( 100vh - 240px);
 }
 .camera camera {
     width: 100%;
-    height: 60vh;
+    height:calc( 100vh - 240px);
 }
 .camera .btn{
     width:100%;
@@ -65,11 +67,22 @@
 .prepare .mark{
     font-size:8pt; 
     margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* flex:1; */
+}
+.prepare .mark .icon{
+    width:16px;
+    height: 16px;
+    flex: none ;
+    margin-right: 3px;
 }
 .prepare .check{
     padding: 15px;
-    width: 64px;
-    height: 64px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background-color: #eee;
 }
@@ -80,7 +93,7 @@
 }
 .prepare .share{
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 10px;
     /* width: 25px;
     height:25px; */

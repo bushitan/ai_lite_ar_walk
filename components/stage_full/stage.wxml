@@ -10,11 +10,11 @@
     摄像头，location 为打开的授权提示页面
  -->
 <!-- {{nextStep}} -->
-<camera device-position="back" flash="off"  class="camera" >
+<camera device-position="back" flash="off"  class="camera" style=' height:{{cameraHeight}};'>
 
-    <!-- <template is="menu_base" data="{{directionName,title}}"  wx:if="{{show.menu}}"/> -->
+    <template is="menu_base" data="{{directionName,title}}"  wx:if="{{show.menu}}"/>
 
-    <!-- <template is="nav_info" data="{{navInfo:nextStep,directionName}}"  wx:if="{{show.navInfo}}" /> -->
+    <template is="nav_info" data="{{navInfo:nextStep,directionName}}"  wx:if="{{show.navInfo}}" />
 
     <template is="nav_normal" 
         data="{{navCircleList:navList,navIcon:center}}" 
@@ -23,8 +23,8 @@
     <!-- 导航的mark -->
     <template is="mark" data="{{markList:focusList}}" />
 
-    <!-- <template is="map_camera" wx:if="{{show.navIcon}}" /> -->
-    <!-- <template is="map_icon" wx:if="{{show.mapIcon}}" /> -->
+    <template is="map_camera" wx:if="{{show.navIcon}}" />
+    <template is="map_icon" wx:if="{{show.mapIcon}}" />
 
 
 

@@ -68,7 +68,7 @@ Component({
         next: {
             type: Object,
             value: {},
-            observer(newVal, oldVal) { this.setData({ nextStep: newVal || { direction: 180} }) }
+            observer(newVal, oldVal) { this.setData({ nextStep: newVal }) }
         },
         //导航终点
         focus: {

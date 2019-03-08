@@ -4,7 +4,7 @@ var PointFn = require("../../js/stage/PointFn.js")
 var NavFn = require("../../js/stage/NavFn.js")
 
 
-var OFFSET_Y = 840   //基础高度
+var OFFSET_Y = 480   //基础高度
 var ICON_RADIUS = 140
 var ICON_RADIUS_HALF = ICON_RADIUS / 2
 var ICON_BASE = 40

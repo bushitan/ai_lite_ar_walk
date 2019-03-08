@@ -1,6 +1,7 @@
 {
     "usingComponents": {
         "comment": "../../components/comment/comment",
-        "cover": "../../components/xx_cover_com/xx_cover_com"
+        "cover": "../../components/xx_cover_com/xx_cover_com",
+        "stage": "../../components/stage/stage"
     }
 }

@@ -30,7 +30,7 @@ var point = {
             return halfWidth + baseStep * angle        
     },
     getScreenY: function (z) {
-        var OFFSET_Y = 800   //顶部偏离高度
+        var OFFSET_Y = 300   //顶部偏离高度
         var OFFSET_ACC = 300   //浮动范围
         return OFFSET_Y - OFFSET_ACC * Math.abs(z) - Math.abs(z)
     },
